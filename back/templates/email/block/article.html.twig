@@ -1,2 +1,9 @@
 <h2>{{ content.title }}</h2>
-<p>{{ content.body }}</p>
+<p>{{ content.body|nl2br }}</p>
+{% if content.sujets |length >0 %}
+    <ul>
+        {% for sujet in content.sujets %}
+            {{ sujet.label }}
+        {% endfor %}
+    </ul>
+{% endif %}
