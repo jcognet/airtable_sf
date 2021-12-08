@@ -1,0 +1,9 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Bienvenue à ma newsletter</h1>
+
+    {% for block in newspaper.blocks %}
+        {% include 'email/block/'~block.type~'.html.twig' with {content:block} %}
+    {% endfor %}
+{% endblock %}
