@@ -17,8 +17,7 @@ class Article implements BlockInterface
         string $title,
         string $body,
         Carbon $addedAt
-    )
-    {
+    ) {
         $this->title = $title;
         $this->body = $body;
         $this->addedAt = $addedAt;

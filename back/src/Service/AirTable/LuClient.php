@@ -5,7 +5,6 @@ namespace App\Service\AirTable;
 
 use App\Service\Builder\ArticleBuilder;
 use App\ValueObject\BlockInterface;
-use Symfony\Contracts\HttpClient\HttpClientInterface;
 
 class LuClient implements FetchDataInterface
 {
@@ -17,8 +16,7 @@ class LuClient implements FetchDataInterface
         AirtableClient $airtableClient,
         string $airtableAppArticleId,
         ArticleBuilder $articleBuilder
-    )
-    {
+    ) {
         $this->airtableClient = $airtableClient;
         $this->airtableAppArticleId = $airtableAppArticleId;
         $this->articleBuilder = $articleBuilder;

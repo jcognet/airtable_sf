@@ -3,13 +3,11 @@ declare(strict_types=1);
 
 namespace App\Command;
 
-
 use App\Service\NewsHandler;
 use Carbon\Carbon;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
-
 
 class NewspaperHandlerCommand extends Command
 {
@@ -35,7 +33,7 @@ class NewspaperHandlerCommand extends Command
 
         $this->newsHandler->handle();
 
-       $end = Carbon::now();
+        $end = Carbon::now();
         $interval = $end->diffAsCarbonInterval($start);
         $output->writeln(sprintf('Duration: %s', $interval->forHumans()));
 
