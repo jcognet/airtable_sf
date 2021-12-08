@@ -5,7 +5,7 @@ namespace App\Service\AirTable;
 
 use Symfony\Contracts\HttpClient\HttpClientInterface;
 
-class AirtableClient
+final class AirtableClient
 {
     private HttpClientInterface $airtableClient;
 
@@ -14,8 +14,14 @@ class AirtableClient
         $this->airtableClient = $airtableClient;
     }
 
-    public function request(string $verb, string $url, array $param = []): string
+    public function request(string $verb, string $url, array $parameters = []): string
     {
-        return $this->airtableClient->request($verb, $url)->getContent();
+        $options = [];
+
+        if (count($parameters) > 0) {
+            $options = ['query' => $parameters];
+        }
+
+        return $this->airtableClient->request($verb, $url, $options)->getContent();
     }
 }

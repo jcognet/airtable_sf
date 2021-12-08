@@ -3,20 +3,32 @@ declare(strict_types=1);
 
 namespace App\Service\Builder;
 
+use App\Service\Repository\SujetList;
 use App\ValueObject\Article;
 use Carbon\Carbon;
 
 class ArticleBuilder implements BuilderInterface
 {
+    private SujetList $sujetList;
+
+    public function __construct(SujetList $sujetList)
+    {
+        $this->sujetList = $sujetList;
+    }
+
     public function build(array $data): Article
     {
-        $records = $data['records'];
-        $key = array_rand($records);
+        $sujets = [];
+
+        foreach ($data['fields']['Sujet'] as $sujetId) {
+            $sujets[] = $this->sujetList->getById($sujetId);
+        }
 
         return new Article(
-            $records[$key]['fields']['Name'] ?? '',
-            $records[$key]['fields']['body'] ?? $records[$key]['fields']['Citation'] ?? '',
-            Carbon::parse($records[$key]['createdTime']),
+            $data['fields']['Name'] ?? '',
+            $data['fields']['body'] ?? $data['fields']['Citation'] ?? '',
+            Carbon::parse($data['createdTime']),
+            $sujets
         );
     }
 }

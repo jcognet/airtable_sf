@@ -24,8 +24,20 @@ class LuClient implements FetchDataInterface
 
     public function fetchData(): BlockInterface
     {
-        return $this->articleBuilder->build(
-            json_decode($this->airtableClient->request('GET', sprintf('%s/Lu', $this->airtableAppArticleId)), true)
+        $records = json_decode(
+            $this->airtableClient->request(
+            'GET',
+            sprintf('%s/Lu', $this->airtableAppArticleId),
+            [
+                'filterByFormula' => '{Type} = "Texte"',
+            ],
+        ),
+            true
         );
+
+        $articles = $records['records'];
+        $key = array_rand($articles);
+
+        return $this->articleBuilder->build($articles[$key]);
     }
 }
