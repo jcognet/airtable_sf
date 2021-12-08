@@ -15,8 +15,7 @@ class NewsHandler
     public function __construct(
         LuClient $luClient,
         Sender $sender
-    )
-    {
+    ) {
         $this->luClient = $luClient;
         $this->sender = $sender;
     }
@@ -37,6 +36,6 @@ class NewsHandler
 
     private function sendContent(Newspaper $content): void
     {
-        $this>$this->sender->send($content);
+        $this > $this->sender->send($content);
     }
 }

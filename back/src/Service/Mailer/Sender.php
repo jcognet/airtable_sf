@@ -6,7 +6,6 @@ namespace App\Service\Mailer;
 use App\ValueObject\Newspaper;
 use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Component\Mailer\MailerInterface;
-use Symfony\Component\Mime\Email;
 
 class Sender
 {
@@ -20,8 +19,7 @@ class Sender
         MailerInterface $mailer,
         string $mailerFrom,
         string $mailerTo
-    )
-    {
+    ) {
         $this->mailer = $mailer;
         $this->mailerFrom = $mailerFrom;
         $this->mailerTo = $mailerTo;
@@ -36,7 +34,8 @@ class Sender
             ->htmlTemplate('email/newsletter.html.twig')
             ->context([
                 'newspaper' => $newspaper,
-            ]);
+            ])
+        ;
 
         $this->mailer->send($email);
     }
