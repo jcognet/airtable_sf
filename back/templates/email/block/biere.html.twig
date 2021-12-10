@@ -1,0 +1,41 @@
+<h2>Souvenir de bonne bière, aujourd'hui, c'est la binch' {{ block.title }}
+    {% if block.brasserie %}
+        par <a href="{{ block.brasserie.url }}"
+               title="Site officiel de {{ block.brasserie.label }}">{{ block.brasserie.label }}</a>
+    {% endif %}
+</h2>
+<div>
+    {% if block.photo %}
+        <div>
+            <img src="{{ block.photo }}" alt="Une bonne photo de binch' !" height="100" />
+        </div>
+    {% endif %}
+    {% if block.note %}
+        <div>
+            Note : {{ block.note }} / 5
+        </div>
+    {% endif %}
+    {% if block.biereType %}
+        <div>
+            Type : {{ block.biereType.label }}
+        </div>
+    {% endif %}
+    {% if block.alcolholDegree %}
+        <div>
+            Degré : {{ block.alcolholDegree }}
+        </div>
+    {% endif %}
+    {% if block.ibu %}
+        <div>
+            IBU : {{ block.ibu }} / 5
+        </div>
+    {% endif %}
+    {% if block.avis %}
+        <div>
+            Avis : {{ block.avis }}
+        </div>
+    {% endif %}
+    <div>
+        Tu te souviens ? Tu l'as testé le {{ block.dateTest|date('d/m/Y') }}
+    </div>
+</div>

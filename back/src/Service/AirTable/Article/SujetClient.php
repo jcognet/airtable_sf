@@ -1,10 +1,11 @@
 <?php
 declare(strict_types=1);
 
-namespace App\Service\AirTable;
+namespace App\Service\AirTable\Article;
 
-use App\Service\Builder\SujetBuilder;
-use App\ValueObject\Sujet;
+use App\Service\AirTable\AirtableClient;
+use App\Service\Builder\Article\SujetBuilder;
+use App\ValueObject\Article\Sujet;
 
 class SujetClient
 {
@@ -25,7 +26,7 @@ class SujetClient
     /**
      * @return Sujet[]
      */
-    public function fetchData(): array
+    public function findAll(): array
     {
         $sujets = [];
         $response = json_decode(

@@ -1,10 +1,12 @@
 <?php
 declare(strict_types=1);
 
-namespace App\Service\AirTable;
+namespace App\Service\AirTable\Article;
 
-use App\Service\Builder\ArticleBuilder;
-use App\ValueObject\ArticleList;
+use App\Service\AirTable\AirtableClient;
+use App\Service\AirTable\FetchDataInterface;
+use App\Service\Builder\Article\ArticleBuilder;
+use App\ValueObject\Article\ArticleList;
 use App\ValueObject\BlockInterface;
 
 class ALireClient implements FetchDataInterface
