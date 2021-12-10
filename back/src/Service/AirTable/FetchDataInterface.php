@@ -7,5 +7,5 @@ use App\ValueObject\BlockInterface;
 
 interface FetchDataInterface
 {
-    public function fetchData(): BlockInterface;
+    public function fetchData(array $param = []): BlockInterface;
 }

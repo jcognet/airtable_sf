@@ -1,0 +1,14 @@
+<h2>{{ block.title }}</h2>
+<table>
+    {% for article in block.content %}
+    <tr>
+        <td>{{ article.title }}</td>
+        <td>{{ article.addedAt|date('d/m/Y') }}</td>
+        <td>
+            {% for sujet in article.sujets %}
+                {{ sujet.label }}
+            {% endfor %}
+        </td>
+    </tr>
+    {% endfor %}
+</table>

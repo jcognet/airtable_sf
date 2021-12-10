@@ -4,6 +4,6 @@
     <h1>Bienvenue à ma newsletter</h1>
 
     {% for block in newspaper.blocks %}
-        {% include 'email/block/'~block.type~'.html.twig' with {content:block} %}
+        {% include 'email/block/'~block.type~'.html.twig' with {block:block} %}
     {% endfor %}
 {% endblock %}

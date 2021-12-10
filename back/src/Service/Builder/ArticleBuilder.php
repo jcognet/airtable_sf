@@ -20,8 +20,10 @@ class ArticleBuilder implements BuilderInterface
     {
         $sujets = [];
 
-        foreach ($data['fields']['Sujet'] as $sujetId) {
-            $sujets[] = $this->sujetList->getById($sujetId);
+        if (isset($data['fields']['Sujet'])) {
+            foreach ($data['fields']['Sujet'] as $sujetId) {
+                $sujets[] = $this->sujetList->getById($sujetId);
+            }
         }
 
         return new Article(
