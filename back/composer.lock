@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "aaece47e23ff83e45135d152e47d6e9a",
+    "content-hash": "15553add97e88be9c3aeb69514d5e3c6",
     "packages": [
         {
             "name": "composer/semver",
@@ -556,6 +556,59 @@
                 }
             ],
             "time": "2021-12-03T14:59:52+00:00"
+        },
+        {
+            "name": "notfloran/mjml-bundle",
+            "version": "v3.5.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/notFloran/mjml-bundle.git",
+                "reference": "0b9b99fef1c0d06a34de58ba329d0b0bd3bd1623"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/notFloran/mjml-bundle/zipball/0b9b99fef1c0d06a34de58ba329d0b0bd3bd1623",
+                "reference": "0b9b99fef1c0d06a34de58ba329d0b0bd3bd1623",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.1.0",
+                "symfony/dependency-injection": "^3.4 || ^4.0 || ^5.0",
+                "symfony/process": "^3.4 || ^4.0 || ^5.0",
+                "symfony/twig-bundle": "^3.4 || ^4.0 || ^5.0"
+            },
+            "require-dev": {
+                "matthiasnoback/symfony-config-test": "^4.1",
+                "phpstan/phpstan": "^0.12.0",
+                "phpunit/phpunit": "^7.0",
+                "symplify/easy-coding-standard": "^6.0|^7.0"
+            },
+            "type": "symfony-bundle",
+            "autoload": {
+                "psr-4": {
+                    "NotFloran\\MjmlBundle\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Floran Brutel",
+                    "email": "me@floran.fr"
+                }
+            ],
+            "description": "Symfony bundle for MJML",
+            "keywords": [
+                "email",
+                "mjml"
+            ],
+            "support": {
+                "issues": "https://github.com/notFloran/mjml-bundle/issues",
+                "source": "https://github.com/notFloran/mjml-bundle/tree/v3.5.1"
+            },
+            "time": "2021-01-23T14:38:29+00:00"
         },
         {
             "name": "php-cs-fixer/diff",
