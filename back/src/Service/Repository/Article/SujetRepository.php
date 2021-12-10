@@ -1,12 +1,12 @@
 <?php
 declare(strict_types=1);
 
-namespace App\Service\Repository;
+namespace App\Service\Repository\Article;
 
-use App\Service\AirTable\SujetClient;
-use App\ValueObject\Sujet;
+use App\Service\AirTable\Article\SujetClient;
+use App\ValueObject\Article\Sujet;
 
-class SujetList
+class SujetRepository
 {
     private SujetClient $sujetClient;
     private ?array $sujets = null;
@@ -28,7 +28,7 @@ class SujetList
     private function get(): array
     {
         if ($this->sujets === null) {
-            $this->sujets = $this->sujetClient->fetchData();
+            $this->sujets = $this->sujetClient->findAll();
         }
 
         return $this->sujets;

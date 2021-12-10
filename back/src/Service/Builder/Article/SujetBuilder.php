@@ -1,9 +1,10 @@
 <?php
 declare(strict_types=1);
 
-namespace App\Service\Builder;
+namespace App\Service\Builder\Article;
 
-use App\ValueObject\Sujet;
+use App\Service\Builder\BuilderInterface;
+use App\ValueObject\Article\Sujet;
 
 class SujetBuilder implements BuilderInterface
 {

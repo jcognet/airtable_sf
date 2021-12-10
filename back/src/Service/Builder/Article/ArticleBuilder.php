@@ -1,19 +1,20 @@
 <?php
 declare(strict_types=1);
 
-namespace App\Service\Builder;
+namespace App\Service\Builder\Article;
 
-use App\Service\Repository\SujetList;
-use App\ValueObject\Article;
+use App\Service\Builder\BuilderInterface;
+use App\Service\Repository\Article\SujetRepository;
+use App\ValueObject\Article\Article;
 use Carbon\Carbon;
 
 class ArticleBuilder implements BuilderInterface
 {
-    private SujetList $sujetList;
+    private SujetRepository $sujetRepository;
 
-    public function __construct(SujetList $sujetList)
+    public function __construct(SujetRepository $sujetRepository)
     {
-        $this->sujetList = $sujetList;
+        $this->sujetRepository = $sujetRepository;
     }
 
     public function build(array $data): Article
@@ -22,7 +23,7 @@ class ArticleBuilder implements BuilderInterface
 
         if (isset($data['fields']['Sujet'])) {
             foreach ($data['fields']['Sujet'] as $sujetId) {
-                $sujets[] = $this->sujetList->getById($sujetId);
+                $sujets[] = $this->sujetRepository->getById($sujetId);
             }
         }
 

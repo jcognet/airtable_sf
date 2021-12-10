@@ -1,7 +1,9 @@
 <?php
 declare(strict_types=1);
 
-namespace App\ValueObject;
+namespace App\ValueObject\Article;
+
+use App\ValueObject\BlockInterface;
 
 class ArticleList implements BlockInterface
 {

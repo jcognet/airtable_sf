@@ -12,6 +12,7 @@ services:
     autoconfigure: true # Automatically registers your services as commands, event subscribers, etc.
     bind:
       $airtableAppArticleId: '%env(AIRTABLE_APP_ARTICLE_ID)%'
+      $airtableAppBiereId: '%env(AIRTABLE_APP_BIERE_ID)%'
       $mailerFrom: '%env(MAILER_FROM)%'
       $mailerTo: '%env(MAILER_TO)%'
 
