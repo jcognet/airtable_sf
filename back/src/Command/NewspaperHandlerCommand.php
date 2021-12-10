@@ -23,7 +23,7 @@ class NewspaperHandlerCommand extends Command
 
     protected function configure(): void
     {
-        $this->setDescription('Export all users.');
+        $this->setDescription('Create a newsletter from data in airtable.');
     }
 
     protected function execute(InputInterface $input, OutputInterface $output): int

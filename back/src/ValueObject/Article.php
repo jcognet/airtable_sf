@@ -34,7 +34,7 @@ class Article implements BlockInterface
         return $this->title;
     }
 
-    public function getBody(): string
+    public function getContent(): string
     {
         return $this->body;
     }

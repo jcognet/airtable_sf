@@ -22,16 +22,16 @@ class LuClient implements FetchDataInterface
         $this->articleBuilder = $articleBuilder;
     }
 
-    public function fetchData(): BlockInterface
+    public function fetchData(array $param = null): BlockInterface
     {
         $records = json_decode(
             $this->airtableClient->request(
-            'GET',
-            sprintf('%s/Lu', $this->airtableAppArticleId),
-            [
-                'filterByFormula' => '{Type} = "Texte"',
-            ],
-        ),
+                'GET',
+                sprintf('%s/Lu', $this->airtableAppArticleId),
+                [
+                    'filterByFormula' => '{Type} = "Texte"',
+                ],
+            ),
             true
         );
 
