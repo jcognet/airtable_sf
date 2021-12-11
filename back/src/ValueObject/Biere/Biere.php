@@ -18,7 +18,7 @@ class Biere implements BlockInterface
     private ?string $photo;
     private Carbon $dateTest;
     private ?BiereType $biereType;
-    private float $alcolholDegree;
+    private ?float $alcolholDegree;
 
     public function __construct(
         string $title,
@@ -29,7 +29,7 @@ class Biere implements BlockInterface
         ?string $photo,
         Carbon $dateTest,
         ?BiereType $biereType,
-        float $alcolholDegree
+        ?float $alcolholDegree
     ) {
         $this->title = $title;
         $this->avis = $avis;
@@ -92,7 +92,7 @@ class Biere implements BlockInterface
         return $this->biereType;
     }
 
-    public function getAlcolholDegree(): float
+    public function getAlcolholDegree(): ?float
     {
         return $this->alcolholDegree;
     }

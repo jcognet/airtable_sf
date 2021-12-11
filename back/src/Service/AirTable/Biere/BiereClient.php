@@ -14,6 +14,8 @@ class BiereClient implements FetchDataInterface
     private string $airtableAppBiereId;
     private BiereBuilder $biereBuilder;
 
+    private ?array $records = [];
+
     public function __construct(
         AirtableClient $airtableClient,
         BiereBuilder $biereBuilder,
@@ -24,20 +26,22 @@ class BiereClient implements FetchDataInterface
         $this->biereBuilder = $biereBuilder;
     }
 
-    public function fetchData(array $param = null): BlockInterface
+    public function fetchRandomData(array $param = null): BlockInterface
     {
-        $records = json_decode(
-            $this->airtableClient->request(
-                'GET',
-                sprintf('%s/Bière', $this->airtableAppBiereId),
-                [
-                    'filterByFormula' => '{Note} > 4',
-                ],
-            ),
-            true
-        );
+        $keyResearch = md5(serialize($param));
 
-        $bieres = $records['records'];
+        if (!isset($this->records[$keyResearch])) {
+            $this->records[$keyResearch] = json_decode(
+                $this->airtableClient->request(
+                    'GET',
+                    sprintf('%s/Bière', $this->airtableAppBiereId),
+                    $param
+                ),
+                true
+            );
+        }
+
+        $bieres = $this->records[$keyResearch]['records'];
         $key = array_rand($bieres);
 
         return $this->biereBuilder->build($bieres[$key]);
