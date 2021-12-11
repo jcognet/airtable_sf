@@ -14,11 +14,11 @@ final class AirtableClient
         $this->airtableClient = $airtableClient;
     }
 
-    public function request(string $verb, string $url, array $parameters = []): string
+    public function request(string $verb, string $url, ?array $parameters = []): string
     {
         $options = [];
 
-        if (count($parameters) > 0) {
+        if ($parameters !== null && count($parameters) > 0) {
             $options = ['query' => $parameters];
         }
 

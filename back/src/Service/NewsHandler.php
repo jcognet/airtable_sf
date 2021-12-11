@@ -3,29 +3,29 @@ declare(strict_types=1);
 
 namespace App\Service;
 
-use App\Service\AirTable\Article\ALireClient;
-use App\Service\AirTable\Article\LuClient;
-use App\Service\AirTable\Biere\BiereClient;
+use App\Service\Block\Article\ALireCreator;
+use App\Service\Block\Article\LuCreator;
+use App\Service\Block\Biere\GoodBiereCreator;
 use App\Service\Mailer\Sender;
 use App\ValueObject\Newspaper;
 
 class NewsHandler
 {
-    private LuClient $luClient;
-    private ALireClient $aLireClient;
     private Sender $sender;
-    private BiereClient $biereClient;
+    private GoodBiereCreator $biereCreator;
+    private LuCreator $luCreator;
+    private ALireCreator $ALireCreator;
 
     public function __construct(
-        LuClient $luClient,
-        ALireClient $aLireClient,
-        BiereClient $biereClient,
+        LuCreator $luCreator,
+        ALireCreator $ALireCreator,
+        GoodBiereCreator $biereCreator,
         Sender $sender
     ) {
-        $this->luClient = $luClient;
         $this->sender = $sender;
-        $this->aLireClient = $aLireClient;
-        $this->biereClient = $biereClient;
+        $this->biereCreator = $biereCreator;
+        $this->luCreator = $luCreator;
+        $this->ALireCreator = $ALireCreator;
     }
 
     public function handle(): void
@@ -37,9 +37,9 @@ class NewsHandler
     {
         $newspaper = new Newspaper();
 
-        $newspaper->addBlock($this->luClient->fetchData());
-        $newspaper->addBlock($this->aLireClient->fetchData());
-        $newspaper->addBlock($this->biereClient->fetchData());
+        $newspaper->addBlock($this->luCreator->getContent());
+        $newspaper->addBlock($this->ALireCreator->getContent());
+        $newspaper->addBlock($this->biereCreator->getContent());
 
         return $newspaper;
     }

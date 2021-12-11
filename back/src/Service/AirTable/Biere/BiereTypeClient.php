@@ -6,7 +6,6 @@ namespace App\Service\AirTable\Biere;
 use App\Service\AirTable\AirtableClient;
 use App\Service\Builder\Biere\BiereTypeBuilder;
 use App\ValueObject\Biere\BiereType;
-use App\ValueObject\Biere\Brasserie;
 
 class BiereTypeClient
 {
