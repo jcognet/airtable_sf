@@ -1,0 +1,27 @@
+<?php
+declare(strict_types=1);
+
+namespace App\Service\Block\ToDo;
+
+use App\Service\AirTable\ToDo\ItemClient;
+use App\Service\Block\BlockManagerInterface;
+use App\ValueObject\BlockInterface;
+use App\ValueObject\ToDo\ItemList;
+
+class ItemBlockManager implements BlockManagerInterface
+{
+    private ItemClient $itemClient;
+
+    public function __construct(ItemClient $itemClient)
+    {
+        $this->itemClient = $itemClient;
+    }
+
+    public function getContent(): BlockInterface
+    {
+        return new ItemList(
+            'A faire',
+            $this->itemClient->findAll()
+        );
+    }
+}
