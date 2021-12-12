@@ -2,6 +2,11 @@
 <table>
     {% for article in block.content %}
     <tr>
+        <td>
+            {% if article.status and article.status.value is same as constant('App\\ValueObject\\Article\\Status::IN_PROGRESS') %}
+                🔥
+            {% endif %}
+        </td>
         <td>{{ article.title }}</td>
         <td>{{ article.addedAt|date('d/m/Y') }}</td>
         <td>

@@ -4,11 +4,11 @@ declare(strict_types=1);
 namespace App\Service\Block\Article;
 
 use App\Service\AirTable\Article\LuClient;
-use App\Service\Block\CreatorInterface;
+use App\Service\Block\BlockManagerInterface;
 use App\Service\Converter\ConvertArticleToVideo;
 use App\ValueObject\Article\Video;
 
-class VideoCreator implements CreatorInterface
+class VideoBlockManager implements BlockManagerInterface
 {
     private LuClient $luClient;
     private ConvertArticleToVideo $convertArticleToVideo;
@@ -16,8 +16,7 @@ class VideoCreator implements CreatorInterface
     public function __construct(
         LuClient $luClient,
         ConvertArticleToVideo $convertArticleToVideo
-    )
-    {
+    ) {
         $this->luClient = $luClient;
         $this->convertArticleToVideo = $convertArticleToVideo;
     }
