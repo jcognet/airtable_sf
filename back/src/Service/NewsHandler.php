@@ -3,37 +3,37 @@ declare(strict_types=1);
 
 namespace App\Service;
 
-use App\Service\Block\Article\ALireCreator;
-use App\Service\Block\Article\LuCreator;
-use App\Service\Block\Article\VideoCreator;
-use App\Service\Block\Biere\GoodBiereCreator;
-use App\Service\Block\Random\RandomPicCreator;
+use App\Service\Block\Article\ArticleListALireBlockManager;
+use App\Service\Block\Article\LuBlockManager;
+use App\Service\Block\Article\VideoBlockManager;
+use App\Service\Block\Biere\GoodBiereBlockManager;
+use App\Service\Block\Random\RandomPicBlockManager;
 use App\Service\Mailer\Sender;
 use App\ValueObject\Newspaper;
 
 class NewsHandler
 {
     private Sender $sender;
-    private GoodBiereCreator $biereCreator;
-    private LuCreator $luCreator;
-    private ALireCreator $ALireCreator;
-    private RandomPicCreator $animalCreator;
-    private VideoCreator $videoCreator;
+    private GoodBiereBlockManager $goodBiereBlockManager;
+    private LuBlockManager $luBlockManager;
+    private ArticleListALireBlockManager $articleListALireBlockManager;
+    private RandomPicBlockManager $randomPicBlockManager;
+    private VideoBlockManager $videoBlockManager;
 
     public function __construct(
-        LuCreator $luCreator,
-        ALireCreator $ALireCreator,
-        GoodBiereCreator $biereCreator,
-        RandomPicCreator $animalCreator,
-        VideoCreator $videoCreator,
+        LuBlockManager $luCreator,
+        ArticleListALireBlockManager $listALireBlockManager,
+        GoodBiereBlockManager $goodBiereBlockManager,
+        RandomPicBlockManager $randomPicBlockManager,
+        VideoBlockManager $videoBlockManager,
         Sender $sender
     ) {
         $this->sender = $sender;
-        $this->biereCreator = $biereCreator;
-        $this->luCreator = $luCreator;
-        $this->ALireCreator = $ALireCreator;
-        $this->animalCreator = $animalCreator;
-        $this->videoCreator = $videoCreator;
+        $this->goodBiereBlockManager = $goodBiereBlockManager;
+        $this->luBlockManager = $luCreator;
+        $this->articleListALireBlockManager = $listALireBlockManager;
+        $this->randomPicBlockManager = $randomPicBlockManager;
+        $this->videoBlockManager = $videoBlockManager;
     }
 
     public function handle(): void
@@ -45,11 +45,11 @@ class NewsHandler
     {
         $newspaper = new Newspaper();
 
-        $newspaper->addBlock($this->luCreator->getContent());
-        $newspaper->addBlock($this->ALireCreator->getContent());
-        $newspaper->addBlock($this->videoCreator->getContent());
-        $newspaper->addBlock($this->biereCreator->getContent());
-        $newspaper->addBlock($this->animalCreator->getContent());
+        $newspaper->addBlock($this->luBlockManager->getContent());
+        $newspaper->addBlock($this->articleListALireBlockManager->getContent());
+        $newspaper->addBlock($this->videoBlockManager->getContent());
+        $newspaper->addBlock($this->goodBiereBlockManager->getContent());
+        $newspaper->addBlock($this->randomPicBlockManager->getContent());
 
         return $newspaper;
     }

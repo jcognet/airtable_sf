@@ -4,10 +4,10 @@ declare(strict_types=1);
 namespace App\Service\Block\Article;
 
 use App\Service\AirTable\Article\LuClient;
-use App\Service\Block\CreatorInterface;
+use App\Service\Block\BlockManagerInterface;
 use App\ValueObject\BlockInterface;
 
-class LuCreator implements CreatorInterface
+class LuBlockManager implements BlockManagerInterface
 {
     private LuClient $luClient;
 

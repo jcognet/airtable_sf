@@ -5,7 +5,7 @@ namespace App\Service\Block;
 
 use App\ValueObject\BlockInterface;
 
-interface CreatorInterface
+interface BlockManagerInterface
 {
     public function getContent(): BlockInterface;
 }

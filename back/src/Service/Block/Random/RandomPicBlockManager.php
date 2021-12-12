@@ -3,13 +3,13 @@ declare(strict_types=1);
 
 namespace App\Service\Block\Random;
 
-use App\Service\Block\CreatorInterface;
+use App\Service\Block\BlockManagerInterface;
 use App\Service\Repository\Random\CatRepository;
 use App\Service\Repository\Random\FoxRepository;
 use App\Service\Repository\Random\StarRepository;
 use App\ValueObject\BlockInterface;
 
-class RandomPicCreator implements CreatorInterface
+class RandomPicBlockManager implements BlockManagerInterface
 {
     private const LIST = ['cat', 'fox', 'star'];
 
