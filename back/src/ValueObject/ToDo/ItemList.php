@@ -1,23 +1,23 @@
 <?php
 declare(strict_types=1);
 
-namespace App\ValueObject\Article;
+namespace App\ValueObject\ToDo;
 
 use App\ValueObject\BlockInterface;
 
-class ArticleList implements BlockInterface
+class ItemList implements BlockInterface
 {
-    private const BLOCK_INTERFACE_TYPE = 'list_article';
+    private const BLOCK_INTERFACE_TYPE = 'list_todo';
 
     private string $title;
-    private array $articles;
+    private array $toDos;
 
     public function __construct(
         string $title,
-        array $articles
+        array $toDos
     ) {
         $this->title = $title;
-        $this->articles = $articles;
+        $this->toDos = $toDos;
     }
 
     public function getTitle(): string
@@ -27,7 +27,7 @@ class ArticleList implements BlockInterface
 
     public function getContent(): array
     {
-        return $this->articles;
+        return $this->toDos;
     }
 
     public function getType(): string

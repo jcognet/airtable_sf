@@ -1,0 +1,18 @@
+<h2>{{ block.title }}</h2>
+<table>
+    {% for todo in block.content %}
+        <tr>
+            <td>
+                {% if todo.isImportant %}
+                    🔥
+                {% endif %}
+            </td>
+            <td>{{ todo.label }}</td>
+            <td>{{ todo.dueAt|date('d/m/Y') }}</td>
+            <td>{{ todo.notes }}</td>
+            <td>{{ todo.etat }}</td>
+            <td>{{ todo.category }}</td>
+            <td>{{ todo.sprint }}</td>
+        </tr>
+    {% endfor %}
+</table>
