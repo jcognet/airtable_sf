@@ -1,0 +1,14 @@
+<h2>Une petite vidéo qui parle de : {{ block.title }}</h2>
+<div>
+    Voici le lien : {{ block.title }}
+</div>
+<div>
+    {{ block.content|nl2br }}
+</div>
+{% if block.sujets |length >0 %}
+    <ul>
+        {% for sujet in block.sujets %}
+            {{ sujet.label }}
+        {% endfor %}
+    </ul>
+{% endif %}
