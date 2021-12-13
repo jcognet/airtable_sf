@@ -34,11 +34,12 @@ class ArticleBuilder implements BuilderInterface
         }
 
         return new Article(
-            $data['fields']['Name'] ?? '',
+            $data['fields']['Titre'] ?? '',
             $data['fields']['body'] ?? $data['fields']['Citation'] ?? '',
             Carbon::parse($data['createdTime']),
             $sujets,
-            $status
+            $status,
+            $data['fields']['URL'] ?? '',
         );
     }
 }

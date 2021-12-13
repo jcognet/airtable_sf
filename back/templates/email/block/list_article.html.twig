@@ -11,9 +11,10 @@
             <td>{{ article.addedAt|date('d/m/Y') }}</td>
             <td>
                 {% for sujet in article.sujets %}
-                    {{ sujet.label }}
+                    {{ sujet.label }} -
                 {% endfor %}
             </td>
+            <td>{{ article.url }}</td>
         </tr>
     {% endfor %}
 </table>

@@ -19,19 +19,22 @@ class Article implements BlockInterface
      */
     private array $sujets;
     private ?Status $status;
+    private ?string $url;
 
     public function __construct(
         string $title,
         string $body,
         Carbon $addedAt,
         array $sujets,
-        ?Status $status
+        ?Status $status,
+        ?string $url
     ) {
         $this->title = $title;
         $this->body = $body;
         $this->addedAt = $addedAt;
         $this->sujets = $sujets;
         $this->status = $status;
+        $this->url = $url;
     }
 
     public function getTitle(): string
@@ -62,5 +65,10 @@ class Article implements BlockInterface
     public function getStatus(): ?Status
     {
         return $this->status;
+    }
+
+    public function getUrl(): ?string
+    {
+        return $this->url;
     }
 }
