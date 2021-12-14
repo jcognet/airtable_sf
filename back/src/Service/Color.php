@@ -7,4 +7,6 @@ class Color
 {
     public const PURPLE = '7354c4';
     public const DARK_RED = 'c45461';
+
+    public const PURPLE_SECONDARY = 'E6DDFB';
 }
