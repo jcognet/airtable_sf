@@ -19,7 +19,8 @@ class ConvertArticleToVideo implements ConverterInterface
             $article->getTitle(),
             $article->getContent(),
             $article->getAddedAt(),
-            $article->getSujets()
+            $article->getSujets(),
+            $article->getUrl()
         );
     }
 }

@@ -19,7 +19,7 @@ class TestMailController extends AbstractController
     {
         return $this->render(
             'email/newsletter.html.twig', [
-                'newspaper' => $newsHandler
+                'newspaper' => $newsHandler->createContent()
             ],
         );
     }

@@ -17,17 +17,21 @@ class Video implements BlockInterface
      * @var Sujet[]
      */
     private array $sujets;
+    private ?string $url;
 
     public function __construct(
         string $title,
         string $body,
         Carbon $addedAt,
-        array $sujets
-    ) {
+        array $sujets,
+        ?string $url
+    )
+    {
         $this->title = $title;
         $this->body = $body;
         $this->addedAt = $addedAt;
         $this->sujets = $sujets;
+        $this->url = $url;
     }
 
     public function getTitle(): string
@@ -53,5 +57,25 @@ class Video implements BlockInterface
     public function getSujets(): array
     {
         return $this->sujets;
+    }
+
+    public function getUrl(): ?string
+    {
+        return $this->url;
+    }
+
+    public function getVideoId(): ?string
+    {
+        if (null === $this->getUrl() || null === strpos($this->url, 'youtube')) {
+            return null;
+        }
+
+        $posId = strpos($this->url, 'v=') + 2;
+        $posAnd = strpos($this->url, '&');
+        $length = $posAnd > 0 ? $posAnd - $posId : strlen($this->url);
+
+        $videoId = substr($this->url, $posId, $length);
+
+        return $videoId;
     }
 }
