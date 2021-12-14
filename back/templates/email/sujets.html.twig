@@ -1,0 +1,9 @@
+{% for sujet in sujets %}
+    <a href="http://example.com/"
+       style="text-decoration:none;display:inline-block;color:#ffffff;background-color:#7354c4;border-radius:20px;width:auto;border-top:1px solid #7354c4;border-right:1px solid #7354c4;border-bottom:1px solid #7354c4;border-left:1px solid #7354c4;padding-top:5px;padding-bottom:5px;font-family:Poppins, Arial, Helvetica, sans-serif;text-align:center;mso-border-alt:none;word-break:keep-all;"
+       target="_blank"><span
+            style="padding-left:30px;padding-right:30px;font-size:13px;display:inline-block;letter-spacing:normal;"><span
+                style="font-size: 16px; line-height: 2; word-break: break-word; mso-line-height-alt: 32px;"><span
+                    data-mce-style="font-size: 13px; line-height: 26px;"
+                    style="font-size: 13px; line-height: 26px;">{{ sujet.label|upper }}</span></span></span></a>
+{% endfor %}
