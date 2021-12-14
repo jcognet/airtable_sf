@@ -45,7 +45,7 @@ class NewsHandler
         $this->sendContent($this->createContent());
     }
 
-    private function createContent(): Newspaper
+    public function createContent(): Newspaper
     {
         $newspaper = new Newspaper();
 
