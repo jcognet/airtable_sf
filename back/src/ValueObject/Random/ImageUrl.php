@@ -5,9 +5,9 @@ namespace App\ValueObject\Random;
 
 use App\ValueObject\BlockInterface;
 
-class Url implements BlockInterface
+class ImageUrl implements BlockInterface
 {
-    private const BLOCK_INTERFACE_TYPE = 'url';
+    private const BLOCK_INTERFACE_TYPE = 'image_url';
 
     private string $title;
     private string $url;

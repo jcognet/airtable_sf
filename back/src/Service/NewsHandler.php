@@ -30,7 +30,8 @@ class NewsHandler
         VideoBlockManager $videoBlockManager,
         ItemBlockManager $itemBlockManager,
         Sender $sender
-    ) {
+    )
+    {
         $this->sender = $sender;
         $this->goodBiereBlockManager = $goodBiereBlockManager;
         $this->luBlockManager = $luCreator;
@@ -49,12 +50,12 @@ class NewsHandler
     {
         $newspaper = new Newspaper();
 
-      //  $newspaper->addBlock($this->luBlockManager->getContent());
-       // $newspaper->addBlock($this->itemBlockManager->getContent());
-       // $newspaper->addBlock($this->articleListALireBlockManager->getContent());
-        $newspaper->addBlock($this->videoBlockManager->getContent());
+        //  $newspaper->addBlock($this->luBlockManager->getContent());
+        // $newspaper->addBlock($this->itemBlockManager->getContent());
+        // $newspaper->addBlock($this->articleListALireBlockManager->getContent());
+        //$newspaper->addBlock($this->videoBlockManager->getContent());
         //$newspaper->addBlock($this->goodBiereBlockManager->getContent());
-        //$newspaper->addBlock($this->randomPicBlockManager->getContent());
+        $newspaper->addBlock($this->randomPicBlockManager->getContent());
 
         return $newspaper;
     }
