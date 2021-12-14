@@ -1,41 +1,87 @@
-<h2>Souvenir de bonne bière, aujourd'hui, c'est la binch' {{ block.title }}
-    {% if block.brasserie %}
-        par <a href="{{ block.brasserie.url }}"
-               title="Site officiel de {{ block.brasserie.label }}">{{ block.brasserie.label }}</a>
-    {% endif %}
-</h2>
-<div>
-    {% if block.photo %}
-        <div>
-            <img src="{{ block.photo }}" alt="Une bonne photo de binch' !" height="100"/>
-        </div>
-    {% endif %}
-    {% if block.note %}
-        <div>
-            Note : {{ block.note }} / 5
-        </div>
-    {% endif %}
-    {% if block.biereType %}
-        <div>
-            Type : {{ block.biereType.label }}
-        </div>
-    {% endif %}
-    {% if block.alcolholDegree %}
-        <div>
-            Degré : {{ block.alcolholDegree }}
-        </div>
-    {% endif %}
-    {% if block.ibu %}
-        <div>
-            IBU : {{ block.ibu }} / 5
-        </div>
-    {% endif %}
-    {% if block.avis %}
-        <div>
-            Avis : {{ block.avis }}
-        </div>
-    {% endif %}
-    <div>
-        Tu te souviens ? Tu l'as testé le {{ block.dateTest|date('d/m/Y') }}
-    </div>
-</div>
+
+<table align="center" border="0" cellpadding="0" cellspacing="0" class="row row-8" role="presentation" style="margin-bottom:20px; mso-table-lspace: 0pt; mso-table-rspace: 0pt;" width="100%">
+    <tbody>
+    <tr>
+        <td>
+            <table align="center" border="0" cellpadding="0" cellspacing="0" class="row-content stack" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; background-color: #ffffff; color: #000000; width: 750px;" width="750">
+                <tbody>
+                <tr>
+                    <td class="column" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; font-weight: 400; text-align: left; vertical-align: top; padding-left: 10px; padding-right: 10px; padding-top: 20px; padding-bottom: 35px; border-top: 0px; border-right: 0px; border-bottom: 0px; border-left: 0px;" width="100%">
+                        <table border="0" cellpadding="0" cellspacing="0" class="text_block" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; word-break: break-word;" width="100%">
+                            <tbody><tr>
+                                <td style="padding-left:10px;padding-right:10px;padding-top:10px;">
+                                    <div style="font-family: sans-serif">
+                                        <div style="font-size: 14px; mso-line-height-alt: 16.8px; color: #000000; line-height: 1.2; font-family: Poppins, Arial, Helvetica, sans-serif;">
+                                            <h2 style="margin: 0; text-align: center;font-size:20px;"><strong>
+                                                    <h2>Souvenir de bonne bière, aujourd'hui, c'est la binch' {{ block.title }}
+                                                        {% if block.brasserie %}
+                                                            par <a href="{{ block.brasserie.url }}"
+                                                                   title="Site officiel de {{ block.brasserie.label }}">{{ block.brasserie.label }}</a>
+                                                        {% endif %}
+                                                    </h2>
+                                                </strong>
+                                            </h2>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            </tbody></table>
+                        <table border="0" cellpadding="0" cellspacing="0" class="text_block" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; word-break: break-word;" width="100%">
+                            <tbody><tr>
+                                <td style="padding-bottom:20px;padding-left:10px;padding-right:10px;padding-top:10px;">
+                                    <div style="font-family: sans-serif">
+                                        <div style="font-size: 14px; mso-line-height-alt: 21px; color: #000000; line-height: 1.5; font-family: Poppins, Arial, Helvetica, sans-serif;">
+                                            <table width="100%" cellpadding="0" cellspacing="0">
+
+                                                <div>
+                                                    {% if block.photo %}
+                                                        <div>
+                                                            <img src="{{ block.photo }}" alt="Une bonne photo de binch' !" height="100"/>
+                                                        </div>
+                                                    {% endif %}
+                                                    {% if block.note %}
+                                                        <div>
+                                                            Note : {{ block.note }} / 5
+                                                        </div>
+                                                    {% endif %}
+                                                    {% if block.biereType %}
+                                                        <div>
+                                                            Type : {{ block.biereType.label }}
+                                                        </div>
+                                                    {% endif %}
+                                                    {% if block.alcolholDegree %}
+                                                        <div>
+                                                            Degré : {{ block.alcolholDegree }}
+                                                        </div>
+                                                    {% endif %}
+                                                    {% if block.ibu %}
+                                                        <div>
+                                                            IBU : {{ block.ibu }} / 5
+                                                        </div>
+                                                    {% endif %}
+                                                    {% if block.avis %}
+                                                        <div>
+                                                            Avis : {{ block.avis }}
+                                                        </div>
+                                                    {% endif %}
+                                                    <div>
+                                                        Tu te souviens ? Tu l'as testé le {{ block.dateTest|date('d/m/Y') }}
+                                                    </div>
+                                                </div>
+                                            </table>
+
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            </tbody></table>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+
