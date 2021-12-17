@@ -11,13 +11,16 @@ class ArticleList implements BlockInterface
 
     private string $title;
     private array $articles;
+    private int $nbArticles;
 
     public function __construct(
         string $title,
-        array $articles
+        array $articles,
+        int $nbArticles
     ) {
         $this->title = $title;
         $this->articles = $articles;
+        $this->nbArticles = $nbArticles;
     }
 
     public function getTitle(): string
@@ -33,5 +36,10 @@ class ArticleList implements BlockInterface
     public function getType(): string
     {
         return self::BLOCK_INTERFACE_TYPE;
+    }
+
+    public function getNbArticles(): int
+    {
+        return $this->nbArticles;
     }
 }

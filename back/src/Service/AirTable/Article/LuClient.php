@@ -38,10 +38,10 @@ class LuClient implements FetchDataInterface
                     $param,
                 ),
                 true
-            );
+            )['records'];
         }
 
-        $articles = $this->records[$keyResearch]['records'];
+        $articles = $this->records[$keyResearch];
         $key = array_rand($articles);
 
         return $this->articleBuilder->build($articles[$key]);

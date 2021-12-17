@@ -38,10 +38,10 @@ class BiereClient implements FetchDataInterface
                     $param
                 ),
                 true
-            );
+            )['records'];
         }
 
-        $bieres = $this->records[$keyResearch]['records'];
+        $bieres = $this->records[$keyResearch];
         $key = array_rand($bieres);
 
         return $this->biereBuilder->build($bieres[$key]);
