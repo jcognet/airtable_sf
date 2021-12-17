@@ -12,7 +12,7 @@ class SujetBuilder implements BuilderInterface
     {
         return new Sujet(
             $data['id'],
-            $data['fields']['Sujet']
+            $data['fields']['Sujet'] ?? '',
         );
     }
 }

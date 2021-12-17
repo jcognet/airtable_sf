@@ -15,11 +15,11 @@ class TestMailController extends AbstractController
      */
     public function show(
         NewsHandler $newsHandler
-    ): Response
-    {
+    ): Response {
         return $this->render(
-            'email/newsletter.html.twig', [
-                'newspaper' => $newsHandler->createContent()
+            'email/newsletter.html.twig',
+            [
+                'newspaper' => $newsHandler->createContent(),
             ],
         );
     }

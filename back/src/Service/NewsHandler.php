@@ -30,8 +30,7 @@ class NewsHandler
         VideoBlockManager $videoBlockManager,
         ItemBlockManager $itemBlockManager,
         Sender $sender
-    )
-    {
+    ) {
         $this->sender = $sender;
         $this->goodBiereBlockManager = $goodBiereBlockManager;
         $this->luBlockManager = $luCreator;

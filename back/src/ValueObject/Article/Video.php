@@ -25,8 +25,7 @@ class Video implements BlockInterface
         Carbon $addedAt,
         array $sujets,
         ?string $url
-    )
-    {
+    ) {
         $this->title = $title;
         $this->body = $body;
         $this->addedAt = $addedAt;
@@ -74,8 +73,6 @@ class Video implements BlockInterface
         $posAnd = strpos($this->url, '&');
         $length = $posAnd > 0 ? $posAnd - $posId : strlen($this->url);
 
-        $videoId = substr($this->url, $posId, $length);
-
-        return $videoId;
+        return substr($this->url, $posId, $length);
     }
 }
