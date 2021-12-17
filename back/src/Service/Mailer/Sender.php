@@ -4,12 +4,13 @@ declare(strict_types=1);
 namespace App\Service\Mailer;
 
 use App\ValueObject\Newspaper;
+use Carbon\Carbon;
 use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Component\Mailer\MailerInterface;
 
 class Sender
 {
-    private const SUBJECT = 'Fun Effect newsletter';
+    private const SUBJECT = 'Fun Effect newsletter du %s';
 
     private MailerInterface $mailer;
     private string $mailerFrom;
@@ -30,7 +31,7 @@ class Sender
         $email = (new TemplatedEmail())
             ->to($this->mailerTo)
             ->from($this->mailerFrom)
-            ->subject(self::SUBJECT)
+            ->subject(sprintf(self::SUBJECT, Carbon::now()->format('d/m/Y')))
             ->htmlTemplate('email/newsletter.html.twig')
             ->context([
                 'newspaper' => $newspaper,
