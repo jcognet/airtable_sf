@@ -6,6 +6,7 @@ namespace App\Service\AirTable\Article;
 use App\Service\AirTable\AbstractClient;
 use App\Service\AirTable\AirtableClient;
 use App\Service\Builder\Article\ArticleBuilder;
+use App\ValueObject\Article\Article;
 
 class ALireClient extends AbstractClient
 {
@@ -15,6 +16,19 @@ class ALireClient extends AbstractClient
         ArticleBuilder $articleBuilder
     ) {
         parent::__construct($airtableClient, $airtableAppArticleId, $articleBuilder);
+    }
+
+    public function fetchRandomData(array $param = []): Article
+    {
+        return parent::fetchRandomData($param);
+    }
+
+    /**
+     * @return Article[]
+     */
+    public function findAll(array $param = []): array
+    {
+        return parent::findAll($param);
     }
 
     protected function getFetchUrl(): string

@@ -6,6 +6,7 @@ namespace App\Service\AirTable\Biere;
 use App\Service\AirTable\AbstractClient;
 use App\Service\AirTable\AirtableClient;
 use App\Service\Builder\Biere\BiereBuilder;
+use App\ValueObject\Biere\Biere;
 
 class BiereClient extends AbstractClient
 {
@@ -15,6 +16,19 @@ class BiereClient extends AbstractClient
         string $airtableAppBiereId
     ) {
         parent::__construct($airtableClient, $airtableAppBiereId, $biereBuilder);
+    }
+
+    public function fetchRandomData(array $param = []): Biere
+    {
+        return parent::fetchRandomData($param);
+    }
+
+    /**
+     * @return Biere[]
+     */
+    public function findAll(array $param = []): array
+    {
+        return parent::findAll($param);
     }
 
     protected function getFetchUrl(): string

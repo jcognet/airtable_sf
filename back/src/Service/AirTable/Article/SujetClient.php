@@ -3,53 +3,46 @@ declare(strict_types=1);
 
 namespace App\Service\AirTable\Article;
 
+use App\Exception\MethodNotUsableException;
+use App\Service\AirTable\AbstractClient;
 use App\Service\AirTable\AirtableClient;
 use App\Service\Builder\Article\SujetBuilder;
 use App\ValueObject\Article\Sujet;
+use App\ValueObject\BlockInterface;
 
-class SujetClient
+class SujetClient extends AbstractClient
 {
-    private AirtableClient $airtableClient;
-    private string $airtableAppArticleId;
-    private SujetBuilder $sujetBuilder;
-
     public function __construct(
         AirtableClient $airtableClient,
         string $airtableAppArticleId,
         SujetBuilder $sujetBuilder
     ) {
-        $this->airtableClient = $airtableClient;
-        $this->airtableAppArticleId = $airtableAppArticleId;
-        $this->sujetBuilder = $sujetBuilder;
+        parent::__construct($airtableClient, $airtableAppArticleId, $sujetBuilder);
+    }
+
+    public function fetchRandomData(array $param = []): BlockInterface
+    {
+        throw new MethodNotUsableException('Method fetchRandomData from %s it not callable.', self::class);
     }
 
     /**
      * @return Sujet[]
      */
-    public function findAll(): array
+    public function findAll(array $param = []): array
     {
-        $sujets = [];
-        $response = json_decode(
-            $this->airtableClient->request(
-                'GET',
-                sprintf('%s/Sujets', $this->airtableAppArticleId),
+        return parent::findAll([
+            'fields' => ['Sujet'],
+            'sort' => [
                 [
-                    'fields' => ['Sujet'],
-                    'sort' => [
-                        [
-                            'field' => 'Sujet',
-                            'direction' => 'asc',
-                        ],
-                    ],
-                ]
-            ),
-            true
-        );
+                    'field' => 'Sujet',
+                    'direction' => 'asc',
+                ],
+            ],
+        ]);
+    }
 
-        foreach ($response['records'] as $rawSujet) {
-            $sujets[$rawSujet['id']] = $this->sujetBuilder->build($rawSujet);
-        }
-
-        return $sujets;
+    protected function getFetchUrl(): string
+    {
+        return 'Sujets';
     }
 }
