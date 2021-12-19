@@ -22,13 +22,13 @@ class ArticleListALireBlockManager implements BlockManagerInterface
     {
         $articles = [];
 
-        $randInProgress = random_int(2, 4);
+        $randInProgress = random_int(2, 6);
 
         for ($i = 0; $i < $randInProgress; ++$i) {
             $articles[] = $this->ALireClient->fetchRandomData(['filterByFormula' => sprintf('{Status} = "%s"', Status::AT_IN_PROGRESS)]);
         }
 
-        $randToDo = random_int(1, 4);
+        $randToDo = random_int(1, 6);
 
         for ($i = 0; $i < $randToDo; ++$i) {
             $articles[] = $this->ALireClient->fetchRandomData(['filterByFormula' => sprintf('{Status} = "%s"', Status::AT_TO_DO)]);
