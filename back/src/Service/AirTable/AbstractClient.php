@@ -8,6 +8,8 @@ use App\ValueObject\BlockInterface;
 
 abstract class AbstractClient
 {
+    private const NB_TRI_RANDOM = 5;
+
     private AirtableClient $airtableClient;
     private string $airtableAppId;
     private BuilderInterface $builder;
@@ -20,7 +22,8 @@ abstract class AbstractClient
         AirtableClient $airtableClient,
         string $airtableAppId,
         BuilderInterface $builder
-    ) {
+    )
+    {
         $this->airtableClient = $airtableClient;
         $this->airtableAppId = $airtableAppId;
         $this->builder = $builder;
@@ -48,10 +51,12 @@ abstract class AbstractClient
             $this->randomKeyByParam[$keyResearch] = [];
         }
 
-        while (in_array($key, $this->randomKeyByParam[$keyResearch], true)) {
+        $count = 0;
+        while ($count < self::NB_TRI_RANDOM && in_array($key, $this->randomKeyByParam[$keyResearch], true)) {
             $key = array_rand($articles);
+            ++$count;
         }
-
+        
         $this->randomKeyByParam[$keyResearch][] = $key;
 
         return $this->builder->build($articles[$key]);
