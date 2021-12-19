@@ -3,45 +3,38 @@ declare(strict_types=1);
 
 namespace App\Service\AirTable\Biere;
 
+use App\Exception\MethodNotUsableException;
+use App\Service\AirTable\AbstractClient;
 use App\Service\AirTable\AirtableClient;
 use App\Service\Builder\Biere\BiereTypeBuilder;
 use App\ValueObject\Biere\BiereType;
+use App\ValueObject\BlockInterface;
 
-class BiereTypeClient
+class BiereTypeClient extends AbstractClient
 {
-    private AirtableClient $airtableClient;
-    private string $airtableAppBiereId;
-    private BiereTypeBuilder $biereTypeBuilder;
-
     public function __construct(
         AirtableClient $airtableClient,
-        BiereTypeBuilder $biereTypeBuilder,
-        string $airtableAppBiereId
+        string $airtableAppBiereId,
+        BiereTypeBuilder $biereTypeBuilder
     ) {
-        $this->airtableClient = $airtableClient;
-        $this->airtableAppBiereId = $airtableAppBiereId;
-        $this->biereTypeBuilder = $biereTypeBuilder;
+        parent::__construct($airtableClient, $airtableAppBiereId, $biereTypeBuilder);
     }
 
     /**
      * @return BiereType[]
      */
-    public function findAll(): array
+    public function findAll(array $param = []): array
     {
-        $biereTypes = [];
+        return parent::findAll($param);
+    }
 
-        $response = json_decode(
-            $this->airtableClient->request(
-                'GET',
-                sprintf('%s/Type de bières', $this->airtableAppBiereId)
-            ),
-            true
-        );
+    public function fetchRandomData(array $param = []): BlockInterface
+    {
+        throw new MethodNotUsableException('Method fetchRandomData from %s it not callable.', self::class);
+    }
 
-        foreach ($response['records'] as $rawData) {
-            $biereTypes[$rawData['id']] = $this->biereTypeBuilder->build($rawData);
-        }
-
-        return $biereTypes;
+    protected function getFetchUrl(): string
+    {
+        return 'Type de bières';
     }
 }

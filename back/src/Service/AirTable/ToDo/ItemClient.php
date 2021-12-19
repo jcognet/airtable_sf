@@ -3,56 +3,47 @@ declare(strict_types=1);
 
 namespace App\Service\AirTable\ToDo;
 
+use App\Exception\MethodNotUsableException;
+use App\Service\AirTable\AbstractClient;
 use App\Service\AirTable\AirtableClient;
 use App\Service\Builder\ToDo\ItemBuilder;
+use App\ValueObject\BlockInterface;
 use App\ValueObject\ToDo\Item;
 
-class ItemClient
+class ItemClient extends AbstractClient
 {
-    private AirtableClient $airtableClient;
-    private string $airtableAppToDoId;
-    private ItemBuilder $itemBuilder;
-
-    private ?array $records = [];
-
     public function __construct(
         AirtableClient $airtableClient,
-        ItemBuilder $itemBuilder,
-        string $airtableAppToDoId
+        string $airtableAppToDoId,
+        ItemBuilder $itemBuilder
     ) {
-        $this->airtableClient = $airtableClient;
-        $this->airtableAppToDoId = $airtableAppToDoId;
-        $this->itemBuilder = $itemBuilder;
+        parent::__construct($airtableClient, $airtableAppToDoId, $itemBuilder);
     }
 
     /**
+     * @param mixed $param
      * @return Item[]
      */
-    public function findAll(): array
+    public function findAll($param = []): array
     {
-        $toDos = [];
-
-        $response = json_decode(
-            $this->airtableClient->request(
-                'GET',
-                sprintf('%s/To do', $this->airtableAppToDoId),
+        return parent::findAll([
+            'filterByFormula' => 'OR({Etat} ="Ready to go",{Etat} ="In progress")',
+            'sort' => [
                 [
-                    'filterByFormula' => 'OR({Etat} ="Ready to go",{Etat} ="In progress")',
-                    'sort' => [
-                        [
-                            'field' => 'Echéance',
-                            'direction' => 'asc',
-                        ],
-                    ],
-                ]
-            ),
-            true
-        );
+                    'field' => 'Echéance',
+                    'direction' => 'asc',
+                ],
+            ],
+        ]);
+    }
 
-        foreach ($response['records'] as $rawToDo) {
-            $toDos[$rawToDo['id']] = $this->itemBuilder->build($rawToDo);
-        }
+    public function fetchRandomData(array $param = []): BlockInterface
+    {
+        throw new MethodNotUsableException('Method fetchRandomData from %s it not callable.', self::class);
+    }
 
-        return $toDos;
+    protected function getFetchUrl(): string
+    {
+        return 'To do';
     }
 }

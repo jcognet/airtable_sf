@@ -3,48 +3,40 @@ declare(strict_types=1);
 
 namespace App\Service\AirTable\Biere;
 
+use App\Exception\MethodNotUsableException;
+use App\Service\AirTable\AbstractClient;
 use App\Service\AirTable\AirtableClient;
 use App\Service\Builder\Biere\BrasserieBuilder;
 use App\ValueObject\Biere\Brasserie;
+use App\ValueObject\BlockInterface;
 
-class BrasserieClient
+class BrasserieClient extends AbstractClient
 {
-    private AirtableClient $airtableClient;
-    private string $airtableAppBiereId;
-    private BrasserieBuilder $brasserieBuilder;
-
     public function __construct(
         AirtableClient $airtableClient,
-        BrasserieBuilder $brasserieBuilder,
-        string $airtableAppBiereId
+        string $airtableAppBiereId,
+        BrasserieBuilder $brasserieBuilder
     ) {
-        $this->airtableClient = $airtableClient;
-        $this->airtableAppBiereId = $airtableAppBiereId;
-        $this->brasserieBuilder = $brasserieBuilder;
+        parent::__construct($airtableClient, $airtableAppBiereId, $brasserieBuilder);
     }
 
     /**
      * @return Brasserie[]
      */
-    public function findAll(): array
+    public function findAll(array $param = []): array
     {
-        $brasseries = [];
+        return parent::findAll([
+            'field' => ['Commentaires', 'URL', 'Name', 'Site', 'Moyenne des binches'],
+        ]);
+    }
 
-        $response = json_decode(
-            $this->airtableClient->request(
-                'GET',
-                sprintf('%s/Brasserie', $this->airtableAppBiereId),
-                [
-                    'field' => ['Commentaires', 'URL', 'Name', 'Site', 'Moyenne des binches'],
-                ],
-            ),
-            true
-        );
+    public function fetchRandomData(array $param = []): BlockInterface
+    {
+        throw new MethodNotUsableException('Method fetchRandomData from %s it not callable.', self::class);
+    }
 
-        foreach ($response['records'] as $rawBrasserie) {
-            $brasseries[$rawBrasserie['id']] = $this->brasserieBuilder->build($rawBrasserie);
-        }
-
-        return $brasseries;
+    protected function getFetchUrl(): string
+    {
+        return 'Brasserie';
     }
 }

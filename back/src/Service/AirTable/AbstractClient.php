@@ -12,8 +12,8 @@ abstract class AbstractClient
     private string $airtableAppId;
     private BuilderInterface $builder;
 
-    private ?array $records = [];
-    private array $nbArticles = [];
+    private array $recordsByParam = [];
+    private array $records = [];
 
     public function __construct(
         AirtableClient $airtableClient,
@@ -29,8 +29,8 @@ abstract class AbstractClient
     {
         $keyResearch = $this->createKey($param);
 
-        if (!isset($this->records[$keyResearch])) {
-            $this->records[$keyResearch] = json_decode(
+        if (!isset($this->recordsByParam[$keyResearch])) {
+            $this->recordsByParam[$keyResearch] = json_decode(
                 $this->airtableClient->request(
                     'GET',
                     sprintf('%s/%s', $this->airtableAppId, $this->getFetchUrl()),
@@ -40,17 +40,39 @@ abstract class AbstractClient
             )['records'];
         }
 
-        $articles = $this->records[$keyResearch];
+        $articles = $this->recordsByParam[$keyResearch];
         $key = array_rand($articles);
 
         return $this->builder->build($articles[$key]);
+    }
+
+    public function findAll(array $param = []): array
+    {
+        if (count($this->records) > 0) {
+            return $this->records;
+        }
+
+        $response = json_decode(
+            $this->airtableClient->request(
+                'GET',
+                sprintf('%s/%s', $this->airtableAppId, $this->getFetchUrl()),
+                $param,
+            ),
+            true
+        );
+
+        foreach ($response['records'] as $rawData) {
+            $this->records[$rawData['id']] = $this->builder->build($rawData);
+        }
+
+        return $this->records;
     }
 
     public function getNbAllArticles(): int
     {
         $nbArticles = 0;
 
-        foreach ($this->records as $records) {
+        foreach ($this->recordsByParam as $records) {
             $nbArticles += count($records);
         }
 
