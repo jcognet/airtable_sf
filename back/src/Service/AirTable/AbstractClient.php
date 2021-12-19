@@ -20,8 +20,7 @@ abstract class AbstractClient
         AirtableClient $airtableClient,
         string $airtableAppId,
         BuilderInterface $builder
-    )
-    {
+    ) {
         $this->airtableClient = $airtableClient;
         $this->airtableAppId = $airtableAppId;
         $this->builder = $builder;
@@ -49,12 +48,12 @@ abstract class AbstractClient
             $this->randomKeyByParam[$keyResearch] = [];
         }
 
-        while (in_array($key, $this->randomKeyByParam[$keyResearch])) {
+        while (in_array($key, $this->randomKeyByParam[$keyResearch], true)) {
             $key = array_rand($articles);
         }
 
         $this->randomKeyByParam[$keyResearch][] = $key;
-        
+
         return $this->builder->build($articles[$key]);
     }
 
