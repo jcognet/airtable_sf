@@ -14,12 +14,14 @@ abstract class AbstractClient
 
     private array $recordsByParam = [];
     private array $records = [];
+    private $randomKeyByParam = [];
 
     public function __construct(
         AirtableClient $airtableClient,
         string $airtableAppId,
         BuilderInterface $builder
-    ) {
+    )
+    {
         $this->airtableClient = $airtableClient;
         $this->airtableAppId = $airtableAppId;
         $this->builder = $builder;
@@ -43,6 +45,16 @@ abstract class AbstractClient
         $articles = $this->recordsByParam[$keyResearch];
         $key = array_rand($articles);
 
+        if (!isset($this->randomKeyByParam[$keyResearch])) {
+            $this->randomKeyByParam[$keyResearch] = [];
+        }
+
+        while (in_array($key, $this->randomKeyByParam[$keyResearch])) {
+            $key = array_rand($articles);
+        }
+
+        $this->randomKeyByParam[$keyResearch][] = $key;
+        
         return $this->builder->build($articles[$key]);
     }
 
@@ -70,13 +82,7 @@ abstract class AbstractClient
 
     public function getNbAllArticles(): int
     {
-        $nbArticles = 0;
-
-        foreach ($this->recordsByParam as $records) {
-            $nbArticles += count($records);
-        }
-
-        return $nbArticles;
+        return count($this->findAll());
     }
 
     abstract protected function getFetchUrl(): string;
