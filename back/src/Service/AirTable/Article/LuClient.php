@@ -3,47 +3,22 @@ declare(strict_types=1);
 
 namespace App\Service\AirTable\Article;
 
+use App\Service\AirTable\AbstractClient;
 use App\Service\AirTable\AirtableClient;
-use App\Service\AirTable\FetchDataInterface;
 use App\Service\Builder\Article\ArticleBuilder;
-use App\ValueObject\BlockInterface;
 
-class LuClient implements FetchDataInterface
+class LuClient extends AbstractClient
 {
-    private AirtableClient $airtableClient;
-    private string $airtableAppArticleId;
-    private ArticleBuilder $articleBuilder;
-
-    private ?array $records = [];
-
     public function __construct(
         AirtableClient $airtableClient,
         string $airtableAppArticleId,
         ArticleBuilder $articleBuilder
     ) {
-        $this->airtableClient = $airtableClient;
-        $this->airtableAppArticleId = $airtableAppArticleId;
-        $this->articleBuilder = $articleBuilder;
+        parent::__construct($airtableClient, $airtableAppArticleId, $articleBuilder);
     }
 
-    public function fetchRandomData(array $param = null): BlockInterface
+    protected function getFetchUrl(): string
     {
-        $keyResearch = md5(serialize($param));
-
-        if (!isset($this->records[$keyResearch])) {
-            $this->records[$keyResearch] = json_decode(
-                $this->airtableClient->request(
-                    'GET',
-                    sprintf('%s/Lu', $this->airtableAppArticleId),
-                    $param,
-                ),
-                true
-            )['records'];
-        }
-
-        $articles = $this->records[$keyResearch];
-        $key = array_rand($articles);
-
-        return $this->articleBuilder->build($articles[$key]);
+        return 'Lu';
     }
 }
