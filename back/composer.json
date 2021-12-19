@@ -23,7 +23,9 @@
     },
     "require-dev": {
         "php": "*",
-        "phpstan/phpstan": "^1.2"
+        "phpstan/phpstan": "^1.2",
+        "symfony/stopwatch": "5.4.*",
+        "symfony/web-profiler-bundle": "5.4.*"
     },
     "config": {
         "optimize-autoloader": true,
