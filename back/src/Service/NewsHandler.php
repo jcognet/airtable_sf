@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace App\Service;
 
 use App\Service\Block\Article\ArticleListALireBlockManager;
+use App\Service\Block\Article\ImageManager;
 use App\Service\Block\Article\LuBlockManager;
 use App\Service\Block\Article\VideoBlockManager;
 use App\Service\Block\Biere\GoodBiereBlockManager;
@@ -21,6 +22,7 @@ class NewsHandler
     private RandomPicBlockManager $randomPicBlockManager;
     private VideoBlockManager $videoBlockManager;
     private ItemBlockManager $itemBlockManager;
+    private ImageManager $imageManager;
 
     public function __construct(
         LuBlockManager $luCreator,
@@ -29,6 +31,7 @@ class NewsHandler
         RandomPicBlockManager $randomPicBlockManager,
         VideoBlockManager $videoBlockManager,
         ItemBlockManager $itemBlockManager,
+        ImageManager $imageManager,
         Sender $sender
     ) {
         $this->sender = $sender;
@@ -38,6 +41,7 @@ class NewsHandler
         $this->randomPicBlockManager = $randomPicBlockManager;
         $this->videoBlockManager = $videoBlockManager;
         $this->itemBlockManager = $itemBlockManager;
+        $this->imageManager = $imageManager;
     }
 
     public function handle(): void
@@ -50,8 +54,9 @@ class NewsHandler
         $newspaper = new Newspaper();
 
         $newspaper->addBlock($this->luBlockManager->getContent());
-        $newspaper->addBlock($this->randomPicBlockManager->getContent());
+        $newspaper->addBlock($this->imageManager->getContent());
         $newspaper->addBlock($this->itemBlockManager->getContent());
+        $newspaper->addBlock($this->randomPicBlockManager->getContent());
         $newspaper->addBlock($this->articleListALireBlockManager->getContent());
         $newspaper->addBlock($this->videoBlockManager->getContent());
         $newspaper->addBlock($this->goodBiereBlockManager->getContent());
