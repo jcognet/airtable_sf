@@ -8,7 +8,7 @@ use App\ValueObject\BlockInterface;
 
 abstract class AbstractClient
 {
-    private const NB_TRI_RANDOM = 5;
+    private const NB_TRI_RANDOM = 15;
 
     private AirtableClient $airtableClient;
     private string $airtableAppId;
@@ -28,7 +28,7 @@ abstract class AbstractClient
         $this->builder = $builder;
     }
 
-    public function fetchRandomData(array $param = []): BlockInterface
+    public function fetchRandomData(array $param = []): ?BlockInterface
     {
         $keyResearch = $this->createKey($param);
 
@@ -44,6 +44,10 @@ abstract class AbstractClient
         }
 
         $articles = $this->recordsByParam[$keyResearch];
+        if (count($articles) === 0) {
+            return null;
+        }
+
         $key = array_rand($articles);
 
         if (!isset($this->randomKeyByParam[$keyResearch])) {

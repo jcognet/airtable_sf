@@ -27,7 +27,7 @@ class RandomPicBlockManager implements BlockManagerInterface
         $this->starRepository = $starRepository;
     }
 
-    public function getContent(): BlockInterface
+    public function getContent(): ?BlockInterface
     {
         $rand = array_rand(self::LIST);
 

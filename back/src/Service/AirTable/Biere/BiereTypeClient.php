@@ -28,7 +28,7 @@ class BiereTypeClient extends AbstractClient
         return parent::findAll($param);
     }
 
-    public function fetchRandomData(array $param = []): BlockInterface
+    public function fetchRandomData(array $param = []): ?BlockInterface
     {
         throw new MethodNotUsableException('Method fetchRandomData from %s it not callable.', self::class);
     }

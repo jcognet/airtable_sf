@@ -18,7 +18,7 @@ class ALireClient extends AbstractClient
         parent::__construct($airtableClient, $airtableAppArticleId, $articleBuilder);
     }
 
-    public function fetchRandomData(array $param = []): Article
+    public function fetchRandomData(array $param = []): ?Article
     {
         return parent::fetchRandomData($param);
     }

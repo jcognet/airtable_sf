@@ -18,7 +18,7 @@ class ImageClient extends AbstractClient
         parent::__construct($airtableClient, $airtableAppArticleId, $imageBuilder);
     }
 
-    public function fetchRandomData(array $param = []): Image
+    public function fetchRandomData(array $param = []): ?Image
     {
         return parent::fetchRandomData($param);
     }

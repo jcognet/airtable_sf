@@ -30,8 +30,10 @@ class Newspaper
         return $this->blocks;
     }
 
-    public function addBlock(BlockInterface $block): void
+    public function addBlock(?BlockInterface $block): void
     {
-        $this->blocks[] = $block;
+        if (null !== $block) {
+            $this->blocks[] = $block;
+        }
     }
 }

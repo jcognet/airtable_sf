@@ -7,5 +7,5 @@ use App\ValueObject\BlockInterface;
 
 interface BlockManagerInterface
 {
-    public function getContent(): BlockInterface;
+    public function getContent(): ?BlockInterface;
 }

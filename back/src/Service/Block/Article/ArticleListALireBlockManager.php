@@ -18,7 +18,7 @@ class ArticleListALireBlockManager implements BlockManagerInterface
         $this->ALireClient = $ALireClient;
     }
 
-    public function getContent(): BlockInterface
+    public function getContent(): ?BlockInterface
     {
         $articles = [];
 
@@ -32,6 +32,11 @@ class ArticleListALireBlockManager implements BlockManagerInterface
 
         for ($i = 0; $i < $randToDo; ++$i) {
             $articles[] = $this->ALireClient->fetchRandomData(['filterByFormula' => sprintf('{Status} = "%s"', Status::AT_TO_DO)]);
+        }
+
+        $articles = array_filter($articles);
+        if (count($articles) === 0) {
+            return null;
         }
 
         return new ArticleList(
