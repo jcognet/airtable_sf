@@ -5,6 +5,7 @@ namespace App\Service\Block\Biere;
 
 use App\Service\AirTable\Biere\BiereClient;
 use App\Service\Block\BlockManagerInterface;
+use App\ValueObject\Biere\BiereList;
 use App\ValueObject\BlockInterface;
 
 class GoodBiereBlockManager implements BlockManagerInterface
@@ -18,6 +19,14 @@ class GoodBiereBlockManager implements BlockManagerInterface
 
     public function getContent(): BlockInterface
     {
-        return $this->biereClient->fetchRandomData(['filterByFormula' => '{Note} > 4']);
+        $bieres = [
+            $this->biereClient->fetchRandomData(['filterByFormula' => '{Note} > 4']),
+            $this->biereClient->fetchRandomData(['filterByFormula' => '{Note} > 4']),
+        ];
+
+        return new BiereList(
+            'Bonnes binouz testées !',
+            $bieres
+        );
     }
 }

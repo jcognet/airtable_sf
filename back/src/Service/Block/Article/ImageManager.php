@@ -16,7 +16,7 @@ class ImageManager implements BlockManagerInterface
         $this->imageClient = $imageClient;
     }
 
-    public function getContent(): BlockInterface
+    public function getContent(): ?BlockInterface
     {
         return $this->imageClient->fetchRandomData();
     }

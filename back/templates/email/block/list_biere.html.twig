@@ -1,0 +1,201 @@
+{# @var block \App\ValueObject\Biere\BiereList #}
+<table align="center" border="0" cellpadding="0" cellspacing="0" class="row row-9" role="presentation"
+       style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;" width="100%">
+    <tbody>
+    <tr>
+        <td>
+            <table align="center" border="0" cellpadding="0" cellspacing="0" class="row-content stack"
+                   role="presentation"
+                   style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; color: #000000; width: 750px;" width="750">
+                <tbody>
+                <tr>
+                    <td class="column"
+                        style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; font-weight: 400; text-align: left; vertical-align: top; padding-top: 25px; padding-bottom: 10px; border-top: 0px; border-right: 0px; border-bottom: 0px; border-left: 0px;"
+                        width="100%">
+                        <table border="0" cellpadding="10" cellspacing="0" class="text_block" role="presentation"
+                               style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; word-break: break-word;"
+                               width="100%">
+                            <tbody>
+                            <tr>
+                                <td>
+                                    <div style="font-family: sans-serif">
+                                        <div
+                                            style="font-size: 14px; mso-line-height-alt: 21px; color: #000000; line-height: 1.5; font-family: Poppins, Arial, Helvetica, sans-serif;">
+                                            <h2 style="margin: 0; font-size: 14px; text-align: center; mso-line-height-alt: 33px;">
+                                                <span
+                                                    style="font-size:22px;"><strong>{{ block.title }}</strong></span>
+                                            </h2>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </td>
+    </tr>
+    </tbody>
+</table>
+<table align="center" border="0" cellpadding="0" cellspacing="0" class="row row-10" role="presentation"
+       style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;" width="100%">
+    <tbody>
+    <tr>
+        <td>
+            <table align="center" border="0" cellpadding="0" cellspacing="0" class="row-content stack"
+                   role="presentation"
+                   style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; color: #000000; width: 750px;" width="750">
+                <tbody>
+                <tr>
+                    <td class="column"
+                        style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; font-weight: 400; text-align: left; vertical-align: top;"
+                        width="50%">
+                        {{ _self.render_biere(block.content[0], main_color, secondary_color) }}
+                    </td>
+                    <td class="column"
+                        style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; font-weight: 400; text-align: left; vertical-align: top;"
+                        width="50%">
+                        {{ _self.render_biere(block.content[1], main_color, secondary_color) }}
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+{% macro render_biere(biere, main_color, secondary_color) %}
+    {# @var biere \App\ValueObject\Biere\Biere #}
+    <table border="0" cellpadding="0" cellspacing="0" role="presentation"
+           style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;height: 100%" width="100%">
+        <tbody>
+        <tr>
+            <td style="width:10px;background-color:#{{ secondary_color }}">&nbsp;</td>
+            <td style="background-color:#ffffff;border-bottom:0px solid #{{ secondary_color }};border-top:0px solid #{{ secondary_color }};width:355px;">
+                <table border="0" cellpadding="0" cellspacing="0" class="image_block"
+                       role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;"
+                       width="100%">
+                    <tbody>
+                    <tr>
+                        <td style="width:100%;padding-right:0px;padding-left:0px;">
+                            <div align="center" style="line-height:10px"><a
+                                    href={{ biere.photo }}" style=" outline:none" tabindex="-1"
+                                target="_blank"><img alt="Image" class="fullMobileWidth big"
+                                                     src="{{ biere.photo }}"
+                                                     style="display: block; height: auto; border: 0; width: 355px; max-width: 100%;"
+                                                     title="Image" width="355"></a></div>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+                <table border="0" cellpadding="0" cellspacing="0" class="text_block"
+                       role="presentation"
+                       style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; word-break: break-word;"
+                       width="100%">
+                    <tbody>
+                    <tr>
+                        <td style="padding-bottom:5px;padding-left:20px;padding-right:20px;padding-top:15px;">
+                            <div style="font-family: sans-serif">
+                                <div
+                                    style="color: #{{ main_color }};font-size: 14px; mso-line-height-alt: 21px; line-height: 1.5; font-family: Poppins, Arial, Helvetica, sans-serif;">
+                                    <strong>{{ biere.title }}</strong>
+                                    {% if biere.brasserie %}
+                                    par
+                                    <strong>
+                                        <a href="{{ biere.brasserie.url }}"
+                                           target="_blank"
+                                           style="color: #{{ main_color }};font-family: Poppins, Arial, Helvetica, sans-serif;text-decoration: none"
+                                           title="Site officiel de {{ biere.brasserie.label }}">{{ biere.brasserie.label }}</a>
+                                        {% endif %}
+                                    </strong>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+                <table border="0" cellpadding="0" cellspacing="0" class="text_block"
+                       role="presentation"
+                       style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; word-break: break-word;"
+                       width="100%">
+                    <tbody>
+                    <tr>
+                        <td style="padding-bottom:5px;padding-left:20px;padding-right:20px;">
+                            <div style="font-family: sans-serif">
+                                <div
+                                    style="font-size: 14px; mso-line-height-alt: 28px; color: #000000; line-height: 2; font-family: Poppins, Arial, Helvetica, sans-serif;">
+                                    <p style="margin: 0; font-size: 14px; mso-line-height-alt: 24px;">
+                                                                <span
+                                                                    style="font-size:12px;color:#{{ main_color }};">►</span>
+                                        Testé le {{ biere.dateTest|date('d/m/Y') }}
+                                    </p>
+                                    {% if biere.biereType %}
+                                        <p style="margin: 0; font-size: 14px; mso-line-height-alt: 24px;">
+                                                                <span
+                                                                    style="font-size:12px;color:#{{ main_color }};">►</span>
+                                            {{ biere.biereType.label }}
+                                        </p>
+                                    {% endif %}
+                                    {% if biere.alcolholDegree %}
+                                        <p style="margin: 0; font-size: 14px; mso-line-height-alt: 24px;">
+                                                                <span
+                                                                    style="font-size:12px;color:#{{ main_color }};">►</span>
+                                            Degré : {{ biere.alcolholDegree }}°
+                                        </p>
+                                    {% endif %}
+                                    {% if biere.ibu %}
+                                        <p style="margin: 0; font-size: 14px; mso-line-height-alt: 24px;">
+                                                                <span
+                                                                    style="font-size:12px;color:#{{ main_color }};">►</span>
+                                            IBU : {{ biere.ibu }}
+                                        </p>
+                                    {% endif %}
+                                    {% if biere.avis %}
+                                        <p style="margin: 0; font-size: 14px; mso-line-height-alt: 24px;">
+                                                                <span
+                                                                    style="font-size:12px;color:#{{ main_color }};">►</span>
+                                            {{ biere.avis |raw }}
+                                        </p>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+                {% if biere.biereType %}
+                    <table border="0" cellpadding="0" cellspacing="0" class="button_block"
+                           role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;"
+                           width="100%">
+                        <tbody>
+                        <tr>
+                            <td style="padding-left:20px;padding-right:20px;text-align:left;padding-bottom:30px;">
+                                <!--[if mso]>
+                                <v:roundrect xmlns:v="urn:schemas-microsoft-com:vml"
+                                             xmlns:w="urn:schemas-microsoft-com:office:word"
+                                             href="http://example.com/"
+                                             style="height:42px;width:146px;v-text-anchor:middle;"
+                                             arcsize="48%" stroke="false" fillcolor="#{{ main_color }}">
+                                    <w:anchorlock/>
+                                    <v:textbox inset="0px,0px,0px,0px">
+                                        <center
+                                            style="color:#ffffff; font-family:Arial, sans-serif; font-size:13px"><span
+                                        style="padding-left:30px;padding-right:30px;font-size:13px;display:inline-block;letter-spacing:normal;"><span
+                                            style="font-size: 16px; line-height: 2; word-break: break-word; mso-line-height-alt: 32px;"><span
+                                                data-mce-style="font-size: 13px; line-height: 26px;"
+                                                style="font-size: 13px; line-height: 26px;">{{ biere.biereType.label }}</span></span></span>
+                                <!--[if mso]></center></v:textbox></v:roundrect><![endif]-->
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                {% endif %}
+            </td>
+            <td style="width:10px;background-color:#{{ secondary_color }}">&nbsp;</td>
+        </tr>
+        </tbody>
+    </table>
+{% endmacro %}

@@ -30,7 +30,7 @@ class BrasserieClient extends AbstractClient
         ]);
     }
 
-    public function fetchRandomData(array $param = []): BlockInterface
+    public function fetchRandomData(array $param = []): ?BlockInterface
     {
         throw new MethodNotUsableException('Method fetchRandomData from %s it not callable.', self::class);
     }

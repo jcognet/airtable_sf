@@ -16,7 +16,7 @@ class LuBlockManager implements BlockManagerInterface
         $this->luClient = $luClient;
     }
 
-    public function getContent(): BlockInterface
+    public function getContent(): ?BlockInterface
     {
         return $this->luClient->fetchRandomData([
             'filterByFormula' => '{Type} = "Texte"',

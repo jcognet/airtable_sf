@@ -3,13 +3,12 @@ declare(strict_types=1);
 
 namespace App\ValueObject\Biere;
 
+use App\Exception\MethodNotUsableException;
 use App\ValueObject\BlockInterface;
 use Carbon\Carbon;
 
 class Biere implements BlockInterface
 {
-    private const BLOCK_INTERFACE_TYPE = 'biere';
-
     private ?string $title;
     private ?string $avis;
     private ?Brasserie $brasserie;
@@ -54,7 +53,7 @@ class Biere implements BlockInterface
 
     public function getType(): string
     {
-        return self::BLOCK_INTERFACE_TYPE;
+        throw new MethodNotUsableException('Method getType from %s it not callable.', self::class);
     }
 
     public function getAvis(): ?string

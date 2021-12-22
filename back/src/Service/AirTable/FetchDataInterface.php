@@ -7,5 +7,5 @@ use App\ValueObject\BlockInterface;
 
 interface FetchDataInterface
 {
-    public function fetchRandomData(array $param = []): BlockInterface;
+    public function fetchRandomData(array $param = []): ?BlockInterface;
 }

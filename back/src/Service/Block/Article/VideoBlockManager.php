@@ -21,7 +21,7 @@ class VideoBlockManager implements BlockManagerInterface
         $this->convertArticleToVideo = $convertArticleToVideo;
     }
 
-    public function getContent(): Video
+    public function getContent(): ?Video
     {
         $article = $this->luClient->fetchRandomData([
             'filterByFormula' => '{Type} = "Vidéo"',

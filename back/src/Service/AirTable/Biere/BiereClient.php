@@ -18,7 +18,7 @@ class BiereClient extends AbstractClient
         parent::__construct($airtableClient, $airtableAppBiereId, $biereBuilder);
     }
 
-    public function fetchRandomData(array $param = []): Biere
+    public function fetchRandomData(array $param = []): ?Biere
     {
         return parent::fetchRandomData($param);
     }

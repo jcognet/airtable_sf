@@ -17,7 +17,7 @@ class ItemBlockManager implements BlockManagerInterface
         $this->itemClient = $itemClient;
     }
 
-    public function getContent(): BlockInterface
+    public function getContent(): ?BlockInterface
     {
         return new ItemList(
             'A faire',
