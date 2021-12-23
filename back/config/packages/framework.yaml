@@ -25,6 +25,12 @@ framework:
           api_key: '%env(AIRTABLE_API_KEY)%'
         headers:
           Accept: 'application/json'
+      meteo.client:
+        base_uri: https://api.meteo-concept.com/api/
+        query:
+          token: '%env(METEO_API_TOKEN)%'
+        headers:
+          Accept: 'application/json'
 
 
 when@test:
