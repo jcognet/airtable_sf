@@ -8,6 +8,7 @@ use App\Service\Block\Article\ImageManager;
 use App\Service\Block\Article\LuBlockManager;
 use App\Service\Block\Article\VideoBlockManager;
 use App\Service\Block\Biere\GoodBiereBlockManager;
+use App\Service\Block\Meteo\MeteoBlockManager;
 use App\Service\Block\Random\RandomPicBlockManager;
 use App\Service\Block\ToDo\ItemBlockManager;
 use App\Service\Mailer\Sender;
@@ -23,6 +24,7 @@ class NewsHandler
     private VideoBlockManager $videoBlockManager;
     private ItemBlockManager $itemBlockManager;
     private ImageManager $imageManager;
+    private MeteoBlockManager $meteoBlockManager;
 
     public function __construct(
         LuBlockManager $luCreator,
@@ -32,6 +34,7 @@ class NewsHandler
         VideoBlockManager $videoBlockManager,
         ItemBlockManager $itemBlockManager,
         ImageManager $imageManager,
+        MeteoBlockManager $meteoBlockManager,
         Sender $sender
     ) {
         $this->sender = $sender;
@@ -42,6 +45,7 @@ class NewsHandler
         $this->videoBlockManager = $videoBlockManager;
         $this->itemBlockManager = $itemBlockManager;
         $this->imageManager = $imageManager;
+        $this->meteoBlockManager = $meteoBlockManager;
     }
 
     public function handle(): void
@@ -55,6 +59,7 @@ class NewsHandler
 
         $newspaper->addBlock($this->luBlockManager->getContent());
         $newspaper->addBlock($this->imageManager->getContent());
+        $newspaper->addBlock($this->meteoBlockManager->getContent());
         $newspaper->addBlock($this->itemBlockManager->getContent());
         $newspaper->addBlock($this->randomPicBlockManager->getContent());
         $newspaper->addBlock($this->articleListALireBlockManager->getContent());
