@@ -35,6 +35,7 @@ class Sender
             ->htmlTemplate('email/newsletter.html.twig')
             ->context([
                 'newspaper' => $newspaper,
+                'date' => $newspaper->getDate()
             ])
         ;
 

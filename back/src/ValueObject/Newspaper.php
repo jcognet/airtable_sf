@@ -32,6 +32,11 @@ class Newspaper
         return $this->blocks;
     }
 
+    public function getDate(): Carbon
+    {
+        return $this->date;
+    }
+
     public function addBlock(?BlockInterface $block): void
     {
         if (null !== $block) {
