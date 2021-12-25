@@ -12,7 +12,6 @@ use App\Service\Block\Book\BookListBlockManager;
 use App\Service\Block\Meteo\MeteoBlockManager;
 use App\Service\Block\Random\RandomPicBlockManager;
 use App\Service\Block\ToDo\ItemBlockManager;
-use App\Service\Mailer\Sender;
 use App\ValueObject\Newspaper;
 use Carbon\Carbon;
 
@@ -38,8 +37,7 @@ class WeekManager implements NewsletterManagerInterface
         ImageManager $imageManager,
         BookListBlockManager $bookBlockManager,
         MeteoBlockManager $meteoBlockManager
-    )
-    {
+    ) {
         $this->goodBiereBlockManager = $goodBiereBlockManager;
         $this->luBlockManager = $luCreator;
         $this->articleListALireBlockManager = $listALireBlockManager;

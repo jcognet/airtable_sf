@@ -18,15 +18,15 @@ class TestMailController extends AbstractController
     public function show(
         Manager $newsHandler,
         Request $request
-    ): Response
-    {
-        $date = Carbon::parse(  $request->query->get('date', null));
+    ): Response {
+        $date = Carbon::parse($request->query->get('date', null));
+        $newspaper = $newsHandler->createContent($date);
 
         return $this->render(
             'email/newsletter.html.twig',
             [
-                'newspaper' => $newsHandler->createContent($date),
-                'date'=>$date,
+                'newspaper' => $newspaper,
+                'date' => $newspaper->getDate(),
             ],
         );
     }

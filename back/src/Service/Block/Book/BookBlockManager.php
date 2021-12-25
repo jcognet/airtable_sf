@@ -6,7 +6,6 @@ namespace App\Service\Block\Book;
 use App\Service\AirTable\Book\BookClient;
 use App\Service\Block\BlockManagerInterface;
 use App\ValueObject\BlockInterface;
-use App\ValueObject\Book\BookListe;
 
 class BookBlockManager implements BlockManagerInterface
 {
