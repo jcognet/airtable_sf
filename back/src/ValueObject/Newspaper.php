@@ -12,10 +12,12 @@ class Newspaper
      * @var BlockInterface[]
      */
     private array $blocks;
+    private Carbon $date;
 
-    public function __construct()
+    public function __construct(Carbon $date)
     {
         $this->createdAt = Carbon::now();
+        $this->date = $date;
 
         $this->blocks = [];
     }

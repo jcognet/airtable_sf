@@ -8,7 +8,7 @@ use App\Service\Block\BlockManagerInterface;
 use App\ValueObject\BlockInterface;
 use App\ValueObject\Book\BookListe;
 
-class BookBlockManager implements BlockManagerInterface
+class BookListBlockManager implements BlockManagerInterface
 {
     private BookClient $bookClient;
 
@@ -19,6 +19,9 @@ class BookBlockManager implements BlockManagerInterface
 
     public function getContent(): BlockInterface
     {
-        return $this->bookClient->fetchRandomData(['filterByFormula' => '{Status} = "Fini"']);
+        return new BookListe(
+            'Bouquins en cours',
+            $this->bookClient->findAll(['filterByFormula' => '{Status} = "En cours"'])
+        );
     }
 }
