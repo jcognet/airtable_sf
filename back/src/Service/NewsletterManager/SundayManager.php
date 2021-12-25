@@ -23,17 +23,23 @@ class SundayManager implements NewsletterManagerInterface
     private RandomPicBlockManager $randomPicBlockManager;
     private ImageManager $imageManager;
     private BookBlockManager $bookBlockManager;
+    private MeteoBlockManager $meteoBlockManager;
+    private ItemBlockManager $itemBlockManager;
 
     public function __construct(
         GoodBiereBlockManager $goodBiereBlockManager,
         RandomPicBlockManager $randomPicBlockManager,
         ImageManager $imageManager,
-        BookBlockManager $bookBlockManager
+        BookBlockManager $bookBlockManager,
+        MeteoBlockManager $meteoBlockManager,
+        ItemBlockManager $itemBlockManager
     ) {
         $this->goodBiereBlockManager = $goodBiereBlockManager;
         $this->randomPicBlockManager = $randomPicBlockManager;
         $this->imageManager = $imageManager;
         $this->bookBlockManager = $bookBlockManager;
+        $this->meteoBlockManager = $meteoBlockManager;
+        $this->itemBlockManager = $itemBlockManager;
     }
 
     public function createNewsletter(Carbon $date): Newspaper
@@ -46,9 +52,11 @@ class SundayManager implements NewsletterManagerInterface
         $newspaper = new Newspaper($date);
 
         $newspaper->addBlock($this->imageManager->getContent());
+        $newspaper->addBlock($this->meteoBlockManager->getContent());
+        $newspaper->addBlock($this->itemBlockManager->getContent());
+        $newspaper->addBlock($this->bookBlockManager->getContent());
         $newspaper->addBlock($this->randomPicBlockManager->getContent());
         $newspaper->addBlock($this->goodBiereBlockManager->getContent());
-        $newspaper->addBlock($this->bookBlockManager->getContent());
 
         return $newspaper;
     }
