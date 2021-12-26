@@ -16,7 +16,7 @@ class BookBlockManager implements BlockManagerInterface
         $this->bookClient = $bookClient;
     }
 
-    public function getContent(): BlockInterface
+    public function getContent(): ?BlockInterface
     {
         return $this->bookClient->fetchRandomData(['filterByFormula' => '{Status} = "Fini"']);
     }
