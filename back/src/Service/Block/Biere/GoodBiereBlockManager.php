@@ -17,7 +17,7 @@ class GoodBiereBlockManager implements BlockManagerInterface
         $this->biereClient = $biereClient;
     }
 
-    public function getContent(): BlockInterface
+    public function getContent(): ?BlockInterface
     {
         $bieres = [
             $this->biereClient->fetchRandomData(['filterByFormula' => '{Note} > 4']),

@@ -17,7 +17,7 @@ class BookListBlockManager implements BlockManagerInterface
         $this->bookClient = $bookClient;
     }
 
-    public function getContent(): BlockInterface
+    public function getContent(): ?BlockInterface
     {
         return new BookListe(
             'Bouquins en cours',
