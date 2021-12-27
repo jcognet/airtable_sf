@@ -30,7 +30,7 @@ class Manager
 
     public function createContent(Carbon $date): Newspaper
     {
-        if ($date->isSunday()) {
+        if ($date->isWeekend()) {
             $manager = $this->sundayManager;
         } else {
             $manager = $this->weekManager;
