@@ -1,4 +1,7 @@
-{# @var block \App\ValueObject\Book\BookList #}
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    {# @var returns \App\ValueObject\Git\Command[] #}
 <table align="center" border="0" cellpadding="0" cellspacing="0" class="row row-8" role="presentation"
        style="margin-bottom:20px;mso-table-lspace: 0pt; mso-table-rspace: 0pt;" width="100%">
     <tbody>
@@ -22,8 +25,11 @@
                                     <div style="font-family: sans-serif">
                                         <div
                                             style="font-size: 14px; mso-line-height-alt: 16.8px; color: #000000; line-height: 1.2; font-family: Poppins, Arial, Helvetica, sans-serif;">
-                                            <h2 style="margin: 0; text-align: center;font-size:20px;">
-                                                <strong>{{ block.title }}</strong>
+                                            <h2 style="margin: 0; text-align: center;font-size:20px; color: #{{ main_color }};"
+                                            ">
+                                            <strong>
+                                                Déploiement du tag {{ git.ref }}!
+                                            </strong>
                                             </h2>
                                         </div>
                                     </div>
@@ -40,29 +46,28 @@
                                     <div style="font-family: sans-serif">
                                         <div
                                             style="font-size: 14px; mso-line-height-alt: 21px; color: #000000; line-height: 1.5; font-family: Poppins, Arial, Helvetica, sans-serif;">
-                                            <table width="100%" cellpadding="0" cellspacing="0">
-                                                {% for book in block.content %}
-                                                    <tr>
-                                                        <td>
-                                                            <a href="{{ book.url }}" target="_blank" rel="noopener"
-                                                               style="text-decoration: none; color: #{{ main_color }};">
-                                                                {{ book.title }}
-                                                            </a>
-                                                        </td>
-                                                        <td>
-                                                            <div>
-                                                                <progress style="color:{{ main_color }}" id="book_{{ loop.index0 }}"
-                                                                          max="{{ book.maxPage }}"
-                                                                          value="{{ book.currentPage }}"> {{ book.percentPageRead }}
-                                                                    %
-                                                                </progress>
-                                                            </div>
-                                                        </td>
-                                                    </tr>
-                                                {% endfor %}
-                                            </table>
+                                            Bonjour Coquinou,<br/>
+                                            Le déploiement du tag {{ git.ref }} a eu lieu (ou non).<br/>
+
+                                            <h2>Retour des commandes</h2>
+                                            Voici les retours :
+                                            <br/>
+                                            {% for return in returns %}
+                                                {% for param in return.process %}
+                                                    {{ param }}
+                                                {% endfor %} :
+                                                {{ return.return |nl2br }}
+                                            {% endfor %}
                                         </div>
                                     </div>
+
+                                    {% if exception is defined %}
+                                        <h2>Erreur</h2>
+                                        <div style="background-color: red;color: white">
+                                            {{ exception.message }}
+                                        </div>
+                                    {% endif %}
+
                                 </td>
                             </tr>
                             </tbody>
@@ -75,3 +80,4 @@
     </tr>
     </tbody>
 </table>
+{% endblock %}

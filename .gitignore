@@ -5,6 +5,8 @@ back/public/media/*
 !back/public/media/fixture
 back/public/manifest.json
 back/templates/react/index.html.twig
+composer_cache/
+back/composer.phar
 
 # Created by https://www.toptal.com/developers/gitignore/api/phpstorm,phpstorm+all,node,react
 # Edit at https://www.toptal.com/developers/gitignore?templates=phpstorm,phpstorm+all,node,react
