@@ -12,7 +12,7 @@ use Symfony\Component\Process\Process;
 
 class Deploy
 {
-    private const SUBJECT = 'Fun Effect déploiement du %s';
+    private const SUBJECT = 'Fun Effect %s déploiement du %s';
     private const SUBJECT_FAILURE = 'Caca déploiement du %s';
 
     private LoggerInterface $logger;
@@ -53,7 +53,7 @@ class Deploy
             $email = (new TemplatedEmail())
                 ->to($this->mailerTo)
                 ->from($this->mailerFrom)
-                ->subject(sprintf(self::SUBJECT, Carbon::now()->format('d/m/Y')))
+                ->subject(sprintf(self::SUBJECT, $git['ref'], Carbon::now()->format('d/m/Y')))
                 ->htmlTemplate('email/git.html.twig')
                 ->context([
                     'returns' => $returns,
