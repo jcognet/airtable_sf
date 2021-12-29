@@ -19,6 +19,10 @@ class GitController extends AbstractController
         Request $request,
         Deploy $deploy
     ): Response {
+        if (!$deploy->checkAccess($request)) {
+            $this->createNotFoundException('Wrong header');
+        }
+
         $content = json_decode($request->getContent(), true);
 
         if ($content['repository']['name'] !== 'airtable_sf') {
