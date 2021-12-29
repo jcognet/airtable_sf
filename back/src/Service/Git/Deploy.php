@@ -7,7 +7,9 @@ use App\ValueObject\Git\Command;
 use Carbon\Carbon;
 use Psr\Log\LoggerInterface;
 use Symfony\Bridge\Twig\Mime\TemplatedEmail;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Mailer\MailerInterface;
+use Symfony\Component\Process\PhpExecutableFinder;
 use Symfony\Component\Process\Process;
 
 class Deploy
@@ -20,22 +22,43 @@ class Deploy
     private string $mailerFrom;
     private string $mailerTo;
     private string $projectDir;
+    private string $githubSecret;
 
-    public function __construct(LoggerInterface $logger, MailerInterface $mailer, string $mailerFrom, string $mailerTo, string $projectDir)
-    {
+    public function __construct(
+        LoggerInterface $logger,
+        MailerInterface $mailer,
+        string $mailerFrom,
+        string $mailerTo,
+        string $projectDir,
+        string $githubSecret
+    ) {
         $this->logger = $logger;
         $this->mailer = $mailer;
         $this->mailerFrom = $mailerFrom;
         $this->mailerTo = $mailerTo;
         $this->projectDir = $projectDir;
+        $this->githubSecret = $githubSecret;
+    }
+
+    public function checkAccess(Request $request): bool
+    {
+        [$hash, $headerSecret] = explode('=', $request->headers->get('X-Hub-Signature-256'));
+        $this->logger->info('header', [$hash, $headerSecret]);
+        $requestSecret = hash_hmac($hash, $request->getContent(), $this->githubSecret);
+        $this->logger->info('content', [$requestSecret]);
+
+        return hash_equals($requestSecret, $headerSecret);
     }
 
     public function deploy(array $git): void
     {
+        $phpBinaryFinder = new PhpExecutableFinder();
+        $phpBinaryPath = $phpBinaryFinder->find();
+
         $listCalls = [
             ['git', 'pull'],
-            ['/usr/local/php7.4/bin/php', sprintf('%s/composer.phar', $this->projectDir), 'install'],
-            ['/usr/local/php7.4/bin/php', 'bin/console', 'c:c'],
+            [$phpBinaryPath, sprintf('%s/composer.phar', $this->projectDir), 'install'],
+            [$phpBinaryPath, 'bin/console', 'cache:clear'],
         ];
 
         $returns = [];
