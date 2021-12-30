@@ -4,11 +4,10 @@ declare(strict_types=1);
 namespace App\ValueObject\Biere;
 
 use App\ValueObject\BlockInterface;
+use App\ValueObject\NewsletterBlockManager\BlockType;
 
 class BiereList implements BlockInterface
 {
-    private const BLOCK_INTERFACE_TYPE = 'list_biere';
-
     private ?string $title;
     /**
      * @var Biere[]
@@ -33,8 +32,8 @@ class BiereList implements BlockInterface
         return $this->bieres;
     }
 
-    public function getType(): string
+    public function getType(): BlockType
     {
-        return self::BLOCK_INTERFACE_TYPE;
+        return new BlockType(BlockType::LIST_BEER__BLOCK);
     }
 }

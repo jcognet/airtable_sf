@@ -10,17 +10,17 @@ use Carbon\Carbon;
 class Manager
 {
     private Sender $sender;
-    private SundayManager $sundayManager;
-    private WeekManager $weekManager;
+    private ConfigSelector $configSelector;
+    private ManagerContentFactory $managerContentFactory;
 
     public function __construct(
-        SundayManager $sundayManager,
-        WeekManager $weekManager,
-        Sender $sender
+        Sender $sender,
+        ConfigSelector $configSelector,
+        ManagerContentFactory $managerContentFactory
     ) {
         $this->sender = $sender;
-        $this->sundayManager = $sundayManager;
-        $this->weekManager = $weekManager;
+        $this->configSelector = $configSelector;
+        $this->managerContentFactory = $managerContentFactory;
     }
 
     public function handle(Carbon $date): void
@@ -30,13 +30,14 @@ class Manager
 
     public function createContent(Carbon $date): Newspaper
     {
-        if ($date->isWeekend()) {
-            $manager = $this->sundayManager;
-        } else {
-            $manager = $this->weekManager;
+        $listManager = $this->configSelector->getBlocks($date);
+        $newpapers = new Newspaper($date);
+
+        foreach ($listManager as $manager) {
+            $newpapers->addBlock($this->managerContentFactory->getContent($manager->getType()));
         }
 
-        return $manager->createNewsletter($date);
+        return $newpapers;
     }
 
     private function sendContent(Newspaper $content): void

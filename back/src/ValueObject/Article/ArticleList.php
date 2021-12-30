@@ -4,11 +4,10 @@ declare(strict_types=1);
 namespace App\ValueObject\Article;
 
 use App\ValueObject\BlockInterface;
+use App\ValueObject\NewsletterBlockManager\BlockType;
 
 class ArticleList implements BlockInterface
 {
-    private const BLOCK_INTERFACE_TYPE = 'list_article';
-
     private string $title;
     private array $articles;
     private int $nbArticles;
@@ -33,9 +32,9 @@ class ArticleList implements BlockInterface
         return $this->articles;
     }
 
-    public function getType(): string
+    public function getType(): BlockType
     {
-        return self::BLOCK_INTERFACE_TYPE;
+        return new BlockType(BlockType::LIST_ARTICLE_BLOCK);
     }
 
     public function getNbArticles(): int

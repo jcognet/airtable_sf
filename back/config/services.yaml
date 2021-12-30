@@ -19,6 +19,7 @@ services:
       $mailerTo: '%env(MAILER_TO)%'
       $projectDir: '%kernel.project_dir%'
       $githubSecret: '%env(GITHUB_SECRET)%'
+      $pathToConfigurationYaml: '%kernel.project_dir%/config/blocks/'
 
   # makes classes in src/ available to be used as services
   # this creates a service per class whose id is the fully-qualified class name
@@ -29,6 +30,16 @@ services:
       - '../src/Entity/'
       - '../src/Kernel.php'
       - '../src/Tests/'
+      - '../src/ValueObject/'
 
   # add more service definitions when explicit configuration is needed
   # please note that last definitions always *replace* previous ones
+
+  # this config only applies to the services created by this file
+  _instanceof:
+    App\Service\Block\BlockManagerInterface:
+      tags: ['app.block_manager']
+
+  App\Service\NewsletterManager\ManagerContentFactory:
+    arguments:
+      - !tagged_iterator app.block_manager

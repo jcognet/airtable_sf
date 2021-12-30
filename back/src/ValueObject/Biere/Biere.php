@@ -5,6 +5,7 @@ namespace App\ValueObject\Biere;
 
 use App\Exception\MethodNotUsableException;
 use App\ValueObject\BlockInterface;
+use App\ValueObject\NewsletterBlockManager\BlockType;
 use Carbon\Carbon;
 
 class Biere implements BlockInterface
@@ -51,7 +52,7 @@ class Biere implements BlockInterface
         return $this->title;
     }
 
-    public function getType(): string
+    public function getType(): BlockType
     {
         throw new MethodNotUsableException('Method getType from %s it not callable.', self::class);
     }

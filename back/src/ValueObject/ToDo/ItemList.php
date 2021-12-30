@@ -4,11 +4,10 @@ declare(strict_types=1);
 namespace App\ValueObject\ToDo;
 
 use App\ValueObject\BlockInterface;
+use App\ValueObject\NewsletterBlockManager\BlockType;
 
 class ItemList implements BlockInterface
 {
-    private const BLOCK_INTERFACE_TYPE = 'list_todo';
-
     private string $title;
     private array $toDos;
 
@@ -30,8 +29,8 @@ class ItemList implements BlockInterface
         return $this->toDos;
     }
 
-    public function getType(): string
+    public function getType(): BlockType
     {
-        return self::BLOCK_INTERFACE_TYPE;
+        return new BlockType(BlockType::LIST_TODO_BLOCK);
     }
 }

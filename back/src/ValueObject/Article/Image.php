@@ -4,11 +4,10 @@ declare(strict_types=1);
 namespace App\ValueObject\Article;
 
 use App\ValueObject\BlockInterface;
+use App\ValueObject\NewsletterBlockManager\BlockType;
 
 class Image implements BlockInterface
 {
-    private const BLOCK_INTERFACE_TYPE = 'image';
-
     private string $name;
     private ?string $url;
     private ?array $sujets;
@@ -56,8 +55,8 @@ class Image implements BlockInterface
         return $this->getUrl();
     }
 
-    public function getType(): string
+    public function getType(): BlockType
     {
-        return self::BLOCK_INTERFACE_TYPE;
+        return new BlockType(BlockType::IMAGE_BLOCK);
     }
 }
