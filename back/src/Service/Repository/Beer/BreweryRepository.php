@@ -1,22 +1,22 @@
 <?php
 declare(strict_types=1);
 
-namespace App\Service\Repository\Biere;
+namespace App\Service\Repository\Beer;
 
-use App\Service\AirTable\Biere\BrasserieClient;
-use App\ValueObject\Biere\Brasserie;
+use App\Service\AirTable\Beer\BreweryClient;
+use App\ValueObject\Beer\Brewery;
 
-class BrasserieRepository
+class BreweryRepository
 {
     private ?array $brasseries = null;
-    private BrasserieClient $brasserieClient;
+    private BreweryClient $brasserieClient;
 
-    public function __construct(BrasserieClient $brasserieClient)
+    public function __construct(BreweryClient $brasserieClient)
     {
         $this->brasserieClient = $brasserieClient;
     }
 
-    public function getById(string $id): Brasserie
+    public function getById(string $id): Brewery
     {
         if ($this->brasseries === null) {
             $this->get();

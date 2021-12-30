@@ -1,25 +1,25 @@
 <?php
 declare(strict_types=1);
 
-namespace App\ValueObject\Biere;
+namespace App\ValueObject\Beer;
 
 use App\ValueObject\BlockInterface;
 use App\ValueObject\NewsletterBlockManager\BlockType;
 
-class BiereList implements BlockInterface
+class BeerList implements BlockInterface
 {
     private ?string $title;
     /**
-     * @var Biere[]
+     * @var Beer[]
      */
-    private array $bieres;
+    private array $beers;
 
     public function __construct(
         string $title,
-        array $bieres
+        array $beers
     ) {
         $this->title = $title;
-        $this->bieres = $bieres;
+        $this->beers = $beers;
     }
 
     public function getTitle(): string
@@ -29,7 +29,7 @@ class BiereList implements BlockInterface
 
     public function getContent(): array
     {
-        return $this->bieres;
+        return $this->beers;
     }
 
     public function getType(): BlockType

@@ -1,30 +1,30 @@
 <?php
 declare(strict_types=1);
 
-namespace App\Service\AirTable\Biere;
+namespace App\Service\AirTable\Beer;
 
 use App\Service\AirTable\AbstractClient;
 use App\Service\AirTable\AirtableClient;
-use App\Service\Builder\Biere\BiereBuilder;
-use App\ValueObject\Biere\Biere;
+use App\Service\Builder\Beer\BeerBuilder;
+use App\ValueObject\Beer\Beer;
 
-class BiereClient extends AbstractClient
+class BeerClient extends AbstractClient
 {
     public function __construct(
         AirtableClient $airtableClient,
-        BiereBuilder $biereBuilder,
+        BeerBuilder $beerBuilder,
         string $airtableAppBiereId
     ) {
-        parent::__construct($airtableClient, $airtableAppBiereId, $biereBuilder);
+        parent::__construct($airtableClient, $airtableAppBiereId, $beerBuilder);
     }
 
-    public function fetchRandomData(array $param = []): ?Biere
+    public function fetchRandomData(array $param = []): ?Beer
     {
         return parent::fetchRandomData($param);
     }
 
     /**
-     * @return Biere[]
+     * @return Beer[]
      */
     public function findAll(array $param = []): array
     {

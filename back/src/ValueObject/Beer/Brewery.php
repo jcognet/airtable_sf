@@ -1,9 +1,9 @@
 <?php
 declare(strict_types=1);
 
-namespace App\ValueObject\Biere;
+namespace App\ValueObject\Beer;
 
-class Brasserie
+class Brewery
 {
     private string $id;
     private ?string $label;

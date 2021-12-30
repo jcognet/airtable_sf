@@ -7,7 +7,7 @@ use App\Service\Block\Article\ArticleListALireBlockManager;
 use App\Service\Block\Article\ImageManager;
 use App\Service\Block\Article\LuBlockManager;
 use App\Service\Block\Article\VideoBlockManager;
-use App\Service\Block\Biere\GoodBiereBlockManager;
+use App\Service\Block\Beer\GoodBeerBlockManager;
 use App\Service\Block\Book\BookBlockManager;
 use App\Service\Block\Book\BookListBlockManager;
 use App\Service\Block\Meteo\MeteoBlockManager;
@@ -19,16 +19,16 @@ use App\ValueObject\NewsletterBlockManager\ManagerType;
 class ConvertBlockTypeToManagerType
 {
     private const CONVERTER = [
-        ImageManager::class => 'image',
-        MeteoBlockManager::class => 'list_meteo',
-        BookBlockManager::class => 'book',
-        RandomPicBlockManager::class => 'image_url',
-        GoodBiereBlockManager::class => 'list_biere',
-        LuBlockManager::class => 'article',
-        BookListBlockManager::class => 'list_book',
-        ItemBlockManager::class => 'list_todo',
-        ArticleListALireBlockManager::class => 'list_article',
-        VideoBlockManager::class => 'video',
+        ImageManager::class => BlockType::IMAGE_BLOCK,
+        MeteoBlockManager::class => BlockType::LIST_METEO_BLOCK,
+        BookBlockManager::class => BlockType::BOOK_BLOCK,
+        RandomPicBlockManager::class => BlockType::IMAGE_URL_BLOCK,
+        GoodBeerBlockManager::class => BlockType::LIST_BEER__BLOCK,
+        LuBlockManager::class => BlockType::ARTICLE_BLOCK,
+        BookListBlockManager::class => BlockType::LIST_BOOK_BLOCK,
+        ItemBlockManager::class => BlockType::LIST_TODO_BLOCK,
+        ArticleListALireBlockManager::class => BlockType::LIST_ARTICLE_BLOCK,
+        VideoBlockManager::class => BlockType::VIDEO_BLOCK,
     ];
 
     public function convert(BlockType $blockType): ManagerType
