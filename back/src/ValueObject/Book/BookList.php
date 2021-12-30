@@ -6,7 +6,7 @@ namespace App\ValueObject\Book;
 use App\ValueObject\BlockInterface;
 use App\ValueObject\NewsletterBlockManager\BlockType;
 
-class BookListe implements BlockInterface
+class BookList implements BlockInterface
 {
     private ?string $title;
     /**
