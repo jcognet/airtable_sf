@@ -6,7 +6,7 @@ namespace App\Service\Block\Book;
 use App\Service\AirTable\Book\BookClient;
 use App\Service\Block\BlockManagerInterface;
 use App\ValueObject\BlockInterface;
-use App\ValueObject\Book\BookListe;
+use App\ValueObject\Book\BookList;
 
 class BookListBlockManager implements BlockManagerInterface
 {
@@ -19,7 +19,7 @@ class BookListBlockManager implements BlockManagerInterface
 
     public function getContent(): ?BlockInterface
     {
-        return new BookListe(
+        return new BookList(
             'Bouquins en cours',
             $this->bookClient->findAll(['filterByFormula' => '{Status} = "En cours"'])
         );
