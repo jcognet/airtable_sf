@@ -4,11 +4,10 @@ declare(strict_types=1);
 namespace App\ValueObject\Book;
 
 use App\ValueObject\BlockInterface;
+use App\ValueObject\NewsletterBlockManager\BlockType;
 
 class Book implements BlockInterface
 {
-    private const BLOCK_INTERFACE_TYPE = 'book';
-
     private string $title;
     private string $body;
     private ?string $status;
@@ -38,9 +37,9 @@ class Book implements BlockInterface
         return $this->body;
     }
 
-    public function getType(): string
+    public function getType(): BlockType
     {
-        return self::BLOCK_INTERFACE_TYPE;
+        return new BlockType(BlockType::BOOK_BLOCK);
     }
 
     public function getBody(): string

@@ -12,6 +12,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 class NewspaperHandlerCommand extends Command
 {
     protected static $defaultName = 'app:newspaper:handler';
+
     private Manager $newsHandler;
 
     public function __construct(string $name = null, Manager $newsHandler)

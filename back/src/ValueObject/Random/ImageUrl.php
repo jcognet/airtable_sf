@@ -4,11 +4,10 @@ declare(strict_types=1);
 namespace App\ValueObject\Random;
 
 use App\ValueObject\BlockInterface;
+use App\ValueObject\NewsletterBlockManager\BlockType;
 
 class ImageUrl implements BlockInterface
 {
-    private const BLOCK_INTERFACE_TYPE = 'image_url';
-
     private string $title;
     private string $url;
 
@@ -28,8 +27,8 @@ class ImageUrl implements BlockInterface
         return $this->url;
     }
 
-    public function getType(): string
+    public function getType(): BlockType
     {
-        return self::BLOCK_INTERFACE_TYPE;
+        return new BlockType(BlockType::IMAGE_URL_BLOCK);
     }
 }

@@ -4,10 +4,10 @@ declare(strict_types=1);
 namespace App\ValueObject\Meteo;
 
 use App\ValueObject\BlockInterface;
+use App\ValueObject\NewsletterBlockManager\BlockType;
 
 class MeteoList implements BlockInterface
 {
-    private const BLOCK_INTERFACE_TYPE = 'list_meteo';
     /**
      * @var MeteoItem[]
      */
@@ -32,9 +32,9 @@ class MeteoList implements BlockInterface
         return $this->getMeteoItemLists();
     }
 
-    public function getType(): string
+    public function getType(): BlockType
     {
-        return self::BLOCK_INTERFACE_TYPE;
+        return new BlockType(BlockType::LIST_METEO_BLOCK);
     }
 
     public function getMeteoItemLists(): array

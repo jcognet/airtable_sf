@@ -2,6 +2,6 @@
 
 {% block body %}
     {% for block in newspaper.blocks %}
-        {% include 'email/block/'~block.type~'.html.twig' with {block:block} %}
+        {% include 'email/block/'~block.type.type~'.html.twig' with {block:block} %}
     {% endfor %}
 {% endblock %}
