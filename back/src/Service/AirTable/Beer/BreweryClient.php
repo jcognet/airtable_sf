@@ -1,27 +1,27 @@
 <?php
 declare(strict_types=1);
 
-namespace App\Service\AirTable\Biere;
+namespace App\Service\AirTable\Beer;
 
 use App\Exception\MethodNotUsableException;
 use App\Service\AirTable\AbstractClient;
 use App\Service\AirTable\AirtableClient;
-use App\Service\Builder\Biere\BrasserieBuilder;
-use App\ValueObject\Biere\Brasserie;
+use App\Service\Builder\Beer\BreweryBuilder;
+use App\ValueObject\Beer\Brewery;
 use App\ValueObject\BlockInterface;
 
-class BrasserieClient extends AbstractClient
+class BreweryClient extends AbstractClient
 {
     public function __construct(
         AirtableClient $airtableClient,
         string $airtableAppBiereId,
-        BrasserieBuilder $brasserieBuilder
+        BreweryBuilder $brasserieBuilder
     ) {
         parent::__construct($airtableClient, $airtableAppBiereId, $brasserieBuilder);
     }
 
     /**
-     * @return Brasserie[]
+     * @return Brewery[]
      */
     public function findAll(array $param = []): array
     {

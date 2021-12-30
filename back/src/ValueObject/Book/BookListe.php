@@ -16,10 +16,10 @@ class BookListe implements BlockInterface
 
     public function __construct(
         string $title,
-        array $bieres
+        array $books
     ) {
         $this->title = $title;
-        $this->books = $bieres;
+        $this->books = $books;
     }
 
     public function getTitle(): string

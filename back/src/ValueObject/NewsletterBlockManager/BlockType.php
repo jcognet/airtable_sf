@@ -9,7 +9,7 @@ class BlockType
     public const LIST_METEO_BLOCK = 'list_meteo';
     public const BOOK_BLOCK = 'book';
     public const IMAGE_URL_BLOCK = 'image_url';
-    public const LIST_BEER__BLOCK = 'list_biere';
+    public const LIST_BEER__BLOCK = 'list_beer';
     public const ARTICLE_BLOCK = 'article';
     public const LIST_BOOK_BLOCK = 'list_book';
     public const LIST_TODO_BLOCK = 'list_todo';

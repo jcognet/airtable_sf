@@ -1,4 +1,4 @@
-{# @var block \App\ValueObject\Biere\BiereList #}
+{# @var block \App\ValueObject\Beer\BeerkList #}
 <table align="center" border="0" cellpadding="0" cellspacing="0" class="row row-9" role="presentation"
        style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;" width="100%">
     <tbody>
@@ -52,12 +52,12 @@
                     <td class="column"
                         style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; font-weight: 400; text-align: left; vertical-align: top;"
                         width="50%">
-                        {{ _self.render_biere(block.content[0], main_color, secondary_color) }}
+                        {{ _self.render_beer(block.content[0], main_color, secondary_color) }}
                     </td>
                     <td class="column"
                         style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; font-weight: 400; text-align: left; vertical-align: top;"
                         width="50%">
-                        {{ _self.render_biere(block.content[1], main_color, secondary_color) }}
+                        {{ _self.render_beer(block.content[1], main_color, secondary_color) }}
                     </td>
                 </tr>
                 </tbody>
@@ -67,8 +67,8 @@
     </tbody>
 </table>
 
-{% macro render_biere(biere, main_color, secondary_color) %}
-    {# @var biere \App\ValueObject\Biere\Biere #}
+{% macro render_beer(beer, main_color, secondary_color) %}
+    {# @var beer \App\ValueObject\Beer\Beer #}
     <table border="0" cellpadding="0" cellspacing="0" role="presentation"
            style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;height: 100%" width="100%">
         <tbody>
@@ -82,9 +82,9 @@
                     <tr>
                         <td style="width:100%;padding-right:0px;padding-left:0px;">
                             <div align="center" style="line-height:10px"><a
-                                    href={{ biere.photo }}" style=" outline:none" tabindex="-1"
+                                    href={{ beer.photo }}" style=" outline:none" tabindex="-1"
                                 target="_blank"><img alt="Image" class="fullMobileWidth big"
-                                                     src="{{ biere.photo }}"
+                                                     src="{{ beer.photo }}"
                                                      style="display: block; height: auto; border: 0; width: 355px; max-width: 100%;"
                                                      title="Image" width="355"></a></div>
                         </td>
@@ -101,14 +101,14 @@
                             <div style="font-family: sans-serif">
                                 <div
                                     style="color: #{{ main_color }};font-size: 14px; mso-line-height-alt: 21px; line-height: 1.5; font-family: Poppins, Arial, Helvetica, sans-serif;">
-                                    <strong>{{ biere.title }}</strong>
-                                    {% if biere.brasserie %}
+                                    <strong>{{ beer.title }}</strong>
+                                    {% if beer.brasserie %}
                                     par
                                     <strong>
-                                        <a href="{{ biere.brasserie.url }}"
+                                        <a href="{{ beer.brasserie.url }}"
                                            target="_blank"
                                            style="color: #{{ main_color }};font-family: Poppins, Arial, Helvetica, sans-serif;text-decoration: none"
-                                           title="Site officiel de {{ biere.brasserie.label }}">{{ biere.brasserie.label }}</a>
+                                           title="Site officiel de {{ beer.brasserie.label }}">{{ beer.brasserie.label }}</a>
                                         {% endif %}
                                     </strong>
                                 </div>
@@ -130,34 +130,34 @@
                                     <p style="margin: 0; font-size: 14px; mso-line-height-alt: 24px;">
                                                                 <span
                                                                     style="font-size:12px;color:#{{ main_color }};">►</span>
-                                        Testé le {{ biere.dateTest|date('d/m/Y') }}
+                                        Testé le {{ beer.dateTest|date('d/m/Y') }}
                                     </p>
-                                    {% if biere.biereType %}
+                                    {% if beer.beerType %}
                                         <p style="margin: 0; font-size: 14px; mso-line-height-alt: 24px;">
                                                                 <span
                                                                     style="font-size:12px;color:#{{ main_color }};">►</span>
-                                            {{ biere.biereType.label }}
+                                            {{ beer.beerType.label }}
                                         </p>
                                     {% endif %}
-                                    {% if biere.alcolholDegree %}
+                                    {% if beer.alcolholDegree %}
                                         <p style="margin: 0; font-size: 14px; mso-line-height-alt: 24px;">
                                                                 <span
                                                                     style="font-size:12px;color:#{{ main_color }};">►</span>
-                                            Degré : {{ biere.alcolholDegree }}°
+                                            Degré : {{ beer.alcolholDegree }}°
                                         </p>
                                     {% endif %}
-                                    {% if biere.ibu %}
+                                    {% if beer.ibu %}
                                         <p style="margin: 0; font-size: 14px; mso-line-height-alt: 24px;">
                                                                 <span
                                                                     style="font-size:12px;color:#{{ main_color }};">►</span>
-                                            IBU : {{ biere.ibu }}
+                                            IBU : {{ beer.ibu }}
                                         </p>
                                     {% endif %}
-                                    {% if biere.avis %}
+                                    {% if beer.avis %}
                                         <p style="margin: 0; font-size: 14px; mso-line-height-alt: 24px;">
                                                                 <span
                                                                     style="font-size:12px;color:#{{ main_color }};">►</span>
-                                            {{ biere.avis |raw }}
+                                            {{ beer.avis |raw }}
                                         </p>
                                     {% endif %}
                                 </div>
@@ -166,7 +166,7 @@
                     </tr>
                     </tbody>
                 </table>
-                {% if biere.biereType %}
+                {% if beer.beerType %}
                     <table border="0" cellpadding="0" cellspacing="0" class="button_block"
                            role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;"
                            width="100%">
@@ -186,7 +186,7 @@
                                         style="padding-left:30px;padding-right:30px;font-size:13px;display:inline-block;letter-spacing:normal;"><span
                                             style="font-size: 16px; line-height: 2; word-break: break-word; mso-line-height-alt: 32px;"><span
                                                 data-mce-style="font-size: 13px; line-height: 26px;"
-                                                style="font-size: 13px; line-height: 26px;">{{ biere.biereType.label }}</span></span></span>
+                                                style="font-size: 13px; line-height: 26px;">{{ beer.beerType.label }}</span></span></span>
                                 <!--[if mso]></center></v:textbox></v:roundrect><![endif]-->
                             </td>
                         </tr>

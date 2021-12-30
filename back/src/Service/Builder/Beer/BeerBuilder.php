@@ -1,28 +1,28 @@
 <?php
 declare(strict_types=1);
 
-namespace App\Service\Builder\Biere;
+namespace App\Service\Builder\Beer;
 
 use App\Service\Builder\BuilderInterface;
-use App\Service\Repository\Biere\BiereTypeRepository;
-use App\Service\Repository\Biere\BrasserieRepository;
-use App\ValueObject\Biere\Biere;
+use App\Service\Repository\Beer\BeerTypeRepository;
+use App\Service\Repository\Beer\BreweryRepository;
+use App\ValueObject\Beer\Beer;
 use Carbon\Carbon;
 
-class BiereBuilder implements BuilderInterface
+class BeerBuilder implements BuilderInterface
 {
-    private BrasserieRepository $brasserieRepository;
-    private BiereTypeRepository $biereTypeRepository;
+    private BreweryRepository $brasserieRepository;
+    private BeerTypeRepository $beerTypeRepository;
 
     public function __construct(
-        BrasserieRepository $brasserieRepository,
-        BiereTypeRepository $biereTypeRepository
+        BreweryRepository $brasserieRepository,
+        BeerTypeRepository $beerTypeRepository
     ) {
         $this->brasserieRepository = $brasserieRepository;
-        $this->biereTypeRepository = $biereTypeRepository;
+        $this->beerTypeRepository = $beerTypeRepository;
     }
 
-    public function build(array $data): Biere
+    public function build(array $data): Beer
     {
         $brasserie = null;
 
@@ -30,12 +30,12 @@ class BiereBuilder implements BuilderInterface
             $brasserie = $this->brasserieRepository->getById($data['fields']['Brasserie'][0]);
         }
 
-        $biereType = null;
+        $beerType = null;
         if (isset($data['fields']['Type'][0])) {
-            $biereType = $this->biereTypeRepository->getById($data['fields']['Type'][0]);
+            $beerType = $this->beerTypeRepository->getById($data['fields']['Type'][0]);
         }
 
-        return new Biere(
+        return new Beer(
             $data['fields']['Bière'] ?? null,
             $data['fields']['Notes'] ?? null,
             $brasserie,
@@ -43,7 +43,7 @@ class BiereBuilder implements BuilderInterface
             $data['fields']['IBU'] ?? null,
             $data['fields']['Photo'][0]['url'] ?? null,
             isset($data['fields']['Date de test']) ? Carbon::parse($data['fields']['Date de test']) : null,
-            $biereType,
+            $beerType,
             $data['fields']['Degré alcool'] ?? null
         );
     }

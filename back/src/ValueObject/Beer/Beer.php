@@ -1,34 +1,34 @@
 <?php
 declare(strict_types=1);
 
-namespace App\ValueObject\Biere;
+namespace App\ValueObject\Beer;
 
 use App\Exception\MethodNotUsableException;
 use App\ValueObject\BlockInterface;
 use App\ValueObject\NewsletterBlockManager\BlockType;
 use Carbon\Carbon;
 
-class Biere implements BlockInterface
+class Beer implements BlockInterface
 {
     private ?string $title;
     private ?string $avis;
-    private ?Brasserie $brasserie;
+    private ?Brewery $brasserie;
     private ?int $note;
     private ?int $ibu;
     private ?string $photo;
     private Carbon $dateTest;
-    private ?BiereType $biereType;
+    private ?BeerType $beerType;
     private ?float $alcolholDegree;
 
     public function __construct(
         string $title,
         ?string $avis,
-        ?Brasserie $brasserie,
+        ?Brewery $brasserie,
         ?int $note,
         ?int $ibu,
         ?string $photo,
         Carbon $dateTest,
-        ?BiereType $biereType,
+        ?BeerType $beerType,
         ?float $alcolholDegree
     ) {
         $this->title = $title;
@@ -38,7 +38,7 @@ class Biere implements BlockInterface
         $this->ibu = $ibu;
         $this->photo = $photo;
         $this->dateTest = $dateTest;
-        $this->biereType = $biereType;
+        $this->beerType = $beerType;
         $this->alcolholDegree = $alcolholDegree;
     }
 
@@ -62,7 +62,7 @@ class Biere implements BlockInterface
         return $this->avis;
     }
 
-    public function getBrasserie(): ?Brasserie
+    public function getBrasserie(): ?Brewery
     {
         return $this->brasserie;
     }
@@ -87,9 +87,9 @@ class Biere implements BlockInterface
         return $this->dateTest;
     }
 
-    public function getBiereType(): ?BiereType
+    public function getBeerType(): ?BeerType
     {
-        return $this->biereType;
+        return $this->beerType;
     }
 
     public function getAlcolholDegree(): ?float

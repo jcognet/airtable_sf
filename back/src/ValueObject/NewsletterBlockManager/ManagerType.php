@@ -7,7 +7,7 @@ use App\Service\Block\Article\ArticleListALireBlockManager;
 use App\Service\Block\Article\ImageManager;
 use App\Service\Block\Article\LuBlockManager;
 use App\Service\Block\Article\VideoBlockManager;
-use App\Service\Block\Biere\GoodBiereBlockManager;
+use App\Service\Block\Beer\GoodBeerBlockManager;
 use App\Service\Block\Book\BookBlockManager;
 use App\Service\Block\Book\BookListBlockManager;
 use App\Service\Block\Meteo\MeteoBlockManager;
@@ -21,7 +21,7 @@ class ManagerType
         MeteoBlockManager::class,
         BookBlockManager::class,
         RandomPicBlockManager::class,
-        GoodBiereBlockManager::class,
+        GoodBeerBlockManager::class,
         LuBlockManager::class,
         BookListBlockManager::class,
         ItemBlockManager::class,
