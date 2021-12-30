@@ -60,6 +60,11 @@ abstract class AbstractClient
             ++$count;
         }
 
+        // key is already used
+        if(in_array($key, $this->randomKeyByParam[$keyResearch], true)){
+            return null;
+        }
+
         $this->randomKeyByParam[$keyResearch][] = $key;
 
         return $this->builder->build($articles[$key]);
