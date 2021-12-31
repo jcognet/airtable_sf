@@ -1,5 +1,6 @@
 blocks:
   - image
+  - bot_doux
   - list_meteo
   - list_todo
   - image_url

@@ -31,6 +31,10 @@ framework:
           token: '%env(METEO_API_TOKEN)%'
         headers:
           Accept: 'application/json'
+      twitter.client:
+        base_uri: https://api.twitter.com/2/
+        headers:
+          Authorization: 'Bearer %env(TWITTER_API_TOKEN_BEARER)%'
 
 
 when@test:

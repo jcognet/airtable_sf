@@ -61,7 +61,7 @@ abstract class AbstractClient
         }
 
         // key is already used
-        if(in_array($key, $this->randomKeyByParam[$keyResearch], true)){
+        if (in_array($key, $this->randomKeyByParam[$keyResearch], true)) {
             return null;
         }
 
