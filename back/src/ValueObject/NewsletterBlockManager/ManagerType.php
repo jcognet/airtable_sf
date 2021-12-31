@@ -13,6 +13,7 @@ use App\Service\Block\Book\BookListBlockManager;
 use App\Service\Block\Meteo\MeteoBlockManager;
 use App\Service\Block\Random\RandomPicBlockManager;
 use App\Service\Block\ToDo\ItemBlockManager;
+use App\Service\Block\Twitter\BotDouxManager;
 
 class ManagerType
 {
@@ -27,6 +28,7 @@ class ManagerType
         ItemBlockManager::class,
         ArticleListALireBlockManager::class,
         VideoBlockManager::class,
+        BotDouxManager::class,
     ];
 
     private string $type;

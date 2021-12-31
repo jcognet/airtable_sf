@@ -15,6 +15,7 @@ class BlockType
     public const LIST_TODO_BLOCK = 'list_todo';
     public const LIST_ARTICLE_BLOCK = 'list_article';
     public const VIDEO_BLOCK = 'video';
+    public const BOT_DOUX_BLOCK = 'bot_doux';
 
     private const LIST_TYPE = [
         self::IMAGE_BLOCK,
@@ -27,6 +28,7 @@ class BlockType
         self::LIST_TODO_BLOCK,
         self::LIST_ARTICLE_BLOCK,
         self::VIDEO_BLOCK,
+        self::BOT_DOUX_BLOCK,
     ];
 
     private string $type;
