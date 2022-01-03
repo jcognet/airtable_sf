@@ -1,4 +1,4 @@
-
+src/Data/
 ###> symfony/framework-bundle ###
 /.env.local
 /.env.local.php
