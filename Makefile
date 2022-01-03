@@ -10,3 +10,4 @@ build: # construit les images docker /!\ problème de droit à creuser
 test: # lance les tests PHP
 	docker exec -it airtable_php vendor/bin/php-cs-fixer fix
 	docker exec -it airtable_php php -d memory_limit=2G vendor/bin/phpstan analyse src tests
+	docker exec -it airtable_php vendor/bin/phpunit

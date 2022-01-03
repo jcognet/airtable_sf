@@ -17,7 +17,7 @@ class ThemeExtension extends AbstractExtension
         $this->themeFetcher = $themeFetcher;
     }
 
-    public function getFunctions()
+    public function getFunctions(): array
     {
         return [
             new TwigFunction('get_random_theme', [$this, 'randomColor']),
