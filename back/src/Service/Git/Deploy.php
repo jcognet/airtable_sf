@@ -23,6 +23,7 @@ class Deploy
     private string $mailerTo;
     private string $projectDir;
     private string $githubSecret;
+    private TagWriter $tagWriter;
 
     public function __construct(
         LoggerInterface $logger,
@@ -30,7 +31,8 @@ class Deploy
         string $mailerFrom,
         string $mailerTo,
         string $projectDir,
-        string $githubSecret
+        string $githubSecret,
+        TagWriter $tagWriter
     ) {
         $this->logger = $logger;
         $this->mailer = $mailer;
@@ -38,6 +40,7 @@ class Deploy
         $this->mailerTo = $mailerTo;
         $this->projectDir = $projectDir;
         $this->githubSecret = $githubSecret;
+        $this->tagWriter = $tagWriter;
     }
 
     public function checkAccess(Request $request): bool
@@ -106,5 +109,7 @@ class Deploy
 
             throw $e;
         }
+
+        $this->tagWriter->write($git['ref']);
     }
 }
