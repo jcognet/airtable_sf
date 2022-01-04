@@ -24,8 +24,7 @@ class ExportToSpreadsheet
         ItemClient $itemClient,
         ALireClient $ALireClient,
         BookClient $bookClient
-    )
-    {
+    ) {
         $this->exportAirtableWriter = $exportAirtableWriter;
         $this->luClient = $luClient;
         $this->itemClient = $itemClient;
@@ -45,6 +44,7 @@ class ExportToSpreadsheet
                     count($this->bookClient->findAll(['filterByFormula' => '{Status} = "A lire"'])),
                     count($this->bookClient->findAll(['filterByFormula' => '{Status} = "Fini"'])),
                 ],
-            ]);
+            ]
+        );
     }
 }

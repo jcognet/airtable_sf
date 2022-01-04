@@ -4,7 +4,6 @@ declare(strict_types=1);
 namespace App\Command;
 
 use App\Service\Export\ExportToSpreadsheet;
-use App\Service\NewsletterManager\Manager;
 use Carbon\Carbon;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
@@ -14,7 +13,6 @@ class ExportDataCommand extends Command
 {
     protected static $defaultName = 'app:export:spreadsheet';
     private ExportToSpreadsheet $exportToSpreadsheet;
-
 
     public function __construct(string $name = null, ExportToSpreadsheet $exportToSpreadsheet)
     {
