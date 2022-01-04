@@ -1,3 +1,4 @@
+config/google_credential.json
 src/Data/*.json
 ###> symfony/framework-bundle ###
 /.env.local

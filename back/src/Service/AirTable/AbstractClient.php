@@ -15,7 +15,6 @@ abstract class AbstractClient
     private BuilderInterface $builder;
 
     private array $recordsByParam = [];
-    private array $records = [];
     private $randomKeyByParam = [];
 
     public function __construct(
@@ -72,24 +71,25 @@ abstract class AbstractClient
 
     public function findAll(array $param = []): array
     {
-        if (count($this->records) > 0) {
-            return $this->records;
+        $keyResearch = $this->createKey($param);
+
+        if (!isset($this->recordsByParam[$keyResearch])) {
+            $this->recordsByParam[$keyResearch] = [];
+            $response = json_decode(
+                $this->airtableClient->request(
+                    'GET',
+                    sprintf('%s/%s', $this->airtableAppId, $this->getFetchUrl()),
+                    $param,
+                ),
+                true
+            );
+
+            foreach ($response['records'] as $rawData) {
+                $this->recordsByParam[$keyResearch][$rawData['id']] = $this->builder->build($rawData);
+            }
         }
 
-        $response = json_decode(
-            $this->airtableClient->request(
-                'GET',
-                sprintf('%s/%s', $this->airtableAppId, $this->getFetchUrl()),
-                $param,
-            ),
-            true
-        );
-
-        foreach ($response['records'] as $rawData) {
-            $this->records[$rawData['id']] = $this->builder->build($rawData);
-        }
-
-        return $this->records;
+        return $this->recordsByParam[$keyResearch];
     }
 
     public function getNbAllArticles(): int

@@ -9,6 +9,7 @@
         "ext-iconv": "*",
         "ext-json": "*",
         "friendsofphp/php-cs-fixer": "^3.3",
+        "google/apiclient": "^2.12",
         "nesbot/carbon": "^2.55",
         "symfony/console": "5.4.*",
         "symfony/dotenv": "5.4.*",
@@ -65,7 +66,8 @@
         ],
         "post-update-cmd": [
             "@auto-scripts"
-        ]
+        ],
+        "pre-autoload-dump": "Google\\Task\\Composer::cleanup"
     },
     "conflict": {
         "symfony/symfony": "*"
@@ -74,6 +76,9 @@
         "symfony": {
             "allow-contrib": false,
             "require": "5.4.*"
-        }
+        },
+        "google/apiclient-services": [
+            "Sheets"
+        ]
     }
 }
