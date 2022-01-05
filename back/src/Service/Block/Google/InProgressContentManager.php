@@ -7,7 +7,7 @@ use App\Service\Block\BlockManagerInterface;
 use App\ValueObject\BlockInterface;
 use App\ValueObject\Random\ImageUrl;
 
-class InProgressContentManager  implements BlockManagerInterface
+class InProgressContentManager implements BlockManagerInterface
 {
     private string $progressContentUrl;
 

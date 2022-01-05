@@ -3,12 +3,11 @@ declare(strict_types=1);
 
 namespace App\Service\Repository\Random;
 
-use App\Service\AirTable\FetchDataInterface;
 use App\Service\Builder\Random\FoxBuilder;
 use App\ValueObject\BlockInterface;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
 
-class FoxRepository implements FetchDataInterface
+class FoxRepository implements RandomImageRepositoryInterface
 {
     private HttpClientInterface $httpClient;
     private FoxBuilder $foxBuilder;

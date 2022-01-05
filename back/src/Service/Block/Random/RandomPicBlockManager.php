@@ -4,35 +4,24 @@ declare(strict_types=1);
 namespace App\Service\Block\Random;
 
 use App\Service\Block\BlockManagerInterface;
-use App\Service\Repository\Random\CatRepository;
-use App\Service\Repository\Random\FoxRepository;
-use App\Service\Repository\Random\StarRepository;
+use App\Service\Repository\Random\RandomImageRepositoryInterface;
 use App\ValueObject\BlockInterface;
 
 class RandomPicBlockManager implements BlockManagerInterface
 {
-    private const LIST = ['cat', 'fox', 'star'];
-
-    private CatRepository $catRepository;
-    private FoxRepository $foxRepository;
-    private StarRepository $starRepository;
+    /**
+     * @var RandomImageRepositoryInterface[]
+     */
+    private array $repositories;
 
     public function __construct(
-        CatRepository $catRepository,
-        FoxRepository $foxRepository,
-        StarRepository $starRepository
+        iterable $repositories
     ) {
-        $this->catRepository = $catRepository;
-        $this->foxRepository = $foxRepository;
-        $this->starRepository = $starRepository;
+        $this->repositories = iterator_to_array($repositories);
     }
 
     public function getContent(): ?BlockInterface
     {
-        $rand = array_rand(self::LIST);
-
-        $repository = self::LIST[$rand] . 'Repository';
-
-        return $this->{$repository}->fetchRandomData();
+        return $this->repositories[array_rand($this->repositories)]->fetchRandomData();
     }
 }
