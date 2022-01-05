@@ -3,12 +3,11 @@ declare(strict_types=1);
 
 namespace App\Service\Repository\Random;
 
-use App\Service\AirTable\FetchDataInterface;
 use App\Service\Builder\Random\StarBuilder;
 use App\ValueObject\BlockInterface;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
 
-class StarRepository implements FetchDataInterface
+class StarRepository implements RandomImageRepositoryInterface
 {
     private HttpClientInterface $httpClient;
     private StarBuilder $starBuilder;

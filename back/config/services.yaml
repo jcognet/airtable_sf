@@ -36,14 +36,17 @@ services:
       - '../src/Tests/'
       - '../src/ValueObject/'
 
-  # add more service definitions when explicit configuration is needed
-  # please note that last definitions always *replace* previous ones
-
-  # this config only applies to the services created by this file
   _instanceof:
     App\Service\Block\BlockManagerInterface:
       tags: ['app.block_manager']
 
+    App\Service\Repository\Random\RandomImageRepositoryInterface:
+      tags: ['app.random_image_repository']
+
   App\Service\NewsletterManager\ManagerContentFactory:
     arguments:
       - !tagged_iterator app.block_manager
+
+  App\Service\Block\Random\RandomPicBlockManager:
+    arguments:
+      - !tagged_iterator app.random_image_repository

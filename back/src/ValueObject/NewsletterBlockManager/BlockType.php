@@ -30,7 +30,7 @@ class BlockType
         self::LIST_ARTICLE_BLOCK,
         self::VIDEO_BLOCK,
         self::BOT_DOUX_BLOCK,
-        self::IMAGE_GOOGLE_BLOCK
+        self::IMAGE_GOOGLE_BLOCK,
     ];
 
     private string $type;
