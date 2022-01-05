@@ -3,5 +3,6 @@ blocks:
   - bot_doux
   - list_meteo
   - list_todo
+  - image_google
   - image_url
   - list_beer
