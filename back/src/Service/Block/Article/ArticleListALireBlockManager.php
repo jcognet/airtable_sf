@@ -28,9 +28,9 @@ class ArticleListALireBlockManager implements BlockManagerInterface
             $articles[] = $this->ALireClient->fetchRandomData(['filterByFormula' => sprintf('{Status} = "%s"', Status::AT_IN_PROGRESS)]);
         }
 
-        $randToDo = random_int(1, 6);
+        $nbArticles = random_int(1, 6);
 
-        for ($i = 0; $i < $randToDo; ++$i) {
+        for ($i = 0; $i < $nbArticles; ++$i) {
             $articles[] = $this->ALireClient->fetchRandomData(['filterByFormula' => sprintf('{Status} = "%s"', Status::AT_TO_DO)]);
         }
 

@@ -13,6 +13,7 @@ use App\Service\Block\Book\BookListBlockManager;
 use App\Service\Block\Google\InProgressContentManager;
 use App\Service\Block\Meteo\MeteoBlockManager;
 use App\Service\Block\Random\RandomPicBlockManager;
+use App\Service\Block\Random\RgsenManager;
 use App\Service\Block\ToDo\ItemBlockManager;
 use App\Service\Block\Twitter\BotDouxManager;
 
@@ -31,6 +32,7 @@ class ManagerType
         VideoBlockManager::class,
         BotDouxManager::class,
         InProgressContentManager::class,
+        RgsenManager::class,
     ];
 
     private string $type;
