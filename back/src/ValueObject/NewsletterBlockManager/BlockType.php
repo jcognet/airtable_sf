@@ -17,6 +17,7 @@ class BlockType
     public const VIDEO_BLOCK = 'video';
     public const BOT_DOUX_BLOCK = 'bot_doux';
     public const IMAGE_GOOGLE_BLOCK = 'image_google';
+    public const RGSEN_BLOCK = 'rgsen';
 
     private const LIST_TYPE = [
         self::IMAGE_BLOCK,
@@ -31,6 +32,7 @@ class BlockType
         self::VIDEO_BLOCK,
         self::BOT_DOUX_BLOCK,
         self::IMAGE_GOOGLE_BLOCK,
+        self::RGSEN_BLOCK,
     ];
 
     private string $type;

@@ -13,6 +13,7 @@ use App\Service\Block\Book\BookListBlockManager;
 use App\Service\Block\Google\InProgressContentManager;
 use App\Service\Block\Meteo\MeteoBlockManager;
 use App\Service\Block\Random\RandomPicBlockManager;
+use App\Service\Block\Random\RgsenManager;
 use App\Service\Block\ToDo\ItemBlockManager;
 use App\Service\Block\Twitter\BotDouxManager;
 use App\ValueObject\NewsletterBlockManager\BlockType;
@@ -33,6 +34,7 @@ class ConvertBlockTypeToManagerType
         VideoBlockManager::class => BlockType::VIDEO_BLOCK,
         BotDouxManager::class => BlockType::BOT_DOUX_BLOCK,
         InProgressContentManager::class => BlockType::IMAGE_GOOGLE_BLOCK,
+        RgsenManager::class => BlockType::RGSEN_BLOCK,
     ];
 
     public function convert(BlockType $blockType): ManagerType

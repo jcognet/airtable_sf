@@ -35,7 +35,8 @@ framework:
         base_uri: https://api.twitter.com/2/
         headers:
           Authorization: 'Bearer %env(TWITTER_API_TOKEN_BEARER)%'
-
+      rgsen.client:
+        base_uri: https://ecoresponsable.numerique.gouv.fr/publications/referentiel-general-ecoconception/export/
 
 when@test:
   framework:

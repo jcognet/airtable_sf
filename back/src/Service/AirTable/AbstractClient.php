@@ -8,7 +8,7 @@ use App\ValueObject\BlockInterface;
 
 abstract class AbstractClient
 {
-    private const NB_TRI_RANDOM = 15;
+    private const NB_TRY_RANDOM = 5;
 
     private AirtableClient $airtableClient;
     private string $airtableAppId;
@@ -54,7 +54,7 @@ abstract class AbstractClient
         }
 
         $count = 0;
-        while ($count < self::NB_TRI_RANDOM && in_array($key, $this->randomKeyByParam[$keyResearch], true)) {
+        while ($count < self::NB_TRY_RANDOM && in_array($key, $this->randomKeyByParam[$keyResearch], true)) {
             $key = array_rand($articles);
             ++$count;
         }
