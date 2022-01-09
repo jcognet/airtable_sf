@@ -80,6 +80,8 @@ class Deploy implements LoggerAwareInterface
                 );
             }
 
+            $this->tagWriter->write($git['ref']);
+
             $email = (new TemplatedEmail())
                 ->to($this->mailerTo)
                 ->from($this->mailerFrom)
@@ -93,8 +95,6 @@ class Deploy implements LoggerAwareInterface
             ;
 
             $this->mailer->send($email);
-
-            $this->tagWriter->write($git['ref']);
         } catch (\Exception $e) {
             $email = (new TemplatedEmail())
                 ->to($this->mailerTo)

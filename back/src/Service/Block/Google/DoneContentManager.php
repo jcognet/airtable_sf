@@ -7,20 +7,20 @@ use App\Service\Block\BlockManagerInterface;
 use App\ValueObject\BlockInterface;
 use App\ValueObject\Random\ImageUrl;
 
-class InProgressContentManager implements BlockManagerInterface
+class DoneContentManager implements BlockManagerInterface
 {
-    private string $progressContentUrl;
+    private string $doneContentUrl;
 
-    public function __construct(string $progressContentUrl)
+    public function __construct(string $doneContentUrl)
     {
-        $this->progressContentUrl = $progressContentUrl;
+        $this->doneContentUrl = $doneContentUrl;
     }
 
     public function getContent(): ?BlockInterface
     {
         return new ImageUrl(
-            'En cours',
-            $this->progressContentUrl
+            'Contenu fini',
+            $this->doneContentUrl
         );
     }
 }

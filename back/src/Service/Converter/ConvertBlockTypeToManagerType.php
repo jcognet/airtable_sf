@@ -10,6 +10,7 @@ use App\Service\Block\Article\VideoBlockManager;
 use App\Service\Block\Beer\GoodBeerBlockManager;
 use App\Service\Block\Book\BookBlockManager;
 use App\Service\Block\Book\BookListBlockManager;
+use App\Service\Block\Google\DoneContentManager;
 use App\Service\Block\Google\InProgressContentManager;
 use App\Service\Block\Meteo\MeteoBlockManager;
 use App\Service\Block\Random\RandomPicBlockManager;
@@ -33,8 +34,9 @@ class ConvertBlockTypeToManagerType
         ArticleListALireBlockManager::class => BlockType::LIST_ARTICLE_BLOCK,
         VideoBlockManager::class => BlockType::VIDEO_BLOCK,
         BotDouxManager::class => BlockType::BOT_DOUX_BLOCK,
-        InProgressContentManager::class => BlockType::IMAGE_GOOGLE_BLOCK,
+        InProgressContentManager::class => BlockType::IMAGE_GOOGLE_EXPORT_IN_PROGRESS_BLOCK,
         RgsenManager::class => BlockType::RGSEN_BLOCK,
+        DoneContentManager::class => BlockType::IMAGE_GOOGLE_EXPORT_DONE_BLOCK,
     ];
 
     public function convert(BlockType $blockType): ManagerType

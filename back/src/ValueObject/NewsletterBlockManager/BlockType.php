@@ -16,8 +16,9 @@ class BlockType
     public const LIST_ARTICLE_BLOCK = 'list_article';
     public const VIDEO_BLOCK = 'video';
     public const BOT_DOUX_BLOCK = 'bot_doux';
-    public const IMAGE_GOOGLE_BLOCK = 'image_google';
+    public const IMAGE_GOOGLE_EXPORT_IN_PROGRESS_BLOCK = 'image_google_in_progess';
     public const RGSEN_BLOCK = 'rgsen';
+    public const IMAGE_GOOGLE_EXPORT_DONE_BLOCK = 'image_google_done';
 
     private const LIST_TYPE = [
         self::IMAGE_BLOCK,
@@ -31,8 +32,9 @@ class BlockType
         self::LIST_ARTICLE_BLOCK,
         self::VIDEO_BLOCK,
         self::BOT_DOUX_BLOCK,
-        self::IMAGE_GOOGLE_BLOCK,
+        self::IMAGE_GOOGLE_EXPORT_IN_PROGRESS_BLOCK,
         self::RGSEN_BLOCK,
+        self::IMAGE_GOOGLE_EXPORT_DONE_BLOCK,
     ];
 
     private string $type;
