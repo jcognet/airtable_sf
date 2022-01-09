@@ -5,19 +5,21 @@ namespace App\Service\Git;
 
 use App\ValueObject\Git\Command;
 use Carbon\Carbon;
-use Psr\Log\LoggerInterface;
+use Psr\Log\LoggerAwareInterface;
+use Psr\Log\LoggerAwareTrait;
 use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Process\PhpExecutableFinder;
 use Symfony\Component\Process\Process;
 
-class Deploy
+class Deploy implements LoggerAwareInterface
 {
+    use LoggerAwareTrait;
+
     private const SUBJECT = 'Fun Effect %s déploiement du %s';
     private const SUBJECT_FAILURE = 'Caca déploiement du %s';
 
-    private LoggerInterface $logger;
     private MailerInterface $mailer;
     private string $mailerFrom;
     private string $mailerTo;
@@ -26,7 +28,6 @@ class Deploy
     private TagWriter $tagWriter;
 
     public function __construct(
-        LoggerInterface $logger,
         MailerInterface $mailer,
         string $mailerFrom,
         string $mailerTo,
@@ -34,7 +35,6 @@ class Deploy
         string $githubSecret,
         TagWriter $tagWriter
     ) {
-        $this->logger = $logger;
         $this->mailer = $mailer;
         $this->mailerFrom = $mailerFrom;
         $this->mailerTo = $mailerTo;
@@ -70,6 +70,7 @@ class Deploy
             foreach ($listCalls as $call) {
                 $process = new Process($call);
                 $process->setWorkingDirectory($this->projectDir);
+                $this->logger->info(sprintf('Current command: %s ', $call));
                 $process->mustRun(null, ['COMPOSER_HOME' => $this->projectDir . '/../composer_cache']);
 
                 $this->logger->info($process->getOutput());
@@ -92,6 +93,8 @@ class Deploy
             ;
 
             $this->mailer->send($email);
+
+            $this->tagWriter->write($git['ref']);
         } catch (\Exception $e) {
             $email = (new TemplatedEmail())
                 ->to($this->mailerTo)
@@ -105,11 +108,10 @@ class Deploy
                     'git' => $git,
                 ])
             ;
+
             $this->mailer->send($email);
 
             throw $e;
         }
-
-        $this->tagWriter->write($git['ref']);
     }
 }

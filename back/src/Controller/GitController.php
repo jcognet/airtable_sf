@@ -4,14 +4,18 @@ declare(strict_types=1);
 namespace App\Controller;
 
 use App\Service\Git\Deploy;
+use Psr\Log\LoggerAwareInterface;
+use Psr\Log\LoggerAwareTrait;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-class GitController extends AbstractController
+class GitController extends AbstractController implements LoggerAwareInterface
 {
+    use LoggerAwareTrait;
+
     /**
      * @Route("/git/deploy", name="git_deploy", methods={"POST"})
      */
@@ -20,6 +24,7 @@ class GitController extends AbstractController
         Deploy $deploy
     ): Response {
         if (!$deploy->checkAccess($request)) {
+            $this->logger->error('Wrong header');
             $this->createNotFoundException('Wrong header');
         }
 

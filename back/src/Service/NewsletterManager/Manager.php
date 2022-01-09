@@ -6,9 +6,13 @@ namespace App\Service\NewsletterManager;
 use App\Service\Mailer\Sender;
 use App\ValueObject\Newspaper;
 use Carbon\Carbon;
+use Psr\Log\LoggerAwareInterface;
+use Psr\Log\LoggerAwareTrait;
 
-class Manager
+class Manager implements LoggerAwareInterface
 {
+    use LoggerAwareTrait;
+
     private Sender $sender;
     private ConfigSelector $configSelector;
     private ManagerContentFactory $managerContentFactory;
@@ -34,7 +38,18 @@ class Manager
         $newpapers = new Newspaper($date);
 
         foreach ($listManager as $manager) {
-            $newpapers->addBlock($this->managerContentFactory->getContent($manager->getType()));
+            try {
+                $newpapers->addBlock($this->managerContentFactory->getContent($manager->getType()));
+            } catch (\Exception $e) {
+                $this->logger->error(sprintf('Error with block %s: %s', $manager->getType(), $e->getMessage()), [
+                    'exception' => [
+                        'file' => $e->getFile(),
+                        'code' => $e->getCode(),
+                        'line' => $e->getLine(),
+                        'trace' => $e->getTraceAsString(),
+                    ],
+                ]);
+            }
         }
 
         return $newpapers;
