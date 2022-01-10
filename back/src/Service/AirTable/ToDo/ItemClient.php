@@ -33,6 +33,10 @@ class ItemClient extends AbstractClient
                     'field' => 'Echéance',
                     'direction' => 'asc',
                 ],
+                [
+                    'field' => 'A faire',
+                    'direction' => 'asc',
+                ],
             ],
         ]);
     }
