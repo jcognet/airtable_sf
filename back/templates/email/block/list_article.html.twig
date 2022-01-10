@@ -52,6 +52,22 @@
                                                             {% endif %}
                                                         </td>
                                                         <td>
+                                                            {% if article.articleType.value is same as constant('App\\ValueObject\\Article\\ArticleType::VIDEO') %}
+                                                                <span>&#128249;</span>
+                                                            {% elseif article.articleType.value is same as constant('App\\ValueObject\\Article\\ArticleType::PODCAST') %}
+                                                                <span>&#127908;</span>
+                                                            {% elseif article.articleType.value is same as constant('App\\ValueObject\\Article\\ArticleType::LIVRE') %}
+                                                                <span>&#128214;</span>
+                                                            {% elseif article.articleType.value is same as constant('App\\ValueObject\\Article\\ArticleType::TEXTE') %}
+                                                                <span>&#9852;</span>
+                                                            {% elseif article.articleType.value is same as constant('App\\ValueObject\\Article\\ArticleType::SITE_INTERNET') %}
+                                                                <span>&#128376;</span>
+                                                            {% elseif article.articleType.value is same as constant('App\\ValueObject\\Article\\ArticleType::REPERTOIRE') %}
+                                                                <span>&#128448;</span>
+                                                            {% elseif article.articleType.value is same as constant('App\\ValueObject\\Article\\ArticleType::IMAGE') %}
+                                                                <span>&#128444;</span>
+                                                            {% endif %}
+
                                                             <a href="{{ article.url }}" target="_blank" rel="noopener"
                                                                style="text-decoration: none; color: #{{ main_color }};">
                                                                 {{ article.title }}
@@ -62,7 +78,9 @@
                                                 {% endfor %}
                                             </table>
                                             <div style="text-align: right">
-                                                Cool, il reste <a href="https://airtable.com/appY4TYoXjtjua3KD/tbla72IEwy6EYrX2I/viw5gxaUcsWbVaKBp?blocks=hide" target="_blank">{{ block.nbArticles }} articles</a> à lire.
+                                                Cool, il reste <a
+                                                    href="https://airtable.com/appY4TYoXjtjua3KD/tbla72IEwy6EYrX2I/viw5gxaUcsWbVaKBp?blocks=hide"
+                                                    target="_blank">{{ block.nbArticles }} articles</a> à lire.
                                             </div>
                                         </div>
                                     </div>
