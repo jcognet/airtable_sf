@@ -6,6 +6,7 @@ namespace App\Service\Builder\Article;
 use App\Service\Builder\BuilderInterface;
 use App\Service\Repository\Article\SujetRepository;
 use App\ValueObject\Article\Article;
+use App\ValueObject\Article\ArticleType;
 use App\ValueObject\Article\Status;
 use Carbon\Carbon;
 
@@ -40,6 +41,7 @@ class ArticleBuilder implements BuilderInterface
             $sujets,
             $status,
             $data['fields']['URL'] ?? '',
+            new ArticleType($data['fields']['Type']) ?? '',
         );
     }
 }

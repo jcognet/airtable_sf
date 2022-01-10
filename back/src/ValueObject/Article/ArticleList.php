@@ -9,6 +9,9 @@ use App\ValueObject\NewsletterBlockManager\BlockType;
 class ArticleList implements BlockInterface
 {
     private string $title;
+    /**
+     * @var Article[]
+     */
     private array $articles;
     private int $nbArticles;
 
