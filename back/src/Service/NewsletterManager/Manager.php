@@ -16,15 +16,19 @@ class Manager implements LoggerAwareInterface
     private Sender $sender;
     private ConfigSelector $configSelector;
     private ManagerContentFactory $managerContentFactory;
+    private string $environment;
 
     public function __construct(
         Sender $sender,
         ConfigSelector $configSelector,
-        ManagerContentFactory $managerContentFactory
-    ) {
+        ManagerContentFactory $managerContentFactory,
+        string $environment
+    )
+    {
         $this->sender = $sender;
         $this->configSelector = $configSelector;
         $this->managerContentFactory = $managerContentFactory;
+        $this->environment = $environment;
     }
 
     public function handle(Carbon $date): void
@@ -49,6 +53,10 @@ class Manager implements LoggerAwareInterface
                         'trace' => $e->getTraceAsString(),
                     ],
                 ]);
+
+                if ($this->environment !== 'prod') {
+                    throw $e;
+                }
             }
         }
 

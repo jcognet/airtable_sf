@@ -25,6 +25,7 @@ services:
       $spreadSheetAirtableId: '%env(GOOGLE_SPREADSHEET_EXPORT_ID)%'
       $progressContentUrl: '%env(GOOGLE_PROGRESS_CONTENT_URL)%'
       $doneContentUrl: '%env(GOOGLE_DONE_CONTENT_URL)%'
+      $environment: '%kernel.environment%'
 
   # makes classes in src/ available to be used as services
   # this creates a service per class whose id is the fully-qualified class name

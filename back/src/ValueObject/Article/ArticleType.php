@@ -9,7 +9,7 @@ class ArticleType
     public const VIDEO = 'Vidéo';
     public const TEXTE = 'Texte';
     public const LIVRE = 'Livre';
-    public const SITE_INTERNET = 'Site Internet';
+    public const SITE_INTERNET = 'Site internet';
     public const REPERTOIRE = 'Répertoire';
     public const IMAGE = 'Image';
 
