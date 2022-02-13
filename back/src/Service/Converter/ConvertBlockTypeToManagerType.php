@@ -13,6 +13,7 @@ use App\Service\Block\Book\BookListBlockManager;
 use App\Service\Block\Google\DoneContentManager;
 use App\Service\Block\Google\InProgressContentManager;
 use App\Service\Block\Meteo\MeteoBlockManager;
+use App\Service\Block\Random\InrManager;
 use App\Service\Block\Random\RandomPicBlockManager;
 use App\Service\Block\Random\RgsenManager;
 use App\Service\Block\ToDo\ItemBlockManager;
@@ -37,6 +38,7 @@ class ConvertBlockTypeToManagerType
         InProgressContentManager::class => BlockType::IMAGE_GOOGLE_EXPORT_IN_PROGRESS_BLOCK,
         RgsenManager::class => BlockType::RGSEN_BLOCK,
         DoneContentManager::class => BlockType::IMAGE_GOOGLE_EXPORT_DONE_BLOCK,
+        InrManager::class => BlockType::INR_TOOLS,
     ];
 
     public function convert(BlockType $blockType): ManagerType

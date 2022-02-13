@@ -2,6 +2,7 @@ blocks:
   - bot_doux
   - article
   - image
+  - list_inr_tool
   - list_book
   - list_meteo
   - list_todo
