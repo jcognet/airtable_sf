@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace App\Service\NewsletterManager;
 
 use App\Service\Mailer\Sender;
+use App\ValueObject\NewsletterBlockManager\ManagerType;
 use App\ValueObject\Newspaper;
 use Carbon\Carbon;
 use Psr\Log\LoggerAwareInterface;
@@ -37,7 +38,24 @@ class Manager implements LoggerAwareInterface
 
     public function createContent(Carbon $date): Newspaper
     {
-        $listManager = $this->configSelector->getBlocks($date);
+        return $this->createNewsPaper($this->configSelector->getBlocks($date), $date);
+    }
+
+    public function createAllContent(): Newspaper
+    {
+        return $this->createNewsPaper($this->configSelector->getAllBlocks(), Carbon::now());
+    }
+
+    private function sendContent(Newspaper $content): void
+    {
+        $this > $this->sender->send($content);
+    }
+
+    /**
+     * @param ManagerType[] $listManager
+     */
+    private function createNewsPaper(array $listManager, Carbon $date): Newspaper
+    {
         $newpapers = new Newspaper($date);
 
         foreach ($listManager as $manager) {
@@ -60,10 +78,5 @@ class Manager implements LoggerAwareInterface
         }
 
         return $newpapers;
-    }
-
-    private function sendContent(Newspaper $content): void
-    {
-        $this > $this->sender->send($content);
     }
 }
