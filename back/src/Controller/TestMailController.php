@@ -30,4 +30,20 @@ class TestMailController extends AbstractController
             ],
         );
     }
+
+    /**
+     * @Route("/test/mail/all", name="all_mail_show", methods={"GET"})
+     */
+    public function all(Manager $newsHandler): Response
+    {
+        $newspaper = $newsHandler->createAllContent();
+
+        return $this->render(
+            'email/newsletter.html.twig',
+            [
+                'newspaper' => $newspaper,
+                'date' => $newspaper->getDate(),
+            ],
+        );
+    }
 }

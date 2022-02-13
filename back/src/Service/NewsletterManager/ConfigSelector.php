@@ -48,6 +48,17 @@ class ConfigSelector
         return $blockManagerList;
     }
 
+    public function getAllBlocks(): array
+    {
+        $list = [];
+
+        foreach (ManagerType::getListType() as $type) {
+            $list[] = new ManagerType($type);
+        }
+
+        return $list;
+    }
+
     protected function getFilePath(string $name): string
     {
         return sprintf('%s%s.yaml', $this->pathToConfigurationYaml, strtolower($name));

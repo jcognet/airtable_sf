@@ -50,6 +50,11 @@ class ManagerType
         $this->type = $type;
     }
 
+    public static function getListType(): array
+    {
+        return self::LIST_TYPE;
+    }
+
     public function getType(): string
     {
         return $this->type;
