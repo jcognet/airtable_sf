@@ -13,6 +13,7 @@ use App\Service\Block\Book\BookListBlockManager;
 use App\Service\Block\Google\DoneContentManager;
 use App\Service\Block\Google\InProgressContentManager;
 use App\Service\Block\Meteo\MeteoBlockManager;
+use App\Service\Block\Random\InrManager;
 use App\Service\Block\Random\RandomPicBlockManager;
 use App\Service\Block\Random\RgsenManager;
 use App\Service\Block\ToDo\ItemBlockManager;
@@ -35,6 +36,7 @@ class ManagerType
         InProgressContentManager::class,
         RgsenManager::class,
         DoneContentManager::class,
+        InrManager::class,
     ];
 
     private string $type;

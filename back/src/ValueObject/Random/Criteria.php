@@ -21,8 +21,7 @@ class Criteria
         string $objectif,
         string $miseEnOeuvre,
         string $controle
-    )
-    {
+    ) {
         $this->id = $id;
         $this->url = $url;
         $this->critere = $critere;

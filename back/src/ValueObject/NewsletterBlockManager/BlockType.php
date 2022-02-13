@@ -19,6 +19,7 @@ class BlockType
     public const IMAGE_GOOGLE_EXPORT_IN_PROGRESS_BLOCK = 'image_google_in_progess';
     public const RGSEN_BLOCK = 'rgsen';
     public const IMAGE_GOOGLE_EXPORT_DONE_BLOCK = 'image_google_done';
+    public const INR_TOOLS = 'list_inr_tool';
 
     private const LIST_TYPE = [
         self::IMAGE_BLOCK,
@@ -35,6 +36,7 @@ class BlockType
         self::IMAGE_GOOGLE_EXPORT_IN_PROGRESS_BLOCK,
         self::RGSEN_BLOCK,
         self::IMAGE_GOOGLE_EXPORT_DONE_BLOCK,
+        self::INR_TOOLS,
     ];
 
     private string $type;

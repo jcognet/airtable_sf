@@ -23,8 +23,7 @@ class Manager implements LoggerAwareInterface
         ConfigSelector $configSelector,
         ManagerContentFactory $managerContentFactory,
         string $environment
-    )
-    {
+    ) {
         $this->sender = $sender;
         $this->configSelector = $configSelector;
         $this->managerContentFactory = $managerContentFactory;
