@@ -6,9 +6,9 @@
     "require": {
         "php": ">=7.2.5",
         "ext-ctype": "*",
+        "ext-dom": "*",
         "ext-iconv": "*",
         "ext-json": "*",
-        "ext-dom": "*",
         "friendsofphp/php-cs-fixer": "^3.3",
         "google/apiclient": "^2.12",
         "nesbot/carbon": "^2.55",
@@ -23,6 +23,7 @@
         "symfony/mailer": "5.4.*",
         "symfony/process": "5.4.*",
         "symfony/runtime": "5.4.*",
+        "symfony/security-bundle": "5.4.*",
         "symfony/twig-bundle": "5.4.*",
         "symfony/yaml": "5.4.*"
     },
