@@ -42,7 +42,7 @@ class ArticleListALireBlockManager implements BlockManagerInterface
         return new ArticleList(
             'Articles à lire',
             $articles,
-            $this->ALireClient->getNbAllArticles()
+            $this->ALireClient->getNbItems()
         );
     }
 }

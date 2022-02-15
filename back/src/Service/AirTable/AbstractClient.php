@@ -87,12 +87,28 @@ abstract class AbstractClient
             foreach ($response['records'] as $rawData) {
                 $this->recordsByParam[$keyResearch][$rawData['id']] = $this->builder->build($rawData);
             }
+
+            while (isset($response['offset'])) {
+                $param['offset'] = $response['offset'];
+                $response = json_decode(
+                    $this->airtableClient->request(
+                        'GET',
+                        sprintf('%s/%s', $this->airtableAppId, $this->getFetchUrl()),
+                        $param,
+                    ),
+                    true
+                );
+
+                foreach ($response['records'] as $rawData) {
+                    $this->recordsByParam[$keyResearch][$rawData['id']] = $this->builder->build($rawData);
+                }
+            }
         }
 
         return $this->recordsByParam[$keyResearch];
     }
 
-    public function getNbAllArticles(): int
+    public function getNbItems(): int
     {
         return count($this->findAll());
     }
