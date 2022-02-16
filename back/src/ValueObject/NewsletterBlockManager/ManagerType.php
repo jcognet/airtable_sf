@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace App\ValueObject\NewsletterBlockManager;
 
 use App\Service\Block\Article\ArticleListALireBlockManager;
+use App\Service\Block\Article\ArticleReadListBlockManager;
 use App\Service\Block\Article\ImageManager;
 use App\Service\Block\Article\LuBlockManager;
 use App\Service\Block\Article\VideoBlockManager;
@@ -37,6 +38,7 @@ class ManagerType
         RgsenManager::class,
         DoneContentManager::class,
         InrManager::class,
+        ArticleReadListBlockManager::class,
     ];
 
     private string $type;
