@@ -20,6 +20,7 @@ class BlockType
     public const RGSEN_BLOCK = 'rgsen';
     public const IMAGE_GOOGLE_EXPORT_DONE_BLOCK = 'image_google_done';
     public const INR_TOOLS = 'list_inr_tool';
+    public const LIST_ARTICLE_READ_BLOCK = 'list_article_read';
 
     private const LIST_TYPE = [
         self::IMAGE_BLOCK,
@@ -37,6 +38,7 @@ class BlockType
         self::RGSEN_BLOCK,
         self::IMAGE_GOOGLE_EXPORT_DONE_BLOCK,
         self::INR_TOOLS,
+        self::LIST_ARTICLE_READ_BLOCK,
     ];
 
     private string $type;

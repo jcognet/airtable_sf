@@ -10,4 +10,5 @@ blocks:
   - list_article
   - video
   - rgsen
+  - list_article_read
   - list_beer

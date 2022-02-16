@@ -6,10 +6,10 @@ namespace App\ValueObject\Article;
 use App\ValueObject\BlockInterface;
 use App\ValueObject\NewsletterBlockManager\BlockType;
 
-class ArticleList extends AbstractArticleList implements BlockInterface
+class ArticleReadList extends AbstractArticleList implements BlockInterface
 {
     public function getType(): BlockType
     {
-        return new BlockType(BlockType::LIST_ARTICLE_BLOCK);
+        return new BlockType(BlockType::LIST_ARTICLE_READ_BLOCK);
     }
 }
