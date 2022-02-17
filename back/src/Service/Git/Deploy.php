@@ -12,6 +12,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Process\PhpExecutableFinder;
 use Symfony\Component\Process\Process;
+use Twig\Environment;
 
 class Deploy implements LoggerAwareInterface
 {
@@ -26,6 +27,8 @@ class Deploy implements LoggerAwareInterface
     private string $projectDir;
     private string $githubSecret;
     private TagWriter $tagWriter;
+    private string $environment;
+    private Environment $twig;
 
     public function __construct(
         MailerInterface $mailer,
@@ -33,7 +36,9 @@ class Deploy implements LoggerAwareInterface
         string $mailerTo,
         string $projectDir,
         string $githubSecret,
-        TagWriter $tagWriter
+        TagWriter $tagWriter,
+        string $environment,
+        Environment $twig
     ) {
         $this->mailer = $mailer;
         $this->mailerFrom = $mailerFrom;
@@ -41,10 +46,15 @@ class Deploy implements LoggerAwareInterface
         $this->projectDir = $projectDir;
         $this->githubSecret = $githubSecret;
         $this->tagWriter = $tagWriter;
+        $this->environment = $environment;
+
+        $this->twig = $twig;
     }
 
     public function checkAccess(Request $request): bool
     {
+        $this->twig->setCache(false);
+
         [$hash, $headerSecret] = explode('=', $request->headers->get('X-Hub-Signature-256'));
         $this->logger->info('header', [$hash, $headerSecret]);
         $requestSecret = hash_hmac($hash, $request->getContent(), $this->githubSecret);
@@ -55,23 +65,19 @@ class Deploy implements LoggerAwareInterface
 
     public function deploy(array $git): void
     {
-        $phpBinaryFinder = new PhpExecutableFinder();
-        $phpBinaryPath = $phpBinaryFinder->find();
-
-        $listCalls = [
-            ['git', 'pull'],
-            [$phpBinaryPath, sprintf('%s/composer.phar', $this->projectDir), 'install'],
-            [$phpBinaryPath, sprintf('%s/composer.phar', $this->projectDir), 'dump-autoload', '--no-dev', '--classmap-authoritative'],
-            [$phpBinaryPath, 'bin/console', 'cache:clear'],
-        ];
-
         $returns = [];
 
         try {
-            foreach ($listCalls as $call) {
+            foreach ($this->getCalls() as $call) {
                 $process = new Process($call);
                 $process->setWorkingDirectory($this->projectDir);
-                $this->logger->info(sprintf('Current command: %s ', $call));
+
+                if (is_string($call)) {
+                    $this->logger->info(sprintf('Current command: %s ', $call));
+                } elseif (is_array($call)) {
+                    $this->logger->info(sprintf('Current command: %s ', implode(' ', $call)));
+                }
+
                 $process->mustRun(null, ['COMPOSER_HOME' => $this->projectDir . '/../composer_cache']);
 
                 $this->logger->info($process->getOutput());
@@ -113,6 +119,27 @@ class Deploy implements LoggerAwareInterface
             $this->mailer->send($email);
 
             throw $e;
+        }
+    }
+
+    private function getCalls(): array
+    {
+        $phpBinaryFinder = new PhpExecutableFinder();
+        $phpBinaryPath = $phpBinaryFinder->find();
+
+        switch ($this->environment) {
+            case 'prod':
+                return [
+                    ['git', 'pull'],
+                    [$phpBinaryPath, sprintf('%s/composer.phar', $this->projectDir), 'install'],
+                    [$phpBinaryPath, sprintf('%s/composer.phar', $this->projectDir), 'dump-autoload', '--no-dev', '--classmap-authoritative'],
+                    [$phpBinaryPath, 'bin/console', 'cache:clear'],
+                ];
+            default:
+                return [
+                    ['composer', 'install'],
+                    [$phpBinaryPath, 'bin/console', 'cache:clear'],
+                ];
         }
     }
 }

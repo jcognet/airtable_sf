@@ -25,7 +25,7 @@ class GitController extends AbstractController implements LoggerAwareInterface
     ): Response {
         if (!$deploy->checkAccess($request)) {
             $this->logger->error('Wrong header');
-            $this->createNotFoundException('Wrong header');
+            throw $this->createNotFoundException('Wrong header');
         }
 
         $content = json_decode($request->getContent(), true);
