@@ -61,6 +61,7 @@ class Deploy implements LoggerAwareInterface
         $listCalls = [
             ['git', 'pull'],
             [$phpBinaryPath, sprintf('%s/composer.phar', $this->projectDir), 'install'],
+            [$phpBinaryPath, sprintf('%s/composer.phar', $this->projectDir), 'dump-autoload', '--no-dev', '--classmap-authoritative'],
             [$phpBinaryPath, 'bin/console', 'cache:clear'],
         ];
 
