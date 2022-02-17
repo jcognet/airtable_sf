@@ -1,3 +1,4 @@
+{% from "./email/macro/article.html.twig" import render_article_type %}
 {# @var block \App\ValueObject\Article\ArticleList #}
 <table align="center" border="0" cellpadding="0" cellspacing="0" class="row row-8" role="presentation"
        style="margin-bottom:20px;mso-table-lspace: 0pt; mso-table-rspace: 0pt;" width="100%">
@@ -52,22 +53,7 @@
                                                             {% endif %}
                                                         </td>
                                                         <td>
-                                                            {% if article.articleType.value is same as constant('App\\ValueObject\\Article\\ArticleType::VIDEO') %}
-                                                                <span>&#128249;</span>
-                                                            {% elseif article.articleType.value is same as constant('App\\ValueObject\\Article\\ArticleType::PODCAST') %}
-                                                                <span>&#127908;</span>
-                                                            {% elseif article.articleType.value is same as constant('App\\ValueObject\\Article\\ArticleType::LIVRE') %}
-                                                                <span>&#128214;</span>
-                                                            {% elseif article.articleType.value is same as constant('App\\ValueObject\\Article\\ArticleType::TEXTE') %}
-                                                                <span>&#9852;</span>
-                                                            {% elseif article.articleType.value is same as constant('App\\ValueObject\\Article\\ArticleType::SITE_INTERNET') %}
-                                                                <span>&#128376;</span>
-                                                            {% elseif article.articleType.value is same as constant('App\\ValueObject\\Article\\ArticleType::REPERTOIRE') %}
-                                                                <span>&#128448;</span>
-                                                            {% elseif article.articleType.value is same as constant('App\\ValueObject\\Article\\ArticleType::IMAGE') %}
-                                                                <span>&#128444;</span>
-                                                            {% endif %}
-
+                                                            {{ render_article_type(article) }}
                                                             <a href="{{ article.url }}" target="_blank" rel="noopener"
                                                                style="text-decoration: none; color: #{{ main_color }};">
                                                                 {{ article.title }}
