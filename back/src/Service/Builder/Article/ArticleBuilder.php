@@ -41,7 +41,7 @@ class ArticleBuilder implements BuilderInterface
             $sujets,
             $status,
             $data['fields']['URL'] ?? '',
-            new ArticleType($data['fields']['Type']) ?? '',
+            isset($data['fields']['Type']) ? new ArticleType($data['fields']['Type']) : null,
         );
     }
 }
