@@ -19,7 +19,7 @@ class Article implements BlockInterface
     private array $sujets;
     private ?Status $status;
     private ?string $url;
-    private ArticleType $articleType;
+    private ?ArticleType $articleType;
 
     public function __construct(
         string $title,
@@ -28,7 +28,7 @@ class Article implements BlockInterface
         array $sujets,
         ?Status $status,
         ?string $url,
-        ArticleType $articleType
+        ?ArticleType $articleType
     ) {
         $this->title = $title;
         $this->body = $body;
@@ -74,7 +74,7 @@ class Article implements BlockInterface
         return $this->url;
     }
 
-    public function getArticleType(): ArticleType
+    public function getArticleType(): ?ArticleType
     {
         return $this->articleType;
     }
