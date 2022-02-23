@@ -14,6 +14,7 @@ use App\Service\Block\Book\BookListBlockManager;
 use App\Service\Block\Google\DoneContentManager;
 use App\Service\Block\Google\InProgressContentManager;
 use App\Service\Block\Meteo\MeteoBlockManager;
+use App\Service\Block\Random\GoodPracticeOrganizationManager;
 use App\Service\Block\Random\InrManager;
 use App\Service\Block\Random\RandomPicBlockManager;
 use App\Service\Block\Random\RgsenManager;
@@ -38,6 +39,7 @@ class ConvertBlockTypeToManagerType
         BotDouxManager::class => BlockType::BOT_DOUX_BLOCK,
         InProgressContentManager::class => BlockType::IMAGE_GOOGLE_EXPORT_IN_PROGRESS_BLOCK,
         RgsenManager::class => BlockType::RGSEN_BLOCK,
+        GoodPracticeOrganizationManager::class => BlockType::GOOD_PRACTICE_ORGANIZATION_BLOCK,
         DoneContentManager::class => BlockType::IMAGE_GOOGLE_EXPORT_DONE_BLOCK,
         InrManager::class => BlockType::INR_TOOLS,
         ArticleReadListBlockManager::class => BlockType::LIST_ARTICLE_READ_BLOCK,

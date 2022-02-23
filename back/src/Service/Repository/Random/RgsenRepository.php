@@ -17,10 +17,10 @@ class RgsenRepository
     private CriteriaBuilder $criteriaBuilder;
 
     public function __construct(
-        HttpClientInterface $rgsenClient,
+        HttpClientInterface $ecoresponsablegouvClient,
         CriteriaBuilder $criteriaBuilder
     ) {
-        $this->rgsenClient = $rgsenClient;
+        $this->rgsenClient = $ecoresponsablegouvClient;
         $this->criteriaBuilder = $criteriaBuilder;
     }
 
@@ -30,7 +30,7 @@ class RgsenRepository
             $this->records = json_decode(
                 $this->rgsenClient->request(
                     'GET',
-                    'referentiel-general-ecoconception-version-beta.json',
+                    'publications/referentiel-general-ecoconception/export/referentiel-general-ecoconception-version-beta.json',
                 )->getContent(),
                 true
             )['criteres'];
