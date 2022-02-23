@@ -18,6 +18,7 @@ class BlockType
     public const BOT_DOUX_BLOCK = 'bot_doux';
     public const IMAGE_GOOGLE_EXPORT_IN_PROGRESS_BLOCK = 'image_google_in_progess';
     public const RGSEN_BLOCK = 'rgsen';
+    public const GOOD_PRACTICE_ORGANIZATION_BLOCK = 'good_practice_organization';
     public const IMAGE_GOOGLE_EXPORT_DONE_BLOCK = 'image_google_done';
     public const INR_TOOLS = 'list_inr_tool';
     public const LIST_ARTICLE_READ_BLOCK = 'list_article_read';
@@ -36,6 +37,7 @@ class BlockType
         self::BOT_DOUX_BLOCK,
         self::IMAGE_GOOGLE_EXPORT_IN_PROGRESS_BLOCK,
         self::RGSEN_BLOCK,
+        self::GOOD_PRACTICE_ORGANIZATION_BLOCK,
         self::IMAGE_GOOGLE_EXPORT_DONE_BLOCK,
         self::INR_TOOLS,
         self::LIST_ARTICLE_READ_BLOCK,
