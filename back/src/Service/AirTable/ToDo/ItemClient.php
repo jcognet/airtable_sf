@@ -26,19 +26,23 @@ class ItemClient extends AbstractClient
      */
     public function findAll($param = []): array
     {
-        return parent::findAll([
-            'filterByFormula' => 'OR({Etat} ="Ready to go",{Etat} ="In progress")',
-            'sort' => [
-                [
-                    'field' => 'Echéance',
-                    'direction' => 'asc',
+        if (!$param) {
+            $param = [
+                'filterByFormula' => 'OR({Etat} ="Ready to go",{Etat} ="In progress")',
+                'sort' => [
+                    [
+                        'field' => 'Echéance',
+                        'direction' => 'asc',
+                    ],
+                    [
+                        'field' => 'A faire',
+                        'direction' => 'asc',
+                    ],
                 ],
-                [
-                    'field' => 'A faire',
-                    'direction' => 'asc',
-                ],
-            ],
-        ]);
+            ];
+        }
+
+        return parent::findAll($param);
     }
 
     public function fetchRandomData(array $param = []): BlockInterface
