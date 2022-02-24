@@ -46,4 +46,22 @@ class TestMailController extends AbstractController
             ],
         );
     }
+
+    /**
+     * @Route("/test/mail/one/{blockType}", name="test_mail_one", methods={"GET"})
+     */
+    public function one(
+        Manager $newsHandler,
+        string $blockType
+    ): Response {
+        $newspaper = $newsHandler->createOneContent($blockType);
+
+        return $this->render(
+            'email/newsletter.html.twig',
+            [
+                'newspaper' => $newspaper,
+                'date' => $newspaper->getDate(),
+            ],
+        );
+    }
 }

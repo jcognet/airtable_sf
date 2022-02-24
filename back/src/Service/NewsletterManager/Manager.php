@@ -3,7 +3,9 @@ declare(strict_types=1);
 
 namespace App\Service\NewsletterManager;
 
+use App\Service\Converter\ConvertBlockTypeToManagerType;
 use App\Service\Mailer\Sender;
+use App\ValueObject\NewsletterBlockManager\BlockType;
 use App\ValueObject\NewsletterBlockManager\ManagerType;
 use App\ValueObject\Newspaper;
 use Carbon\Carbon;
@@ -18,17 +20,20 @@ class Manager implements LoggerAwareInterface
     private ConfigSelector $configSelector;
     private ManagerContentFactory $managerContentFactory;
     private string $environment;
+    private ConvertBlockTypeToManagerType $convertBlockTypeToManagerType;
 
     public function __construct(
         Sender $sender,
         ConfigSelector $configSelector,
         ManagerContentFactory $managerContentFactory,
-        string $environment
+        string $environment,
+        ConvertBlockTypeToManagerType $convertBlockTypeToManagerType
     ) {
         $this->sender = $sender;
         $this->configSelector = $configSelector;
         $this->managerContentFactory = $managerContentFactory;
         $this->environment = $environment;
+        $this->convertBlockTypeToManagerType = $convertBlockTypeToManagerType;
     }
 
     public function handle(Carbon $date): void
@@ -44,6 +49,13 @@ class Manager implements LoggerAwareInterface
     public function createAllContent(): Newspaper
     {
         return $this->createNewsPaper($this->configSelector->getAllBlocks(), Carbon::now());
+    }
+
+    public function createOneContent(string $type): Newspaper
+    {
+        return $this->createNewsPaper([
+            $this->convertBlockTypeToManagerType->convert(new BlockType($type)),
+        ], Carbon::now());
     }
 
     private function sendContent(Newspaper $content): void

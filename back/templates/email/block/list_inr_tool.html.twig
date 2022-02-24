@@ -37,30 +37,35 @@
                             <tbody>
                             <tr>
                                 <td style="padding-bottom:20px;padding-left:10px;padding-right:10px;padding-top:10px;">
-                                    <div
-                                        style="display: grid;grid-template-columns: repeat({{ block.content|length }}, 1fr); font-family: Poppins, Arial, Helvetica, sans-serif;">
+                                    <table>
+                                        <tr>
                                         {% for inr_tool in block.content %}
-                                            <div
-                                                style="font-size: 14px; mso-line-height-alt: 21px; color: #000000; line-height: 1.5; font-family: Poppins, Arial, Helvetica, sans-serif;">
+                                            <td
+                                                style="width: 25%;font-size: 14px; mso-line-height-alt: 21px; color: #000000; line-height: 1.5; font-family: Poppins, Arial, Helvetica, sans-serif;">
                                                 <div style="text-align: center; font-family: Poppins, Arial, Helvetica, sans-serif;">
                                                     <a href="{{ inr_tool.url }}"
                                                        style="color:#{{ main_color }};font-size:18px"
                                                        target="_blank">{{ inr_tool.title }}</a>
                                                 </div>
-                                            </div>
+                                            </td>
                                         {% endfor %}
+                                        </tr>
+                                        <tr>
                                         {% for inr_tool in block.content %}
-                                            <div
-                                                style="font-size: 12px;background-color: #{{ secondary_color }};margin-bottom: 5px;padding: 2px;margin-right: 5px; font-family: Poppins, Arial, Helvetica, sans-serif;">
+                                            <td
+                                                style="vertical-align: top; font-size: 12px;background-color: #{{ secondary_color }};margin-bottom: 5px;padding: 2px;margin-right: 5px; font-family: Poppins, Arial, Helvetica, sans-serif;">
                                                 {{ inr_tool.tags|join(', ') }}
-                                            </div>
+                                            </td>
                                         {% endfor %}
+                                        </tr>
+                                        <tr>
                                         {% for inr_tool in block.content %}
-                                            <div style=" font-family: Poppins, Arial, Helvetica, sans-serif;">
+                                            <td style="vertical-align: top;font-family: Poppins, Arial, Helvetica, sans-serif;">
                                                 {{ inr_tool.text }}
-                                            </div>
+                                            </td>
                                         {% endfor %}
-                                    </div>
+                                        </tr>
+                                    </table>
                                 </td>
                             </tr>
                             </tbody>
