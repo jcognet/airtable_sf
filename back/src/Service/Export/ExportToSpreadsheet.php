@@ -48,6 +48,7 @@ class ExportToSpreadsheet
                     count($this->bookClient->findAll(['filterByFormula' => '{Status} = "A lire"'])),
                     count($this->bookClient->findAll(['filterByFormula' => '{Status} = "Fini"'])),
                     count($this->imageClient->findAll()),
+                    count($this->itemClient->findAll(['filterByFormula' => '{Etat} = "Done"'])),
                 ],
             ]
         );
