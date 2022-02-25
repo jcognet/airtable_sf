@@ -2,14 +2,15 @@ blocks:
   - bot_doux
   - article
   - image
-  - list_inr_tool
+  - good_practice_organization
   - list_book
   - list_meteo
   - list_todo
   - image_url
   - list_article
   - video
-  - good_practice_organization
   - list_article_read
+  - list_interesting_topic
   - rgsen
+  - list_inr_tool
   - list_beer
