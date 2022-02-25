@@ -6,6 +6,7 @@ namespace App\ValueObject\NewsletterBlockManager;
 use App\Service\Block\Article\ArticleListALireBlockManager;
 use App\Service\Block\Article\ArticleReadListBlockManager;
 use App\Service\Block\Article\ImageManager;
+use App\Service\Block\Article\InterestingTopicListBlockManager;
 use App\Service\Block\Article\LuBlockManager;
 use App\Service\Block\Article\VideoBlockManager;
 use App\Service\Block\Beer\GoodBeerBlockManager;
@@ -41,6 +42,7 @@ class ManagerType
         InrManager::class,
         ArticleReadListBlockManager::class,
         GoodPracticeOrganizationManager::class,
+        InterestingTopicListBlockManager::class,
     ];
 
     private string $type;
