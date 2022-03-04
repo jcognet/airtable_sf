@@ -5,7 +5,7 @@ namespace App\Service\AirTable\Article;
 
 use App\Service\AirTable\AbstractClient;
 use App\Service\AirTable\AirtableClient;
-use App\Service\Builder\Article\ArticleBuilder;
+use App\Service\Builder\Article\ArticleReadBuilder;
 use App\ValueObject\Article\Article;
 
 class LuClient extends AbstractClient
@@ -13,7 +13,7 @@ class LuClient extends AbstractClient
     public function __construct(
         AirtableClient $airtableClient,
         string $airtableAppArticleId,
-        ArticleBuilder $articleBuilder
+        ArticleReadBuilder $articleBuilder
     ) {
         parent::__construct($airtableClient, $airtableAppArticleId, $articleBuilder);
     }

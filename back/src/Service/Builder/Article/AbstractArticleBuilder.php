@@ -10,13 +10,16 @@ use App\ValueObject\Article\ArticleType;
 use App\ValueObject\Article\Status;
 use Carbon\Carbon;
 
-class ArticleBuilder implements BuilderInterface
+abstract class AbstractArticleBuilder implements BuilderInterface
 {
+    private const TABLE_URL = 'tblPLpYPyAOT2q13Q';
     private SujetRepository $sujetRepository;
+    private string $airtableAppArticleId;
 
-    public function __construct(SujetRepository $sujetRepository)
+    public function __construct(SujetRepository $sujetRepository, string $airtableAppArticleId)
     {
         $this->sujetRepository = $sujetRepository;
+        $this->airtableAppArticleId = $airtableAppArticleId;
     }
 
     public function build(array $data): Article
@@ -42,6 +45,9 @@ class ArticleBuilder implements BuilderInterface
             $status,
             $data['fields']['URL'] ?? '',
             isset($data['fields']['Type']) ? new ArticleType($data['fields']['Type']) : null,
+            sprintf('https://airtable.com/%s/%s/%s/%s', $this->airtableAppArticleId, self::TABLE_URL, $this->getViewUrl(), $data['id'])
         );
     }
+
+    abstract public function getViewUrl(): string;
 }

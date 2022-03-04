@@ -20,6 +20,7 @@ class Article implements BlockInterface
     private ?Status $status;
     private ?string $url;
     private ?ArticleType $articleType;
+    private string $airTableUrl;
 
     public function __construct(
         string $title,
@@ -28,7 +29,8 @@ class Article implements BlockInterface
         array $sujets,
         ?Status $status,
         ?string $url,
-        ?ArticleType $articleType
+        ?ArticleType $articleType,
+        string $airTableUrl
     ) {
         $this->title = $title;
         $this->body = $body;
@@ -37,6 +39,7 @@ class Article implements BlockInterface
         $this->status = $status;
         $this->url = $url;
         $this->articleType = $articleType;
+        $this->airTableUrl = $airTableUrl;
     }
 
     public function getTitle(): string
@@ -77,5 +80,10 @@ class Article implements BlockInterface
     public function getArticleType(): ?ArticleType
     {
         return $this->articleType;
+    }
+
+    public function getAirTableUrl(): string
+    {
+        return $this->airTableUrl;
     }
 }
