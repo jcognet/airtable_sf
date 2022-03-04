@@ -9,6 +9,7 @@ use App\Service\AirTable\Article\LuClient;
 use App\Service\AirTable\Book\BookClient;
 use App\Service\AirTable\ToDo\ItemClient;
 use App\Service\Google\ExportAirtableWriter;
+use App\Service\Repository\Random\GithubRepository;
 use Carbon\Carbon;
 
 class ExportToSpreadsheet
@@ -19,6 +20,7 @@ class ExportToSpreadsheet
     private ALireClient $ALireClient;
     private BookClient $bookClient;
     private ImageClient $imageClient;
+    private GithubRepository $githubRepository;
 
     public function __construct(
         ExportAirtableWriter $exportAirtableWriter,
@@ -26,7 +28,8 @@ class ExportToSpreadsheet
         ItemClient $itemClient,
         ALireClient $ALireClient,
         BookClient $bookClient,
-        ImageClient $imageClient
+        ImageClient $imageClient,
+        GithubRepository $githubRepository
     ) {
         $this->exportAirtableWriter = $exportAirtableWriter;
         $this->luClient = $luClient;
@@ -34,6 +37,7 @@ class ExportToSpreadsheet
         $this->ALireClient = $ALireClient;
         $this->bookClient = $bookClient;
         $this->imageClient = $imageClient;
+        $this->githubRepository = $githubRepository;
     }
 
     public function export(): int
@@ -49,6 +53,7 @@ class ExportToSpreadsheet
                     count($this->bookClient->findAll(['filterByFormula' => '{Status} = "Fini"'])),
                     count($this->imageClient->findAll()),
                     count($this->itemClient->findAll(['filterByFormula' => '{Etat} = "Done"'])),
+                    $this->githubRepository->getNbIssues()
                 ],
             ]
         );
