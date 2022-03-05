@@ -3,8 +3,6 @@ declare(strict_types=1);
 
 namespace App\Service\Repository\Random;
 
-use App\Service\Builder\Random\CatBuilder;
-use App\ValueObject\BlockInterface;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
 
 class GithubRepository

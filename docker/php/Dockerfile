@@ -6,7 +6,10 @@ RUN apt-get update && apt-get install -y zlib1g-dev g++ git libicu-dev zip libzi
     && pecl install apcu \
     && docker-php-ext-enable apcu \
     && docker-php-ext-configure zip \
-    && docker-php-ext-install zip
+    && docker-php-ext-install zip \
+    && cp /usr/local/etc/php/php.ini-development /usr/local/etc/php/php.ini
+
+COPY ./docker/php/etc/php.ini /usr/local/etc/php/conf.d/symfony.ini
 
 COPY --from=composer:latest /usr/bin/composer /usr/local/bin/composer
 
