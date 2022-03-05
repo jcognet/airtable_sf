@@ -53,7 +53,7 @@ class ExportToSpreadsheet
                     count($this->bookClient->findAll(['filterByFormula' => '{Status} = "Fini"'])),
                     count($this->imageClient->findAll()),
                     count($this->itemClient->findAll(['filterByFormula' => '{Etat} = "Done"'])),
-                    $this->githubRepository->getNbIssues()
+                    $this->githubRepository->getNbIssues(),
                 ],
             ]
         );
