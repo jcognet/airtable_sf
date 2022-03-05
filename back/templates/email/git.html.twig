@@ -50,23 +50,12 @@
                                             Le déploiement du tag {{ git.ref }} a eu lieu (ou non).<br/>
 
                                             <h2>Retour des commandes</h2>
-                                            Voici les retours :
-                                            <br/>
-                                            {% for return in returns %}
-                                                {% for param in return.process %}
-                                                    {{ param }}
-                                                {% endfor %} :
-                                                {{ return.return |nl2br }}
-                                            {% endfor %}
+                                            Voici les retours :<br/>
+                                            ##returns##
                                         </div>
                                     </div>
 
-                                    {% if exception is defined %}
-                                        <h2>Erreur</h2>
-                                        <div style="background-color: red;color: white">
-                                            {{ exception.message }}
-                                        </div>
-                                    {% endif %}
+                                    ##exception##
 
                                 </td>
                             </tr>

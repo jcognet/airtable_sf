@@ -47,7 +47,6 @@ class Deploy implements LoggerAwareInterface
         $this->githubSecret = $githubSecret;
         $this->tagWriter = $tagWriter;
         $this->environment = $environment;
-
         $this->twig = $twig;
     }
 
@@ -66,6 +65,11 @@ class Deploy implements LoggerAwareInterface
     public function deploy(array $git): void
     {
         $returns = [];
+
+        $body = $this->twig->render('email/git.html.twig', [
+            'date' => Carbon::now(),
+            'git' => $git,
+        ]);
 
         try {
             foreach ($this->getCalls() as $call) {
@@ -89,34 +93,18 @@ class Deploy implements LoggerAwareInterface
 
             $this->tagWriter->write($git['ref']);
 
-            $email = (new TemplatedEmail())
-                ->to($this->mailerTo)
-                ->from($this->mailerFrom)
-                ->subject(sprintf(self::SUBJECT, $git['ref'], Carbon::now()->format('d/m/Y')))
-                ->htmlTemplate('email/git.html.twig')
-                ->context([
-                    'returns' => $returns,
-                    'date' => Carbon::now(),
-                    'git' => $git,
-                ])
-            ;
-
-            $this->mailer->send($email);
+            $this->sendEmail(
+                $body,
+                sprintf(self::SUBJECT, $git['ref'], Carbon::now()->format('d/m/Y')),
+                $returns
+            );
         } catch (\Exception $e) {
-            $email = (new TemplatedEmail())
-                ->to($this->mailerTo)
-                ->from($this->mailerFrom)
-                ->subject(sprintf(self::SUBJECT_FAILURE, Carbon::now()->format('d/m/Y')))
-                ->htmlTemplate('email/git.html.twig')
-                ->context([
-                    'returns' => $returns,
-                    'date' => Carbon::now(),
-                    'exception' => $e,
-                    'git' => $git,
-                ])
-            ;
-
-            $this->mailer->send($email);
+            $this->sendEmail(
+                $body,
+                sprintf(self::SUBJECT_FAILURE, Carbon::now()->format('d/m/Y')),
+                $returns,
+                $e
+            );
 
             throw $e;
         }
@@ -141,5 +129,49 @@ class Deploy implements LoggerAwareInterface
                     [$phpBinaryPath, 'bin/console', 'cache:clear'],
                 ];
         }
+    }
+
+    /**
+     * @param Command[] $returns
+     */
+    private function sendEmail(
+        string $body,
+        string $subject,
+        array $returns,
+        ?\Exception $exception = null
+    ): void
+    {
+        $returnsString = '';
+        $exceptionString = '';
+
+        foreach ($returns as $return) {
+            $returnsString .= sprintf('%s: %s%s', implode(' ', $return->getProcess()), $return->getReturn(), PHP_EOL);
+        }
+
+        if ($exception) {
+            $exceptionString = sprintf(
+                '<h2>Erreur</h2>
+                        <div style="background-color: red;color: white">
+                            %s
+                        </div>
+            ',
+                $exception->getMessage()
+            );
+        }
+
+        $body = str_replace(
+            ['##returns##', '##exception##'],
+            [$returnsString, $exceptionString],
+            $body
+        );
+
+        $email = (new TemplatedEmail())
+            ->to($this->mailerTo)
+            ->from($this->mailerFrom)
+            ->subject($subject)
+            ->html($body)
+        ;
+
+        $this->mailer->send($email);
     }
 }
