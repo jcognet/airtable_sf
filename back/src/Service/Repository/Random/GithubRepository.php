@@ -16,8 +16,9 @@ class GithubRepository
 
     public function getNbIssues(): int
     {
-        $content = json_decode($this->githubrepositoryClient->request('GET', 'issues')->getContent(), true);
+//        $content = json_decode($this->githubrepositoryClient->request('GET', 'issues')->getContent(), true);
 
-        return count($content);
+        //      return count($content);
+        return 0;
     }
 }

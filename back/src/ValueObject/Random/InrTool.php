@@ -21,8 +21,7 @@ class InrTool
         string $url,
         array $tags,
         string $text
-    )
-    {
+    ) {
         $this->title = $title;
         $this->url = $url;
         $this->tags = $tags;
