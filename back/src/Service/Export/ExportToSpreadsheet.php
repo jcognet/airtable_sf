@@ -9,6 +9,7 @@ use App\Service\AirTable\Article\LuClient;
 use App\Service\AirTable\Book\BookClient;
 use App\Service\AirTable\ToDo\ItemClient;
 use App\Service\Google\ExportAirtableWriter;
+use App\Service\Repository\Random\CurrencyRepository;
 use App\Service\Repository\Random\GithubRepository;
 use Carbon\Carbon;
 
@@ -21,6 +22,7 @@ class ExportToSpreadsheet
     private BookClient $bookClient;
     private ImageClient $imageClient;
     private GithubRepository $githubRepository;
+    private CurrencyRepository $currencyRepository;
 
     public function __construct(
         ExportAirtableWriter $exportAirtableWriter,
@@ -29,7 +31,8 @@ class ExportToSpreadsheet
         ALireClient $ALireClient,
         BookClient $bookClient,
         ImageClient $imageClient,
-        GithubRepository $githubRepository
+        GithubRepository $githubRepository,
+        CurrencyRepository $currencyRepository
     ) {
         $this->exportAirtableWriter = $exportAirtableWriter;
         $this->luClient = $luClient;
@@ -38,10 +41,13 @@ class ExportToSpreadsheet
         $this->bookClient = $bookClient;
         $this->imageClient = $imageClient;
         $this->githubRepository = $githubRepository;
+        $this->currencyRepository = $currencyRepository;
     }
 
     public function export(): int
     {
+        $currencies = $this->currencyRepository->getCurrencies();
+
         return $this->exportAirtableWriter->write(
             [
                 [
@@ -54,6 +60,10 @@ class ExportToSpreadsheet
                     count($this->imageClient->findAll()),
                     count($this->itemClient->findAll(['filterByFormula' => '{Etat} = "Done"'])),
                     $this->githubRepository->getNbIssues(),
+                    $currencies[0]->getValue(),
+                    $currencies[1]->getValue(),
+                    $currencies[2]->getValue(),
+                    $currencies[3]->getValue(),
                 ],
             ]
         );

@@ -139,8 +139,7 @@ class Deploy implements LoggerAwareInterface
         string $subject,
         array $returns,
         ?\Exception $exception = null
-    ): void
-    {
+    ): void {
         $returnsString = '';
         $exceptionString = '';
 
