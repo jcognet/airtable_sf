@@ -13,6 +13,7 @@ use Carbon\Carbon;
 abstract class AbstractArticleBuilder implements BuilderInterface
 {
     private const TABLE_URL = 'tblPLpYPyAOT2q13Q';
+
     private SujetRepository $sujetRepository;
     private string $airtableAppArticleId;
 
