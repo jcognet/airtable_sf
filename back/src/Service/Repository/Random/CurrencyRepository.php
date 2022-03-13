@@ -15,8 +15,7 @@ class CurrencyRepository
     public function __construct(
         HttpClientInterface $currencyClient,
         CurrencyBuilder $currencyBuilder
-    )
-    {
+    ) {
         $this->currencyClient = $currencyClient;
         $this->currencyBuilder = $currencyBuilder;
     }
@@ -33,7 +32,7 @@ class CurrencyRepository
                 [
                     'query' => [
                         'base' => 'EUR',
-                        'symbols' => 'JPY, NOK, CAD, USD, GPB',
+                        'symbols' => 'JPY, NOK, CAD, USD, GBP',
                     ],
                 ]
             )
