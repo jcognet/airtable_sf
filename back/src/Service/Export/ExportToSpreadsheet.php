@@ -44,27 +44,33 @@ class ExportToSpreadsheet
         $this->currencyRepository = $currencyRepository;
     }
 
-    public function export(): int
+    public function getData(): array
     {
         $currencies = $this->currencyRepository->getCurrencies();
 
+        return [
+            Carbon::now()->format('d/m/Y'),
+            count($this->itemClient->findAll()),
+            count($this->luClient->findAll()),
+            count($this->ALireClient->findAll()),
+            count($this->bookClient->findAll(['filterByFormula' => '{Status} = "A lire"'])),
+            count($this->bookClient->findAll(['filterByFormula' => '{Status} = "Fini"'])),
+            count($this->imageClient->findAll()),
+            count($this->itemClient->findAll(['filterByFormula' => '{Etat} = "Done"'])),
+            $this->githubRepository->getNbIssues(),
+            $currencies[0]->getValue(),
+            $currencies[1]->getValue(),
+            $currencies[2]->getValue(),
+            $currencies[3]->getValue(),
+            $currencies[4]->getValue(),
+        ];
+    }
+
+    public function export(): int
+    {
         return $this->exportAirtableWriter->write(
             [
-                [
-                    Carbon::now()->format('d/m/Y'),
-                    count($this->itemClient->findAll()),
-                    count($this->luClient->findAll()),
-                    count($this->ALireClient->findAll()),
-                    count($this->bookClient->findAll(['filterByFormula' => '{Status} = "A lire"'])),
-                    count($this->bookClient->findAll(['filterByFormula' => '{Status} = "Fini"'])),
-                    count($this->imageClient->findAll()),
-                    count($this->itemClient->findAll(['filterByFormula' => '{Etat} = "Done"'])),
-                    $this->githubRepository->getNbIssues(),
-                    $currencies[0]->getValue(),
-                    $currencies[1]->getValue(),
-                    $currencies[2]->getValue(),
-                    $currencies[3]->getValue(),
-                ],
+                $this->getData(),
             ]
         );
     }
