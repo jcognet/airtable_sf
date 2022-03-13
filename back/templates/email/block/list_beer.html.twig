@@ -82,11 +82,11 @@
                     <tr>
                         <td style="width:100%;padding-right:0px;padding-left:0px;">
                             <div align="center" style="line-height:10px"><a
-                                    href={{ beer.photo }}" style=" outline:none" tabindex="-1"
-                                target="_blank"><img alt="Image" class="fullMobileWidth big"
-                                                     src="{{ beer.photo }}"
-                                                     style="display: block; height: auto; border: 0; width: 355px; max-width: 100%;"
-                                                     title="Image" width="355"></a></div>
+                                    href="{{ beer.photo }}" style=" outline:none" tabindex="-1"
+                                    target="_blank"><img alt="Image" class="fullMobileWidth big"
+                                                         src="{{ beer.photo }}"
+                                                         style="display: block; height: auto; border: 0; width: 355px; max-width: 100%;"
+                                                         title="Image" width="355"></a></div>
                         </td>
                     </tr>
                     </tbody>
@@ -101,7 +101,15 @@
                             <div style="font-family: sans-serif">
                                 <div
                                     style="color: #{{ main_color }};font-size: 14px; mso-line-height-alt: 21px; line-height: 1.5; font-family: Poppins, Arial, Helvetica, sans-serif;">
-                                    <strong>{{ beer.title }}</strong>
+                                    <strong>
+                                        <a href="{{ beer.url }}"
+                                           target="_blank"
+                                           title="Voir la bière {{ beer.title }}"
+                                           style="color: #{{ main_color }};font-family: Poppins, Arial, Helvetica, sans-serif;text-decoration: none"
+                                        >
+                                            {{ beer.title }}
+                                        </a>
+                                    </strong>
                                     {% if beer.brasserie %}
                                     par
                                     <strong>

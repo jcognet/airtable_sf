@@ -11,15 +11,21 @@ use Carbon\Carbon;
 
 class BeerBuilder implements BuilderInterface
 {
+    private const TABLE_URL = 'tblB5GKFToPMdSrmI';
+    private const VIEW_URL = 'viwxrWfKNzqZiKerj';
+
     private BreweryRepository $brasserieRepository;
     private BeerTypeRepository $beerTypeRepository;
+    private string $airtableAppBiereId;
 
     public function __construct(
         BreweryRepository $brasserieRepository,
-        BeerTypeRepository $beerTypeRepository
+        BeerTypeRepository $beerTypeRepository,
+        string $airtableAppBiereId
     ) {
         $this->brasserieRepository = $brasserieRepository;
         $this->beerTypeRepository = $beerTypeRepository;
+        $this->airtableAppBiereId = $airtableAppBiereId;
     }
 
     public function build(array $data): Beer
@@ -44,7 +50,8 @@ class BeerBuilder implements BuilderInterface
             $data['fields']['Photo'][0]['url'] ?? null,
             isset($data['fields']['Date de test']) ? Carbon::parse($data['fields']['Date de test']) : null,
             $beerType,
-            $data['fields']['Degré alcool'] ?? null
+            $data['fields']['Degré alcool'] ?? null,
+            sprintf('https://airtable.com/%s/%s/%s/%s', $this->airtableAppBiereId, self::TABLE_URL, self::VIEW_URL, $data['id'])
         );
     }
 }
