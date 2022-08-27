@@ -14,6 +14,6 @@ COPY ./docker/php/etc/php.ini /usr/local/etc/php/conf.d/symfony.ini
 COPY --from=composer:latest /usr/bin/composer /usr/local/bin/composer
 
 RUN curl -sS https://get.symfony.com/cli/installer | bash
-RUN mv /root/.symfony/bin/symfony /usr/local/bin/symfony
+RUN mv /root/.symfony5/bin/symfony /usr/local/bin/symfony
 
 WORKDIR /var/www/project
