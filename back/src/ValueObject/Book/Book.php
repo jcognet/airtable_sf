@@ -78,6 +78,6 @@ class Book implements BlockInterface
             return null;
         }
 
-        return round(($this->currentPage / $this->maxPage)) * 100;
+        return round($this->currentPage / $this->maxPage) * 100;
     }
 }
