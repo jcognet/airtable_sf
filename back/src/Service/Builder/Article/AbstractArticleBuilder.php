@@ -46,7 +46,8 @@ abstract class AbstractArticleBuilder implements BuilderInterface
             $status,
             $data['fields']['URL'] ?? '',
             isset($data['fields']['Type']) ? new ArticleType($data['fields']['Type']) : null,
-            sprintf('https://airtable.com/%s/%s/%s/%s', $this->airtableAppArticleId, self::TABLE_URL, $this->getViewUrl(), $data['id'])
+            sprintf('https://airtable.com/%s/%s/%s/%s', $this->airtableAppArticleId, self::TABLE_URL, $this->getViewUrl(), $data['id']),
+            $data['fields']['Conceptualisé'] ?? false,
         );
     }
 
