@@ -8,7 +8,7 @@ use Carbon\Carbon;
 use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Component\Mailer\MailerInterface;
 
-class Sender
+class NewspaperSender
 {
     private const SUBJECT = 'Fun Effect newsletter du %s';
 

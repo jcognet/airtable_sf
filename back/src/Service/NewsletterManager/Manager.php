@@ -4,7 +4,7 @@ declare(strict_types=1);
 namespace App\Service\NewsletterManager;
 
 use App\Service\Converter\ConvertBlockTypeToManagerType;
-use App\Service\Mailer\Sender;
+use App\Service\Mailer\NewspaperSender;
 use App\ValueObject\NewsletterBlockManager\BlockType;
 use App\ValueObject\NewsletterBlockManager\ManagerType;
 use App\ValueObject\Newspaper;
@@ -16,14 +16,14 @@ class Manager implements LoggerAwareInterface
 {
     use LoggerAwareTrait;
 
-    private Sender $sender;
+    private NewspaperSender $sender;
     private ConfigSelector $configSelector;
     private ManagerContentFactory $managerContentFactory;
     private string $environment;
     private ConvertBlockTypeToManagerType $convertBlockTypeToManagerType;
 
     public function __construct(
-        Sender $sender,
+        NewspaperSender $sender,
         ConfigSelector $configSelector,
         ManagerContentFactory $managerContentFactory,
         string $environment,
@@ -38,6 +38,7 @@ class Manager implements LoggerAwareInterface
 
     public function handle(Carbon $date): void
     {
+        throw new \Exception('toto');
         $this->sendContent($this->createContent($date));
     }
 
