@@ -28,7 +28,7 @@ class ItemClient extends AbstractClient
     {
         if (!$param) {
             $param = [
-                'filterByFormula' => 'OR({Etat} ="Ready to go",{Etat} ="In progress")',
+                'filterByFormula' => '{Etat} ="In progress"',
                 'sort' => [
                     [
                         'field' => 'Echéance',
