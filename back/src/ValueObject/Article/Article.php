@@ -21,6 +21,7 @@ class Article implements BlockInterface
     private ?string $url;
     private ?ArticleType $articleType;
     private string $airTableUrl;
+    private bool $hasConcept;
 
     public function __construct(
         string $title,
@@ -30,7 +31,8 @@ class Article implements BlockInterface
         ?Status $status,
         ?string $url,
         ?ArticleType $articleType,
-        string $airTableUrl
+        string $airTableUrl,
+        bool $hasConcept = false
     ) {
         $this->title = $title;
         $this->body = $body;
@@ -40,6 +42,7 @@ class Article implements BlockInterface
         $this->url = $url;
         $this->articleType = $articleType;
         $this->airTableUrl = $airTableUrl;
+        $this->hasConcept = $hasConcept;
     }
 
     public function getTitle(): string
@@ -85,5 +88,10 @@ class Article implements BlockInterface
     public function getAirTableUrl(): string
     {
         return $this->airTableUrl;
+    }
+
+    public function hasConcept(): bool
+    {
+        return $this->hasConcept;
     }
 }

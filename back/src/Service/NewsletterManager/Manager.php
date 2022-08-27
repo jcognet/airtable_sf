@@ -38,7 +38,6 @@ class Manager implements LoggerAwareInterface
 
     public function handle(Carbon $date): void
     {
-        throw new \Exception('toto');
         $this->sendContent($this->createContent($date));
     }
 
