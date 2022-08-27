@@ -15,7 +15,7 @@ class BookBuilder implements BuilderInterface
             $data['fields']['Citation / Analyse'] ?? '',
             $data['fields']['Status'] ?? null,
             $data['fields']['Auteur'] ?? null,
-            $data['fields']['URL'],
+            $data['fields']['URL'] ?? null,
             $data['fields']['Page courante'] ?? null,
             $data['fields']['Page max'] ?? null
         );
