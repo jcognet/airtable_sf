@@ -1,3 +1,4 @@
+{% from "./email/macro/article.html.twig" import render_article_type, render_no_concept %}
 {# @var block \App\ValueObject\Article\Article #}
 <table align="center" border="0" cellpadding="0" cellspacing="0" class="row row-8" role="presentation"
        style="margin-bottom:20px;mso-table-lspace: 0pt; mso-table-rspace: 0pt;" width="100%">
@@ -22,7 +23,7 @@
                                     <div style="font-family: sans-serif">
                                         <div
                                             style="font-size: 14px; mso-line-height-alt: 16.8px; color: #000000; line-height: 1.2; font-family: Poppins, Arial, Helvetica, sans-serif;">
-                                            <h2 style="margin: 0; text-align: center;font-size:20px; color: #{{ main_color }};"">
+                                            <h2 style="margin: 0; text-align: center;font-size:20px; color: #{{ main_color }};">
                                                 <strong>
                                                   {{ block.title }}
                                                 </strong>
@@ -32,16 +33,7 @@
                                                     </div>
                                                 {% endif %}
                                             </h2>
-                                            {% if not block.hasConcept %}
-                                                <div style="display: flex; justify-content: flex-end;margin-top: 5px;border:solid 2px darkred;padding: 2px 0">
-                                                    <a
-                                                        href="https://airtable.com/appY4TYoXjtjua3KD/tblVwxmIM1TchfVnp/viwV095Yh2JIExPq0?blocks=hide"
-                                                        title="Créer un concept"
-                                                        target="_blank"
-                                                        style="color: darkred;font-family: sans-serif;text-decoration: none"
-                                                    /> 🤬🤬 Concept à créer 🤬🤬 </a>
-                                                </div>
-                                            {% endif %}
+                                            {{ render_no_concept(block) }}
                                         </div>
                                     </div>
                                 </td>
