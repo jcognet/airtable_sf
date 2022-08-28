@@ -10,13 +10,16 @@ class Concept implements BlockInterface
 {
     private string $name;
     private string $text;
+    private array $linkedContents;
 
     public function __construct(
         string $name,
-        string $text
+        string $text,
+        array $linkedContents
     ) {
         $this->name = $name;
         $this->text = $text;
+        $this->linkedContents = $linkedContents;
     }
 
     public function getName(): string
@@ -27,6 +30,14 @@ class Concept implements BlockInterface
     public function getText(): string
     {
         return $this->text;
+    }
+
+    /**
+     * @return BlockInterface[]
+     */
+    public function getLinkedContents(): array
+    {
+        return $this->linkedContents;
     }
 
     public function getTitle(): string

@@ -5,6 +5,7 @@ namespace App\Service\Converter;
 
 use App\Service\Block\Article\ArticleListALireBlockManager;
 use App\Service\Block\Article\ArticleReadListBlockManager;
+use App\Service\Block\Article\ConceptManager;
 use App\Service\Block\Article\ImageManager;
 use App\Service\Block\Article\InterestingTopicListBlockManager;
 use App\Service\Block\Article\LuBlockManager;
@@ -45,6 +46,7 @@ class ConvertBlockTypeToManagerType
         InrManager::class => BlockType::INR_TOOLS,
         ArticleReadListBlockManager::class => BlockType::LIST_ARTICLE_READ_BLOCK,
         InterestingTopicListBlockManager::class => BlockType::LIST_ARTICLE_INTERESTING_TOPIC_BLOCK,
+        ConceptManager::class => BlockType::CONCEPT,
     ];
 
     public function convert(BlockType $blockType): ManagerType
