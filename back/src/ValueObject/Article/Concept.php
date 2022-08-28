@@ -11,8 +11,7 @@ class Concept
     public function __construct(
         string $name,
         string $text
-    )
-    {
+    ) {
         $this->name = $name;
         $this->text = $text;
     }
