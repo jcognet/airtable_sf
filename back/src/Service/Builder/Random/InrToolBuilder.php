@@ -8,11 +8,16 @@ use Symfony\Component\DomCrawler\Crawler;
 
 class InrToolBuilder
 {
-    public function build(string $data): InrTool
+    public function build(string $data): ?InrTool
     {
         $crawler = new Crawler($data);
         $title = strip_tags($crawler->filter('h3')->html());
-        $url = $crawler->filter('h3 a')->link()->getUri();
+        try {
+            $url = $crawler->filter('h3 a')->link()->getUri();
+        } catch (\InvalidArgumentException  $exception) {
+            return null;
+        }
+
         $tags = $crawler->filter('.small2 a')->each(function ($node, $id) {
             return ltrim($node->text(), '#');
         });
