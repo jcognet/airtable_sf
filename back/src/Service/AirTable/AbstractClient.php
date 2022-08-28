@@ -5,6 +5,7 @@ namespace App\Service\AirTable;
 
 use App\Service\Builder\BuilderInterface;
 use App\ValueObject\BlockInterface;
+use Symfony\Component\HttpClient\Exception\ClientException;
 
 abstract class AbstractClient
 {
@@ -111,6 +112,27 @@ abstract class AbstractClient
     public function getNbItems(): int
     {
         return count($this->findAll());
+    }
+
+    public function getById(string $id): ?BlockInterface
+    {
+        try {
+            $response = json_decode(
+                $this->airtableClient->request(
+                    'GET',
+                    sprintf('%s/%s/%s', $this->airtableAppId, $this->getFetchUrl(), $id),
+                ),
+                true
+            );
+        } catch (ClientException $exception) {
+            if ($exception->getCode() === 404) {
+                return null;
+            }
+
+            throw $exception;
+        }
+
+        return $this->builder->build($response);
     }
 
     abstract protected function getFetchUrl(): string;

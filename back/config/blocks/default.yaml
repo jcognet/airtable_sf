@@ -2,6 +2,7 @@ blocks:
   - bot_doux
   - article
   - image
+  - concept
   - good_practice_organization
   - list_book
   - list_meteo

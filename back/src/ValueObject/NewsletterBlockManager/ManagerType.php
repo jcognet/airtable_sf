@@ -5,6 +5,7 @@ namespace App\ValueObject\NewsletterBlockManager;
 
 use App\Service\Block\Article\ArticleListALireBlockManager;
 use App\Service\Block\Article\ArticleReadListBlockManager;
+use App\Service\Block\Article\ConceptManager;
 use App\Service\Block\Article\ImageManager;
 use App\Service\Block\Article\InterestingTopicListBlockManager;
 use App\Service\Block\Article\LuBlockManager;
@@ -43,6 +44,7 @@ class ManagerType
         ArticleReadListBlockManager::class,
         GoodPracticeOrganizationManager::class,
         InterestingTopicListBlockManager::class,
+        ConceptManager::class,
     ];
 
     private string $type;

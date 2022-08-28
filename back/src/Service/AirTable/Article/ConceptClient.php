@@ -5,7 +5,7 @@ namespace App\Service\AirTable\Article;
 
 use App\Service\AirTable\AbstractClient;
 use App\Service\AirTable\AirtableClient;
-use App\Service\Builder\Article\ArticleToReadBuilder;
+use App\Service\Builder\Article\ConceptBuilder;
 use App\ValueObject\Article\Article;
 use App\ValueObject\Article\Concept;
 
@@ -14,9 +14,9 @@ class ConceptClient extends AbstractClient
     public function __construct(
         AirtableClient $airtableClient,
         string $airtableAppArticleId,
-        ArticleToReadBuilder $articleBuilder
+        ConceptBuilder $conceptBuilder
     ) {
-        parent::__construct($airtableClient, $airtableAppArticleId, $articleBuilder);
+        parent::__construct($airtableClient, $airtableAppArticleId, $conceptBuilder);
     }
 
     public function fetchRandomData(array $param = []): ?Concept
