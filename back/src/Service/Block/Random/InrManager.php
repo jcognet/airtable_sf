@@ -27,6 +27,9 @@ class InrManager implements BlockManagerInterface
             $inrTools[] = $this->inrRepository->fetchRandomData();
         }
 
+        // Remove null links
+        $inrTools = array_filter($inrTools);
+
         return new InrToolList(
             'Outils conseillés par INR',
             $inrTools

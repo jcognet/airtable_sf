@@ -52,7 +52,7 @@
                                                         {% endif %}
                                                     </td>
                                                     <td>
-                                                        {%  if todo.dueAt|date('Ymd') >= date|date('Ymd') %}
+                                                        {%  if todo.dueAt|date('Ymd') < date|date('Ymd') %}
                                                             <strong>
                                                                 {{ todo.label }}
                                                             </strong>

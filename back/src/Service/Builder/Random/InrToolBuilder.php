@@ -12,6 +12,7 @@ class InrToolBuilder
     {
         $crawler = new Crawler($data);
         $title = strip_tags($crawler->filter('h3')->html());
+
         try {
             $url = $crawler->filter('h3 a')->link()->getUri();
         } catch (\InvalidArgumentException  $exception) {
