@@ -43,6 +43,7 @@ class TestMailController extends AbstractController
             [
                 'newspaper' => $newspaper,
                 'date' => $newspaper->getDate(),
+                'show_block' => true,
             ],
         );
     }
