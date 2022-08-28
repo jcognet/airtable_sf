@@ -2,6 +2,18 @@
 
 {% block body %}
     {% for block in newspaper.blocks %}
+        {% if show_block is defined and show_block%}
+            <h1>
+                <a
+                    href="{{ path('test_mail_one', {
+                        'blockType': block.type.type
+                    }) }}"
+                    title="Voir seulement ce bloc"
+                >
+                    {{ block.type.type }}
+                </a>
+            </h1>
+        {% endif %}
         {% include 'email/block/'~block.type.type~'.html.twig' with {block:block} %}
     {% endfor %}
 {% endblock %}
