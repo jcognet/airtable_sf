@@ -23,6 +23,7 @@ class BlockType
     public const INR_TOOLS = 'list_inr_tool';
     public const LIST_ARTICLE_READ_BLOCK = 'list_article_read';
     public const LIST_ARTICLE_INTERESTING_TOPIC_BLOCK = 'list_interesting_topic';
+    public const CONCEPT = 'concept';
 
     private const LIST_TYPE = [
         self::IMAGE_BLOCK,
@@ -43,6 +44,7 @@ class BlockType
         self::INR_TOOLS,
         self::LIST_ARTICLE_READ_BLOCK,
         self::LIST_ARTICLE_INTERESTING_TOPIC_BLOCK,
+        self::CONCEPT,
     ];
 
     private string $type;
