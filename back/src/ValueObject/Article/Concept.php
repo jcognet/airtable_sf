@@ -3,7 +3,10 @@ declare(strict_types=1);
 
 namespace App\ValueObject\Article;
 
-class Concept
+use App\ValueObject\BlockInterface;
+use App\ValueObject\NewsletterBlockManager\BlockType;
+
+class Concept implements BlockInterface
 {
     private string $name;
     private string $text;
@@ -24,5 +27,20 @@ class Concept
     public function getText(): string
     {
         return $this->text;
+    }
+
+    public function getTitle(): string
+    {
+        return $this->getName();
+    }
+
+    public function getContent()
+    {
+        return $this->getText();
+    }
+
+    public function getType(): BlockType
+    {
+        return new BlockType(BlockType::CONCEPT);
     }
 }

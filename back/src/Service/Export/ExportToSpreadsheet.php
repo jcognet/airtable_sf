@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace App\Service\Export;
 
 use App\Service\AirTable\Article\ALireClient;
+use App\Service\AirTable\Article\ConceptClient;
 use App\Service\AirTable\Article\ImageClient;
 use App\Service\AirTable\Article\LuClient;
 use App\Service\AirTable\Book\BookClient;
@@ -23,6 +24,7 @@ class ExportToSpreadsheet
     private ImageClient $imageClient;
     private GithubRepository $githubRepository;
     private CurrencyRepository $currencyRepository;
+    private ConceptClient $conceptClient;
 
     public function __construct(
         ExportAirtableWriter $exportAirtableWriter,
@@ -32,7 +34,8 @@ class ExportToSpreadsheet
         BookClient $bookClient,
         ImageClient $imageClient,
         GithubRepository $githubRepository,
-        CurrencyRepository $currencyRepository
+        CurrencyRepository $currencyRepository,
+        ConceptClient $conceptClient
     ) {
         $this->exportAirtableWriter = $exportAirtableWriter;
         $this->luClient = $luClient;
@@ -42,6 +45,7 @@ class ExportToSpreadsheet
         $this->imageClient = $imageClient;
         $this->githubRepository = $githubRepository;
         $this->currencyRepository = $currencyRepository;
+        $this->conceptClient = $conceptClient;
     }
 
     public function getData(): array
@@ -63,6 +67,8 @@ class ExportToSpreadsheet
             $currencies[2]->getValue(),
             $currencies[3]->getValue(),
             $currencies[4]->getValue(),
+            count($this->conceptClient->findAll()),
+            count($this->luClient->findAll(['filterByFormula' => '{Conceptualisé} = 0'])),
         ];
     }
 
