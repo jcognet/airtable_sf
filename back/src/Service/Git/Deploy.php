@@ -26,7 +26,7 @@ class Deploy implements LoggerAwareInterface
     private string $mailerTo;
     private string $projectDir;
     private string $githubSecret;
-    private TagWriter $tagWriter;
+    private TagHandler $tagHandler;
     private string $environment;
     private Environment $twig;
 
@@ -36,7 +36,7 @@ class Deploy implements LoggerAwareInterface
         string $mailerTo,
         string $projectDir,
         string $githubSecret,
-        TagWriter $tagWriter,
+        TagHandler $tagHandler,
         string $environment,
         Environment $twig
     ) {
@@ -45,7 +45,7 @@ class Deploy implements LoggerAwareInterface
         $this->mailerTo = $mailerTo;
         $this->projectDir = $projectDir;
         $this->githubSecret = $githubSecret;
-        $this->tagWriter = $tagWriter;
+        $this->tagHandler = $tagHandler;
         $this->environment = $environment;
         $this->twig = $twig;
     }
@@ -91,7 +91,7 @@ class Deploy implements LoggerAwareInterface
                 );
             }
 
-            $this->tagWriter->write($git['ref']);
+            $this->tagHandler->write($git['ref']);
 
             $this->sendEmail(
                 $body,
