@@ -6,7 +6,7 @@ namespace App\Service\Git;
 use Carbon\Carbon;
 use Symfony\Component\Filesystem\Filesystem;
 
-class TagWriter
+class TagHandler
 {
     private string $path;
 
@@ -26,5 +26,10 @@ class TagWriter
                 'date' => Carbon::now(),
             ])
         );
+    }
+
+    public function get(): array
+    {
+        return json_decode(file_get_contents($this->path), true);
     }
 }

@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace App\Controller;
 
 use App\Service\Git\Deploy;
+use App\Service\Git\TagHandler;
 use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerAwareTrait;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -41,5 +42,14 @@ class GitController extends AbstractController implements LoggerAwareInterface
         $deploy->deploy($content);
 
         return new JsonResponse('Success', Response::HTTP_OK);
+    }
+
+    /**
+     * @Route("/git/show", name="git_show", methods={"GET"})
+     */
+    public function show(
+        TagHandler $tagHandler
+    ): Response {
+        return new JsonResponse($tagHandler->get(), Response::HTTP_OK);
     }
 }
