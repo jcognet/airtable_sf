@@ -9,6 +9,7 @@ class BlockType
     public const LIST_METEO_BLOCK = 'list_meteo';
     public const BOOK_BLOCK = 'book';
     public const IMAGE_URL_BLOCK = 'image_url';
+    public const IMAGE_LIST_URL_BLOCK = 'list_image_url';
     public const LIST_BEER__BLOCK = 'list_beer';
     public const ARTICLE_BLOCK = 'article';
     public const LIST_BOOK_BLOCK = 'list_book';
@@ -23,7 +24,8 @@ class BlockType
     public const INR_TOOLS = 'list_inr_tool';
     public const LIST_ARTICLE_READ_BLOCK = 'list_article_read';
     public const LIST_ARTICLE_INTERESTING_TOPIC_BLOCK = 'list_interesting_topic';
-    public const CONCEPT = 'concept';
+    public const CONCEPT_BLOCK = 'concept';
+    public const IMAGE_GOOGLE_EXPORT_CURRENCIES_BLOCK = 'image_google_currencies';
 
     private const LIST_TYPE = [
         self::IMAGE_BLOCK,
@@ -44,7 +46,9 @@ class BlockType
         self::INR_TOOLS,
         self::LIST_ARTICLE_READ_BLOCK,
         self::LIST_ARTICLE_INTERESTING_TOPIC_BLOCK,
-        self::CONCEPT,
+        self::CONCEPT_BLOCK,
+        self::IMAGE_GOOGLE_EXPORT_CURRENCIES_BLOCK,
+        self::IMAGE_LIST_URL_BLOCK,
     ];
 
     private string $type;

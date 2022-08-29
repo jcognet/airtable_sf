@@ -13,6 +13,7 @@ use App\Service\Block\Article\VideoBlockManager;
 use App\Service\Block\Beer\GoodBeerBlockManager;
 use App\Service\Block\Book\BookBlockManager;
 use App\Service\Block\Book\BookListBlockManager;
+use App\Service\Block\Google\CurreniesManager;
 use App\Service\Block\Google\DoneContentManager;
 use App\Service\Block\Google\InProgressContentManager;
 use App\Service\Block\Meteo\MeteoBlockManager;
@@ -45,6 +46,7 @@ class ManagerType
         GoodPracticeOrganizationManager::class,
         InterestingTopicListBlockManager::class,
         ConceptManager::class,
+        CurreniesManager::class,
     ];
 
     private string $type;
