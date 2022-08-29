@@ -13,6 +13,7 @@ use App\Service\Block\Article\VideoBlockManager;
 use App\Service\Block\Beer\GoodBeerBlockManager;
 use App\Service\Block\Book\BookBlockManager;
 use App\Service\Block\Book\BookListBlockManager;
+use App\Service\Block\Google\CurreniesManager;
 use App\Service\Block\Google\DoneContentManager;
 use App\Service\Block\Google\InProgressContentManager;
 use App\Service\Block\Meteo\MeteoBlockManager;
@@ -46,7 +47,8 @@ class ConvertBlockTypeToManagerType
         InrManager::class => BlockType::INR_TOOLS,
         ArticleReadListBlockManager::class => BlockType::LIST_ARTICLE_READ_BLOCK,
         InterestingTopicListBlockManager::class => BlockType::LIST_ARTICLE_INTERESTING_TOPIC_BLOCK,
-        ConceptManager::class => BlockType::CONCEPT,
+        ConceptManager::class => BlockType::CONCEPT_BLOCK,
+        CurreniesManager::class => BlockType::IMAGE_GOOGLE_EXPORT_CURRENCIES_BLOCK,
     ];
 
     public function convert(BlockType $blockType): ManagerType

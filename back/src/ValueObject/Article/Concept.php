@@ -52,6 +52,6 @@ class Concept implements BlockInterface
 
     public function getType(): BlockType
     {
-        return new BlockType(BlockType::CONCEPT);
+        return new BlockType(BlockType::CONCEPT_BLOCK);
     }
 }
