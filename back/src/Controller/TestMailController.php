@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
+use App\Service\NewsletterManager\Creater;
 use App\Service\NewsletterManager\Manager;
 use Carbon\Carbon;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -16,53 +17,35 @@ class TestMailController extends AbstractController
      * @Route("/test/mail/show", name="test_mail_show", methods={"GET"})
      */
     public function show(
-        Manager $newsHandler,
-        Request $request
+        Request $request,
+        Manager $manager
     ): Response {
-        $date = Carbon::parse($request->query->get('date', null));
-        $newspaper = $newsHandler->createContent($date);
-
-        return $this->render(
-            'email/newsletter.html.twig',
-            [
-                'newspaper' => $newspaper,
-                'date' => $newspaper->getDate(),
-            ],
+        return new Response(
+            $manager->getHtml(
+                Carbon::parse($request->query->get('date', null))
+            )
         );
     }
 
     /**
      * @Route("/test/mail/all", name="all_mail_show", methods={"GET"})
      */
-    public function all(Manager $newsHandler): Response
+    public function all(Creater $creater): Response
     {
-        $newspaper = $newsHandler->createAllContent();
+        $creater->createAllContent();
 
-        return $this->render(
-            'email/newsletter.html.twig',
-            [
-                'newspaper' => $newspaper,
-                'date' => $newspaper->getDate(),
-                'show_block' => true,
-            ],
-        );
+        return new Response($creater->getHtml(true));
     }
 
     /**
      * @Route("/test/mail/one/{blockType}", name="test_mail_one", methods={"GET"})
      */
     public function one(
-        Manager $newsHandler,
+        Creater $creater,
         string $blockType
     ): Response {
-        $newspaper = $newsHandler->createOneContent($blockType);
+        $creater->createOneContent($blockType);
 
-        return $this->render(
-            'email/newsletter.html.twig',
-            [
-                'newspaper' => $newspaper,
-                'date' => $newspaper->getDate(),
-            ],
-        );
+        return new Response($creater->getHtml());
     }
 }
