@@ -3,7 +3,6 @@ declare(strict_types=1);
 
 namespace App\Service\Mailer;
 
-use App\ValueObject\Newspaper;
 use Carbon\Carbon;
 use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Component\Mailer\MailerInterface;
@@ -26,17 +25,13 @@ class NewspaperSender
         $this->mailerTo = $mailerTo;
     }
 
-    public function send(Newspaper $newspaper): void
+    public function send(string $content): void
     {
         $email = (new TemplatedEmail())
             ->to($this->mailerTo)
             ->from($this->mailerFrom)
             ->subject(sprintf(self::SUBJECT, Carbon::now()->format('d/m/Y')))
-            ->htmlTemplate('email/newsletter.html.twig')
-            ->context([
-                'newspaper' => $newspaper,
-                'date' => $newspaper->getDate(),
-            ])
+            ->html($content)
         ;
 
         $this->mailer->send($email);
