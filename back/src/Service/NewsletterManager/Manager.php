@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace App\Service\NewsletterManager;
 
 use App\Service\Archive\DataInputOuputHandler;
+use App\ValueObject\Archive\NewsLetter;
 use Carbon\Carbon;
 
 class Manager
@@ -19,18 +20,23 @@ class Manager
         $this->creater = $creater;
     }
 
-    public function getHtml(Carbon $date): string
+    public function get(Carbon $date): NewsLetter
     {
-        if ($content = $this->dataInputOuputHandler->getHtml($date)) {
-            return $content;
+        if ($newsLetter = $this->dataInputOuputHandler->get($date)) {
+            return $newsLetter;
         }
 
         $this->creater->createContent($date);
-        $this->dataInputOuputHandler->write(
+        $archiveNewsLetter = new NewsLetter(
+            $date,
             $this->creater->getHtml(),
-            $date
+            false
         );
 
-        return $this->creater->getHtml();
+        $this->dataInputOuputHandler->write(
+            $archiveNewsLetter
+        );
+
+        return $archiveNewsLetter;
     }
 }

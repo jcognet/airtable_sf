@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace App\Service\Archive;
 
+use App\ValueObject\Archive\NewsLetter;
 use Carbon\Carbon;
 use Symfony\Component\Filesystem\Filesystem;
 
@@ -15,24 +16,26 @@ class DataInputOuputHandler
         $this->path = $deployArchiveJsonPath;
     }
 
-    public function write(string $data, Carbon $date): void
-    {
+    public function write(
+        NewsLetter $newsLetter
+    ): void {
         $fs = new Filesystem();
 
         $fs->dumpFile(
-            $this->getFileName($date),
+            $this->getFileName($newsLetter->getDate()),
             json_encode([
                 'data' => [
-                    'content' => $data,
+                    'content' => $newsLetter->getContent(),
                 ],
                 'metadata' => [
-                    'created' => $date,
+                    'created' => $newsLetter->getDate(),
+                    'was_sent' => $newsLetter->wasSent(),
                 ],
             ])
         );
     }
 
-    public function get(Carbon $date): ?array
+    public function get(Carbon $date): ?NewsLetter
     {
         $filesystem = new Filesystem();
 
@@ -40,18 +43,13 @@ class DataInputOuputHandler
             return null;
         }
 
-        return json_decode(file_get_contents($this->getFileName($date)), true);
-    }
+        $data = json_decode(file_get_contents($this->getFileName($date)), true);
 
-    public function getHtml(Carbon $date): ?string
-    {
-        $content = $this->get($date);
-
-        if ($content === null | !isset($content['data']['content'])) {
-            return null;
-        }
-
-        return $content['data']['content'];
+        return new NewsLetter(
+            Carbon::parse($data['metadata']['created']),
+            $data['data']['content'],
+            isset($data['metadata']['was_sent']) ? (bool) $data['metadata']['was_sent'] : false
+        );
     }
 
     protected function getFileName(Carbon $date): string
