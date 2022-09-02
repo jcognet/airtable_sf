@@ -20,10 +20,12 @@ class TestMailController extends AbstractController
         Request $request,
         Manager $manager
     ): Response {
+        $newsletter = $manager->get(
+            Carbon::parse($request->query->get('date', null))
+        );
+
         return new Response(
-            $manager->get(
-                Carbon::parse($request->query->get('date', null))
-            )
+            $newsletter->getContent()
         );
     }
 
