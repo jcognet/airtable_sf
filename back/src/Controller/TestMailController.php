@@ -21,7 +21,7 @@ class TestMailController extends AbstractController
         Manager $manager
     ): Response {
         return new Response(
-            $manager->getHtml(
+            $manager->get(
                 Carbon::parse($request->query->get('date', null))
             )
         );
