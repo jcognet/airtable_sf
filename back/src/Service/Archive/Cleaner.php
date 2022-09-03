@@ -24,7 +24,7 @@ class Cleaner
         $finder->files()
             ->in($this->path)
             ->name('*.json')
-            ->date(sprintf('>=%s', $from->format('Y-m-d')))
+            ->date(sprintf('<=%s', $from->format('Y-m-d')))
         ;
         $nb = $finder->count();
         $filesystem->remove($finder->files()->in($this->path));
