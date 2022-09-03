@@ -20,8 +20,7 @@ class TestExportController extends AbstractController
         return $this->render(
             'export/show.html.twig',
             [
-                'data_exported' => $exportToSpreadsheet->getData(),
-                'date' => Carbon::now(),
+                'data_exported' => $exportToSpreadsheet->getData()
             ],
         );
     }
