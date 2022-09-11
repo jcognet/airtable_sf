@@ -4,7 +4,6 @@ declare(strict_types=1);
 namespace App\Controller;
 
 use App\Service\Export\ExportToSpreadsheet;
-use Carbon\Carbon;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -20,7 +19,7 @@ class TestExportController extends AbstractController
         return $this->render(
             'export/show.html.twig',
             [
-                'data_exported' => $exportToSpreadsheet->getData()
+                'data_exported' => $exportToSpreadsheet->getData(),
             ],
         );
     }
