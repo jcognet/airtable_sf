@@ -4,7 +4,6 @@ declare(strict_types=1);
 namespace App\Service\Picture;
 
 use App\ValueObject\Picture\Directory;
-use App\ValueObject\Picture\Picture;
 use Symfony\Component\Finder\Finder;
 
 class ImageInPathLister
@@ -12,10 +11,14 @@ class ImageInPathLister
     private const ALLOWED_EXTENSIONS = ['*.jpg', '*.jpeg'];
 
     private string $pathPictures;
+    private ImageFactory $imageFactory;
 
-    public function __construct(string $pathPictures)
-    {
+    public function __construct(
+        ImageFactory $imageFactory,
+        string $pathPictures
+    ) {
         $this->pathPictures = $pathPictures;
+        $this->imageFactory = $imageFactory;
     }
 
     public function getPicturesFromDirectory(string $subDirectory): Directory
@@ -30,8 +33,7 @@ class ImageInPathLister
 
         $pictures = [];
         foreach ($images as $image) {
-            $pictures[] = new Picture(
-                base64_encode($image->getRealPath()),
+            $pictures[] = $this->imageFactory->get(
                 $image->getRealPath()
             );
         }

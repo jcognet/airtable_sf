@@ -3,6 +3,8 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
+use App\Service\Picture\EncoderDecoder;
+use App\Service\Picture\ImageFactory;
 use App\Service\Picture\ImageInPathLister;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Finder\Exception\DirectoryNotFoundException;
@@ -36,6 +38,37 @@ class ImageController extends AbstractController
             [
                 'directory' => $directory,
             ],
+        );
+    }
+
+    /**
+     * @Route("/img/thumbnail/{pathImage}", name="img_thumbnail", methods={"GET"})
+     */
+    public function thumbnail(
+        string $pathImage,
+        EncoderDecoder $encoderDecoder,
+        ImageFactory $imageFactory
+    ): Response {
+        return $this->render(
+            'img/thumbnail.html.twig',
+            [
+                'image' => $imageFactory->get($encoderDecoder->decode($pathImage)),
+            ],
+        );
+    }
+
+    /**
+     * @Route("/img/normal/{pathImage}", name="img_normal", methods={"GET"})
+     */
+    public function normal(
+        string $pathImage,
+        EncoderDecoder $encoderDecoder,
+        ImageFactory $imageFactory
+    ): Response {
+        return new Response(
+            file_get_contents(
+                $imageFactory->get($encoderDecoder->decode($pathImage))->getPath()
+            )
         );
     }
 }
