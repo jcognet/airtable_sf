@@ -17,7 +17,7 @@
                             style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; font-weight: 400; text-align: left; vertical-align: top; padding-left: 10px; padding-right: 10px; padding-top: 20px; padding-bottom: 35px; border-top: 0px; border-right: 0px; border-bottom: 0px; border-left: 0px;"
                             width="100%">
                             <h1>Image de {{ image.path }}</h1>
-                            <img src="{{ path('img_normal', {'pathImage': image.id}) }}" alt="" width="700"/>
+                            <img src="{{asset('/2021/dir1/Ev5LHAbXMAMDk1H.jpeg')  | imagine_filter('my_thumb') }}" alt="" width="700"/>
                         </td>
                     </tr>
                     </tbody>

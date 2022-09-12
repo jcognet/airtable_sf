@@ -1,7 +1,7 @@
 FROM php:7.4-fpm
 
-RUN apt-get update && apt-get install -y zlib1g-dev g++ git libicu-dev zip libzip-dev zip \
-    && docker-php-ext-install intl opcache pdo pdo_mysql \
+RUN apt-get update && apt-get install -y zlib1g-dev g++ git libicu-dev zip libzip-dev zip libpng-dev \
+    && docker-php-ext-install intl opcache  gd \
     && pecl install xdebug-2.9.8 && docker-php-ext-enable xdebug \
     && pecl install apcu \
     && docker-php-ext-enable apcu \

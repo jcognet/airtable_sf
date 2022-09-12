@@ -22,7 +22,7 @@ services:
       $pathToConfigurationYaml: '%kernel.project_dir%/config/blocks/'
       $deployJsonPath: '%kernel.project_dir%/src/Data/deploy.json'
       $deployArchiveJsonPath: '%kernel.project_dir%/src/Data/archive/'
-      $pathPictures: '%kernel.project_dir%/src/Data/photo/'
+      $pathPictures: '%kernel.project_dir%/src/Data/photo/' # also used for liip (see liip_imagine.yaml)
       $googleCredentialFile: '%kernel.project_dir%/config/google_credential.json'
       $spreadSheetAirtableId: '%env(GOOGLE_SPREADSHEET_EXPORT_ID)%'
       $progressContentUrl: '%env(GOOGLE_PROGRESS_CONTENT_URL)%'
