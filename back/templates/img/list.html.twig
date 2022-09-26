@@ -18,7 +18,13 @@
                             width="100%">
                             <h1>Images de {{ directory.path }}</h1>
                             {% for picture in directory.pictures %}
-                                <div>{{ picture.path }} - {{ picture.id }}</div>
+                                <div>
+                                    <a href="{{ path('img_normal', {'pathImage': picture.id}) }}"
+                                       title="Voir la taille 1 de la photo">
+                                        <img src="{{ path('img_thumbnail', {'pathImage': picture.id}) }}"
+                                             alt="Image petite"/>
+                                    </a>
+                                </div>
                             {% endfor %}
                         </td>
                     </tr>

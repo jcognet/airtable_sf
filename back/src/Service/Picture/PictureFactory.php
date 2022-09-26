@@ -5,7 +5,7 @@ namespace App\Service\Picture;
 
 use App\ValueObject\Picture\Picture;
 
-class ImageFactory
+class PictureFactory
 {
     private EncoderDecoder $encoderDecoder;
 

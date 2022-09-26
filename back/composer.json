@@ -9,6 +9,7 @@
         "ext-dom": "*",
         "ext-iconv": "*",
         "ext-json": "*",
+        "ext-gd":  "*",
         "friendsofphp/php-cs-fixer": "^3.3",
         "google/apiclient": "^2.12",
         "nesbot/carbon": "^2.55",
