@@ -11,14 +11,14 @@ class ImageInPathLister
     private const ALLOWED_EXTENSIONS = ['*.jpg', '*.jpeg'];
 
     private string $pathPictures;
-    private ImageFactory $imageFactory;
+    private PictureFactory $pictureFactory;
 
     public function __construct(
-        ImageFactory $imageFactory,
+        PictureFactory $pictureFactory,
         string $pathPictures
     ) {
         $this->pathPictures = $pathPictures;
-        $this->imageFactory = $imageFactory;
+        $this->pictureFactory = $pictureFactory;
     }
 
     public function getPicturesFromDirectory(string $subDirectory): Directory
@@ -29,11 +29,12 @@ class ImageInPathLister
         $images = $finder->files()
             ->in($absolutePath)
             ->name(self::ALLOWED_EXTENSIONS)
+            ->exclude('thumbnail')
         ;
 
         $pictures = [];
         foreach ($images as $image) {
-            $pictures[] = $this->imageFactory->get(
+            $pictures[] = $this->pictureFactory->get(
                 $image->getRealPath()
             );
         }

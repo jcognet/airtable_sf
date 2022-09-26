@@ -4,10 +4,12 @@ declare(strict_types=1);
 namespace App\Controller;
 
 use App\Service\Picture\EncoderDecoder;
-use App\Service\Picture\ImageFactory;
 use App\Service\Picture\ImageInPathLister;
+use App\Service\Picture\PictureFactory;
+use App\Service\Picture\ThumbnailerGetter;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Finder\Exception\DirectoryNotFoundException;
+use Symfony\Component\HttpFoundation\BinaryFileResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -47,13 +49,10 @@ class ImageController extends AbstractController
     public function thumbnail(
         string $pathImage,
         EncoderDecoder $encoderDecoder,
-        ImageFactory $imageFactory
+        ThumbnailerGetter $thumbnailerGetter
     ): Response {
-        return $this->render(
-            'img/thumbnail.html.twig',
-            [
-                'image' => $imageFactory->get($encoderDecoder->decode($pathImage)),
-            ],
+        return new BinaryFileResponse(
+            $thumbnailerGetter->get($encoderDecoder->decode($pathImage))
         );
     }
 
@@ -63,12 +62,10 @@ class ImageController extends AbstractController
     public function normal(
         string $pathImage,
         EncoderDecoder $encoderDecoder,
-        ImageFactory $imageFactory
+        PictureFactory $imageFactory
     ): Response {
-        return new Response(
-            file_get_contents(
-                $imageFactory->get($encoderDecoder->decode($pathImage))->getPath()
-            )
+        return new BinaryFileResponse(
+            $imageFactory->get($encoderDecoder->decode($pathImage))->getPath()
         );
     }
 }
