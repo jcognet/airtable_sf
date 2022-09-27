@@ -17,17 +17,19 @@
                             style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; font-weight: 400; text-align: left; vertical-align: top; padding-left: 10px; padding-right: 10px; padding-top: 20px; padding-bottom: 35px; border-top: 0px; border-right: 0px; border-bottom: 0px; border-left: 0px;"
                             width="100%">
                             <h1>Images de {{ directory.path }}</h1>
-                            {% for picture in directory.pictures %}
-                                <div>
-                                    <a href="{{ path('img_normal', {'pathImage': picture.id}) }}"
-                                       title="Voir la taille 1 de la photo"
-                                       target="_blank"
-                                    >
-                                        <img src="{{ path('img_thumbnail', {'pathImage': picture.id}) }}"
-                                             alt="Image petite"/>
-                                    </a>
-                                </div>
-                            {% endfor %}
+                            <div style="display: flex">
+                                {% for picture in directory.pictures %}
+                                    <div style="margin: 5px">
+                                        <a href="{{ path('img_normal', {'pathImage': picture.id}) }}"
+                                           title="Voir la taille 1 de la photo"
+                                           target="_blank"
+                                        >
+                                            <img src="{{ path('img_thumbnail', {'pathImage': picture.id}) }}"
+                                                 alt="Image petite"/>
+                                        </a>
+                                    </div>
+                                {% endfor %}
+                            </div>
                         </td>
                     </tr>
                     </tbody>
