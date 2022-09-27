@@ -6,6 +6,7 @@ namespace App\Controller;
 use App\Service\Picture\EncoderDecoder;
 use App\Service\Picture\ImageInPathLister;
 use App\Service\Picture\PictureFactory;
+use App\Service\Picture\RandomDirectorySelector;
 use App\Service\Picture\ThumbnailerGetter;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Finder\Exception\DirectoryNotFoundException;
@@ -33,6 +34,29 @@ class ImageController extends AbstractController
             $directory = $imageInPathLister->getPicturesFromDirectory($directoryPath);
         } catch (DirectoryNotFoundException $e) {
             throw $this->createNotFoundException();
+        }
+
+        return $this->render(
+            'img/list.html.twig',
+            [
+                'directory' => $directory,
+            ],
+        );
+    }
+
+    /**
+     * @Route("/img/random/", name="img_random", methods={"GET"})
+     */
+    public function random(
+        ImageInPathLister $imageInPathLister,
+        RandomDirectorySelector $randomDirectorySelector
+    ): Response {
+        $directoryPath = $randomDirectorySelector->getRandomDirectory();
+
+        try {
+            $directory = $imageInPathLister->getPicturesFromDirectory($directoryPath);
+        } catch (DirectoryNotFoundException $e) {
+            throw $this->createNotFoundException(sprintf('Unknown directory: %s', $directoryPath));
         }
 
         return $this->render(
