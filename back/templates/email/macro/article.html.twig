@@ -1,18 +1,20 @@
 {% macro render_article_type(article) %}
-    {% if article.articleType.value is same as constant('App\\ValueObject\\Article\\ArticleType::VIDEO') %}
-        <span title="vidéo">&#128249;</span>
-    {% elseif article.articleType.value is same as constant('App\\ValueObject\\Article\\ArticleType::PODCAST') %}
-        <span title="podcast">&#127908;</span>
-    {% elseif article.articleType.value is same as constant('App\\ValueObject\\Article\\ArticleType::LIVRE') %}
-        <span title="livre">&#128214;</span>
-    {% elseif article.articleType.value is same as constant('App\\ValueObject\\Article\\ArticleType::TEXTE') %}
-        <span title="article">&#9852;</span>
-    {% elseif article.articleType.value is same as constant('App\\ValueObject\\Article\\ArticleType::SITE_INTERNET') %}
-        <span title="Site internet">&#128376;</span>
-    {% elseif article.articleType.value is same as constant('App\\ValueObject\\Article\\ArticleType::REPERTOIRE') %}
-        <span title="Répertoire de liens">&#128448;</span>
-    {% elseif article.articleType.value is same as constant('App\\ValueObject\\Article\\ArticleType::IMAGE') %}
-        <span title="image">&#128444;</span>
+    {% if article.articleType is not null %}
+        {% if article.articleType.value is same as constant('App\\ValueObject\\Article\\ArticleType::VIDEO') %}
+            <span title="vidéo">&#128249;</span>
+        {% elseif article.articleType.value is same as constant('App\\ValueObject\\Article\\ArticleType::PODCAST') %}
+            <span title="podcast">&#127908;</span>
+        {% elseif article.articleType.value is same as constant('App\\ValueObject\\Article\\ArticleType::LIVRE') %}
+            <span title="livre">&#128214;</span>
+        {% elseif article.articleType.value is same as constant('App\\ValueObject\\Article\\ArticleType::TEXTE') %}
+            <span title="article">&#9852;</span>
+        {% elseif article.articleType.value is same as constant('App\\ValueObject\\Article\\ArticleType::SITE_INTERNET') %}
+            <span title="Site internet">&#128376;</span>
+        {% elseif article.articleType.value is same as constant('App\\ValueObject\\Article\\ArticleType::REPERTOIRE') %}
+            <span title="Répertoire de liens">&#128448;</span>
+        {% elseif article.articleType.value is same as constant('App\\ValueObject\\Article\\ArticleType::IMAGE') %}
+            <span title="image">&#128444;</span>
+        {% endif %}
     {% endif %}
 {% endmacro %}
 

@@ -24,4 +24,19 @@ final class ImageControllerTest extends WebTestCase
         // Validate a successful response and some content
         $this->assertResponseIsSuccessful();
     }
+
+    public function test_random(): void
+    {
+        // This calls KernelTestCase::bootKernel(), and creates a
+        // "client" that is acting as the browser
+        $client = static::createClient();
+        $client->setServerParameter('HTTP_HOST', 'localhost:7000');
+        $client->followRedirects(true);
+
+        // Request a specific page
+        $crawler = $client->request('GET', '/img/random/');
+
+        // Validate a successful response and some content
+        $this->assertResponseIsSuccessful();
+    }
 }

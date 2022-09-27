@@ -13,10 +13,11 @@ use App\Service\Block\Article\VideoBlockManager;
 use App\Service\Block\Beer\GoodBeerBlockManager;
 use App\Service\Block\Book\BookBlockManager;
 use App\Service\Block\Book\BookListBlockManager;
-use App\Service\Block\Google\CurreniesManager;
+use App\Service\Block\Google\CurrenciesManager;
 use App\Service\Block\Google\DoneContentManager;
 use App\Service\Block\Google\InProgressContentManager;
 use App\Service\Block\Meteo\MeteoBlockManager;
+use App\Service\Block\Picture\PictureManager;
 use App\Service\Block\Random\GoodPracticeOrganizationManager;
 use App\Service\Block\Random\InrManager;
 use App\Service\Block\Random\RandomPicBlockManager;
@@ -46,7 +47,8 @@ class ManagerType
         GoodPracticeOrganizationManager::class,
         InterestingTopicListBlockManager::class,
         ConceptManager::class,
-        CurreniesManager::class,
+        CurrenciesManager::class,
+        PictureManager::class,
     ];
 
     private string $type;
