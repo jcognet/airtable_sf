@@ -8,7 +8,7 @@ use App\ValueObject\BlockInterface;
 use App\ValueObject\Random\ImageUrl;
 use App\ValueObject\Random\ListImageUrl;
 
-class CurreniesManager implements BlockManagerInterface
+class CurrenciesManager implements BlockManagerInterface
 {
     private const URL = [
         'JPY' => 'https://docs.google.com/spreadsheets/d/e/2PACX-1vRZ0glaaNB5WUbCzXpNim5sz3XGttZtuQJi0HtqBzy6YqdajFUG4llJ5qqwZshCFXS70FCjEyISTI2R/pubchart?oid=511775458&format=image',

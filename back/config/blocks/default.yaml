@@ -9,6 +9,7 @@ blocks:
   - list_todo
   - image_url
   - list_article
+  - image_list_pictures
   - video
   - list_article_read
   - list_interesting_topic

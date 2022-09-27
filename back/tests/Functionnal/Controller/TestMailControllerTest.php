@@ -54,4 +54,19 @@ final class TestMailControllerTest extends WebTestCase
         // Validate a successful response and some content
         $this->assertResponseIsSuccessful();
     }
+
+    public function test_all(): void
+    {
+        // This calls KernelTestCase::bootKernel(), and creates a
+        // "client" that is acting as the browser
+        $client = static::createClient();
+        $client->setServerParameter('HTTP_HOST', 'localhost:7000');
+        $client->followRedirects(true);
+
+        // Request a specific page
+        $crawler = $client->request('GET', '/test/mail/all');
+
+        // Validate a successful response and some content
+        $this->assertResponseIsSuccessful();
+    }
 }
