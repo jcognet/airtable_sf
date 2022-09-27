@@ -20,7 +20,9 @@
                             {% for picture in directory.pictures %}
                                 <div>
                                     <a href="{{ path('img_normal', {'pathImage': picture.id}) }}"
-                                       title="Voir la taille 1 de la photo">
+                                       title="Voir la taille 1 de la photo"
+                                       target="_blank"
+                                    >
                                         <img src="{{ path('img_thumbnail', {'pathImage': picture.id}) }}"
                                              alt="Image petite"/>
                                     </a>
