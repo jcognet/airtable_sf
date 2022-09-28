@@ -17,11 +17,11 @@
                         <div style="display: flex; width: 740px; flex-wrap: wrap;">
                             {% for picture in block.pictures %}
                                 <div style="margin: 5px;">
-                                    <a href="{{ path('img_normal', {'pathImage': picture.id}) }}"
+                                    <a href="{{ url_front }}/{{ path('img_normal', {'pathImage': picture.id}) }}"
                                        title="Voir la taille 1 de la photo"
                                        target="_blank"
                                     >
-                                        <img src="{{ path('img_thumbnail', {'pathImage': picture.id}) }}"
+                                        <img src="{{ url_front }}/{{ path('img_thumbnail', {'pathImage': picture.id}) }}"
                                              alt="Image petite"/>
                                     </a>
                                 </div>
