@@ -25,6 +25,9 @@
                                              alt="Image petite"/>
                                     </a>
                                 </div>
+                                {% if is_google_mail() and loop.index % 3 == 0 %}
+                                    <div></div>
+                                {% endif %}
                             {% endfor %}
                         </div>
                     </td>
