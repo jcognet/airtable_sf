@@ -14,9 +14,10 @@
                         style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; font-weight: 400; text-align: left; vertical-align: top; padding-left: 10px; padding-right: 10px; padding-top: 20px; padding-bottom: 35px; border-top: 0px; border-right: 0px; border-bottom: 0px; border-left: 0px;"
                         width="100%">
                         <h1>Images de {{ block.path }}</h1>
-                        <div style="display: flex; width: 740px; flex-wrap: wrap;">
+                        <table style="width: 740px">
+                            <tr>
                             {% for picture in block.pictures %}
-                                <div style="margin: 5px;">
+                                <td style="margin: 5px;">
                                     <a href="{{ url_front }}{{ path('img_normal', {'pathImage': picture.id}) }}"
                                        title="Voir la taille 1 de la photo"
                                        target="_blank"
@@ -24,12 +25,18 @@
                                         <img src="{{ url_front }}{{ path('img_thumbnail', {'pathImage': picture.id}) }}"
                                              alt="Image petite"/>
                                     </a>
-                                </div>
-                                {% if is_google_mail() and loop.index % 3 == 0 %}
-                                    <div></div>
+                                </td>
+                                {% if loop.index % 3 == 0 and not loop.last%}
+                                    </tr><tr>
                                 {% endif %}
                             {% endfor %}
-                        </div>
+                                {% if block.pictures|length %3 != 0 %}
+                                    {% for tmpBlock in (block.pictures|length %3)..2 %}
+                                        <td>&nbsp;</td>
+                                    {% endfor %}
+                                    </tr>
+                                {% endif %}
+                        </table>
                     </td>
                 </tr>
                 </tbody>
