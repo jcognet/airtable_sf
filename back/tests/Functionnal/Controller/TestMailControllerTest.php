@@ -19,7 +19,7 @@ final class TestMailControllerTest extends WebTestCase
         $client->followRedirects(true);
 
         // Request a specific page
-        $crawler = $client->request('GET', '/test/mail/show/?date=2022-01-03');
+        $client->request('GET', '/test/mail/show/?date=2022-01-03');
 
         // Validate a successful response and some content
         $this->assertResponseIsSuccessful();
@@ -34,7 +34,7 @@ final class TestMailControllerTest extends WebTestCase
         $client->followRedirects(true);
 
         // Request a specific page
-        $crawler = $client->request('GET', '/test/mail/show/?date=2022-01-02');
+        $client->request('GET', '/test/mail/show/?date=2022-01-02');
 
         // Validate a successful response and some content
         $this->assertResponseIsSuccessful();
@@ -49,7 +49,7 @@ final class TestMailControllerTest extends WebTestCase
         $client->followRedirects(true);
 
         // Request a specific page
-        $crawler = $client->request('GET', '/test/mail/show/?date=2022-01-02');
+        $client->request('GET', '/test/mail/show/?date=2022-01-02');
 
         // Validate a successful response and some content
         $this->assertResponseIsSuccessful();
@@ -64,7 +64,7 @@ final class TestMailControllerTest extends WebTestCase
         $client->followRedirects(true);
 
         // Request a specific page
-        $crawler = $client->request('GET', '/test/mail/all');
+        $client->request('GET', '/test/mail/all');
 
         // Validate a successful response and some content
         $this->assertResponseIsSuccessful();
