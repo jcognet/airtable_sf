@@ -19,7 +19,7 @@ final class ImageControllerTest extends WebTestCase
         $client->followRedirects(true);
 
         // Request a specific page
-        $crawler = $client->request('GET', '/img/list/?directory=2021/dir2');
+        $client->request('GET', '/img/list/?directory=2021/dir2');
 
         // Validate a successful response and some content
         $this->assertResponseIsSuccessful();
@@ -34,7 +34,7 @@ final class ImageControllerTest extends WebTestCase
         $client->followRedirects(true);
 
         // Request a specific page
-        $crawler = $client->request('GET', '/img/random/');
+        $client->request('GET', '/img/random/');
 
         // Validate a successful response and some content
         $this->assertResponseIsSuccessful();
