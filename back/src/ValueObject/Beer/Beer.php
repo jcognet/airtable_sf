@@ -10,39 +10,8 @@ use Carbon\Carbon;
 
 class Beer implements BlockInterface
 {
-    private ?string $title;
-    private ?string $avis;
-    private ?Brewery $brasserie;
-    private ?int $note;
-    private ?int $ibu;
-    private ?string $photo;
-    private Carbon $dateTest;
-    private ?BeerType $beerType;
-    private ?float $alcolholDegree;
-    private string $url;
-
-    public function __construct(
-        string $title,
-        ?string $avis,
-        ?Brewery $brasserie,
-        ?int $note,
-        ?int $ibu,
-        ?string $photo,
-        Carbon $dateTest,
-        ?BeerType $beerType,
-        ?float $alcolholDegree,
-        string $url
-    ) {
-        $this->title = $title;
-        $this->avis = $avis;
-        $this->brasserie = $brasserie;
-        $this->note = $note;
-        $this->ibu = $ibu;
-        $this->photo = $photo;
-        $this->dateTest = $dateTest;
-        $this->beerType = $beerType;
-        $this->alcolholDegree = $alcolholDegree;
-        $this->url = $url;
+    public function __construct(private readonly ?string $title, private readonly ?string $avis, private readonly ?Brewery $brasserie, private readonly ?int $note, private readonly ?int $ibu, private readonly ?string $photo, private readonly Carbon $dateTest, private readonly ?BeerType $beerType, private readonly ?float $alcolholDegree, private readonly string $url)
+    {
     }
 
     public function getTitle(): string

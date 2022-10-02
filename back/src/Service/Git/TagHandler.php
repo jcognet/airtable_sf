@@ -8,11 +8,8 @@ use Symfony\Component\Filesystem\Filesystem;
 
 class TagHandler
 {
-    private string $path;
-
-    public function __construct(string $deployJsonPath)
+    public function __construct(private readonly string $deployJsonPath)
     {
-        $this->path = $deployJsonPath;
     }
 
     public function write(string $tag): void
@@ -20,16 +17,16 @@ class TagHandler
         $fs = new Filesystem();
 
         $fs->dumpFile(
-            $this->path,
+            $this->deployJsonPath,
             json_encode([
                 'tag' => $tag,
                 'date' => Carbon::now(),
-            ])
+            ], JSON_THROW_ON_ERROR)
         );
     }
 
     public function get(): array
     {
-        return json_decode(file_get_contents($this->path), true);
+        return json_decode(file_get_contents($this->deployJsonPath), true, 512, JSON_THROW_ON_ERROR);
     }
 }

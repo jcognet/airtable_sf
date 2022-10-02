@@ -10,18 +10,11 @@ use Symfony\Contracts\HttpClient\HttpClientInterface;
 class GoodPracticeOrganizationRepository
 {
     private const NB_TRY_RANDOM = 5;
-
-    private HttpClientInterface $ecoresponsablegouvClient;
     private array $records = [];
     private array $randomKey = [];
-    private GoodPracticeBuilder $goodPracticeBuilder;
 
-    public function __construct(
-        HttpClientInterface $ecoresponsablegouvClient,
-        GoodPracticeBuilder $goodPracticeBuilder
-    ) {
-        $this->ecoresponsablegouvClient = $ecoresponsablegouvClient;
-        $this->goodPracticeBuilder = $goodPracticeBuilder;
+    public function __construct(private readonly HttpClientInterface $ecoresponsablegouvClient, private readonly GoodPracticeBuilder $goodPracticeBuilder)
+    {
     }
 
     public function fetchRandomData(): ?GoodPractice
@@ -32,7 +25,9 @@ class GoodPracticeOrganizationRepository
                     'GET',
                     'publications/bonnes-pratiques/guide-bonnes-pratiques-numerique-responsable-export-version-beta.json',
                 )->getContent(),
-                true
+                true,
+                512,
+                JSON_THROW_ON_ERROR
             )['thematiques'];
 
             foreach ($themes as $theme) {

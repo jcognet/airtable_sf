@@ -8,21 +8,8 @@ use App\ValueObject\NewsletterBlockManager\BlockType;
 
 class Image implements BlockInterface
 {
-    private string $name;
-    private ?string $url;
-    private ?array $sujets;
-    private ?string $source;
-
-    public function __construct(
-        string $name,
-        ?string $url,
-        ?array $sujets,
-        ?string $source
-    ) {
-        $this->name = $name;
-        $this->url = $url;
-        $this->sujets = $sujets;
-        $this->source = $source;
+    public function __construct(private readonly string $name, private readonly ?string $url, private readonly ?array $sujets, private readonly ?string $source)
+    {
     }
 
     public function getName(): string

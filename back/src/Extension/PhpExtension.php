@@ -11,12 +11,12 @@ class PhpExtension extends AbstractExtension
     public function getFunctions(): array
     {
         return [
-            new TwigFunction('is_class', [$this, 'isClass']),
+            new TwigFunction('is_class', $this->isClass(...)),
         ];
     }
 
     public function isClass($object, string $className): bool
     {
-        return get_class($object) === $className;
+        return $object::class === $className;
     }
 }

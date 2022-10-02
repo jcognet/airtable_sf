@@ -12,7 +12,7 @@ class ConvertArticleToVideo implements ConverterInterface
     public function convert(BlockInterface $article): Video
     {
         if (!$article instanceof Article) {
-            throw new \InvalidArgumentException(sprintf('Wrong type for ConvertArticleToVideo, got: %s, expected: %s', get_class($article), Article::class));
+            throw new \InvalidArgumentException(sprintf('Wrong type for ConvertArticleToVideo, got: %s, expected: %s', $article::class, Article::class));
         }
 
         return new Video(

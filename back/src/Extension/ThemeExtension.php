@@ -10,17 +10,14 @@ use Twig\TwigFunction;
 
 class ThemeExtension extends AbstractExtension
 {
-    private ThemeFetcher $themeFetcher;
-
-    public function __construct(ThemeFetcher $themeFetcher)
+    public function __construct(private readonly ThemeFetcher $themeFetcher)
     {
-        $this->themeFetcher = $themeFetcher;
     }
 
     public function getFunctions(): array
     {
         return [
-            new TwigFunction('get_random_theme', [$this, 'randomColor']),
+            new TwigFunction('get_random_theme', $this->randomColor(...)),
         ];
     }
 

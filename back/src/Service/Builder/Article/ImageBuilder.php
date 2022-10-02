@@ -9,11 +9,8 @@ use App\ValueObject\Article\Image;
 
 class ImageBuilder implements BuilderInterface
 {
-    private SujetRepository $sujetRepository;
-
-    public function __construct(SujetRepository $sujetRepository)
+    public function __construct(private readonly SujetRepository $sujetRepository)
     {
-        $this->sujetRepository = $sujetRepository;
     }
 
     public function build(array $data): Image

@@ -10,18 +10,15 @@ use Twig\TwigFunction;
 
 class TagExtension extends AbstractExtension
 {
-    private TagReader $tagReader;
-
-    public function __construct(TagReader $tagReader)
+    public function __construct(private readonly TagReader $tagReader)
     {
-        $this->tagReader = $tagReader;
     }
 
     public function getFunctions(): array
     {
         return [
-            new TwigFunction('get_last_deploy', [$this, 'getLastDeploy']),
-            new TwigFunction('get_last_tag', [$this, 'getLastTag']),
+            new TwigFunction('get_last_deploy', $this->getLastDeploy(...)),
+            new TwigFunction('get_last_tag', $this->getLastTag(...)),
         ];
     }
 

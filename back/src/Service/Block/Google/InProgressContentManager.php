@@ -9,11 +9,8 @@ use App\ValueObject\Random\ImageUrl;
 
 class InProgressContentManager implements BlockManagerInterface
 {
-    private string $progressContentUrl;
-
-    public function __construct(string $progressContentUrl)
+    public function __construct(private readonly string $progressContentUrl)
     {
-        $this->progressContentUrl = $progressContentUrl;
     }
 
     public function getContent(): ?BlockInterface

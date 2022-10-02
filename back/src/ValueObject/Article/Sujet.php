@@ -5,15 +5,8 @@ namespace App\ValueObject\Article;
 
 class Sujet
 {
-    private string $id;
-    private string $label;
-
-    public function __construct(
-        string $id,
-        string $label
-    ) {
-        $this->id = $id;
-        $this->label = $label;
+    public function __construct(private readonly string $id, private readonly string $label)
+    {
     }
 
     public function getId(): string

@@ -11,21 +11,11 @@ abstract class AbstractClient
 {
     private const NB_TRY_RANDOM = 5;
 
-    private AirtableClient $airtableClient;
-    private string $airtableAppId;
-    private BuilderInterface $builder;
-
     private array $recordsByParam = [];
-    private $randomKeyByParam = [];
+    private array $randomKeyByParam = [];
 
-    public function __construct(
-        AirtableClient $airtableClient,
-        string $airtableAppId,
-        BuilderInterface $builder
-    ) {
-        $this->airtableClient = $airtableClient;
-        $this->airtableAppId = $airtableAppId;
-        $this->builder = $builder;
+    public function __construct(private readonly AirtableClient $airtableClient, private readonly string $airtableAppId, private readonly BuilderInterface $builder)
+    {
     }
 
     public function fetchRandomData(array $param = []): ?BlockInterface
@@ -39,12 +29,14 @@ abstract class AbstractClient
                     sprintf('%s/%s', $this->airtableAppId, $this->getFetchUrl()),
                     $param,
                 ),
-                true
+                true,
+                512,
+                JSON_THROW_ON_ERROR
             )['records'];
         }
 
         $articles = $this->recordsByParam[$keyResearch];
-        if (count($articles) === 0) {
+        if ((is_countable($articles) ? count($articles) : 0) === 0) {
             return null;
         }
 
@@ -82,7 +74,9 @@ abstract class AbstractClient
                     sprintf('%s/%s', $this->airtableAppId, $this->getFetchUrl()),
                     $param,
                 ),
-                true
+                true,
+                512,
+                JSON_THROW_ON_ERROR
             );
 
             foreach ($response['records'] as $rawData) {
@@ -97,7 +91,9 @@ abstract class AbstractClient
                         sprintf('%s/%s', $this->airtableAppId, $this->getFetchUrl()),
                         $param,
                     ),
-                    true
+                    true,
+                    512,
+                    JSON_THROW_ON_ERROR
                 );
 
                 foreach ($response['records'] as $rawData) {
@@ -122,7 +118,9 @@ abstract class AbstractClient
                     'GET',
                     sprintf('%s/%s/%s', $this->airtableAppId, $this->getFetchUrl(), $id),
                 ),
-                true
+                true,
+                512,
+                JSON_THROW_ON_ERROR
             );
         } catch (ClientException $exception) {
             if ($exception->getCode() === 404) {

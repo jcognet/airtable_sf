@@ -12,11 +12,8 @@ class GoodPracticeOrganizationManager implements BlockManagerInterface
 {
     private const NB_CRITERIA = 5;
 
-    private GoodPracticeOrganizationRepository $goodPracticeOrganizationRepository;
-
-    public function __construct(GoodPracticeOrganizationRepository $goodPracticeOrganizationRepository)
+    public function __construct(private readonly GoodPracticeOrganizationRepository $goodPracticeOrganizationRepository)
     {
-        $this->goodPracticeOrganizationRepository = $goodPracticeOrganizationRepository;
     }
 
     public function getContent(): ?BlockInterface

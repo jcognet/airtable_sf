@@ -13,9 +13,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class TestMailController extends AbstractController
 {
-    /**
-     * @Route("/test/mail/show", name="test_mail_show", methods={"GET"})
-     */
+    #[Route(path: '/test/mail/show', name: 'test_mail_show', methods: ['GET'])]
     public function show(
         Request $request,
         Manager $manager
@@ -29,9 +27,7 @@ class TestMailController extends AbstractController
         );
     }
 
-    /**
-     * @Route("/test/mail/all", name="all_mail_show", methods={"GET"})
-     */
+    #[Route(path: '/test/mail/all', name: 'all_mail_show', methods: ['GET'])]
     public function all(Creater $creater): Response
     {
         $creater->createAllContent();
@@ -39,9 +35,7 @@ class TestMailController extends AbstractController
         return new Response($creater->getHtml(true));
     }
 
-    /**
-     * @Route("/test/mail/one/{blockType}", name="test_mail_one", methods={"GET"})
-     */
+    #[Route(path: '/test/mail/one/{blockType}', name: 'test_mail_one', methods: ['GET'])]
     public function one(
         Creater $creater,
         string $blockType

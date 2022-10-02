@@ -14,15 +14,9 @@ class InrRepository
 
     private array $records = [];
     private array $randomKey = [];
-    private HttpClientInterface $inrClient;
-    private InrToolBuilder $inrToolBuilder;
 
-    public function __construct(
-        HttpClientInterface $inrClient,
-        InrToolBuilder $inrToolBuilder
-    ) {
-        $this->inrClient = $inrClient;
-        $this->inrToolBuilder = $inrToolBuilder;
+    public function __construct(private readonly HttpClientInterface $inrClient, private readonly InrToolBuilder $inrToolBuilder)
+    {
     }
 
     public function fetchRandomData(): ?InrTool

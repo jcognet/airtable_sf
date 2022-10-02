@@ -12,12 +12,9 @@ use Symfony\Component\Console\Output\OutputInterface;
 class CleanDataCommand extends Command
 {
     protected static $defaultName = 'app:newspaper:clean';
-    private Cleaner $cleaner;
 
-    public function __construct(
-        Cleaner $cleaner
-    ) {
-        $this->cleaner = $cleaner;
+    public function __construct(private readonly Cleaner $cleaner)
+    {
     }
 
     protected function configure(): void

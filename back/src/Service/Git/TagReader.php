@@ -7,18 +7,16 @@ use Carbon\Carbon;
 
 class TagReader
 {
-    private string $deployJsonPath;
     private ?array $data = null;
 
-    public function __construct(string $deployJsonPath)
+    public function __construct(private readonly string $deployJsonPath)
     {
-        $this->deployJsonPath = $deployJsonPath;
     }
 
     public function read(): array
     {
         if ($this->data === null) {
-            $this->data = json_decode(file_get_contents($this->deployJsonPath), true);
+            $this->data = json_decode(file_get_contents($this->deployJsonPath), true, 512, JSON_THROW_ON_ERROR);
         }
 
         return $this->data;

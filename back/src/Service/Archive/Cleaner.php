@@ -9,11 +9,8 @@ use Symfony\Component\Finder\Finder;
 
 class Cleaner
 {
-    private string $path;
-
-    public function __construct(string $deployArchiveJsonPath)
+    public function __construct(private readonly string $deployArchiveJsonPath)
     {
-        $this->path = $deployArchiveJsonPath;
     }
 
     public function clean(Carbon $from): int
@@ -22,12 +19,12 @@ class Cleaner
         $filesystem = new Filesystem();
 
         $finder->files()
-            ->in($this->path)
+            ->in($this->deployArchiveJsonPath)
             ->name('*.json')
             ->date(sprintf('<=%s', $from->format('Y-m-d')))
         ;
         $nb = $finder->count();
-        $filesystem->remove($finder->files()->in($this->path));
+        $filesystem->remove($finder->files()->in($this->deployArchiveJsonPath));
 
         return $nb;
     }

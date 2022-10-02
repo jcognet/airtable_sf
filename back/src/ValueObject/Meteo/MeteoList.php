@@ -9,17 +9,10 @@ use App\ValueObject\NewsletterBlockManager\BlockType;
 class MeteoList implements BlockInterface
 {
     /**
-     * @var MeteoItem[]
+     * @param MeteoItem[] $meteoItemLists
      */
-    private array $meteoItemLists;
-    private string $latitude;
-    private string $longitude;
-
-    public function __construct(array $meteoItemLists, string $latitude, string $longitude)
+    public function __construct(private readonly array $meteoItemLists, private readonly string $latitude, private readonly string $longitude)
     {
-        $this->meteoItemLists = $meteoItemLists;
-        $this->latitude = $latitude;
-        $this->longitude = $longitude;
     }
 
     public function getTitle(): string

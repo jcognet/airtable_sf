@@ -6,8 +6,6 @@ namespace App\Service\AirTable\Article;
 use App\Service\AirTable\AbstractClient;
 use App\Service\AirTable\AirtableClient;
 use App\Service\Builder\Article\ConceptBuilder;
-use App\ValueObject\Article\Article;
-use App\ValueObject\Article\Concept;
 
 class ConceptClient extends AbstractClient
 {
@@ -17,19 +15,6 @@ class ConceptClient extends AbstractClient
         ConceptBuilder $conceptBuilder
     ) {
         parent::__construct($airtableClient, $airtableAppArticleId, $conceptBuilder);
-    }
-
-    public function fetchRandomData(array $param = []): ?Concept
-    {
-        return parent::fetchRandomData($param);
-    }
-
-    /**
-     * @return Article[]
-     */
-    public function findAll(array $param = []): array
-    {
-        return parent::findAll($param);
     }
 
     protected function getFetchUrl(): string

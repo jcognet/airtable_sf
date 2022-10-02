@@ -10,11 +10,8 @@ use App\ValueObject\BlockInterface;
 
 class InterestingTopicListBlockManager implements BlockManagerInterface
 {
-    private InterestingTopicClient $interestingTopicClient;
-
-    public function __construct(InterestingTopicClient $interestingTopicClient)
+    public function __construct(private readonly InterestingTopicClient $interestingTopicClient)
     {
-        $this->interestingTopicClient = $interestingTopicClient;
     }
 
     public function getContent(): ?BlockInterface

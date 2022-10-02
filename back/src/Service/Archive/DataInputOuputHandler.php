@@ -9,11 +9,8 @@ use Symfony\Component\Filesystem\Filesystem;
 
 class DataInputOuputHandler
 {
-    private string $path;
-
-    public function __construct(string $deployArchiveJsonPath)
+    public function __construct(private readonly string $deployArchiveJsonPath)
     {
-        $this->path = $deployArchiveJsonPath;
     }
 
     public function write(
@@ -43,17 +40,17 @@ class DataInputOuputHandler
             return null;
         }
 
-        $data = json_decode(file_get_contents($this->getFileName($date)), true);
+        $data = json_decode(file_get_contents($this->getFileName($date)), true, 512, JSON_THROW_ON_ERROR);
 
         return new NewsLetter(
             Carbon::parse($data['metadata']['created']),
             $data['data']['content'],
-            isset($data['metadata']['was_sent']) ? (bool) $data['metadata']['was_sent'] : false
+            isset($data['metadata']['was_sent']) && (bool) $data['metadata']['was_sent']
         );
     }
 
     protected function getFileName(Carbon $date): string
     {
-        return sprintf('%s/%s_newsletter.json', $this->path, $date->format('Y-m-d'));
+        return sprintf('%s/%s_newsletter.json', $this->deployArchiveJsonPath, $date->format('Y-m-d'));
     }
 }

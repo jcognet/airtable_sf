@@ -9,13 +9,8 @@ use Symfony\Contracts\HttpClient\HttpClientInterface;
 
 class FoxRepository implements RandomImageRepositoryInterface
 {
-    private HttpClientInterface $httpClient;
-    private FoxBuilder $foxBuilder;
-
-    public function __construct(HttpClientInterface $httpClient, FoxBuilder $foxBuilder)
+    public function __construct(private readonly HttpClientInterface $httpClient, private readonly FoxBuilder $foxBuilder)
     {
-        $this->httpClient = $httpClient;
-        $this->foxBuilder = $foxBuilder;
     }
 
     public function fetchRandomData(array $param = []): BlockInterface
@@ -25,7 +20,9 @@ class FoxRepository implements RandomImageRepositoryInterface
                 'GET',
                 'https://randomfox.ca/floof/',
             )->getContent(),
-            true
+            true,
+            512,
+            JSON_THROW_ON_ERROR
         );
 
         return $this->foxBuilder->build($foxRaw);

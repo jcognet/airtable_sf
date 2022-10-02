@@ -9,11 +9,9 @@ use App\ValueObject\Beer\Brewery;
 class BreweryRepository
 {
     private ?array $brasseries = null;
-    private BreweryClient $brasserieClient;
 
-    public function __construct(BreweryClient $brasserieClient)
+    public function __construct(private readonly BreweryClient $brasserieClient)
     {
-        $this->brasserieClient = $brasserieClient;
     }
 
     public function getById(string $id): Brewery

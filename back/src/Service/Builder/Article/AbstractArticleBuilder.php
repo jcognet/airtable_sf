@@ -14,13 +14,8 @@ abstract class AbstractArticleBuilder implements BuilderInterface
 {
     private const TABLE_URL = 'tblPLpYPyAOT2q13Q';
 
-    private SujetRepository $sujetRepository;
-    private string $airtableAppArticleId;
-
-    public function __construct(SujetRepository $sujetRepository, string $airtableAppArticleId)
+    public function __construct(private readonly SujetRepository $sujetRepository, private readonly string $airtableAppArticleId)
     {
-        $this->sujetRepository = $sujetRepository;
-        $this->airtableAppArticleId = $airtableAppArticleId;
     }
 
     public function build(array $data): Article

@@ -12,13 +12,8 @@ use Symfony\Component\Yaml\Yaml;
 
 class ConfigSelector
 {
-    private string $pathToConfigurationYaml;
-    private ConvertBlockTypeToManagerType $convertBlockTypeToManagerType;
-
-    public function __construct(string $pathToConfigurationYaml, ConvertBlockTypeToManagerType $convertBlockTypeToManagerType)
+    public function __construct(private readonly string $pathToConfigurationYaml, private readonly ConvertBlockTypeToManagerType $convertBlockTypeToManagerType)
     {
-        $this->pathToConfigurationYaml = $pathToConfigurationYaml;
-        $this->convertBlockTypeToManagerType = $convertBlockTypeToManagerType;
     }
 
     /**

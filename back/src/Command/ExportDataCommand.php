@@ -12,11 +12,9 @@ use Symfony\Component\Console\Output\OutputInterface;
 class ExportDataCommand extends Command
 {
     protected static $defaultName = 'app:export:spreadsheet';
-    private ExportToSpreadsheet $exportToSpreadsheet;
 
-    public function __construct(ExportToSpreadsheet $exportToSpreadsheet)
+    public function __construct(private readonly ExportToSpreadsheet $exportToSpreadsheet)
     {
-        $this->exportToSpreadsheet = $exportToSpreadsheet;
     }
 
     protected function configure(): void

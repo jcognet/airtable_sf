@@ -16,36 +16,8 @@ use Carbon\Carbon;
 
 class ExportToSpreadsheet
 {
-    private ExportAirtableWriter $exportAirtableWriter;
-    private LuClient $luClient;
-    private ItemClient $itemClient;
-    private ALireClient $ALireClient;
-    private BookClient $bookClient;
-    private ImageClient $imageClient;
-    private GithubRepository $githubRepository;
-    private CurrencyRepository $currencyRepository;
-    private ConceptClient $conceptClient;
-
-    public function __construct(
-        ExportAirtableWriter $exportAirtableWriter,
-        LuClient $luClient,
-        ItemClient $itemClient,
-        ALireClient $ALireClient,
-        BookClient $bookClient,
-        ImageClient $imageClient,
-        GithubRepository $githubRepository,
-        CurrencyRepository $currencyRepository,
-        ConceptClient $conceptClient
-    ) {
-        $this->exportAirtableWriter = $exportAirtableWriter;
-        $this->luClient = $luClient;
-        $this->itemClient = $itemClient;
-        $this->ALireClient = $ALireClient;
-        $this->bookClient = $bookClient;
-        $this->imageClient = $imageClient;
-        $this->githubRepository = $githubRepository;
-        $this->currencyRepository = $currencyRepository;
-        $this->conceptClient = $conceptClient;
+    public function __construct(private readonly ExportAirtableWriter $exportAirtableWriter, private readonly LuClient $luClient, private readonly ItemClient $itemClient, private readonly ALireClient $ALireClient, private readonly BookClient $bookClient, private readonly ImageClient $imageClient, private readonly GithubRepository $githubRepository, private readonly CurrencyRepository $currencyRepository, private readonly ConceptClient $conceptClient)
+    {
     }
 
     public function getData(): array

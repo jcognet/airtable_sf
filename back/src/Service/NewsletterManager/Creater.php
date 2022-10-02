@@ -17,30 +17,11 @@ class Creater implements LoggerAwareInterface
 {
     use LoggerAwareTrait;
 
-    private NewspaperSender $sender;
-    private ConfigSelector $configSelector;
-    private ManagerContentFactory $managerContentFactory;
-    private string $environment;
-    private ConvertBlockTypeToManagerType $convertBlockTypeToManagerType;
-    private Environment $twig;
-
     private Newspaper $newspaper;
     private $html;
 
-    public function __construct(
-        NewspaperSender $sender,
-        ConfigSelector $configSelector,
-        ManagerContentFactory $managerContentFactory,
-        string $environment,
-        ConvertBlockTypeToManagerType $convertBlockTypeToManagerType,
-        Environment $twig
-    ) {
-        $this->sender = $sender;
-        $this->configSelector = $configSelector;
-        $this->managerContentFactory = $managerContentFactory;
-        $this->environment = $environment;
-        $this->convertBlockTypeToManagerType = $convertBlockTypeToManagerType;
-        $this->twig = $twig;
+    public function __construct(private readonly NewspaperSender $sender, private readonly ConfigSelector $configSelector, private readonly ManagerContentFactory $managerContentFactory, private readonly string $environment, private readonly ConvertBlockTypeToManagerType $convertBlockTypeToManagerType, private readonly Environment $twig)
+    {
     }
 
     public function handle(Carbon $date): void

@@ -8,16 +8,11 @@ use App\ValueObject\NewsletterBlockManager\BlockType;
 
 class InrToolList implements BlockInterface
 {
-    private string $title;
     /**
-     * @var InrTool[]
+     * @param InrTool[] $inrTools
      */
-    private array $inrTools;
-
-    public function __construct(string $title, array $inrTools)
+    public function __construct(private readonly string $title, private readonly array $inrTools)
     {
-        $this->title = $title;
-        $this->inrTools = $inrTools;
     }
 
     public function getTitle(): string

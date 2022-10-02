@@ -5,11 +5,8 @@ namespace App\Service\Google;
 
 class GoogleClient
 {
-    private string $googleCredentialFile;
-
-    public function __construct(string $googleCredentialFile)
+    public function __construct(private readonly string $googleCredentialFile)
     {
-        $this->googleCredentialFile = $googleCredentialFile;
     }
 
     public function getCurrentSheets(): \Google_Service_Sheets

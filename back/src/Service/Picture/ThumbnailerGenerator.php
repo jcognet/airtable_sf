@@ -8,29 +8,18 @@ use Symfony\Component\Filesystem\Filesystem;
 
 class ThumbnailerGenerator
 {
-    private ThumbnailerNameGetter $thumbnailerNameGetter;
-    private array $thumbnailDefaults;
-
-    public function __construct(
-        ThumbnailerNameGetter $thumbnailerNameGetter,
-        array $thumbnailDefaults
-    ) {
-        // Adapted from http://www.inanzzz.com/index.php/post/0m8s/image-upload-create-thumbnail-center-and-add-padding-in-symfony
-        $this->thumbnailerNameGetter = $thumbnailerNameGetter;
-        $this->thumbnailDefaults = $thumbnailDefaults;
+    public function __construct(private readonly ThumbnailerNameGetter $thumbnailerNameGetter, private readonly array $thumbnailDefaults)
+    {
     }
 
     public function generate(string $sourceImage): void
     {
         [$sourceWidth, $sourceHeight, $sourceType] = getimagesize($sourceImage);
 
-        switch ($sourceType) {
-            case IMAGETYPE_JPEG:
-                $sourceGdImage = imagecreatefromjpeg($sourceImage);
-                break;
-            default:
-                throw new UnknownTypeFileException($sourceType, ['jpg']);
-        }
+        $sourceGdImage = match ($sourceType) {
+            IMAGETYPE_JPEG => imagecreatefromjpeg($sourceImage),
+            default => throw new UnknownTypeFileException($sourceType, ['jpg']),
+        };
 
         if ($sourceGdImage === false) {
             throw new UnknownTypeFileException($sourceType, ['jpg']);

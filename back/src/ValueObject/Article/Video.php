@@ -9,27 +9,11 @@ use Carbon\Carbon;
 
 class Video implements BlockInterface
 {
-    private string $title;
-    private string $body;
-    private Carbon $addedAt;
     /**
-     * @var Sujet[]
+     * @param Sujet[] $sujets
      */
-    private array $sujets;
-    private ?string $url;
-
-    public function __construct(
-        string $title,
-        string $body,
-        Carbon $addedAt,
-        array $sujets,
-        ?string $url
-    ) {
-        $this->title = $title;
-        $this->body = $body;
-        $this->addedAt = $addedAt;
-        $this->sujets = $sujets;
-        $this->url = $url;
+    public function __construct(private readonly string $title, private readonly string $body, private readonly Carbon $addedAt, private readonly array $sujets, private readonly ?string $url)
+    {
     }
 
     public function getTitle(): string

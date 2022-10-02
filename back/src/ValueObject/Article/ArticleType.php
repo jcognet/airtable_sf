@@ -5,13 +5,13 @@ namespace App\ValueObject\Article;
 
 class ArticleType
 {
-    public const PODCAST = 'Podcast';
-    public const VIDEO = 'Vidéo';
-    public const TEXTE = 'Texte';
-    public const LIVRE = 'Livre';
-    public const SITE_INTERNET = 'Site internet';
-    public const REPERTOIRE = 'Répertoire';
-    public const IMAGE = 'Image';
+    final public const PODCAST = 'Podcast';
+    final public const VIDEO = 'Vidéo';
+    final public const TEXTE = 'Texte';
+    final public const LIVRE = 'Livre';
+    final public const SITE_INTERNET = 'Site internet';
+    final public const REPERTOIRE = 'Répertoire';
+    final public const IMAGE = 'Image';
 
     private const LIST_ARTICLE_TYPE = [
         self::PODCAST,
@@ -22,7 +22,7 @@ class ArticleType
         self::REPERTOIRE,
         self::IMAGE,
     ];
-    private string $value;
+    private readonly string $value;
 
     public function __construct(string $value)
     {

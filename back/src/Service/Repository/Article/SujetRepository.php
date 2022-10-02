@@ -8,12 +8,10 @@ use App\ValueObject\Article\Sujet;
 
 class SujetRepository
 {
-    private SujetClient $sujetClient;
     private ?array $sujets = null;
 
-    public function __construct(SujetClient $sujetClient)
+    public function __construct(private readonly SujetClient $sujetClient)
     {
-        $this->sujetClient = $sujetClient;
     }
 
     public function getById(string $id): Sujet

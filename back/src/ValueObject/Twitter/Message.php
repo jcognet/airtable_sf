@@ -8,14 +8,10 @@ use App\ValueObject\NewsletterBlockManager\BlockType;
 
 class Message implements BlockInterface
 {
-    private string $content;
-    private ?User $user;
     private string $title = '';
 
-    public function __construct(string $content, ?User $user = null, ?string $title = null)
+    public function __construct(private readonly string $content, private ?User $user = null, ?string $title = null)
     {
-        $this->content = $content;
-        $this->user = $user;
         if (null !== $title) {
             $this->title = $title;
         }

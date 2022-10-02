@@ -8,16 +8,11 @@ use App\ValueObject\NewsletterBlockManager\BlockType;
 
 class ListImageUrl implements BlockInterface
 {
-    private string $title;
     /**
-     * @var ImageUrl[]
+     * @param ImageUrl[] $listImages
      */
-    private array $listImages;
-
-    public function __construct(string $title, array $listImages)
+    public function __construct(private readonly string $title, private readonly array $listImages)
     {
-        $this->title = $title;
-        $this->listImages = $listImages;
     }
 
     public function getTitle(): string

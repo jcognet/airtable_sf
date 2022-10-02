@@ -10,9 +10,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class TestExportController extends AbstractController
 {
-    /**
-     * @Route("/test/export/show", name="test_export_show", methods={"GET"})
-     */
+    #[Route(path: '/test/export/show', name: 'test_export_show', methods: ['GET'])]
     public function show(
         ExportToSpreadsheet $exportToSpreadsheet
     ): Response {

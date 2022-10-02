@@ -7,12 +7,8 @@ use Symfony\Component\Finder\Finder;
 
 class RandomDirectorySelector
 {
-    private string $pathPictures;
-
-    public function __construct(
-        string $pathPictures
-    ) {
-        $this->pathPictures = $pathPictures;
+    public function __construct(private readonly string $pathPictures)
+    {
     }
 
     public function getRandomDirectory(): string
@@ -27,7 +23,7 @@ class RandomDirectorySelector
         $directories = [];
         foreach ($directoryFinder as $directory) {
             /** @var \SplFileInfo $directory */
-            if (substr_count($directory->getRelativePathName(), \DIRECTORY_SEPARATOR) >= 1) {
+            if (substr_count((string) $directory->getRelativePathName(), \DIRECTORY_SEPARATOR) >= 1) {
                 $directories[] = $directory;
             }
         }

@@ -10,11 +10,8 @@ use App\ValueObject\Book\BookList;
 
 class BookListBlockManager implements BlockManagerInterface
 {
-    private BookClient $bookClient;
-
-    public function __construct(BookClient $bookClient)
+    public function __construct(private readonly BookClient $bookClient)
     {
-        $this->bookClient = $bookClient;
     }
 
     public function getContent(): ?BlockInterface

@@ -8,15 +8,8 @@ use App\ValueObject\NewsletterBlockManager\BlockType;
 
 class ItemList implements BlockInterface
 {
-    private string $title;
-    private array $toDos;
-
-    public function __construct(
-        string $title,
-        array $toDos
-    ) {
-        $this->title = $title;
-        $this->toDos = $toDos;
+    public function __construct(private readonly string $title, private readonly array $toDos)
+    {
     }
 
     public function getTitle(): string

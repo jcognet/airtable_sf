@@ -10,11 +10,8 @@ class CatRepository implements RandomImageRepositoryInterface
 {
     private const LIST = ['hangs in there', 'hello dude', 'Miaaaaaaouh !'];
 
-    private CatBuilder $catBuilder;
-
-    public function __construct(CatBuilder $catBuilder)
+    public function __construct(private readonly CatBuilder $catBuilder)
     {
-        $this->catBuilder = $catBuilder;
     }
 
     public function fetchRandomData(array $param = []): BlockInterface

@@ -9,12 +9,8 @@ use App\ValueObject\NewsletterBlockManager\BlockType;
 
 class InterestingTopic implements BlockInterface
 {
-    private string $title;
-
-    public function __construct(
-        string $title
-    ) {
-        $this->title = $title;
+    public function __construct(private readonly string $title)
+    {
     }
 
     public function getTitle(): string

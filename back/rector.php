@@ -2,21 +2,21 @@
 
 declare(strict_types=1);
 
-use Rector\Set\ValueObject\SetList;
 use Rector\Config\RectorConfig;
 use Rector\Set\ValueObject\LevelSetList;
+use Rector\Set\ValueObject\SetList;
 use Rector\Symfony\Set\SymfonySetList;
 
 return static function (RectorConfig $rectorConfig): void {
     $rectorConfig->paths([
         __DIR__ . '/src',
-        __DIR__.'/tests',
+        __DIR__ . '/tests',
     ]);
 
     // register a single rule
-    $rectorConfig->symfonyContainerXml(__DIR__.'/var/cache/dev/App_KernelDevDebugContainer.xml');
+    $rectorConfig->symfonyContainerXml(__DIR__ . '/var/cache/dev/App_KernelDevDebugContainer.xml');
 
-    /* @link https://github.com/rectorphp/rector/blob/main/docs/auto_import_names.md#auto-import-names */
+    // @link https://github.com/rectorphp/rector/blob/main/docs/auto_import_names.md#auto-import-names
     $rectorConfig->importNames();
     $rectorConfig->importShortClasses(false);
 

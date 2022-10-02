@@ -5,15 +5,8 @@ namespace App\ValueObject\Beer;
 
 class Brewery
 {
-    private string $id;
-    private ?string $label;
-    private ?string $url;
-
-    public function __construct(string $id, ?string $label, ?string $url)
+    public function __construct(private readonly string $id, private readonly ?string $label, private readonly ?string $url)
     {
-        $this->id = $id;
-        $this->label = $label;
-        $this->url = $url;
     }
 
     public function getId(): string

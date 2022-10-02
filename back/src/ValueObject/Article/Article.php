@@ -9,40 +9,11 @@ use Carbon\Carbon;
 
 class Article implements BlockInterface
 {
-    private string $title;
-    private string $body;
-    private Carbon $addedAt;
-
     /**
-     * @var Sujet[]
+     * @param Sujet[] $sujets
      */
-    private array $sujets;
-    private ?Status $status;
-    private ?string $url;
-    private ?ArticleType $articleType;
-    private string $airTableUrl;
-    private bool $hasConcept;
-
-    public function __construct(
-        string $title,
-        string $body,
-        Carbon $addedAt,
-        array $sujets,
-        ?Status $status,
-        ?string $url,
-        ?ArticleType $articleType,
-        string $airTableUrl,
-        bool $hasConcept = false
-    ) {
-        $this->title = $title;
-        $this->body = $body;
-        $this->addedAt = $addedAt;
-        $this->sujets = $sujets;
-        $this->status = $status;
-        $this->url = $url;
-        $this->articleType = $articleType;
-        $this->airTableUrl = $airTableUrl;
-        $this->hasConcept = $hasConcept;
+    public function __construct(private readonly string $title, private readonly string $body, private readonly Carbon $addedAt, private readonly array $sujets, private readonly ?Status $status, private readonly ?string $url, private readonly ?ArticleType $articleType, private readonly string $airTableUrl, private readonly bool $hasConcept = false)
+    {
     }
 
     public function getTitle(): string

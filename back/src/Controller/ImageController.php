@@ -17,9 +17,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class ImageController extends AbstractController
 {
-    /**
-     * @Route("/img/list/", name="img_list", methods={"GET"})
-     */
+    #[Route(path: '/img/list/', name: 'img_list', methods: ['GET'])]
     public function list(
         Request $request,
         ImageInPathLister $imageInPathLister
@@ -32,7 +30,7 @@ class ImageController extends AbstractController
 
         try {
             $directory = $imageInPathLister->getPicturesFromDirectory($directoryPath);
-        } catch (DirectoryNotFoundException $e) {
+        } catch (DirectoryNotFoundException) {
             throw $this->createNotFoundException();
         }
 
@@ -44,9 +42,7 @@ class ImageController extends AbstractController
         );
     }
 
-    /**
-     * @Route("/img/random/", name="img_random", methods={"GET"})
-     */
+    #[Route(path: '/img/random/', name: 'img_random', methods: ['GET'])]
     public function random(
         ImageInPathLister $imageInPathLister,
         RandomDirectorySelector $randomDirectorySelector
@@ -55,7 +51,7 @@ class ImageController extends AbstractController
 
         try {
             $directory = $imageInPathLister->getPicturesFromDirectory($directoryPath);
-        } catch (DirectoryNotFoundException $e) {
+        } catch (DirectoryNotFoundException) {
             throw $this->createNotFoundException(sprintf('Unknown directory: %s', $directoryPath));
         }
 
@@ -67,9 +63,7 @@ class ImageController extends AbstractController
         );
     }
 
-    /**
-     * @Route("/img/thumbnail/{pathImage}", name="img_thumbnail", methods={"GET"})
-     */
+    #[Route(path: '/img/thumbnail/{pathImage}', name: 'img_thumbnail', methods: ['GET'])]
     public function thumbnail(
         string $pathImage,
         EncoderDecoder $encoderDecoder,
@@ -80,9 +74,7 @@ class ImageController extends AbstractController
         );
     }
 
-    /**
-     * @Route("/img/normal/{pathImage}", name="img_normal", methods={"GET"})
-     */
+    #[Route(path: '/img/normal/{pathImage}', name: 'img_normal', methods: ['GET'])]
     public function normal(
         string $pathImage,
         EncoderDecoder $encoderDecoder,

@@ -15,13 +15,11 @@ class InrToolBuilder
 
         try {
             $url = $crawler->filter('h3 a')->link()->getUri();
-        } catch (\InvalidArgumentException  $exception) {
+        } catch (\InvalidArgumentException) {
             return null;
         }
 
-        $tags = $crawler->filter('.small2 a')->each(function ($node, $id) {
-            return ltrim($node->text(), '#');
-        });
+        $tags = $crawler->filter('.small2 a')->each(fn ($node, $id) => ltrim((string) $node->text(), '#'));
         sort($tags);
         $text = $crawler->filter('p.small')->text();
 

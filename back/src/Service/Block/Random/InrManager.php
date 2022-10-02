@@ -12,11 +12,8 @@ class InrManager implements BlockManagerInterface
 {
     private const NB_CRITERIA = 4;
 
-    private InrRepository $inrRepository;
-
-    public function __construct(InrRepository $inrRepository)
+    public function __construct(private readonly InrRepository $inrRepository)
     {
-        $this->inrRepository = $inrRepository;
     }
 
     public function getContent(): ?BlockInterface

@@ -7,15 +7,8 @@ use App\Exception\Picture\UnknownThumbnailerException;
 
 class ThumbnailerGetter
 {
-    private ThumbnailerNameGetter $thumbnailerNameGetter;
-    private ThumbnailerGenerator $thumbnailerGenerator;
-
-    public function __construct(
-        ThumbnailerNameGetter $thumbnailerNameGetter,
-        ThumbnailerGenerator $thumbnailerGenerator
-    ) {
-        $this->thumbnailerNameGetter = $thumbnailerNameGetter;
-        $this->thumbnailerGenerator = $thumbnailerGenerator;
+    public function __construct(private readonly ThumbnailerNameGetter $thumbnailerNameGetter, private readonly ThumbnailerGenerator $thumbnailerGenerator)
+    {
     }
 
     public function get(string $sourceImage): string

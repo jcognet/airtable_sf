@@ -9,15 +9,8 @@ use Symfony\Contracts\HttpClient\HttpClientInterface;
 
 class CurrencyRepository
 {
-    private HttpClientInterface $currencyClient;
-    private CurrencyBuilder $currencyBuilder;
-
-    public function __construct(
-        HttpClientInterface $currencyClient,
-        CurrencyBuilder $currencyBuilder
-    ) {
-        $this->currencyClient = $currencyClient;
-        $this->currencyBuilder = $currencyBuilder;
+    public function __construct(private readonly HttpClientInterface $currencyClient, private readonly CurrencyBuilder $currencyBuilder)
+    {
     }
 
     /**
@@ -37,7 +30,9 @@ class CurrencyRepository
                 ]
             )
                 ->getContent(),
-            true
+            true,
+            512,
+            JSON_THROW_ON_ERROR
         );
 
         return array_map(

@@ -8,12 +8,8 @@ use App\ValueObject\BlockInterface;
 
 class ManagerContentFactory
 {
-    private $listManager = [];
-
-    public function __construct(
-        iterable $blockManagers
-    ) {
-        $this->listManager = $blockManagers;
+    public function __construct(private readonly iterable $listManager)
+    {
     }
 
     public function getContent(string $class): ?BlockInterface
@@ -22,7 +18,7 @@ class ManagerContentFactory
          * @var BlockManagerInterface $manager
          */
         foreach ($this->listManager as $manager) {
-            if (get_class($manager) === $class) {
+            if ($manager::class === $class) {
                 return $manager->getContent();
             }
         }
