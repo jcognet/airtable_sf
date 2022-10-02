@@ -10,15 +10,8 @@ use App\ValueObject\Article\Concept;
 
 class ConceptBuilder implements BuilderInterface
 {
-    private LuClient $luClient;
-    private ImageClient $imageClient;
-
-    public function __construct(
-        LuClient $luClient,
-        ImageClient $imageClient
-    ) {
-        $this->luClient = $luClient;
-        $this->imageClient = $imageClient;
+    public function __construct(private readonly LuClient $luClient, private readonly ImageClient $imageClient)
+    {
     }
 
     public function build(array $data): Concept

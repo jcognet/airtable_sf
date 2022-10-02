@@ -5,15 +5,8 @@ namespace App\ValueObject\Picture;
 
 class Picture
 {
-    private string $id;
-    private string $path;
-
-    public function __construct(
-        string $id,
-        string $path
-    ) {
-        $this->id = $id;
-        $this->path = $path;
+    public function __construct(private readonly string $id, private readonly string $path)
+    {
     }
 
     public function getId(): string

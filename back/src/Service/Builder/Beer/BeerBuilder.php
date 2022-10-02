@@ -14,18 +14,8 @@ class BeerBuilder implements BuilderInterface
     private const TABLE_URL = 'tblB5GKFToPMdSrmI';
     private const VIEW_URL = 'viwxrWfKNzqZiKerj';
 
-    private BreweryRepository $brasserieRepository;
-    private BeerTypeRepository $beerTypeRepository;
-    private string $airtableAppBiereId;
-
-    public function __construct(
-        BreweryRepository $brasserieRepository,
-        BeerTypeRepository $beerTypeRepository,
-        string $airtableAppBiereId
-    ) {
-        $this->brasserieRepository = $brasserieRepository;
-        $this->beerTypeRepository = $beerTypeRepository;
-        $this->airtableAppBiereId = $airtableAppBiereId;
+    public function __construct(private readonly BreweryRepository $brasserieRepository, private readonly BeerTypeRepository $beerTypeRepository, private readonly string $airtableAppBiereId)
+    {
     }
 
     public function build(array $data): Beer

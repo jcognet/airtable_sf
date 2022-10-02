@@ -8,23 +8,8 @@ use App\ValueObject\NewsletterBlockManager\BlockType;
 
 class Book implements BlockInterface
 {
-    private string $title;
-    private string $body;
-    private ?string $status;
-    private ?string $auteur;
-    private ?string $url;
-    private ?int $currentPage;
-    private ?int $maxPage;
-
-    public function __construct(string $title, string $body, ?string $status, ?string $auteur, ?string $url, ?int $currentPage, ?int $maxPage)
+    public function __construct(private readonly string $title, private readonly string $body, private readonly ?string $status, private readonly ?string $auteur, private readonly ?string $url, private readonly ?int $currentPage, private readonly ?int $maxPage)
     {
-        $this->title = $title;
-        $this->body = $body;
-        $this->status = $status;
-        $this->auteur = $auteur;
-        $this->url = $url;
-        $this->currentPage = $currentPage;
-        $this->maxPage = $maxPage;
     }
 
     public function getTitle(): string

@@ -12,11 +12,8 @@ class RgsenManager implements BlockManagerInterface
 {
     private const NB_CRITERIA = 3;
 
-    private RgsenRepository $rgsenRepository;
-
-    public function __construct(RgsenRepository $rgsenRepository)
+    public function __construct(private readonly RgsenRepository $rgsenRepository)
     {
-        $this->rgsenRepository = $rgsenRepository;
     }
 
     public function getContent(): ?BlockInterface

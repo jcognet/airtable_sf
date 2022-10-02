@@ -5,27 +5,8 @@ namespace App\ValueObject\Random;
 
 class GoodPractice
 {
-    private string $id;
-    private string $priority;
-    private string $difficulty;
-    private array $indicators;
-    private string $url;
-    private string $title;
-
-    public function __construct(
-        string $id,
-        string $priority,
-        string $difficulty,
-        array $indicators,
-        string $url,
-        string $title
-    ) {
-        $this->id = $id;
-        $this->priority = $priority;
-        $this->difficulty = $difficulty;
-        $this->indicators = $indicators;
-        $this->url = $url;
-        $this->title = $title;
+    public function __construct(private readonly string $id, private readonly string $priority, private readonly string $difficulty, private readonly array $indicators, private readonly string $url, private readonly string $title)
+    {
     }
 
     public function getId(): string

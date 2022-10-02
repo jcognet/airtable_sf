@@ -5,15 +5,8 @@ namespace App\Service\Google;
 
 class ExportAirtableWriter
 {
-    private string $spreadSheetId;
-    private GoogleClient $googleClient;
-
-    public function __construct(
-        string $spreadSheetAirtableId,
-        GoogleClient $googleClient
-    ) {
-        $this->spreadSheetId = $spreadSheetAirtableId;
-        $this->googleClient = $googleClient;
+    public function __construct(private readonly string $spreadSheetAirtableId, private readonly GoogleClient $googleClient)
+    {
     }
 
     public function write(array $data): int
@@ -27,7 +20,7 @@ class ExportAirtableWriter
             'valueInputOption' => 'USER_ENTERED',
         ];
 
-        $result = $sheets->spreadsheets_values->append($this->spreadSheetId, 'A:F', $body, $params);
+        $result = $sheets->spreadsheets_values->append($this->spreadSheetAirtableId, 'A:F', $body, $params);
 
         return $result->getUpdates()->getUpdatedRows();
     }

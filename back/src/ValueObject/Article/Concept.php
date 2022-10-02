@@ -8,18 +8,8 @@ use App\ValueObject\NewsletterBlockManager\BlockType;
 
 class Concept implements BlockInterface
 {
-    private string $name;
-    private string $text;
-    private array $linkedContents;
-
-    public function __construct(
-        string $name,
-        string $text,
-        array $linkedContents
-    ) {
-        $this->name = $name;
-        $this->text = $text;
-        $this->linkedContents = $linkedContents;
+    public function __construct(private readonly string $name, private readonly string $text, private readonly array $linkedContents)
+    {
     }
 
     public function getName(): string

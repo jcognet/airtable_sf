@@ -9,11 +9,8 @@ use App\ValueObject\BlockInterface;
 
 class ImageManager implements BlockManagerInterface
 {
-    private ImageClient $imageClient;
-
-    public function __construct(ImageClient $imageClient)
+    public function __construct(private readonly ImageClient $imageClient)
     {
-        $this->imageClient = $imageClient;
     }
 
     public function getContent(): ?BlockInterface

@@ -11,18 +11,8 @@ class ErrorSender
 {
     private const SUBJECT = 'Fun Effect erreur du %s';
 
-    private MailerInterface $mailer;
-    private string $mailerFrom;
-    private string $mailerTo;
-
-    public function __construct(
-        MailerInterface $mailer,
-        string $mailerFrom,
-        string $mailerTo
-    ) {
-        $this->mailer = $mailer;
-        $this->mailerFrom = $mailerFrom;
-        $this->mailerTo = $mailerTo;
+    public function __construct(private readonly MailerInterface $mailer, private readonly string $mailerFrom, private readonly string $mailerTo)
+    {
     }
 
     public function send(\Throwable $e): void

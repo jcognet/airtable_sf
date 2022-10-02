@@ -7,36 +7,8 @@ use Carbon\Carbon;
 
 class Item
 {
-    private string $id;
-    private Carbon $createdAt;
-    private ?string $label;
-    private ?string $notes;
-    private ?string $etat;
-    private ?Carbon $dueAt;
-    private ?string $category;
-    private ?string $sprint;
-    private bool $isImportant;
-
-    public function __construct(
-        string $id,
-        Carbon $createdAt,
-        ?string $label,
-        ?string $notes,
-        ?string $etat,
-        ?Carbon $dueAt,
-        ?string $category,
-        ?string $sprint,
-        bool $isImportant
-    ) {
-        $this->id = $id;
-        $this->createdAt = $createdAt;
-        $this->label = $label;
-        $this->notes = $notes;
-        $this->etat = $etat;
-        $this->dueAt = $dueAt;
-        $this->category = $category;
-        $this->sprint = $sprint;
-        $this->isImportant = $isImportant;
+    public function __construct(private readonly string $id, private readonly Carbon $createdAt, private readonly ?string $label, private readonly ?string $notes, private readonly ?string $etat, private readonly ?Carbon $dueAt, private readonly ?string $category, private readonly ?string $sprint, private readonly bool $isImportant)
+    {
     }
 
     public function getId(): string

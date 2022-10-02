@@ -11,11 +11,8 @@ class BotDouxManager implements BlockManagerInterface
 {
     private const TWITTER_ACCOUNT = 'JeSuisTonBot';
 
-    private TwitterClient $twitterClient;
-
-    public function __construct(TwitterClient $twitterClient)
+    public function __construct(private readonly TwitterClient $twitterClient)
     {
-        $this->twitterClient = $twitterClient;
     }
 
     public function getContent(): ?BlockInterface

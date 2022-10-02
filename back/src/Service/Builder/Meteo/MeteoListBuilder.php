@@ -10,11 +10,8 @@ class MeteoListBuilder implements BuilderInterface
 {
     private const NB_DAYS = 5;
 
-    private MeteoItemBuilder $meteoItemBuilder;
-
-    public function __construct(MeteoItemBuilder $meteoItemBuilder)
+    public function __construct(private readonly MeteoItemBuilder $meteoItemBuilder)
     {
-        $this->meteoItemBuilder = $meteoItemBuilder;
     }
 
     public function build(array $data)

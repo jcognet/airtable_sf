@@ -11,19 +11,16 @@ class GithubRepository implements LoggerAwareInterface
 {
     use LoggerAwareTrait;
 
-    private HttpClientInterface $githubrepositoryClient;
-
-    public function __construct(HttpClientInterface $githubrepositoryClient)
+    public function __construct(private readonly HttpClientInterface $githubrepositoryClient)
     {
-        $this->githubrepositoryClient = $githubrepositoryClient;
     }
 
     public function getNbIssues(): int
     {
         try {
-            $content = json_decode($this->githubrepositoryClient->request('GET', 'issues')->getContent(), true);
+            $content = json_decode($this->githubrepositoryClient->request('GET', 'issues')->getContent(), true, 512, JSON_THROW_ON_ERROR);
 
-            return count($content);
+            return is_countable($content) ? count($content) : 0;
         } catch (\Exception $e) {
             $this->logger->error(sprintf('Error when querying github: %s', $e->getMessage()), [
                 'exception' => [

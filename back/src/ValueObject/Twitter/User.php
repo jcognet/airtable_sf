@@ -5,15 +5,8 @@ namespace App\ValueObject\Twitter;
 
 class User
 {
-    private string $name;
-    private string $profileImageUrl;
-    private string $username;
-
-    public function __construct(string $name, string $profileImageUrl, string $username)
+    public function __construct(private readonly string $name, private readonly string $profileImageUrl, private readonly string $username)
     {
-        $this->name = $name;
-        $this->profileImageUrl = $profileImageUrl;
-        $this->username = $username;
     }
 
     public function getName(): string

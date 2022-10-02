@@ -8,21 +8,11 @@ use App\ValueObject\NewsletterBlockManager\BlockType;
 
 abstract class AbstractArticleList implements BlockInterface
 {
-    private string $title;
     /**
-     * @var Article[]
+     * @param Article[] $articles
      */
-    private array $articles;
-    private int $nbArticles;
-
-    public function __construct(
-        string $title,
-        array $articles,
-        int $nbArticles
-    ) {
-        $this->title = $title;
-        $this->articles = $articles;
-        $this->nbArticles = $nbArticles;
+    public function __construct(private readonly string $title, private readonly array $articles, private readonly int $nbArticles)
+    {
     }
 
     public function getTitle(): string

@@ -7,18 +7,8 @@ use Carbon\Carbon;
 
 class Currency
 {
-    private string $symbol;
-    private float $value;
-    private Carbon $date;
-
-    public function __construct(
-        string $symbol,
-        float $value,
-        Carbon $date
-    ) {
-        $this->symbol = $symbol;
-        $this->value = $value;
-        $this->date = $date;
+    public function __construct(private readonly string $symbol, private readonly float $value, private readonly Carbon $date)
+    {
     }
 
     public function getSymbol(): string

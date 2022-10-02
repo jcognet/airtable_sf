@@ -7,23 +7,8 @@ use Carbon\Carbon;
 
 class MeteoItem
 {
-    private Carbon $day;
-    private Weather $weather;
-    private float $rain;
-    private int $probaRain;
-    private int $temperatureMin;
-    private int $temperatureMax;
-    private int $sunHours;
-
-    public function __construct(Carbon $day, Weather $weather, float $rain, int $probaRain, int $temperatureMin, int $temperatureMax, int $sunHours)
+    public function __construct(private readonly Carbon $day, private readonly Weather $weather, private readonly float $rain, private readonly int $probaRain, private readonly int $temperatureMin, private readonly int $temperatureMax, private readonly int $sunHours)
     {
-        $this->day = $day;
-        $this->weather = $weather;
-        $this->rain = $rain;
-        $this->probaRain = $probaRain;
-        $this->temperatureMin = $temperatureMin;
-        $this->temperatureMax = $temperatureMax;
-        $this->sunHours = $sunHours;
     }
 
     public function getDay(): Carbon

@@ -9,11 +9,8 @@ use App\ValueObject\BlockInterface;
 
 class ConceptManager implements BlockManagerInterface
 {
-    private ConceptClient $conceptClient;
-
-    public function __construct(ConceptClient $conceptClient)
+    public function __construct(private readonly ConceptClient $conceptClient)
     {
-        $this->conceptClient = $conceptClient;
     }
 
     public function getContent(): ?BlockInterface

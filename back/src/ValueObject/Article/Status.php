@@ -5,13 +5,13 @@ namespace App\ValueObject\Article;
 
 class Status
 {
-    public const IN_PROGRESS = 'in_progress';
-    public const TO_DO = 'to_do';
-    public const SUMMARY_TO_WRITE = 'summary_to_write';
+    final public const IN_PROGRESS = 'in_progress';
+    final public const TO_DO = 'to_do';
+    final public const SUMMARY_TO_WRITE = 'summary_to_write';
 
-    public const AT_IN_PROGRESS = 'In progress';
-    public const AT_TO_DO = 'Todo';
-    public const AT_SUMMARY_TO_WRITE = 'Summary to write';
+    final public const AT_IN_PROGRESS = 'In progress';
+    final public const AT_TO_DO = 'Todo';
+    final public const AT_SUMMARY_TO_WRITE = 'Summary to write';
 
     private const CONVERT_FROM_AIRTABLE = [
         self::AT_IN_PROGRESS => self::IN_PROGRESS,

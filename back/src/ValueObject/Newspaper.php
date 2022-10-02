@@ -7,19 +7,15 @@ use Carbon\Carbon;
 
 class Newspaper
 {
-    private Carbon $createdAt;
+    private readonly Carbon $createdAt;
     /**
      * @var BlockInterface[]
      */
-    private array $blocks;
-    private Carbon $date;
+    private array $blocks = [];
 
-    public function __construct(Carbon $date)
+    public function __construct(private readonly Carbon $date)
     {
         $this->createdAt = Carbon::now();
-        $this->date = $date;
-
-        $this->blocks = [];
     }
 
     public function getCreatedAt(): Carbon

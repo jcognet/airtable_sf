@@ -5,30 +5,8 @@ namespace App\ValueObject\Random;
 
 class Criteria
 {
-    private string $id;
-    private string $url;
-    private string $critere;
-    private string $objectif;
-    private string $miseEnOeuvre;
-    private string $controle;
-    private string $thematique;
-
-    public function __construct(
-        string $id,
-        string $url,
-        string $critere,
-        string $thematique,
-        string $objectif,
-        string $miseEnOeuvre,
-        string $controle
-    ) {
-        $this->id = $id;
-        $this->url = $url;
-        $this->critere = $critere;
-        $this->objectif = $objectif;
-        $this->miseEnOeuvre = $miseEnOeuvre;
-        $this->controle = $controle;
-        $this->thematique = $thematique;
+    public function __construct(private readonly string $id, private readonly string $url, private readonly string $critere, private readonly string $thematique, private readonly string $objectif, private readonly string $miseEnOeuvre, private readonly string $controle)
+    {
     }
 
     public function getId(): string

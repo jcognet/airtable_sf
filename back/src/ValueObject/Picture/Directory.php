@@ -8,15 +8,8 @@ use App\ValueObject\NewsletterBlockManager\BlockType;
 
 class Directory implements BlockInterface
 {
-    private string $path;
-    private array $pictures;
-
-    public function __construct(
-        string $path,
-        array $images
-    ) {
-        $this->path = $path;
-        $this->pictures = $images;
+    public function __construct(private readonly string $path, private readonly array $pictures)
+    {
     }
 
     public function getPath(): string

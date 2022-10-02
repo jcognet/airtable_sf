@@ -9,13 +9,8 @@ use Symfony\Contracts\HttpClient\HttpClientInterface;
 
 class StarRepository implements RandomImageRepositoryInterface
 {
-    private HttpClientInterface $httpClient;
-    private StarBuilder $starBuilder;
-
-    public function __construct(HttpClientInterface $httpClient, StarBuilder $starBuilder)
+    public function __construct(private readonly HttpClientInterface $httpClient, private readonly StarBuilder $starBuilder)
     {
-        $this->httpClient = $httpClient;
-        $this->starBuilder = $starBuilder;
     }
 
     public function fetchRandomData(array $param = []): BlockInterface
@@ -25,7 +20,9 @@ class StarRepository implements RandomImageRepositoryInterface
                 'GET',
                 'https://api.nasa.gov/planetary/apod?api_key=DEMO_KEY',
             )->getContent(),
-            true
+            true,
+            512,
+            JSON_THROW_ON_ERROR
         );
 
         return $this->starBuilder->build($starRaw);

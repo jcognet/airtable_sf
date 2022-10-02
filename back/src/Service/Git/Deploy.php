@@ -21,33 +21,8 @@ class Deploy implements LoggerAwareInterface
     private const SUBJECT = 'Fun Effect %s déploiement du %s';
     private const SUBJECT_FAILURE = 'Caca déploiement du %s';
 
-    private MailerInterface $mailer;
-    private string $mailerFrom;
-    private string $mailerTo;
-    private string $projectDir;
-    private string $githubSecret;
-    private TagHandler $tagHandler;
-    private string $environment;
-    private Environment $twig;
-
-    public function __construct(
-        MailerInterface $mailer,
-        string $mailerFrom,
-        string $mailerTo,
-        string $projectDir,
-        string $githubSecret,
-        TagHandler $tagHandler,
-        string $environment,
-        Environment $twig
-    ) {
-        $this->mailer = $mailer;
-        $this->mailerFrom = $mailerFrom;
-        $this->mailerTo = $mailerTo;
-        $this->projectDir = $projectDir;
-        $this->githubSecret = $githubSecret;
-        $this->tagHandler = $tagHandler;
-        $this->environment = $environment;
-        $this->twig = $twig;
+    public function __construct(private readonly MailerInterface $mailer, private readonly string $mailerFrom, private readonly string $mailerTo, private readonly string $projectDir, private readonly string $githubSecret, private readonly TagHandler $tagHandler, private readonly string $environment, private readonly Environment $twig)
+    {
     }
 
     public function checkAccess(Request $request): bool
@@ -115,20 +90,18 @@ class Deploy implements LoggerAwareInterface
         $phpBinaryFinder = new PhpExecutableFinder();
         $phpBinaryPath = $phpBinaryFinder->find();
 
-        switch ($this->environment) {
-            case 'prod':
-                return [
-                    ['git', 'pull'],
-                    [$phpBinaryPath, sprintf('%s/composer.phar', $this->projectDir), 'install'],
-                    [$phpBinaryPath, sprintf('%s/composer.phar', $this->projectDir), 'dump-autoload', '--no-dev', '--classmap-authoritative'],
-                    [$phpBinaryPath, 'bin/console', 'cache:clear'],
-                ];
-            default:
-                return [
-                    ['composer', 'install'],
-                    [$phpBinaryPath, 'bin/console', 'cache:clear'],
-                ];
-        }
+        return match ($this->environment) {
+            'prod' => [
+                ['git', 'pull'],
+                [$phpBinaryPath, sprintf('%s/composer.phar', $this->projectDir), 'install'],
+                [$phpBinaryPath, sprintf('%s/composer.phar', $this->projectDir), 'dump-autoload', '--no-dev', '--classmap-authoritative'],
+                [$phpBinaryPath, 'bin/console', 'cache:clear'],
+            ],
+            default => [
+                ['composer', 'install'],
+                [$phpBinaryPath, 'bin/console', 'cache:clear'],
+            ],
+        };
     }
 
     /**

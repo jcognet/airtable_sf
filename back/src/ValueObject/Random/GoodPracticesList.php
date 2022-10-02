@@ -8,16 +8,11 @@ use App\ValueObject\NewsletterBlockManager\BlockType;
 
 class GoodPracticesList implements BlockInterface
 {
-    private string $title;
     /**
-     * @var GoodPractice[]
+     * @param GoodPractice[] $goodPractices
      */
-    private array $goodPractices;
-
-    public function __construct(string $title, array $goodPractices)
+    public function __construct(private readonly string $title, private readonly array $goodPractices)
     {
-        $this->title = $title;
-        $this->goodPractices = $goodPractices;
     }
 
     public function getTitle(): string

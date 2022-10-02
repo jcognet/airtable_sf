@@ -51,7 +51,7 @@ class ManagerType
         PictureManager::class,
     ];
 
-    private string $type;
+    private readonly string $type;
 
     public function __construct(string $type)
     {

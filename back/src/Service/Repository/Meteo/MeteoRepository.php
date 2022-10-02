@@ -9,15 +9,8 @@ use Symfony\Contracts\HttpClient\HttpClientInterface;
 
 class MeteoRepository
 {
-    private HttpClientInterface $meteoClient;
-    private MeteoListBuilder $meteoListBuilder;
-
-    public function __construct(
-        HttpClientInterface $meteoClient,
-        MeteoListBuilder $meteoListBuilder
-    ) {
-        $this->meteoClient = $meteoClient;
-        $this->meteoListBuilder = $meteoListBuilder;
+    public function __construct(private readonly HttpClientInterface $meteoClient, private readonly MeteoListBuilder $meteoListBuilder)
+    {
     }
 
     public function fetch(): MeteoList
@@ -28,7 +21,9 @@ class MeteoRepository
                 'forecast/daily',
                 ['query' => ['insee' => 75120]]
             )->getContent(),
-            true
+            true,
+            512,
+            JSON_THROW_ON_ERROR
         );
 
         return $this->meteoListBuilder->build($meteoContent);

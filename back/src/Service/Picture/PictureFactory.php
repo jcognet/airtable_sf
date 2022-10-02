@@ -7,11 +7,8 @@ use App\ValueObject\Picture\Picture;
 
 class PictureFactory
 {
-    private EncoderDecoder $encoderDecoder;
-
-    public function __construct(EncoderDecoder $encoderDecoder)
+    public function __construct(private readonly EncoderDecoder $encoderDecoder)
     {
-        $this->encoderDecoder = $encoderDecoder;
     }
 
     public function get(string $absolutePath): Picture

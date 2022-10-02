@@ -16,24 +16,8 @@ class NewspaperHandlerCommand extends Command
 {
     protected static $defaultName = 'app:newspaper:handler';
 
-    private string $environment;
-    private ErrorSender $errorSender;
-    private Manager $manager;
-    private NewspaperSender $sender;
-    private DataInputOuputHandler $dataInputOuputHandler;
-
-    public function __construct(
-        string $environment,
-        ErrorSender $errorSender,
-        Manager $manager,
-        NewspaperSender $sender,
-        DataInputOuputHandler $dataInputOuputHandler
-    ) {
-        $this->environment = $environment;
-        $this->errorSender = $errorSender;
-        $this->manager = $manager;
-        $this->sender = $sender;
-        $this->dataInputOuputHandler = $dataInputOuputHandler;
+    public function __construct(private readonly string $environment, private readonly ErrorSender $errorSender, private readonly Manager $manager, private readonly NewspaperSender $sender, private readonly DataInputOuputHandler $dataInputOuputHandler)
+    {
     }
 
     protected function configure(): void

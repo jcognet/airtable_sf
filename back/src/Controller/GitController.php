@@ -17,9 +17,7 @@ class GitController extends AbstractController implements LoggerAwareInterface
 {
     use LoggerAwareTrait;
 
-    /**
-     * @Route("/git/deploy", name="git_deploy", methods={"POST"})
-     */
+    #[Route(path: '/git/deploy', name: 'git_deploy', methods: ['POST'])]
     public function deploy(
         Request $request,
         Deploy $deploy
@@ -29,7 +27,7 @@ class GitController extends AbstractController implements LoggerAwareInterface
             throw $this->createNotFoundException('Wrong header');
         }
 
-        $content = json_decode($request->getContent(), true);
+        $content = json_decode($request->getContent(), true, 512, JSON_THROW_ON_ERROR);
 
         if ($content['repository']['name'] !== 'airtable_sf') {
             return new JsonResponse(sprintf('Failure: repository %s not handled.', $content['repository']['name']), Response::HTTP_UNPROCESSABLE_ENTITY);
@@ -44,9 +42,7 @@ class GitController extends AbstractController implements LoggerAwareInterface
         return new JsonResponse('Success', Response::HTTP_OK);
     }
 
-    /**
-     * @Route("/git/show", name="git_show", methods={"GET"})
-     */
+    #[Route(path: '/git/show', name: 'git_show', methods: ['GET'])]
     public function show(
         TagHandler $tagHandler
     ): Response {

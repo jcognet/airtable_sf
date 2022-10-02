@@ -5,13 +5,8 @@ namespace App\ValueObject\Git;
 
 class Command
 {
-    private array $process;
-    private string $return;
-
-    public function __construct(array $process, string $return)
+    public function __construct(private readonly array $process, private readonly string $return)
     {
-        $this->process = $process;
-        $this->return = $return;
     }
 
     public function getProcess(): array

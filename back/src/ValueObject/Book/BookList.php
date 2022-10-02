@@ -8,18 +8,11 @@ use App\ValueObject\NewsletterBlockManager\BlockType;
 
 class BookList implements BlockInterface
 {
-    private ?string $title;
     /**
-     * @var Book[]
+     * @param Book[] $books
      */
-    private array $books;
-
-    public function __construct(
-        string $title,
-        array $books
-    ) {
-        $this->title = $title;
-        $this->books = $books;
+    public function __construct(private readonly ?string $title, private readonly array $books)
+    {
     }
 
     public function getTitle(): string

@@ -8,16 +8,11 @@ use App\ValueObject\NewsletterBlockManager\BlockType;
 
 class CriteriaList implements BlockInterface
 {
-    private string $title;
     /**
-     * @var Criteria[]
+     * @param Criteria[] $criterias
      */
-    private array $criterias;
-
-    public function __construct(string $title, array $criterias)
+    public function __construct(private readonly string $title, private readonly array $criterias)
     {
-        $this->title = $title;
-        $this->criterias = $criterias;
     }
 
     public function getTitle(): string

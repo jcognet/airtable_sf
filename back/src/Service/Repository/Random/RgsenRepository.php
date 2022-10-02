@@ -10,29 +10,24 @@ use Symfony\Contracts\HttpClient\HttpClientInterface;
 class RgsenRepository
 {
     private const NB_TRY_RANDOM = 5;
-
-    private HttpClientInterface $rgsenClient;
     private array $records = [];
     private array $randomKey = [];
-    private CriteriaBuilder $criteriaBuilder;
 
-    public function __construct(
-        HttpClientInterface $ecoresponsablegouvClient,
-        CriteriaBuilder $criteriaBuilder
-    ) {
-        $this->rgsenClient = $ecoresponsablegouvClient;
-        $this->criteriaBuilder = $criteriaBuilder;
+    public function __construct(private readonly HttpClientInterface $ecoresponsablegouvClient, private readonly CriteriaBuilder $criteriaBuilder)
+    {
     }
 
     public function fetchRandomData(): ?Criteria
     {
         if (count($this->records) === 0) {
             $this->records = json_decode(
-                $this->rgsenClient->request(
+                $this->ecoresponsablegouvClient->request(
                     'GET',
                     'publications/referentiel-general-ecoconception/export/referentiel-general-ecoconception-version-beta.json',
                 )->getContent(),
-                true
+                true,
+                512,
+                JSON_THROW_ON_ERROR
             )['criteres'];
         }
 

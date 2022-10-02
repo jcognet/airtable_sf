@@ -10,11 +10,8 @@ use App\ValueObject\ToDo\ItemList;
 
 class ItemBlockManager implements BlockManagerInterface
 {
-    private ItemClient $itemClient;
-
-    public function __construct(ItemClient $itemClient)
+    public function __construct(private readonly ItemClient $itemClient)
     {
-        $this->itemClient = $itemClient;
     }
 
     public function getContent(): ?BlockInterface

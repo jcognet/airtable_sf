@@ -12,7 +12,7 @@ class RandomPicBlockManager implements BlockManagerInterface
     /**
      * @var RandomImageRepositoryInterface[]
      */
-    private array $repositories;
+    private readonly array $repositories;
 
     public function __construct(
         iterable $repositories
