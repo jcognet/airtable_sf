@@ -15,11 +15,8 @@ class CleanDataCommand extends Command
     private Cleaner $cleaner;
 
     public function __construct(
-        string $name = null,
         Cleaner $cleaner
     ) {
-        parent::__construct($name);
-
         $this->cleaner = $cleaner;
     }
 

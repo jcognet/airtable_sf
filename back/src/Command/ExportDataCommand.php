@@ -14,10 +14,8 @@ class ExportDataCommand extends Command
     protected static $defaultName = 'app:export:spreadsheet';
     private ExportToSpreadsheet $exportToSpreadsheet;
 
-    public function __construct(string $name = null, ExportToSpreadsheet $exportToSpreadsheet)
+    public function __construct(ExportToSpreadsheet $exportToSpreadsheet)
     {
-        parent::__construct($name);
-
         $this->exportToSpreadsheet = $exportToSpreadsheet;
     }
 
