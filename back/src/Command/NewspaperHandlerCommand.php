@@ -23,15 +23,12 @@ class NewspaperHandlerCommand extends Command
     private DataInputOuputHandler $dataInputOuputHandler;
 
     public function __construct(
-        string $name = null,
         string $environment,
         ErrorSender $errorSender,
         Manager $manager,
         NewspaperSender $sender,
         DataInputOuputHandler $dataInputOuputHandler
     ) {
-        parent::__construct($name);
-
         $this->environment = $environment;
         $this->errorSender = $errorSender;
         $this->manager = $manager;
