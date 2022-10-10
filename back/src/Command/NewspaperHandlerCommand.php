@@ -8,16 +8,17 @@ use App\Service\Mailer\ErrorSender;
 use App\Service\Mailer\NewspaperSender;
 use App\Service\NewsletterManager\Manager;
 use Carbon\Carbon;
+use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
+#[AsCommand(name: 'app:newspaper:handler')]
 class NewspaperHandlerCommand extends Command
 {
-    protected static $defaultName = 'app:newspaper:handler';
-
     public function __construct(private readonly string $environment, private readonly ErrorSender $errorSender, private readonly Manager $manager, private readonly NewspaperSender $sender, private readonly DataInputOuputHandler $dataInputOuputHandler)
     {
+        parent::__construct();
     }
 
     protected function configure(): void

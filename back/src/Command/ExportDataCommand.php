@@ -5,16 +5,17 @@ namespace App\Command;
 
 use App\Service\Export\ExportToSpreadsheet;
 use Carbon\Carbon;
+use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
+#[AsCommand(name: 'app:export:spreadsheet')]
 class ExportDataCommand extends Command
 {
-    protected static $defaultName = 'app:export:spreadsheet';
-
     public function __construct(private readonly ExportToSpreadsheet $exportToSpreadsheet)
     {
+        parent::__construct();
     }
 
     protected function configure(): void

@@ -19,15 +19,15 @@
         "symfony/dotenv": "5.4.*",
         "symfony/filesystem": "5.4.*",
         "symfony/flex": "^1.17|^2",
-        "symfony/framework-bundle": "5.4.*",
-        "symfony/google-mailer": "5.4.*",
-        "symfony/http-client": "5.4.*",
-        "symfony/mailer": "5.4.*",
-        "symfony/process": "5.4.*",
-        "symfony/runtime": "5.4.*",
-        "symfony/security-bundle": "5.4.*",
-        "symfony/twig-bundle": "5.4.*",
-        "symfony/yaml": "5.4.*",
+        "symfony/framework-bundle": "6.1.*",
+        "symfony/google-mailer": "6.1.*",
+        "symfony/http-client": "6.1.*",
+        "symfony/mailer": "6.1.*",
+        "symfony/process": "6.1.*",
+        "symfony/runtime": "6.1.*",
+        "symfony/security-bundle": "6.1.*",
+        "symfony/twig-bundle": "6.1.*",
+        "symfony/yaml": "6.1.*",
         "twig/extra-bundle": "^3.3",
         "twig/string-extra": "^3.3"
     },
@@ -87,7 +87,7 @@
     "extra": {
         "symfony": {
             "allow-contrib": false,
-            "require": "5.4.*"
+            "require": "6.1.*"
         },
         "google/apiclient-services": [
             "Sheets"
