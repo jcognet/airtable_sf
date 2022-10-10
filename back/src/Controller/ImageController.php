@@ -70,7 +70,8 @@ class ImageController extends AbstractController
         ThumbnailerGetter $thumbnailerGetter
     ): Response {
         return new BinaryFileResponse(
-            $thumbnailerGetter->get($encoderDecoder->decode($pathImage))
+            $thumbnailerGetter->get($encoderDecoder->decode($pathImage)),
+            headers: ['Content-Type' => 'image/jpeg']
         );
     }
 
@@ -81,7 +82,8 @@ class ImageController extends AbstractController
         PictureFactory $imageFactory
     ): Response {
         return new BinaryFileResponse(
-            $imageFactory->get($encoderDecoder->decode($pathImage))->getPath()
+            $imageFactory->get($encoderDecoder->decode($pathImage))->getPath(),
+            headers: ['Content-Type' => 'image/jpeg']
         );
     }
 }
