@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 function execSymfonyCommand($command): void
 {
-    $phpPath = '/usr/local/php7.4/bin/php';
+    $phpPath = '/usr/local/php8.1/bin/php';
     $cmd = sprintf('%s %s/console %s', $phpPath, __DIR__, $command);
     $now = new \DateTime();
     echo $cmd . "\n";
