@@ -49,6 +49,12 @@ class ImageController extends AbstractController
     ): Response {
         $directoryPath = $randomDirectorySelector->getRandomDirectory();
 
+        if ($directoryPath === null) {
+            return $this->render(
+                'img/list.html.twig'
+            );
+        }
+
         try {
             $directory = $imageInPathLister->getPicturesFromDirectory($directoryPath);
         } catch (DirectoryNotFoundException) {
