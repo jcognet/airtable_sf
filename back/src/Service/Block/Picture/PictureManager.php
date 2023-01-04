@@ -16,8 +16,14 @@ class PictureManager implements BlockManagerInterface
 
     public function getContent(): ?BlockInterface
     {
+        $dir = $this->randomDirectorySelector->getRandomDirectory();
+
+        if ($dir === null) {
+            return null;
+        }
+
         return $this->imageInPathLister->getPicturesFromDirectory(
-            $this->randomDirectorySelector->getRandomDirectory()
+            $dir
         );
     }
 }

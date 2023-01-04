@@ -23,7 +23,7 @@ class RgsenRepository
             $this->records = json_decode(
                 $this->ecoresponsablegouvClient->request(
                     'GET',
-                    'publications/referentiel-general-ecoconception/export/referentiel-general-ecoconception-version-beta.json',
+                    'publications/referentiel-general-ecoconception/export/referentiel-general-ecoconception-version-v1.json',
                 )->getContent(),
                 true,
                 512,

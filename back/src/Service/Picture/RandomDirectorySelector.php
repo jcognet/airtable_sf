@@ -11,7 +11,7 @@ class RandomDirectorySelector
     {
     }
 
-    public function getRandomDirectory(): string
+    public function getRandomDirectory(): ?string
     {
         $finder = new Finder();
         $directoryFinder = $finder
@@ -26,6 +26,10 @@ class RandomDirectorySelector
             if (substr_count((string) $directory->getRelativePathName(), \DIRECTORY_SEPARATOR) >= 1) {
                 $directories[] = $directory;
             }
+        }
+
+        if (count($directories) === 0) {
+            return null;
         }
 
         return $directories[array_rand($directories)]->getRelativePathName();
