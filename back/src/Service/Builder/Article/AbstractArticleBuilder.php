@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace App\Service\Builder\Article;
 
+use App\Service\AirTable\UrlBuilder;
 use App\Service\Builder\BuilderInterface;
 use App\Service\Repository\Article\SujetRepository;
 use App\ValueObject\Article\Article;
@@ -14,8 +15,11 @@ abstract class AbstractArticleBuilder implements BuilderInterface
 {
     private const TABLE_URL = 'tblPLpYPyAOT2q13Q';
 
-    public function __construct(private readonly SujetRepository $sujetRepository, private readonly string $airtableAppArticleId)
-    {
+    public function __construct(
+        private readonly SujetRepository $sujetRepository,
+        private readonly string $airtableAppArticleId,
+        private readonly UrlBuilder $urlBuilder
+    ) {
     }
 
     public function build(array $data): Article
@@ -41,7 +45,7 @@ abstract class AbstractArticleBuilder implements BuilderInterface
             $status,
             $data['fields']['URL'] ?? '',
             isset($data['fields']['Type']) ? new ArticleType($data['fields']['Type']) : null,
-            sprintf('https://airtable.com/%s/%s/%s/%s', $this->airtableAppArticleId, self::TABLE_URL, $this->getViewUrl(), $data['id']),
+            $this->urlBuilder->build($this->airtableAppArticleId, self::TABLE_URL, $this->getViewUrl(), $data['id']),
             $data['fields']['Conceptualisé'] ?? false,
         );
     }

@@ -52,7 +52,7 @@
                                                                     style="font-size:12px;color:#{{ main_color }};">►</span>
                                                             {% endif %}
                                                         </td>
-                                                        <td>
+                                                        <td width="595">
                                                             {{ render_article_type(article) }}
                                                             <a href="{{ article.url }}" target="_blank" rel="noopener"
                                                                style="text-decoration: none; color: #{{ main_color }};">
@@ -60,6 +60,12 @@
                                                             </a>
                                                         </td>
                                                         <td>{{ article.addedAt|date('d/m/Y') }}</td>
+                                                        <td>
+                                                            <a href="{{ article.airTableUrl }}"
+                                                               style="color:#{{ main_color }};"
+                                                               target="_blank">>>
+                                                            </a></div>
+                                                        </td>
                                                     </tr>
                                                 {% endfor %}
                                             </table>

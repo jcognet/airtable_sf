@@ -8,8 +8,16 @@ use App\ValueObject\NewsletterBlockManager\BlockType;
 
 class Book implements BlockInterface
 {
-    public function __construct(private readonly string $title, private readonly string $body, private readonly ?string $status, private readonly ?string $auteur, private readonly ?string $url, private readonly ?int $currentPage, private readonly ?int $maxPage)
-    {
+    public function __construct(
+        private readonly string $title,
+        private readonly string $body,
+        private readonly ?string $status,
+        private readonly ?string $auteur,
+        private readonly ?string $url,
+        private readonly ?int $currentPage,
+        private readonly ?int $maxPage,
+        private readonly string $urlAirtable
+    ) {
     }
 
     public function getTitle(): string
@@ -55,6 +63,11 @@ class Book implements BlockInterface
     public function getMaxPage(): ?int
     {
         return $this->maxPage;
+    }
+
+    public function getUrlAirtable(): string
+    {
+        return $this->urlAirtable;
     }
 
     public function percentPageRead(): ?float

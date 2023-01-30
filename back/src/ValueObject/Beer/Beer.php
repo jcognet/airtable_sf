@@ -10,7 +10,18 @@ use Carbon\Carbon;
 
 class Beer implements BlockInterface
 {
-    public function __construct(private readonly ?string $title, private readonly ?string $avis, private readonly ?Brewery $brasserie, private readonly ?int $note, private readonly ?int $ibu, private readonly ?string $photo, private readonly Carbon $dateTest, private readonly ?BeerType $beerType, private readonly ?float $alcolholDegree, private readonly string $url)
+    public function __construct(
+        private readonly ?string $title,
+        private readonly ?string $avis,
+        private readonly ?Brewery $brasserie,
+        private readonly ?int $note,
+        private readonly ?int $ibu,
+        private readonly ?string $photo,
+        private readonly Carbon $dateTest,
+        private readonly ?BeerType $beerType,
+        private readonly ?float $alcolholDegree,
+        private readonly string $url
+    )
     {
     }
 
