@@ -12,7 +12,17 @@ class Article implements BlockInterface
     /**
      * @param Sujet[] $sujets
      */
-    public function __construct(private readonly string $title, private readonly string $body, private readonly Carbon $addedAt, private readonly array $sujets, private readonly ?Status $status, private readonly ?string $url, private readonly ?ArticleType $articleType, private readonly string $airTableUrl, private readonly bool $hasConcept = false)
+    public function __construct(
+        private readonly string $title,
+        private readonly string $body,
+        private readonly Carbon $addedAt,
+        private readonly array $sujets,
+        private readonly ?Status $status,
+        private readonly ?string $url,
+        private readonly ?ArticleType $articleType,
+        private readonly string $airTableUrl,
+        private readonly bool $hasConcept = false
+    )
     {
     }
 
