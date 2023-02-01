@@ -22,8 +22,7 @@ class Article implements BlockInterface
         private readonly ?ArticleType $articleType,
         private readonly string $airTableUrl,
         private readonly bool $hasConcept = false
-    )
-    {
+    ) {
     }
 
     public function getTitle(): string

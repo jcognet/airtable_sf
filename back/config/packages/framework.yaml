@@ -45,6 +45,8 @@ framework:
         base_uri: http://api.exchangeratesapi.io/v1/
         query:
           access_key: '%env(EXCHANGE_RATES_API_IO_KEY)%'
+      lpo.client:
+        base_uri: https://www.oiseauxdesjardins.fr/index.php
 
 when@test:
   framework:

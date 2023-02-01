@@ -21,9 +21,8 @@ class GitController extends AbstractController implements LoggerAwareInterface
     #[Route(path: '/git/deploy', name: 'git_deploy', methods: ['POST'])]
     public function deploy(
         Request $request,
-        Deploy  $deploy
-    ): Response
-    {
+        Deploy $deploy
+    ): Response {
         if (!$deploy->checkAccess($request)) {
             $this->logger->error('Wrong header');
             throw $this->createNotFoundException('Wrong header');
@@ -47,14 +46,13 @@ class GitController extends AbstractController implements LoggerAwareInterface
     #[Route(path: '/git/show', name: 'git_show', methods: ['GET'])]
     public function show(
         TagHandler $tagHandler
-    ): Response
-    {
+    ): Response {
         return new JsonResponse(
             [
                 ...$tagHandler->get(),
-                'Symfony_version' => Kernel::VERSION
-            ]
-            ,
-            Response::HTTP_OK);
+                'Symfony_version' => Kernel::VERSION,
+            ],
+            Response::HTTP_OK
+        );
     }
 }
