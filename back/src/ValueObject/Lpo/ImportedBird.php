@@ -8,8 +8,11 @@ class ImportedBird
     public function __construct(
         private readonly int $lpoId,
         private readonly string $name,
+        private ?string $lpoUrl = null,
+        private ?string $fullName = null,
         private ?string $pdfUrl = null,
-        private ?string $savedPath = null
+        private ?string $savedPdfPath = null,
+        private ?string $savedImgPath = null,
     ) {
     }
 
@@ -33,13 +36,43 @@ class ImportedBird
         $this->pdfUrl = $pdfUrl;
     }
 
-    public function getSavedPath(): ?string
+    public function getSavedPdfPath(): ?string
     {
-        return $this->savedPath;
+        return $this->savedPdfPath;
     }
 
-    public function setSavedPath(?string $savedPath): void
+    public function setSavedPdfPath(?string $savedPdfPath): void
     {
-        $this->savedPath = $savedPath;
+        $this->savedPdfPath = $savedPdfPath;
+    }
+
+    public function getSavedImgPath(): ?string
+    {
+        return $this->savedImgPath;
+    }
+
+    public function setSavedImgPath(?string $savedImgPath): void
+    {
+        $this->savedImgPath = $savedImgPath;
+    }
+
+    public function getLpoUrl(): ?string
+    {
+        return $this->lpoUrl;
+    }
+
+    public function setLpoUrl(?string $lpoUrl): void
+    {
+        $this->lpoUrl = $lpoUrl;
+    }
+
+    public function getFullName(): ?string
+    {
+        return $this->fullName;
+    }
+
+    public function setFullName(?string $fullName): void
+    {
+        $this->fullName = $fullName;
     }
 }

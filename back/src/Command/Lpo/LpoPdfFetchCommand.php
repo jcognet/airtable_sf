@@ -13,8 +13,9 @@ use Symfony\Component\Console\Output\OutputInterface;
 #[AsCommand(name: 'app:lpo:pdf:fetch')]
 class LpoPdfFetchCommand extends Command
 {
-    public function __construct(private readonly BirdPdfImporter $birdPdfImporter)
-    {
+    public function __construct(
+        private readonly BirdPdfImporter $birdPdfImporter
+    ) {
         parent::__construct();
     }
 
@@ -29,7 +30,6 @@ class LpoPdfFetchCommand extends Command
         $output->writeln(sprintf('Start of command %s at %s', self::$defaultName, $start->format('d/m/Y H:i')));
 
         $birds = $this->birdPdfImporter->import();
-
         $output->writeln(sprintf('Number of found birds: %d', count($birds)));
 
         $end = Carbon::now();
