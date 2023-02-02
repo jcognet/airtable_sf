@@ -31,6 +31,7 @@ services:
       $spreadSheetAirtableId: '%env(GOOGLE_SPREADSHEET_EXPORT_ID)%'
       $progressContentUrl: '%env(GOOGLE_PROGRESS_CONTENT_URL)%'
       $doneContentUrl: '%env(GOOGLE_DONE_CONTENT_URL)%'
+      $pdfApiKey: '%env(PDF_API_KEY)%'
       $environment: '%kernel.environment%'
       $thumbnailDefaults: '%thumbnail_defaults%'
 
