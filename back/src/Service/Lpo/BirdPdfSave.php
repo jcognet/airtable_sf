@@ -19,7 +19,7 @@ class BirdPdfSave
 
     public function save(ImportedBird $bird): void
     {
-        $url = $this->getPdfUrl($bird);
+        $url = $this->getDataFromLpoSite($bird);
 
         if ($url !== null) {
             $bird->setPdfUrl($url);
@@ -27,7 +27,7 @@ class BirdPdfSave
         }
     }
 
-    private function getPdfUrl(ImportedBird $bird): ?string
+    private function getDataFromLpoSite(ImportedBird $bird): ?string
     {
         $request = $this->lpoClient->request('GET', sprintf('?m_id=15&frmSpecies=%d', $bird->getLpoId()));
         $content = $request->getContent();

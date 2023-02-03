@@ -22,7 +22,7 @@ class PdfToJpegConverter
   "output": {
     "type": "image",
     "format": "jpg",
-    "dpi": 500
+    "dpi": 150
   }
 }';
         curl_setopt_array($curl, [

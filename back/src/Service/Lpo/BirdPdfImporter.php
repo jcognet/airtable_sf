@@ -13,7 +13,7 @@ class BirdPdfImporter
     public function __construct(
         private readonly BirdListFetcher $birdListFetcher,
         private readonly BirdPdfSave $birdPdfSave,
-        private readonly string $birdPath,
+        private readonly Config $config,
         private readonly SerializerInterface $serializer
     ) {
     }
@@ -30,11 +30,11 @@ class BirdPdfImporter
             $this->birdPdfSave->save($bird);
 
             if ($bird->getPdfUrl()) {
+                $this->createJpeg();
                 $listBirdWithPdf[] = $bird;
             }
         }
 
-        $this->createJpeg();
         $this->save($listBirdWithPdf);
 
         return $listBirdWithPdf;
@@ -42,6 +42,7 @@ class BirdPdfImporter
 
     private function createJpeg(): void
     {
+        // $bird->setSavedImgPath(str_replace('pdf', 'jpg', $bird->getSavedPdfPath()));
         // $this->pdfToJpegConverter->convert($bird);
     }
 
@@ -50,7 +51,7 @@ class BirdPdfImporter
         $fs = new Filesystem();
 
         $fs->dumpFile(
-            sprintf('%s%s', $this->birdPath, 'birds.json'),
+            $this->config->getSavedBirdFileName(),
             $this->serializer->serialize(
                 [
                     'data' => [

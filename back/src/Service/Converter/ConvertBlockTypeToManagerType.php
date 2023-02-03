@@ -16,6 +16,7 @@ use App\Service\Block\Book\BookListBlockManager;
 use App\Service\Block\Google\CurrenciesManager;
 use App\Service\Block\Google\DoneContentManager;
 use App\Service\Block\Google\InProgressContentManager;
+use App\Service\Block\Lpo\BirdManager;
 use App\Service\Block\Meteo\MeteoBlockManager;
 use App\Service\Block\Picture\PictureManager;
 use App\Service\Block\Random\GoodPracticeOrganizationManager;
@@ -51,6 +52,7 @@ class ConvertBlockTypeToManagerType
         ConceptManager::class => BlockType::CONCEPT_BLOCK,
         CurrenciesManager::class => BlockType::IMAGE_GOOGLE_EXPORT_CURRENCIES_BLOCK,
         PictureManager::class => BlockType::IMAGE_LIST_PICTURES,
+        BirdManager::class => BlockType::BIRD,
     ];
 
     public function convert(BlockType $blockType): ManagerType

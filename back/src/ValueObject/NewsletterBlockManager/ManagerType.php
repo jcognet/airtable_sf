@@ -16,6 +16,7 @@ use App\Service\Block\Book\BookListBlockManager;
 use App\Service\Block\Google\CurrenciesManager;
 use App\Service\Block\Google\DoneContentManager;
 use App\Service\Block\Google\InProgressContentManager;
+use App\Service\Block\Lpo\BirdManager;
 use App\Service\Block\Meteo\MeteoBlockManager;
 use App\Service\Block\Picture\PictureManager;
 use App\Service\Block\Random\GoodPracticeOrganizationManager;
@@ -49,6 +50,7 @@ class ManagerType
         ConceptManager::class,
         CurrenciesManager::class,
         PictureManager::class,
+        BirdManager::class,
     ];
 
     private readonly string $type;

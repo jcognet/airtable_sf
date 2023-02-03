@@ -1,0 +1,32 @@
+{# @var block \App\ValueObject\Lpo\BlockBird #}
+<table border="0" cellpadding="0" cellspacing="0" class="image_block" role="presentation"
+       style="margin-bottom:20px;mso-table-lspace: 0pt; mso-table-rspace: 0pt;" width="100%">
+    <tbody>
+    <tr>
+        <td style="width:100%;padding-right:0px;padding-left:0px;">
+            <table align="center" border="0" cellpadding="0" cellspacing="0" class="row-content stack"
+                   role="presentation"
+                   style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; background-color: #ffffff; color: #000000; width: 750px;text-align: center;vertical-align: middle;"
+                   width="750">
+                <tr>
+                    <td>
+                        <a target="_blank" href="{{ block.content.pdfUrl }}">
+                            <img src="{{ url_front }}{{ path('img_thumbnail', {'pathImage': block.image.id}) }}" alt="{{ block.content.fullName }}"/>
+                        </a>
+                    </td>
+                </tr>
+                <tr style="background-color: white">
+                    <td>
+                        <strong>{{ block.content.fullName }}</strong>
+                        <div style="font-size: 14px">
+                            (Source : <a href="{{ block.content.lpoUrl }}"
+                                         target="_blank">{{ block.content.lpoUrl }}</a>)
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
