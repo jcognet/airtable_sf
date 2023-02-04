@@ -28,6 +28,7 @@ class BlockType
     final public const IMAGE_GOOGLE_EXPORT_CURRENCIES_BLOCK = 'image_google_currencies';
     final public const IMAGE_LIST_PICTURES = 'image_list_pictures';
     final public const BIRD = 'bird';
+    final public const LIST_BIRD = 'list_bird';
 
     private const LIST_TYPE = [
         self::IMAGE_BLOCK,
@@ -53,6 +54,7 @@ class BlockType
         self::IMAGE_LIST_URL_BLOCK,
         self::IMAGE_LIST_PICTURES,
         self::BIRD,
+        self::LIST_BIRD,
     ];
 
     private readonly string $type;

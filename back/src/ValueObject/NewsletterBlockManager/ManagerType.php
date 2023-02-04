@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace App\ValueObject\NewsletterBlockManager;
 
+use App\Exception\NewsletterBlockManager\UnknownManagerTypeException;
 use App\Service\Block\Article\ArticleListALireBlockManager;
 use App\Service\Block\Article\ArticleReadListBlockManager;
 use App\Service\Block\Article\ConceptManager;
@@ -17,6 +18,7 @@ use App\Service\Block\Google\CurrenciesManager;
 use App\Service\Block\Google\DoneContentManager;
 use App\Service\Block\Google\InProgressContentManager;
 use App\Service\Block\Lpo\BirdManager;
+use App\Service\Block\Lpo\ListBirdManager;
 use App\Service\Block\Meteo\MeteoBlockManager;
 use App\Service\Block\Picture\PictureManager;
 use App\Service\Block\Random\GoodPracticeOrganizationManager;
@@ -43,7 +45,7 @@ class ManagerType
         InProgressContentManager::class,
         RgsenManager::class,
         DoneContentManager::class,
-        #InrManager::class,
+        // InrManager::class,
         ArticleReadListBlockManager::class,
         GoodPracticeOrganizationManager::class,
         InterestingTopicListBlockManager::class,
@@ -51,6 +53,7 @@ class ManagerType
         CurrenciesManager::class,
         PictureManager::class,
         BirdManager::class,
+        ListBirdManager::class,
     ];
 
     private readonly string $type;
@@ -58,7 +61,7 @@ class ManagerType
     public function __construct(string $type)
     {
         if (!in_array($type, self::LIST_TYPE, true)) {
-            throw new \UnexpectedValueException(sprintf('Unknown manager Type: %s. (Allowed ones are: %s)', $type, implode(',', self::LIST_TYPE)));
+            throw new UnknownManagerTypeException($type, self::LIST_TYPE);
         }
 
         $this->type = $type;
