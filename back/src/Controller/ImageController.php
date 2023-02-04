@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
+use App\Enum\Picture\Format;
 use App\Service\Picture\EncoderDecoder;
 use App\Service\Picture\ImageInPathLister;
 use App\Service\Picture\PictureFactory;
@@ -73,10 +74,16 @@ class ImageController extends AbstractController
     public function thumbnail(
         string $pathImage,
         EncoderDecoder $encoderDecoder,
-        ThumbnailerGetter $thumbnailerGetter
+        ThumbnailerGetter $thumbnailerGetter,
+        Request $request
     ): Response {
+        $format = Format::make($request->query->get('format', null));
+
         return new BinaryFileResponse(
-            $thumbnailerGetter->get($encoderDecoder->decode($pathImage)),
+            $thumbnailerGetter->get(
+                $encoderDecoder->decode($pathImage),
+                $format
+            ),
             headers: ['Content-Type' => 'image/jpeg']
         );
     }

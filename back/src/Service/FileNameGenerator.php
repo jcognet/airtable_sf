@@ -8,8 +8,7 @@ class FileNameGenerator
     public function generate(
         string $name,
         string $extension
-    ): string
-    {
+    ): string {
         return sprintf(
             '%s.%s',
             preg_replace('/[^a-z0-9]+/', '-', strtolower(trim($name))),

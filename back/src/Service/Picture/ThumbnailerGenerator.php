@@ -3,17 +3,23 @@ declare(strict_types=1);
 
 namespace App\Service\Picture;
 
+use App\Enum\Picture\Format;
 use App\Exception\Picture\UnknownTypeFileException;
 use Symfony\Component\Filesystem\Filesystem;
 
 class ThumbnailerGenerator
 {
-    public function __construct(private readonly ThumbnailerNameGetter $thumbnailerNameGetter, private readonly array $thumbnailDefaults)
+    public function __construct(
+        private readonly ThumbnailerNameGetter $thumbnailerNameGetter,
+        private readonly array $thumbnailList
+    )
     {
     }
 
-    public function generate(string $sourceImage): void
-    {
+    public function generate(
+        string $sourceImage,
+        Format $format
+    ): void {
         [$sourceWidth, $sourceHeight, $sourceType] = getimagesize($sourceImage);
 
         $sourceGdImage = match ($sourceType) {
@@ -25,18 +31,20 @@ class ThumbnailerGenerator
             throw new UnknownTypeFileException($sourceType, ['jpg']);
         }
 
-        $sourceAspectRatio = ($sourceWidth / $sourceHeight);
-        $thumbnailAspectRatio = ($this->thumbnailDefaults['width'] / $this->thumbnailDefaults['height']);
+        $thumbnailConfiguration = $this->thumbnailList[$format->value];
 
-        if ($sourceWidth <= $this->thumbnailDefaults['width'] && $sourceHeight <= $this->thumbnailDefaults['height']) {
+        $sourceAspectRatio = ($sourceWidth / $sourceHeight);
+        $thumbnailAspectRatio = ($thumbnailConfiguration['width'] / $thumbnailConfiguration['height']);
+
+        if ($sourceWidth <= $thumbnailConfiguration['width'] && $sourceHeight <= $thumbnailConfiguration['height']) {
             $thumbnailWidth = $sourceWidth;
             $thumbnailHeight = $sourceHeight;
         } elseif ($thumbnailAspectRatio > $sourceAspectRatio) {
-            $thumbnailWidth = (int) ($this->thumbnailDefaults['height'] * $sourceAspectRatio);
-            $thumbnailHeight = $this->thumbnailDefaults['height'];
+            $thumbnailWidth = (int) ($thumbnailConfiguration['height'] * $sourceAspectRatio);
+            $thumbnailHeight = $thumbnailConfiguration['height'];
         } else {
-            $thumbnailWidth = $this->thumbnailDefaults['width'];
-            $thumbnailHeight = (int) ($this->thumbnailDefaults['width'] / $sourceAspectRatio);
+            $thumbnailWidth = $thumbnailConfiguration['width'];
+            $thumbnailHeight = (int) ($thumbnailConfiguration['width'] / $sourceAspectRatio);
         }
 
         $thumbnailGdImage = imagecreatetruecolor($thumbnailWidth, $thumbnailHeight);
@@ -60,7 +68,7 @@ class ThumbnailerGenerator
         );
 
         $fs = new Filesystem();
-        $thumbnailName = $this->thumbnailerNameGetter->get($sourceImage);
+        $thumbnailName = $this->thumbnailerNameGetter->get($sourceImage, $format);
         $fs->mkdir($this->thumbnailerNameGetter->getDirectory($sourceImage));
 
         imagejpeg($thumbnailGdImage, $thumbnailName, 90);
