@@ -12,8 +12,7 @@ class ThumbnailerGenerator
     public function __construct(
         private readonly ThumbnailerNameGetter $thumbnailerNameGetter,
         private readonly array $thumbnailList
-    )
-    {
+    ) {
     }
 
     public function generate(

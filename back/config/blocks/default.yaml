@@ -14,5 +14,6 @@ blocks:
   - list_article_read
   - list_interesting_topic
   - rgsen
+  - list_bird
   - list_inr_tool
   - list_beer
