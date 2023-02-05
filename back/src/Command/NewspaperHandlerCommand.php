@@ -16,8 +16,13 @@ use Symfony\Component\Console\Output\OutputInterface;
 #[AsCommand(name: 'app:newspaper:handler')]
 class NewspaperHandlerCommand extends Command
 {
-    public function __construct(private readonly string $environment, private readonly ErrorSender $errorSender, private readonly Manager $manager, private readonly NewspaperSender $sender, private readonly DataInputOuputHandler $dataInputOuputHandler)
-    {
+    public function __construct(
+        private readonly string $environment,
+        private readonly ErrorSender $errorSender,
+        private readonly Manager $manager,
+        private readonly NewspaperSender $sender,
+        private readonly DataInputOuputHandler $dataInputOuputHandler
+    ) {
         parent::__construct();
     }
 

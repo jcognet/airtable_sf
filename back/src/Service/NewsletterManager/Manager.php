@@ -9,7 +9,10 @@ use Carbon\Carbon;
 
 class Manager
 {
-    public function __construct(private readonly DataInputOuputHandler $dataInputOuputHandler, private readonly Creater $creater)
+    public function __construct(
+        private readonly DataInputOuputHandler $dataInputOuputHandler,
+        private readonly Creater $creater
+    )
     {
     }
 
