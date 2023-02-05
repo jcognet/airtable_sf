@@ -1,6 +1,7 @@
 {% set theme = get_random_theme() %}
 {% set main_color = theme.mainColor %}
 {% set secondary_color = theme.secondaryColor %}
+
 <!DOCTYPE html>
 
 <html lang="en" xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:v="urn:schemas-microsoft-com:vml">
@@ -95,7 +96,7 @@
                                         <tr>
                                             <td style="width:100%;padding-right:0px;padding-left:0px;">
                                                 <div align="center" style="line-height:10px"><a
-                                                        href="http://www.fun-effect.com/" style="outline:none"
+                                                        href="{{ email_connection()|raw}}" style="outline:none"
                                                         tabindex="-1" target="_blank">
                                                         Fun Effect</a>
                                                 </div>

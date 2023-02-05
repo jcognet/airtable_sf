@@ -20,7 +20,14 @@ class Creater implements LoggerAwareInterface
     private Newspaper $newspaper;
     private $html;
 
-    public function __construct(private readonly NewspaperSender $sender, private readonly ConfigSelector $configSelector, private readonly ManagerContentFactory $managerContentFactory, private readonly string $environment, private readonly ConvertBlockTypeToManagerType $convertBlockTypeToManagerType, private readonly Environment $twig)
+    public function __construct(
+        private readonly NewspaperSender $sender,
+        private readonly ConfigSelector $configSelector,
+        private readonly ManagerContentFactory $managerContentFactory,
+        private readonly string $environment,
+        private readonly ConvertBlockTypeToManagerType $convertBlockTypeToManagerType,
+        private readonly Environment $twig
+    )
     {
     }
 
