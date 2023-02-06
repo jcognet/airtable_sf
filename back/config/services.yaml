@@ -6,11 +6,11 @@
 parameters:
   thumbnail_list:
     default:
-        height: 200
-        width: 200
+      height: 200
+      width: 200
     newsletter_width:
-        height: 750
-        width: 500
+      height: 750
+      width: 500
 
 services:
   # default configuration for services in *this* file
@@ -65,3 +65,7 @@ services:
   App\Service\Block\Random\RandomPicBlockManager:
     arguments:
       - !tagged_iterator app.random_image_repository
+
+  App\Service\Security\LoginLinkHandler:
+    arguments:
+      $loginLinkHandler: '@security.authenticator.login_link_handler.main'
