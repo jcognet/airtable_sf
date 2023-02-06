@@ -45,7 +45,7 @@ class ManagerType
         InProgressContentManager::class,
         RgsenManager::class,
         DoneContentManager::class,
-        // InrManager::class,
+        InrManager::class,
         ArticleReadListBlockManager::class,
         GoodPracticeOrganizationManager::class,
         InterestingTopicListBlockManager::class,
