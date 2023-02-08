@@ -18,7 +18,7 @@ class Creater implements LoggerAwareInterface
     use LoggerAwareTrait;
 
     private Newspaper $newspaper;
-    private $html;
+    private ?string $html = null;
 
     public function __construct(
         private readonly NewspaperSender $sender,
@@ -27,8 +27,7 @@ class Creater implements LoggerAwareInterface
         private readonly string $environment,
         private readonly ConvertBlockTypeToManagerType $convertBlockTypeToManagerType,
         private readonly Environment $twig
-    )
-    {
+    ) {
     }
 
     public function handle(Carbon $date): void

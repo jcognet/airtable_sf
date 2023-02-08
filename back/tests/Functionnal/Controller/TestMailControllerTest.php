@@ -15,7 +15,7 @@ final class TestMailControllerTest extends WebTestCase
         // This calls KernelTestCase::bootKernel(), and creates a
         // "client" that is acting as the browser
         $client = static::createClient();
-        $client->setServerParameter('HTTP_HOST', 'localhost:7000');
+        $client->setServerParameter('HTTP_HOST', 'localhost/perso/airtable_sf/back/public/index.php');
         $client->followRedirects(true);
 
         // Request a specific page
@@ -30,7 +30,7 @@ final class TestMailControllerTest extends WebTestCase
         // This calls KernelTestCase::bootKernel(), and creates a
         // "client" that is acting as the browser
         $client = static::createClient();
-        $client->setServerParameter('HTTP_HOST', 'localhost:7000');
+        $client->setServerParameter('HTTP_HOST', 'localhost/perso/airtable_sf/back/public/index.php');
         $client->followRedirects(true);
 
         // Request a specific page
@@ -45,7 +45,7 @@ final class TestMailControllerTest extends WebTestCase
         // This calls KernelTestCase::bootKernel(), and creates a
         // "client" that is acting as the browser
         $client = static::createClient();
-        $client->setServerParameter('HTTP_HOST', 'localhost:7000');
+        $client->setServerParameter('HTTP_HOST', 'localhost/perso/airtable_sf/back/public/index.php');
         $client->followRedirects(true);
 
         // Request a specific page
@@ -60,7 +60,7 @@ final class TestMailControllerTest extends WebTestCase
         // This calls KernelTestCase::bootKernel(), and creates a
         // "client" that is acting as the browser
         $client = static::createClient();
-        $client->setServerParameter('HTTP_HOST', 'localhost:7000');
+        $client->setServerParameter('HTTP_HOST', 'localhost/perso/airtable_sf/back/public/index.php');
         $client->followRedirects(true);
 
         // Request a specific page
