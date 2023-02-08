@@ -69,3 +69,8 @@ services:
   App\Service\Security\LoginLinkHandler:
     arguments:
       $loginLinkHandler: '@security.authenticator.login_link_handler.main'
+
+when@test:
+  services:
+    App\Service\Archive\DataInputOuputHandler:
+      $deployArchiveJsonPath: '%kernel.project_dir%/tests/data/'
