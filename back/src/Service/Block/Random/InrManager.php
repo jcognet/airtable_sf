@@ -10,12 +10,6 @@ use App\ValueObject\Random\InrToolList;
 
 class InrManager implements BlockManagerInterface
 {
-    private const NB_CRITERIA = 4;
-
-    public function __construct(private readonly InrRepository $inrRepository)
-    {
-    }
-
     public function getContent(): ?BlockInterface
     {
         return null;

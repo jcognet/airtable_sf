@@ -12,8 +12,7 @@ class Manager
     public function __construct(
         private readonly DataInputOuputHandler $dataInputOuputHandler,
         private readonly Creater $creater
-    )
-    {
+    ) {
     }
 
     public function get(Carbon $date): NewsLetter
