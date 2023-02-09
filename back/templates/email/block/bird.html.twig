@@ -11,7 +11,7 @@
                 <tr>
                     <td>
                         <a target="_blank" href="{{ block.content.pdfUrl }}">
-                            <img src="{{ path('img_thumbnail', {'pathImage': block.image.id}) }}?format=newsletter_width" alt="{{ block.content.fullName }}"/>
+                            <img src="{{ absolute_url(path('img_thumbnail', {'pathImage': block.image.id})) }}?format=newsletter_width" alt="{{ block.content.fullName }}"/>
                         </a>
                     </td>
                 </tr>

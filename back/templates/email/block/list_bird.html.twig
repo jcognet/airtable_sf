@@ -47,7 +47,7 @@
                                                 style="font-size: 14px; mso-line-height-alt: 21px; color: #000000; line-height: 1.5; font-family: Poppins, Arial, Helvetica, sans-serif;">
                                                 <a target="_blank" href="{{ bird.content.pdfUrl }}">
                                                     <img
-                                                        src="{{ path('img_thumbnail', {'pathImage': bird.image.id}) }}"
+                                                        src="{{ absolute_url(path('img_thumbnail', {'pathImage': bird.image.id})) }}"
                                                         alt="{{ bird.content.fullName }}"/>
                                                 </a>
                                                 <div style="font-size: 14px">
