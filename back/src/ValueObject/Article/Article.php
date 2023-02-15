@@ -21,7 +21,8 @@ class Article implements BlockInterface
         private readonly ?string $url,
         private readonly ?ArticleType $articleType,
         private readonly string $airTableUrl,
-        private readonly bool $hasConcept = false
+        private readonly bool $hasConcept = false,
+        private readonly bool $seeAgain = false,
     ) {
     }
 
@@ -73,5 +74,10 @@ class Article implements BlockInterface
     public function hasConcept(): bool
     {
         return $this->hasConcept;
+    }
+
+    public function isSeeAgain(): bool
+    {
+        return $this->seeAgain;
     }
 }

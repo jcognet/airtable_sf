@@ -11,7 +11,11 @@ abstract class AbstractArticleList implements BlockInterface
     /**
      * @param Article[] $articles
      */
-    public function __construct(private readonly string $title, private readonly array $articles, private readonly int $nbArticles)
+    public function __construct(
+        private readonly string $title,
+        private readonly array $articles,
+        private readonly int $nbArticles
+    )
     {
     }
 

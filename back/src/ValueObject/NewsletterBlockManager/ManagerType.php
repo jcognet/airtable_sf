@@ -6,6 +6,7 @@ namespace App\ValueObject\NewsletterBlockManager;
 use App\Exception\NewsletterBlockManager\UnknownManagerTypeException;
 use App\Service\Block\Article\ArticleListALireBlockManager;
 use App\Service\Block\Article\ArticleReadListBlockManager;
+use App\Service\Block\Article\ArticleSeeAgainListBlockManager;
 use App\Service\Block\Article\ConceptManager;
 use App\Service\Block\Article\ImageManager;
 use App\Service\Block\Article\InterestingTopicListBlockManager;
@@ -54,6 +55,7 @@ class ManagerType
         PictureManager::class,
         BirdManager::class,
         ListBirdManager::class,
+        ArticleSeeAgainListBlockManager::class,
     ];
 
     private readonly string $type;
