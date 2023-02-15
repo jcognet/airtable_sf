@@ -47,6 +47,7 @@ abstract class AbstractArticleBuilder implements BuilderInterface
             isset($data['fields']['Type']) ? new ArticleType($data['fields']['Type']) : null,
             $this->urlBuilder->build($this->airtableAppArticleId, self::TABLE_URL, $this->getViewUrl(), $data['id']),
             $data['fields']['Conceptualisé'] ?? false,
+            $data['fields']['A Revoir'] ?? false
         );
     }
 

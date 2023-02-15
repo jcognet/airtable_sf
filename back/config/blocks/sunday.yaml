@@ -7,5 +7,6 @@ blocks:
   - image_url
   - list_beer
   - image_google_done
+  - see_again
   - image_google_currencies
   - image_list_pictures

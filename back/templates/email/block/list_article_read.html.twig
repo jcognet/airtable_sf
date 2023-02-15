@@ -49,6 +49,9 @@
                                                     <a href="{{ article.url }}"
                                                        style="color:#{{ main_color }};font-size:18px"
                                                        target="_blank">{{ article.title }}
+                                                        {% if article.seeAgain %}
+                                                            🕶
+                                                        {% endif %}
                                                     </a>
                                                     {{ render_no_concept(article) }}
                                                 </div>

@@ -5,6 +5,7 @@ namespace App\Service\Converter;
 
 use App\Service\Block\Article\ArticleListALireBlockManager;
 use App\Service\Block\Article\ArticleReadListBlockManager;
+use App\Service\Block\Article\ArticleSeeAgainListBlockManager;
 use App\Service\Block\Article\ConceptManager;
 use App\Service\Block\Article\ImageManager;
 use App\Service\Block\Article\InterestingTopicListBlockManager;
@@ -55,6 +56,7 @@ class ConvertBlockTypeToManagerType
         PictureManager::class => BlockType::IMAGE_LIST_PICTURES,
         BirdManager::class => BlockType::BIRD,
         ListBirdManager::class => BlockType::LIST_BIRD,
+        ArticleSeeAgainListBlockManager::class => BlockType::SEE_AGAIN,
     ];
 
     public function convert(BlockType $blockType): ManagerType

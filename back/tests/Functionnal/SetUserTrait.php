@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace App\Tests\Functionnal;
 
@@ -7,7 +8,8 @@ use Symfony\Component\Security\Core\User\InMemoryUser;
 
 trait SetUserTrait
 {
-    private function loginUser(KernelBrowser $client):void{
+    private function loginUser(KernelBrowser $client): void
+    {
         $user = new InMemoryUser(
             'jcognet',
             '$2y$13$geEXiKQSBsX1ESN2Ryvx/eW21uC6yQzpEAqyEdhxhRFx9qckqfHgG',

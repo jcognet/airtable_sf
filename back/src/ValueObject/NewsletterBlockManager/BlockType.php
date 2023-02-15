@@ -29,6 +29,7 @@ class BlockType
     final public const IMAGE_LIST_PICTURES = 'image_list_pictures';
     final public const BIRD = 'bird';
     final public const LIST_BIRD = 'list_bird';
+    final public const SEE_AGAIN = 'see_again';
 
     private const LIST_TYPE = [
         self::IMAGE_BLOCK,
@@ -55,6 +56,7 @@ class BlockType
         self::IMAGE_LIST_PICTURES,
         self::BIRD,
         self::LIST_BIRD,
+        self::SEE_AGAIN,
     ];
 
     private readonly string $type;
