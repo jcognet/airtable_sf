@@ -22,6 +22,7 @@ services:
       $airtableAppBiereId: '%env(AIRTABLE_APP_BIERE_ID)%'
       $airtableAppToDoId: '%env(AIRTABLE_APP_TO_DO_ID)%'
       $airtableAppBookId: '%env(AIRTABLE_APP_BOOK_ID)%'
+      $airtableAppRunId: '%env(AIRTABLE_APP_RUN_ID)%'
       $mailerFrom: '%env(MAILER_FROM)%'
       $mailerTo: '%env(MAILER_TO)%'
       $projectDir: '%kernel.project_dir%'

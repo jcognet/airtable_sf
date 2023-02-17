@@ -18,8 +18,7 @@ abstract class AbstractClient
         private readonly AirtableClient $airtableClient,
         private readonly string $airtableAppId,
         private readonly BuilderInterface $builder
-    )
-    {
+    ) {
     }
 
     public function fetchRandomData(array $param = []): ?BlockInterface

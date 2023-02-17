@@ -25,6 +25,7 @@ use App\Service\Block\Random\GoodPracticeOrganizationManager;
 use App\Service\Block\Random\InrManager;
 use App\Service\Block\Random\RandomPicBlockManager;
 use App\Service\Block\Random\RgsenManager;
+use App\Service\Block\Run\NextRunBlockManager;
 use App\Service\Block\ToDo\ItemBlockManager;
 use App\Service\Block\Twitter\BotDouxManager;
 use App\ValueObject\NewsletterBlockManager\BlockType;
@@ -37,7 +38,7 @@ class ConvertBlockTypeToManagerType
         MeteoBlockManager::class => BlockType::LIST_METEO_BLOCK,
         BookBlockManager::class => BlockType::BOOK_BLOCK,
         RandomPicBlockManager::class => BlockType::IMAGE_URL_BLOCK,
-        GoodBeerBlockManager::class => BlockType::LIST_BEER__BLOCK,
+        GoodBeerBlockManager::class => BlockType::LIST_BEER_BLOCK,
         LuBlockManager::class => BlockType::ARTICLE_BLOCK,
         BookListBlockManager::class => BlockType::LIST_BOOK_BLOCK,
         ItemBlockManager::class => BlockType::LIST_TODO_BLOCK,
@@ -57,6 +58,7 @@ class ConvertBlockTypeToManagerType
         BirdManager::class => BlockType::BIRD,
         ListBirdManager::class => BlockType::LIST_BIRD,
         ArticleSeeAgainListBlockManager::class => BlockType::SEE_AGAIN,
+        NextRunBlockManager::class => BlockType::NEXT_RUNS,
     ];
 
     public function convert(BlockType $blockType): ManagerType
