@@ -8,8 +8,12 @@ use App\ValueObject\NewsletterBlockManager\BlockType;
 
 class Concept implements BlockInterface
 {
-    public function __construct(private readonly string $name, private readonly string $text, private readonly array $linkedContents)
-    {
+    public function __construct(
+        private readonly string $name,
+        private readonly string $text,
+        private readonly array $linkedContents,
+        private readonly string $airTableUrl
+    ) {
     }
 
     public function getName(): string
@@ -43,5 +47,10 @@ class Concept implements BlockInterface
     public function getType(): BlockType
     {
         return new BlockType(BlockType::CONCEPT_BLOCK);
+    }
+
+    public function getAirTableUrl(): string
+    {
+        return $this->airTableUrl;
     }
 }
