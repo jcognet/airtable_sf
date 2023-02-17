@@ -14,7 +14,11 @@ abstract class AbstractClient
     private array $recordsByParam = [];
     private array $randomKeyByParam = [];
 
-    public function __construct(private readonly AirtableClient $airtableClient, private readonly string $airtableAppId, private readonly BuilderInterface $builder)
+    public function __construct(
+        private readonly AirtableClient $airtableClient,
+        private readonly string $airtableAppId,
+        private readonly BuilderInterface $builder
+    )
     {
     }
 
@@ -36,6 +40,7 @@ abstract class AbstractClient
         }
 
         $articles = $this->recordsByParam[$keyResearch];
+
         if ((is_countable($articles) ? count($articles) : 0) === 0) {
             return null;
         }

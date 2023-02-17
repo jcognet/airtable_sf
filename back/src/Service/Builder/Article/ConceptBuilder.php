@@ -5,13 +5,20 @@ namespace App\Service\Builder\Article;
 
 use App\Service\AirTable\Article\ImageClient;
 use App\Service\AirTable\Article\LuClient;
+use App\Service\AirTable\UrlBuilder;
 use App\Service\Builder\BuilderInterface;
 use App\ValueObject\Article\Concept;
 
 class ConceptBuilder implements BuilderInterface
 {
-    public function __construct(private readonly LuClient $luClient, private readonly ImageClient $imageClient)
-    {
+    private const TABLE_URL = 'tblVwxmIM1TchfVnp';
+
+    public function __construct(
+        private readonly LuClient $luClient,
+        private readonly ImageClient $imageClient,
+        private readonly UrlBuilder $urlBuilder,
+        private readonly string $airtableAppArticleId
+    ) {
     }
 
     public function build(array $data): Concept
@@ -35,7 +42,18 @@ class ConceptBuilder implements BuilderInterface
         return new Concept(
             $data['fields']['Concept'] ?? '',
             $data['fields']['Détail'] ?? '',
-            $linkedContents
+            $linkedContents,
+            $this->urlBuilder->build(
+                $this->airtableAppArticleId,
+                self::TABLE_URL,
+                $this->getViewUrl(),
+                $data['id']
+            ),
         );
+    }
+
+    private function getViewUrl(): string
+    {
+        return 'viwV095Yh2JIExPq0';
     }
 }
