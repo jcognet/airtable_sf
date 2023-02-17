@@ -1,5 +1,4 @@
-{% from "./email/macro/article.html.twig" import render_article_type_by_class %}
-{# @var block \App\ValueObject\Article\Concept #}
+{# @var block \App\ValueObject\Run\ListBlockNextRun #}
 <table align="center" border="0" cellpadding="0" cellspacing="0" class="row row-8" role="presentation"
        style="margin-bottom:20px;mso-table-lspace: 0pt; mso-table-rspace: 0pt;" width="100%">
     <tbody>
@@ -26,10 +25,6 @@
                                             <h2 style="margin: 0; text-align: center;font-size:20px; color: #{{ main_color }};">
                                                 <strong>
                                                     {{ block.title }}
-                                                    <a href="{{ block.airTableUrl }}"
-                                                       style="color:#{{ main_color }};font-size:18px"
-                                                       target="_blank">>>
-                                                    </a>
                                                 </strong>
                                             </h2>
                                         </div>
@@ -47,10 +42,8 @@
                                     <div style="font-family: sans-serif">
                                         <div
                                             style="font-size: 14px; mso-line-height-alt: 21px; color: #000000; line-height: 1.5; font-family: Poppins, Arial, Helvetica, sans-serif;">
-                                            {{ block.content|nl2br }}
-                                            {% if block.linkedContents|length >0 %}
-                                            <hr/>
-                                            {% for linked_content in block.linkedContents %}
+                                            {% if block.content|length >0 %}
+                                            {% for run in block.content %}
                                                 {% if loop.index0 % 3 == 0 %}
                                                     <div style="display: flex;justify-content: center">
                                                 {% endif %}
@@ -58,32 +51,15 @@
                                                     style="width:33%;margin-right: 10px;text-align:justify;font-size: 14px; mso-line-height-alt: 21px; color: #000000; line-height: 1.5; font-family: Poppins, Arial, Helvetica, sans-serif;">
                                                 <div
                                                     style="text-align: center; font-family: Poppins, Arial, Helvetica, sans-serif;">
-                                                    <a href="{{ linked_content.url }}"
+                                                    <a href="{{ run.url }}"
                                                        style="color:#{{ main_color }};font-size:18px"
-                                                       target="_blank">{{ linked_content.title }}
+                                                       target="_blank">{{ run.title }}
                                                     </a>
-                                                    {% if linked_content.seeAgain %}
-                                                        <a href="{{ linked_content.airTableUrl }}" title="Relire {{ linked_content.title }}"> 🕶</a>
-                                                    {% endif %}
                                                 </div>
-                                                {% if is_class(linked_content,'App\\ValueObject\\Article\\Image') %}
-                                                    <div>
-                                                        <a href="{{ linked_content.url }}"
-                                                           style="color:#{{ main_color }};font-size:18px"
-                                                           target="_blank">
-                                                            <img style="width:100%;" src="{{ linked_content.url }}"
-                                                                 alt="{{ linked_content.title }}"/>
-                                                        </a>
-                                                    </div>
-                                                {% else %}
-                                                    <div>
-                                                        {{ linked_content.content|u.truncate(200, '...', false)|striptags }}
-                                                        <a href="{{ linked_content.airTableUrl }}"
-                                                           style="color:#{{ main_color }};font-size:18px"
-                                                           target="_blank">>>
-                                                        </a>
-                                                    </div>
-                                                {% endif %}
+                                                <div>
+                                                    {{ run.distance  }} km
+                                                    Plus que {{ run.remainingDays }} jours.
+                                                </div>
                                                 {% if loop.index0 % 3 == 2 %}
                                                     </div>
                                                 {% endif %}
@@ -104,3 +80,4 @@
     </tr>
     </tbody>
 </table>
+

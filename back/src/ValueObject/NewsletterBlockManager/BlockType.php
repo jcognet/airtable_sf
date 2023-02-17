@@ -10,7 +10,7 @@ class BlockType
     final public const BOOK_BLOCK = 'book';
     final public const IMAGE_URL_BLOCK = 'image_url';
     final public const IMAGE_LIST_URL_BLOCK = 'list_image_url';
-    final public const LIST_BEER__BLOCK = 'list_beer';
+    final public const LIST_BEER_BLOCK = 'list_beer';
     final public const ARTICLE_BLOCK = 'article';
     final public const LIST_BOOK_BLOCK = 'list_book';
     final public const LIST_TODO_BLOCK = 'list_todo';
@@ -30,13 +30,14 @@ class BlockType
     final public const BIRD = 'bird';
     final public const LIST_BIRD = 'list_bird';
     final public const SEE_AGAIN = 'see_again';
+    final public const NEXT_RUNS = 'next_runs';
 
     private const LIST_TYPE = [
         self::IMAGE_BLOCK,
         self::LIST_METEO_BLOCK,
         self::BOOK_BLOCK,
         self::IMAGE_URL_BLOCK,
-        self::LIST_BEER__BLOCK,
+        self::LIST_BEER_BLOCK,
         self::ARTICLE_BLOCK,
         self::LIST_BOOK_BLOCK,
         self::LIST_TODO_BLOCK,
@@ -57,6 +58,7 @@ class BlockType
         self::BIRD,
         self::LIST_BIRD,
         self::SEE_AGAIN,
+        self::NEXT_RUNS,
     ];
 
     private readonly string $type;
