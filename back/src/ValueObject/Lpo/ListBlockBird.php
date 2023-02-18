@@ -18,7 +18,7 @@ class ListBlockBird implements BlockInterface
 
     public function getType(): BlockType
     {
-        return new BlockType(BlockType::LIST_BIRD);
+        return BlockType::LIST_BIRD;
     }
 
     public function getTitle(): string

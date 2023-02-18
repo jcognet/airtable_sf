@@ -10,6 +10,6 @@ class InterestingTopicList extends AbstractArticleList implements BlockInterface
 {
     public function getType(): BlockType
     {
-        return new BlockType(BlockType::LIST_ARTICLE_INTERESTING_TOPIC_BLOCK);
+        return BlockType::LIST_ARTICLE_INTERESTING_TOPIC_BLOCK;
     }
 }

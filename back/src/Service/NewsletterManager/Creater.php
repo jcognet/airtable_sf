@@ -65,7 +65,7 @@ class Creater implements LoggerAwareInterface
     public function createOneContent(string $type): void
     {
         $this->createNewsPaper([
-            $this->convertBlockTypeToManagerType->convert(new BlockType($type)),
+            $this->convertBlockTypeToManagerType->convert(BlockType::make($type)),
         ], Carbon::now());
     }
 

@@ -32,7 +32,7 @@ class Book implements BlockInterface
 
     public function getType(): BlockType
     {
-        return new BlockType(BlockType::BOOK_BLOCK);
+        return BlockType::BOOK_BLOCK;
     }
 
     public function getBody(): string

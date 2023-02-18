@@ -29,7 +29,7 @@ class Message implements BlockInterface
 
     public function getType(): BlockType
     {
-        return new BlockType(BlockType::BOT_DOUX_BLOCK);
+        return BlockType::BOT_DOUX_BLOCK;
     }
 
     public function getUser(): ?User

@@ -33,7 +33,7 @@ class Video implements BlockInterface
 
     public function getType(): BlockType
     {
-        return new BlockType(BlockType::VIDEO_BLOCK);
+        return BlockType::VIDEO_BLOCK;
     }
 
     public function getSujets(): array

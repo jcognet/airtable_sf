@@ -6,14 +6,15 @@
             <h1>
                 <a
                     href="{{ path('test_mail_one', {
-                        'blockType': block.type.type
+                        'blockType': block.type.value
                     }) }}"
                     title="Voir seulement ce bloc"
                 >
-                    {{ block.type.type }}
+                    {{ block.type.value }}
                 </a>
             </h1>
         {% endif %}
-        {% include 'email/block/'~block.type.type~'.html.twig' with {block:block} %}
+
+        {% include 'email/block/'~block.type.value~'.html.twig' with {block:block} %}
     {% endfor %}
 {% endblock %}

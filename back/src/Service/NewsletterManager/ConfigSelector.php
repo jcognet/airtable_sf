@@ -32,7 +32,7 @@ class ConfigSelector
 
         $blockTypeList = [];
         foreach ($blockTypeListString['blocks'] as $blockTypeString) {
-            $blockTypeList[] = new BlockType($blockTypeString);
+            $blockTypeList[] = BlockType::make($blockTypeString);
         }
 
         $blockManagerList = [];

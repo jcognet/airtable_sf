@@ -18,7 +18,7 @@ class ListBlockNextRun implements BlockInterface
 
     public function getType(): BlockType
     {
-        return new BlockType(BlockType::NEXT_RUNS);
+        return BlockType::NEXT_RUNS;
     }
 
     public function getTitle(): string

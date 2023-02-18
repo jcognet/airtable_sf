@@ -27,6 +27,6 @@ class CriteriaList implements BlockInterface
 
     public function getType(): BlockType
     {
-        return new BlockType(BlockType::RGSEN_BLOCK);
+        return BlockType::RGSEN_BLOCK;
     }
 }

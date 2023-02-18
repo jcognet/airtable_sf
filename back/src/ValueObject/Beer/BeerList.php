@@ -27,6 +27,6 @@ class BeerList implements BlockInterface
 
     public function getType(): BlockType
     {
-        return new BlockType(BlockType::LIST_BEER_BLOCK);
+        return BlockType::LIST_BEER_BLOCK;
     }
 }

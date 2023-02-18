@@ -17,7 +17,7 @@ class BlockBird implements BlockInterface
 
     public function getType(): BlockType
     {
-        return new BlockType(BlockType::BIRD);
+        return BlockType::BIRD;
     }
 
     public function getTitle(): string

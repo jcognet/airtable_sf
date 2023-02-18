@@ -27,6 +27,6 @@ class ListImageUrl implements BlockInterface
 
     public function getType(): BlockType
     {
-        return new BlockType(BlockType::IMAGE_LIST_URL_BLOCK);
+        return BlockType::IMAGE_LIST_URL_BLOCK;
     }
 }

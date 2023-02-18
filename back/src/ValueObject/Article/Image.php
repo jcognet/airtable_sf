@@ -44,6 +44,6 @@ class Image implements BlockInterface
 
     public function getType(): BlockType
     {
-        return new BlockType(BlockType::IMAGE_BLOCK);
+        return BlockType::IMAGE_BLOCK;
     }
 }

@@ -27,7 +27,7 @@ class MeteoList implements BlockInterface
 
     public function getType(): BlockType
     {
-        return new BlockType(BlockType::LIST_METEO_BLOCK);
+        return BlockType::LIST_METEO_BLOCK;
     }
 
     public function getMeteoItemLists(): array
