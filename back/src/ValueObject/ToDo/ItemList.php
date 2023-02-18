@@ -24,6 +24,6 @@ class ItemList implements BlockInterface
 
     public function getType(): BlockType
     {
-        return new BlockType(BlockType::LIST_TODO_BLOCK);
+        return BlockType::LIST_TODO_BLOCK;
     }
 }

@@ -27,6 +27,6 @@ class InrToolList implements BlockInterface
 
     public function getType(): BlockType
     {
-        return new BlockType(BlockType::INR_TOOLS);
+        return BlockType::INR_TOOLS;
     }
 }

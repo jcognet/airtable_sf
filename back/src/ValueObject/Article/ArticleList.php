@@ -10,6 +10,6 @@ class ArticleList extends AbstractArticleList implements BlockInterface
 {
     public function getType(): BlockType
     {
-        return new BlockType(BlockType::LIST_ARTICLE_BLOCK);
+        return BlockType::LIST_ARTICLE_BLOCK;
     }
 }

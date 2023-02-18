@@ -37,6 +37,6 @@ class Directory implements BlockInterface
 
     public function getType(): BlockType
     {
-        return new BlockType(BlockType::IMAGE_LIST_PICTURES);
+        return BlockType::IMAGE_LIST_PICTURES;
     }
 }

@@ -46,7 +46,7 @@ class Concept implements BlockInterface
 
     public function getType(): BlockType
     {
-        return new BlockType(BlockType::CONCEPT_BLOCK);
+        return BlockType::CONCEPT_BLOCK;
     }
 
     public function getAirTableUrl(): string

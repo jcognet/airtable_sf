@@ -43,7 +43,7 @@ class Article implements BlockInterface
 
     public function getType(): BlockType
     {
-        return new BlockType(BlockType::ARTICLE_BLOCK);
+        return BlockType::ARTICLE_BLOCK;
     }
 
     public function getSujets(): array

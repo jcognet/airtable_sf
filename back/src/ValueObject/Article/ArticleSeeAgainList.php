@@ -10,6 +10,6 @@ class ArticleSeeAgainList extends AbstractArticleList implements BlockInterface
 {
     public function getType(): BlockType
     {
-        return new BlockType(BlockType::SEE_AGAIN);
+        return BlockType::SEE_AGAIN;
     }
 }

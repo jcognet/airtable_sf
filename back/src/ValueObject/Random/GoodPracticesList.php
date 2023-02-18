@@ -27,6 +27,6 @@ class GoodPracticesList implements BlockInterface
 
     public function getType(): BlockType
     {
-        return new BlockType(BlockType::GOOD_PRACTICE_ORGANIZATION_BLOCK);
+        return BlockType::GOOD_PRACTICE_ORGANIZATION_BLOCK;
     }
 }

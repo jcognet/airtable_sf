@@ -27,6 +27,6 @@ class BookList implements BlockInterface
 
     public function getType(): BlockType
     {
-        return new BlockType(BlockType::LIST_BOOK_BLOCK);
+        return BlockType::LIST_BOOK_BLOCK;
     }
 }

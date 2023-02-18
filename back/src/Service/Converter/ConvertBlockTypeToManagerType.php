@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace App\Service\Converter;
 
+use App\Exception\NewsletterBlockManager\UnknownConvertBlockTypeToManagerTypeException;
 use App\Service\Block\Article\ArticleListALireBlockManager;
 use App\Service\Block\Article\ArticleReadListBlockManager;
 use App\Service\Block\Article\ArticleSeeAgainListBlockManager;
@@ -63,8 +64,12 @@ class ConvertBlockTypeToManagerType
 
     public function convert(BlockType $blockType): ManagerType
     {
-        $managerType = array_flip(self::CONVERTER)[$blockType->getType()];
+        foreach (self::CONVERTER as $manager => $block) {
+            if ($block === $blockType) {
+                return new ManagerType($manager);
+            }
+        }
 
-        return new ManagerType($managerType);
+        throw new UnknownConvertBlockTypeToManagerTypeException($blockType, self::CONVERTER);
     }
 }

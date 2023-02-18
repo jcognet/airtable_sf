@@ -10,6 +10,6 @@ class ArticleReadList extends AbstractArticleList implements BlockInterface
 {
     public function getType(): BlockType
     {
-        return new BlockType(BlockType::LIST_ARTICLE_READ_BLOCK);
+        return BlockType::LIST_ARTICLE_READ_BLOCK;
     }
 }
