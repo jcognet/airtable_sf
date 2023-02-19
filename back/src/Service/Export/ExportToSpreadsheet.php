@@ -16,7 +16,17 @@ use Carbon\Carbon;
 
 class ExportToSpreadsheet
 {
-    public function __construct(private readonly ExportAirtableWriter $exportAirtableWriter, private readonly LuClient $luClient, private readonly ItemClient $itemClient, private readonly ALireClient $ALireClient, private readonly BookClient $bookClient, private readonly ImageClient $imageClient, private readonly GithubRepository $githubRepository, private readonly CurrencyRepository $currencyRepository, private readonly ConceptClient $conceptClient)
+    public function __construct(
+        private readonly ExportAirtableWriter $exportAirtableWriter,
+        private readonly LuClient $luClient,
+        private readonly ItemClient $itemClient,
+        private readonly ALireClient $ALireClient,
+        private readonly BookClient $bookClient,
+        private readonly ImageClient $imageClient,
+        private readonly GithubRepository $githubRepository,
+        private readonly CurrencyRepository $currencyRepository,
+        private readonly ConceptClient $conceptClient
+    )
     {
     }
 

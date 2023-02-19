@@ -40,6 +40,9 @@ framework:
         base_uri: https://sustainableit-tools.isit-europe.org/
       githubrepository.client:
         base_uri: https://api.github.com/repos/jcognet/airtable_sf/
+        headers:
+          Accept: 'application/vnd.github.v3+json'
+          Authorization: 'token %env(GITHUB_API_TOKEN)%'
       currency.client:
         base_uri: http://api.exchangeratesapi.io/v1/
         query:
