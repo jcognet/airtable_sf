@@ -40,7 +40,16 @@
                                     <div style="display: flex;width: 750px;flex-wrap: wrap;justify-content: center">
                                         {% for image_url in block.content %}
                                             <div>
-                                                <img src="{{ image_url.content }}" alt="{{ image_url.title }}"  />
+                                                <a href="{{ image_url.content }}"
+                                                   target="_blank"
+                                                   title="{{ image_url.title }}"
+                                                >
+                                                    <img
+                                                        src="{{ image_url.content }}"
+                                                        alt="{{ image_url.title }}"
+                                                        {% if image_url.width is not null %}width="{{ image_url.width }}"{% endif %}
+                                                    />
+                                                </a>
                                             </div>
                                         {% endfor %}
                                     </div>

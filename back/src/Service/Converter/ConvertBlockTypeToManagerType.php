@@ -19,6 +19,7 @@ use App\Service\Block\Google\CurrenciesManager;
 use App\Service\Block\Google\DoneContentManager;
 use App\Service\Block\Google\InProgressContentManager;
 use App\Service\Block\Lpo\BirdManager;
+use App\Service\Block\Lpo\ImageStatementManager;
 use App\Service\Block\Lpo\ListBirdManager;
 use App\Service\Block\Meteo\MeteoBlockManager;
 use App\Service\Block\Picture\PictureManager;
@@ -60,6 +61,7 @@ class ConvertBlockTypeToManagerType
         ListBirdManager::class => BlockType::LIST_BIRD,
         ArticleSeeAgainListBlockManager::class => BlockType::SEE_AGAIN,
         NextRunBlockManager::class => BlockType::NEXT_RUNS,
+        ImageStatementManager::class => BlockType::BIRD_STATEMENT,
     ];
 
     public function convert(BlockType $blockType): ManagerType

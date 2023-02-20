@@ -19,6 +19,7 @@ use App\Service\Block\Google\CurrenciesManager;
 use App\Service\Block\Google\DoneContentManager;
 use App\Service\Block\Google\InProgressContentManager;
 use App\Service\Block\Lpo\BirdManager;
+use App\Service\Block\Lpo\ImageStatementManager;
 use App\Service\Block\Lpo\ListBirdManager;
 use App\Service\Block\Meteo\MeteoBlockManager;
 use App\Service\Block\Picture\PictureManager;
@@ -58,6 +59,7 @@ class ManagerType
         ListBirdManager::class,
         ArticleSeeAgainListBlockManager::class,
         NextRunBlockManager::class,
+        ImageStatementManager::class,
     ];
 
     private readonly string $type;
