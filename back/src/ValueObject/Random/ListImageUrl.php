@@ -11,8 +11,10 @@ class ListImageUrl implements BlockInterface
     /**
      * @param ImageUrl[] $listImages
      */
-    public function __construct(private readonly string $title, private readonly array $listImages)
-    {
+    public function __construct(
+        private readonly string $title,
+        private readonly array $listImages
+    ) {
     }
 
     public function getTitle(): string

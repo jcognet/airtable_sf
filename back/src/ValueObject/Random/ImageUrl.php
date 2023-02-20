@@ -8,8 +8,11 @@ use App\ValueObject\NewsletterBlockManager\BlockType;
 
 class ImageUrl implements BlockInterface
 {
-    public function __construct(private readonly string $title, private readonly string $url)
-    {
+    public function __construct(
+        private readonly string $title,
+        private readonly string $url,
+        private readonly ?int $width = null
+    ) {
     }
 
     public function getTitle(): string
@@ -25,5 +28,10 @@ class ImageUrl implements BlockInterface
     public function getType(): BlockType
     {
         return BlockType::IMAGE_URL_BLOCK;
+    }
+
+    public function getWidth(): ?int
+    {
+        return $this->width;
     }
 }

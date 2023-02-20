@@ -39,7 +39,7 @@ services:
       $pdfApiKey: '%env(PDF_API_KEY)%'
       $environment: '%kernel.environment%'
       $thumbnailList: '%thumbnail_list%'
-      $absoluteUrlFront: '%env(URL_ABSOLUTE_FRONT)'
+      $absoluteUrlFront: '%env(URL_ABSOLUTE_FRONT)%'
 
   # makes classes in src/ available to be used as services
   # this creates a service per class whose id is the fully-qualified class name

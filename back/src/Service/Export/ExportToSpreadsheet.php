@@ -26,8 +26,7 @@ class ExportToSpreadsheet
         private readonly GithubRepository $githubRepository,
         private readonly CurrencyRepository $currencyRepository,
         private readonly ConceptClient $conceptClient
-    )
-    {
+    ) {
     }
 
     public function getData(): array
