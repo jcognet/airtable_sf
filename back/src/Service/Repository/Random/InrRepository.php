@@ -3,8 +3,8 @@ declare(strict_types=1);
 
 namespace App\Service\Repository\Random;
 
-use App\Service\Builder\Random\InrToolBuilder;
-use App\ValueObject\Random\InrTool;
+use App\Service\Builder\Inr\InrToolBuilder;
+use App\ValueObject\Inr\InrTool;
 use Symfony\Component\DomCrawler\Crawler;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
 
@@ -15,7 +15,10 @@ class InrRepository
     private array $records = [];
     private array $randomKey = [];
 
-    public function __construct(private readonly HttpClientInterface $inrClient, private readonly InrToolBuilder $inrToolBuilder)
+    public function __construct(
+        private readonly HttpClientInterface $inrClient,
+        private readonly InrToolBuilder $inrToolBuilder
+    )
     {
     }
 

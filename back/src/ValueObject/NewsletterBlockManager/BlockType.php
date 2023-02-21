@@ -34,6 +34,7 @@ enum BlockType: string
     case SEE_AGAIN = 'see_again';
     case NEXT_RUNS = 'next_runs';
     case BIRD_STATEMENT = 'bird_statement';
+    case INR_491 = 'inr_491';
 
     public static function make(string $type): self
     {

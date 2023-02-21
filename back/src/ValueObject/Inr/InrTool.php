@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace App\ValueObject\Random;
+namespace App\ValueObject\Inr;
 
 class InrTool
 {

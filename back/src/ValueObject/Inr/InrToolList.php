@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace App\ValueObject\Random;
+namespace App\ValueObject\Inr;
 
 use App\ValueObject\BlockInterface;
 use App\ValueObject\NewsletterBlockManager\BlockType;
@@ -11,8 +11,10 @@ class InrToolList implements BlockInterface
     /**
      * @param InrTool[] $inrTools
      */
-    public function __construct(private readonly string $title, private readonly array $inrTools)
-    {
+    public function __construct(
+        private readonly string $title,
+        private readonly array $inrTools
+    ) {
     }
 
     public function getTitle(): string

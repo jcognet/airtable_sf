@@ -24,6 +24,7 @@ use App\Service\Block\Lpo\ListBirdManager;
 use App\Service\Block\Meteo\MeteoBlockManager;
 use App\Service\Block\Picture\PictureManager;
 use App\Service\Block\Random\GoodPracticeOrganizationManager;
+use App\Service\Block\Random\Inr491Manager;
 use App\Service\Block\Random\InrManager;
 use App\Service\Block\Random\RandomPicBlockManager;
 use App\Service\Block\Random\RgsenManager;
@@ -60,6 +61,7 @@ class ManagerType
         ArticleSeeAgainListBlockManager::class,
         NextRunBlockManager::class,
         ImageStatementManager::class,
+        Inr491Manager::class,
     ];
 
     private readonly string $type;

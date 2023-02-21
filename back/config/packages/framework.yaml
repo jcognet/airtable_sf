@@ -38,6 +38,8 @@ framework:
         base_uri: https://ecoresponsable.numerique.gouv.fr/
       inr.client:
         base_uri: https://sustainableit-tools.isit-europe.org/
+      inr.491_client:
+        base_uri: '%inr491BaseUrl%'
       githubrepository.client:
         base_uri: https://api.github.com/repos/jcognet/airtable_sf/
         headers:

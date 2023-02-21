@@ -24,6 +24,7 @@ use App\Service\Block\Lpo\ListBirdManager;
 use App\Service\Block\Meteo\MeteoBlockManager;
 use App\Service\Block\Picture\PictureManager;
 use App\Service\Block\Random\GoodPracticeOrganizationManager;
+use App\Service\Block\Random\Inr491Manager;
 use App\Service\Block\Random\InrManager;
 use App\Service\Block\Random\RandomPicBlockManager;
 use App\Service\Block\Random\RgsenManager;
@@ -62,6 +63,7 @@ class ConvertBlockTypeToManagerType
         ArticleSeeAgainListBlockManager::class => BlockType::SEE_AGAIN,
         NextRunBlockManager::class => BlockType::NEXT_RUNS,
         ImageStatementManager::class => BlockType::BIRD_STATEMENT,
+        Inr491Manager::class => BlockType::INR_491,
     ];
 
     public function convert(BlockType $blockType): ManagerType
