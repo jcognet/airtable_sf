@@ -4,9 +4,7 @@ declare(strict_types=1);
 namespace App\Service\Block\Random;
 
 use App\Service\Block\BlockManagerInterface;
-use App\Service\Repository\Random\InrRepository;
 use App\ValueObject\BlockInterface;
-use App\ValueObject\Random\InrToolList;
 
 class InrManager implements BlockManagerInterface
 {

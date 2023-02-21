@@ -1,9 +1,9 @@
 <?php
 declare(strict_types=1);
 
-namespace App\Service\Builder\Random;
+namespace App\Service\Builder\Inr;
 
-use App\ValueObject\Random\InrTool;
+use App\ValueObject\Inr\InrTool;
 use Symfony\Component\DomCrawler\Crawler;
 
 class InrToolBuilder

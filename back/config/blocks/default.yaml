@@ -11,6 +11,7 @@ blocks:
   - list_article
   - image_list_pictures
   - video
+  - inr_491
   - list_article_read
   - list_interesting_topic
   - rgsen
