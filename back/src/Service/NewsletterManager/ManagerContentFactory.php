@@ -19,7 +19,13 @@ class ManagerContentFactory
          */
         foreach ($this->listManager as $manager) {
             if ($manager::class === $class) {
-                return $manager->getContent();
+                $block = $manager->getContent();
+
+                if ($block !== null) {
+                    $block->setManagerType($class);
+                }
+
+                return $block;
             }
         }
 

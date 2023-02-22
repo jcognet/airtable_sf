@@ -5,9 +5,6 @@ namespace App\ValueObject\Inr;
 
 class Famille
 {
-    /**
-     * @var Inr491Recommandation
-     */
     private ?Inr491Recommandation $randomContent = null;
 
     public function __construct(

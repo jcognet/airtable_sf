@@ -3,7 +3,9 @@ declare(strict_types=1);
 
 namespace App\Extension;
 
+use App\Service\Converter\ConvertBlockTypeToManagerType;
 use App\Service\Security\LoginLinkHandler;
+use App\ValueObject\NewsletterBlockManager\BlockType;
 use Symfony\Component\Security\Core\Exception\UserNotFoundException;
 use Symfony\Component\Security\Core\User\UserProviderInterface;
 use Twig\Extension\AbstractExtension;
@@ -16,7 +18,8 @@ class NavigationExtension extends AbstractExtension
     public function __construct(
         private readonly UserProviderInterface $userProvider,
         private readonly LoginLinkHandler $loginLinkHandler,
-        private readonly string $absoluteUrlFront
+        private readonly string $absoluteUrlFront,
+        private readonly ConvertBlockTypeToManagerType $convertBlockTypeToManagerType
     ) {
     }
 
@@ -25,6 +28,7 @@ class NavigationExtension extends AbstractExtension
         return [
             new TwigFunction('is_google_mail', $this->isGoogleMail(...)),
             new TwigFunction('email_connection', $this->getEmailConnection(...)),
+            new TwigFunction('convert_to_manager_type', $this->convertToManagerType(...)),
         ];
     }
 
@@ -43,5 +47,12 @@ class NavigationExtension extends AbstractExtension
         } catch (UserNotFoundException) {
             return $this->absoluteUrlFront;
         }
+    }
+
+    public function convertToManagerType($managerClass): BlockType
+    {
+        return $this->convertBlockTypeToManagerType->reverseConvert(
+            $managerClass
+        );
     }
 }

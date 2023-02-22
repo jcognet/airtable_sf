@@ -18,8 +18,7 @@ class InrRepository
     public function __construct(
         private readonly HttpClientInterface $inrClient,
         private readonly InrToolBuilder $inrToolBuilder
-    )
-    {
+    ) {
     }
 
     public function fetchRandomData(): ?InrTool

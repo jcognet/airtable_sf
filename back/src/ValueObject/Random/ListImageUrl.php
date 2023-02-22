@@ -3,10 +3,10 @@ declare(strict_types=1);
 
 namespace App\ValueObject\Random;
 
-use App\ValueObject\BlockInterface;
+use App\ValueObject\AbstractBlock;
 use App\ValueObject\NewsletterBlockManager\BlockType;
 
-class ListImageUrl implements BlockInterface
+class ListImageUrl extends AbstractBlock
 {
     /**
      * @param ImageUrl[] $listImages

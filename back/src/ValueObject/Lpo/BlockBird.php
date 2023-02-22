@@ -3,11 +3,11 @@ declare(strict_types=1);
 
 namespace App\ValueObject\Lpo;
 
-use App\ValueObject\BlockInterface;
+use App\ValueObject\AbstractBlock;
 use App\ValueObject\NewsletterBlockManager\BlockType;
 use App\ValueObject\Picture\Picture;
 
-class BlockBird implements BlockInterface
+class BlockBird extends AbstractBlock
 {
     public function __construct(
         private readonly ImportedBird $bird,

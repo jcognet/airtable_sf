@@ -3,10 +3,10 @@ declare(strict_types=1);
 
 namespace App\ValueObject\Run;
 
-use App\ValueObject\BlockInterface;
+use App\ValueObject\AbstractBlock;
 use App\ValueObject\NewsletterBlockManager\BlockType;
 
-class ListBlockNextRun implements BlockInterface
+class ListBlockNextRun extends AbstractBlock
 {
     /**
      * @param NextRun[] $runs

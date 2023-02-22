@@ -3,10 +3,10 @@ declare(strict_types=1);
 
 namespace App\ValueObject\Meteo;
 
-use App\ValueObject\BlockInterface;
+use App\ValueObject\AbstractBlock;
 use App\ValueObject\NewsletterBlockManager\BlockType;
 
-class MeteoList implements BlockInterface
+class MeteoList extends AbstractBlock
 {
     /**
      * @param MeteoItem[] $meteoItemLists

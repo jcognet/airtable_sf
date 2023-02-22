@@ -3,10 +3,10 @@ declare(strict_types=1);
 
 namespace App\ValueObject\Beer;
 
-use App\ValueObject\BlockInterface;
+use App\ValueObject\AbstractBlock;
 use App\ValueObject\NewsletterBlockManager\BlockType;
 
-class BeerList implements BlockInterface
+class BeerList extends AbstractBlock
 {
     /**
      * @param Beer[] $beers

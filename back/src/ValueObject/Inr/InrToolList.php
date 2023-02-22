@@ -3,10 +3,10 @@ declare(strict_types=1);
 
 namespace App\ValueObject\Inr;
 
-use App\ValueObject\BlockInterface;
+use App\ValueObject\AbstractBlock;
 use App\ValueObject\NewsletterBlockManager\BlockType;
 
-class InrToolList implements BlockInterface
+class InrToolList extends AbstractBlock
 {
     /**
      * @param InrTool[] $inrTools
