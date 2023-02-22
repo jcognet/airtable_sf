@@ -76,4 +76,9 @@ class ConvertBlockTypeToManagerType
 
         throw new UnknownConvertBlockTypeToManagerTypeException($blockType, self::CONVERTER);
     }
+
+    public function reverseConvert(ManagerType $managerType): BlockType
+    {
+        return self::CONVERTER[$managerType->getType()];
+    }
 }

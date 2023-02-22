@@ -3,10 +3,10 @@ declare(strict_types=1);
 
 namespace App\ValueObject\Random;
 
-use App\ValueObject\BlockInterface;
+use App\ValueObject\AbstractBlock;
 use App\ValueObject\NewsletterBlockManager\BlockType;
 
-class ImageUrl implements BlockInterface
+class ImageUrl extends AbstractBlock
 {
     public function __construct(
         private readonly string $title,

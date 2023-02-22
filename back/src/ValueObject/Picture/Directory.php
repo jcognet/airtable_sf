@@ -3,10 +3,10 @@ declare(strict_types=1);
 
 namespace App\ValueObject\Picture;
 
-use App\ValueObject\BlockInterface;
+use App\ValueObject\AbstractBlock;
 use App\ValueObject\NewsletterBlockManager\BlockType;
 
-class Directory implements BlockInterface
+class Directory extends AbstractBlock
 {
     public function __construct(private readonly string $path, private readonly array $pictures)
     {

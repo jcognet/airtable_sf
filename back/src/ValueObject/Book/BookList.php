@@ -3,10 +3,10 @@ declare(strict_types=1);
 
 namespace App\ValueObject\Book;
 
-use App\ValueObject\BlockInterface;
+use App\ValueObject\AbstractBlock;
 use App\ValueObject\NewsletterBlockManager\BlockType;
 
-class BookList implements BlockInterface
+class BookList extends AbstractBlock
 {
     /**
      * @param Book[] $books

@@ -3,10 +3,10 @@ declare(strict_types=1);
 
 namespace App\ValueObject\Lpo;
 
-use App\ValueObject\BlockInterface;
+use App\ValueObject\AbstractBlock;
 use App\ValueObject\NewsletterBlockManager\BlockType;
 
-class ListBlockBird implements BlockInterface
+class ListBlockBird extends AbstractBlock
 {
     /**
      * @param BlockBird[] $birds

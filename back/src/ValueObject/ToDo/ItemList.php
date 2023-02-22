@@ -3,10 +3,10 @@ declare(strict_types=1);
 
 namespace App\ValueObject\ToDo;
 
-use App\ValueObject\BlockInterface;
+use App\ValueObject\AbstractBlock;
 use App\ValueObject\NewsletterBlockManager\BlockType;
 
-class ItemList implements BlockInterface
+class ItemList extends AbstractBlock
 {
     public function __construct(private readonly string $title, private readonly array $toDos)
     {

@@ -4,11 +4,11 @@ declare(strict_types=1);
 namespace App\ValueObject\Beer;
 
 use App\Exception\MethodNotUsableException;
-use App\ValueObject\BlockInterface;
+use App\ValueObject\AbstractBlock;
 use App\ValueObject\NewsletterBlockManager\BlockType;
 use Carbon\Carbon;
 
-class Beer implements BlockInterface
+class Beer extends AbstractBlock
 {
     public function __construct(
         private readonly ?string $title,

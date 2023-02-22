@@ -3,10 +3,10 @@ declare(strict_types=1);
 
 namespace App\ValueObject\Twitter;
 
-use App\ValueObject\BlockInterface;
+use App\ValueObject\AbstractBlock;
 use App\ValueObject\NewsletterBlockManager\BlockType;
 
-class Message implements BlockInterface
+class Message extends AbstractBlock
 {
     private string $title = '';
 

@@ -3,14 +3,15 @@
 {% block body %}
     {% for block in newspaper.blocks %}
         {% if show_block is defined and show_block%}
+            {% set block_type = convert_to_manager_type(block.managerType).value %}
             <h1>
                 <a
                     href="{{ path('test_mail_one', {
-                        'blockType': block.type.value
+                        'blockType': block_type
                     }) }}"
                     title="Voir seulement ce bloc"
                 >
-                    {{ block.type.value }}
+                    {{ block_type }}
                 </a>
             </h1>
         {% endif %}

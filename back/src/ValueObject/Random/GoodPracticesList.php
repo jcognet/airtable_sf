@@ -3,10 +3,10 @@ declare(strict_types=1);
 
 namespace App\ValueObject\Random;
 
-use App\ValueObject\BlockInterface;
+use App\ValueObject\AbstractBlock;
 use App\ValueObject\NewsletterBlockManager\BlockType;
 
-class GoodPracticesList implements BlockInterface
+class GoodPracticesList extends AbstractBlock
 {
     /**
      * @param GoodPractice[] $goodPractices

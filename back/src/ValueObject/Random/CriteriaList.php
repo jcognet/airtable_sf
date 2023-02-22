@@ -3,10 +3,10 @@ declare(strict_types=1);
 
 namespace App\ValueObject\Random;
 
-use App\ValueObject\BlockInterface;
+use App\ValueObject\AbstractBlock;
 use App\ValueObject\NewsletterBlockManager\BlockType;
 
-class CriteriaList implements BlockInterface
+class CriteriaList extends AbstractBlock
 {
     /**
      * @param Criteria[] $criterias

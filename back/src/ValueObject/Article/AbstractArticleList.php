@@ -3,10 +3,10 @@ declare(strict_types=1);
 
 namespace App\ValueObject\Article;
 
-use App\ValueObject\BlockInterface;
+use App\ValueObject\AbstractBlock;
 use App\ValueObject\NewsletterBlockManager\BlockType;
 
-abstract class AbstractArticleList implements BlockInterface
+abstract class AbstractArticleList extends AbstractBlock
 {
     /**
      * @param Article[] $articles
