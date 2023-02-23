@@ -12,7 +12,8 @@ class Image extends AbstractBlock
         private readonly string $name,
         private readonly ?string $url,
         private readonly ?array $sujets,
-        private readonly ?string $source)
+        private readonly ?string $source
+    )
     {
     }
 

@@ -3,6 +3,9 @@ twig:
 
   globals:
     url_front: '%env(URL_ABSOLUTE_FRONT)%'
+    ecoresponsablegouv_base_url: '%ecoresponsaglegouvBaseUrl%'
+    lpo_base_url: '%lpoBaseUrl%'
+    inr_491_base_url: '%inr491BaseUrl%'
 
 when@test:
   twig:

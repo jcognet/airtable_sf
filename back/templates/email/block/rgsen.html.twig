@@ -24,6 +24,9 @@
                                             style="font-size: 14px; mso-line-height-alt: 16.8px; color: #000000; line-height: 1.2; font-family: Poppins, Arial, Helvetica, sans-serif;">
                                             <h2 style="margin: 0; text-align: center;font-size:20px;">
                                                 <strong>{{ block.title }}</strong>
+                                                <span style="font-size: 15px">
+                                                    <a href="{{ ecoresponsablegouv_base_url }}" title="Voir le site de l'état qui parle d'écoconception" target="_blank">&#128279;</a>
+                                                </span>
                                             </h2>
                                         </div>
                                     </div>
@@ -44,7 +47,8 @@
                                                 <div
                                                     style="padding-bottom:10px;margin-bottom: 10px;border-bottom: 1px solid #{{ main_color }}">
                                                     <div>
-                                                        <a href="{{ criteria.url }}" target="_blank" style="color: #{{ main_color }};font-size: 16px">
+                                                        <a href="{{ criteria.url }}" target="_blank"
+                                                           style="color: #{{ main_color }};font-size: 16px">
                                                             {{ criteria.critere }}
                                                         </a>
                                                         <span
@@ -54,7 +58,8 @@
                                                         <p style="margin: 0; font-size: 14px; mso-line-height-alt: 24px;">
                                                                 <span
                                                                     style="font-size:12px;color:#{{ main_color }};">►</span>
-                                                            <strong style="color: #{{ main_color }}">Objectif</strong> : {{ criteria.objectif }}
+                                                            <strong style="color: #{{ main_color }}">Objectif</strong>
+                                                            : {{ criteria.objectif }}
                                                         </p>
                                                         <p style="margin: 0; font-size: 14px; mso-line-height-alt: 24px;">
                                                                 <span

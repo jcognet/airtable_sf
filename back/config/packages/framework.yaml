@@ -35,7 +35,7 @@ framework:
         headers:
           Authorization: 'Bearer %env(TWITTER_API_TOKEN_BEARER)%'
       ecoresponsablegouv.client:
-        base_uri: https://ecoresponsable.numerique.gouv.fr/
+        base_uri: '%ecoresponsaglegouvBaseUrl%'
       inr.client:
         base_uri: https://sustainableit-tools.isit-europe.org/
       inr.491_client:
@@ -50,7 +50,7 @@ framework:
         query:
           access_key: '%env(EXCHANGE_RATES_API_IO_KEY)%'
       lpo.client:
-        base_uri: https://www.oiseauxdesjardins.fr/index.php
+        base_uri: '%lpoBaseUrl%'
 
 when@test:
   framework:
