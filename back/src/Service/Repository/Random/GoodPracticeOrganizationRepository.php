@@ -13,7 +13,10 @@ class GoodPracticeOrganizationRepository
     private array $records = [];
     private array $randomKey = [];
 
-    public function __construct(private readonly HttpClientInterface $ecoresponsablegouvClient, private readonly GoodPracticeBuilder $goodPracticeBuilder)
+    public function __construct(
+        private readonly HttpClientInterface $ecoresponsablegouvClient,
+        private readonly GoodPracticeBuilder $goodPracticeBuilder
+    )
     {
     }
 

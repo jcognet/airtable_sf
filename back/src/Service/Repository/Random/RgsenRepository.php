@@ -13,7 +13,10 @@ class RgsenRepository
     private array $records = [];
     private array $randomKey = [];
 
-    public function __construct(private readonly HttpClientInterface $ecoresponsablegouvClient, private readonly CriteriaBuilder $criteriaBuilder)
+    public function __construct(
+        private readonly HttpClientInterface $ecoresponsablegouvClient,
+        private readonly CriteriaBuilder $criteriaBuilder
+    )
     {
     }
 

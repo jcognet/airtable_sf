@@ -11,7 +11,9 @@
                 <tr>
                     <td>
                         <a target="_blank" href="{{ block.content.pdfUrl }}">
-                            <img src="{{ absolute_url(path('img_thumbnail', {'pathImage': block.image.id})) }}?format=newsletter_width" alt="{{ block.content.fullName }}"/>
+                            <img
+                                src="{{ absolute_url(path('img_thumbnail', {'pathImage': block.image.id})) }}?format=newsletter_width"
+                                alt="{{ block.content.fullName }}"/>
                         </a>
                     </td>
                 </tr>
@@ -22,6 +24,10 @@
                             (Source : <a href="{{ block.content.lpoUrl }}"
                                          target="_blank">{{ block.content.lpoUrl }}</a>)
                         </div>
+                        <span style="font-size: 15px">
+                            <a href="{{ lpo_base_url }}" title="Voir le site de la LPO"
+                               target="_blank">&#128038;</a>
+                        </span>
                     </td>
                 </tr>
             </table>

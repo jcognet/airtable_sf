@@ -5,6 +5,8 @@
 # https://symfony.com/doc/current/best_practices.html#use-parameters-for-application-configuration
 parameters:
   inr491BaseUrl: 'https://gr491.isit-europe.org/'
+  ecoresponsaglegouvBaseUrl: 'https://ecoresponsable.numerique.gouv.fr/'
+  lpoBaseUrl: 'https://www.oiseauxdesjardins.fr/index.php'
   thumbnail_list:
     default:
       height: 200
