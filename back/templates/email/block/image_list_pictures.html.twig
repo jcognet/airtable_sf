@@ -19,7 +19,7 @@
                                 <tr>
                                     {% for picture in block.pictures %}
                                     <td style="margin: 5px;">
-                                        <a href="{{ url_front }}{{ path('img_normal', {'pathImage': picture.id}) }}"
+                                        <a href="{{ absolute_url( path('img_normal', {'pathImage': picture.id})) }}"
                                            title="Voir la taille 1 de la photo"
                                            target="_blank"
                                         >
