@@ -27,6 +27,6 @@ class CriteriaList extends AbstractBlock
 
     public function getType(): BlockType
     {
-        return BlockType::RGSEN_BLOCK;
+        return BlockType::RGESN_BLOCK;
     }
 }

@@ -27,7 +27,7 @@ use App\Service\Block\Random\GoodPracticeOrganizationManager;
 use App\Service\Block\Random\Inr491Manager;
 use App\Service\Block\Random\InrManager;
 use App\Service\Block\Random\RandomPicBlockManager;
-use App\Service\Block\Random\RgsenManager;
+use App\Service\Block\Random\RgesnManager;
 use App\Service\Block\Run\NextRunBlockManager;
 use App\Service\Block\ToDo\ItemBlockManager;
 use App\Service\Block\Twitter\BotDouxManager;
@@ -47,7 +47,7 @@ class ManagerType
         VideoBlockManager::class,
         BotDouxManager::class,
         InProgressContentManager::class,
-        RgsenManager::class,
+        RgesnManager::class,
         DoneContentManager::class,
         InrManager::class,
         ArticleReadListBlockManager::class,

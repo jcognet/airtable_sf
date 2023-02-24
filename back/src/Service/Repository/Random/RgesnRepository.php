@@ -7,7 +7,7 @@ use App\Service\Builder\Random\CriteriaBuilder;
 use App\ValueObject\Random\Criteria;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
 
-class RgsenRepository
+class RgesnRepository
 {
     private const NB_TRY_RANDOM = 5;
     private array $records = [];

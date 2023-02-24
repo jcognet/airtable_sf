@@ -4,15 +4,15 @@ declare(strict_types=1);
 namespace App\Service\Block\Random;
 
 use App\Service\Block\BlockManagerInterface;
-use App\Service\Repository\Random\RgsenRepository;
+use App\Service\Repository\Random\RgesnRepository;
 use App\ValueObject\BlockInterface;
 use App\ValueObject\Random\CriteriaList;
 
-class RgsenManager implements BlockManagerInterface
+class RgesnManager implements BlockManagerInterface
 {
     private const NB_CRITERIA = 3;
 
-    public function __construct(private readonly RgsenRepository $rgsenRepository)
+    public function __construct(private readonly RgesnRepository $rgesnRepository)
     {
     }
 
@@ -21,11 +21,11 @@ class RgsenManager implements BlockManagerInterface
         $criterias = [];
 
         for ($i = 1; $i <= self::NB_CRITERIA; ++$i) {
-            $criterias[] = $this->rgsenRepository->fetchRandomData();
+            $criterias[] = $this->rgesnRepository->fetchRandomData();
         }
 
         return new CriteriaList(
-            'RGSEN',
+            'RGESN',
             $criterias
         );
     }

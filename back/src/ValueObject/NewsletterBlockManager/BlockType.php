@@ -20,7 +20,7 @@ enum BlockType: string
     case VIDEO_BLOCK = 'video';
     case BOT_DOUX_BLOCK = 'bot_doux';
     case IMAGE_GOOGLE_EXPORT_IN_PROGRESS_BLOCK = 'image_google_in_progess';
-    case RGSEN_BLOCK = 'rgsen';
+    case RGESN_BLOCK = 'rgesn';
     case GOOD_PRACTICE_ORGANIZATION_BLOCK = 'good_practice_organization';
     case IMAGE_GOOGLE_EXPORT_DONE_BLOCK = 'image_google_done';
     case INR_TOOLS = 'list_inr_tool';
