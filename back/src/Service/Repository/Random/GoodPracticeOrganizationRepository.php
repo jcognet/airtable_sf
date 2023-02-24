@@ -16,8 +16,7 @@ class GoodPracticeOrganizationRepository
     public function __construct(
         private readonly HttpClientInterface $ecoresponsablegouvClient,
         private readonly GoodPracticeBuilder $goodPracticeBuilder
-    )
-    {
+    ) {
     }
 
     public function fetchRandomData(): ?GoodPractice

@@ -10,7 +10,10 @@ class ImageInPathLister
 {
     private const ALLOWED_EXTENSIONS = ['*.jpg', '*.jpeg'];
 
-    public function __construct(private readonly PictureFactory $pictureFactory, private readonly string $pathPictures)
+    public function __construct(
+        private readonly PictureFactory $pictureFactory,
+        private readonly string $pathPictures
+    )
     {
     }
 

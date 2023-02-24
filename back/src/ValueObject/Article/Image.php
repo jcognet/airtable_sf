@@ -13,8 +13,7 @@ class Image extends AbstractBlock
         private readonly ?string $url,
         private readonly ?array $sujets,
         private readonly ?string $source
-    )
-    {
+    ) {
     }
 
     public function getName(): string

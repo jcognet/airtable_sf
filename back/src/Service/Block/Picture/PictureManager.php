@@ -10,7 +10,10 @@ use App\ValueObject\BlockInterface;
 
 class PictureManager implements BlockManagerInterface
 {
-    public function __construct(private readonly ImageInPathLister $imageInPathLister, private readonly RandomDirectorySelector $randomDirectorySelector)
+    public function __construct(
+        private readonly ImageInPathLister $imageInPathLister,
+        private readonly RandomDirectorySelector $randomDirectorySelector
+    )
     {
     }
 
