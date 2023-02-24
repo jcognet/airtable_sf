@@ -27,7 +27,7 @@ use App\Service\Block\Random\GoodPracticeOrganizationManager;
 use App\Service\Block\Random\Inr491Manager;
 use App\Service\Block\Random\InrManager;
 use App\Service\Block\Random\RandomPicBlockManager;
-use App\Service\Block\Random\RgsenManager;
+use App\Service\Block\Random\RgesnManager;
 use App\Service\Block\Run\NextRunBlockManager;
 use App\Service\Block\ToDo\ItemBlockManager;
 use App\Service\Block\Twitter\BotDouxManager;
@@ -49,7 +49,7 @@ class ConvertBlockTypeToManagerType
         VideoBlockManager::class => BlockType::VIDEO_BLOCK,
         BotDouxManager::class => BlockType::BOT_DOUX_BLOCK,
         InProgressContentManager::class => BlockType::IMAGE_GOOGLE_EXPORT_IN_PROGRESS_BLOCK,
-        RgsenManager::class => BlockType::RGSEN_BLOCK,
+        RgesnManager::class => BlockType::RGESN_BLOCK,
         GoodPracticeOrganizationManager::class => BlockType::GOOD_PRACTICE_ORGANIZATION_BLOCK,
         DoneContentManager::class => BlockType::IMAGE_GOOGLE_EXPORT_DONE_BLOCK,
         InrManager::class => BlockType::INR_TOOLS,

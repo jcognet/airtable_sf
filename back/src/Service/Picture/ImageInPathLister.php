@@ -13,8 +13,7 @@ class ImageInPathLister
     public function __construct(
         private readonly PictureFactory $pictureFactory,
         private readonly string $pathPictures
-    )
-    {
+    ) {
     }
 
     public function getPicturesFromDirectory(string $subDirectory): Directory
