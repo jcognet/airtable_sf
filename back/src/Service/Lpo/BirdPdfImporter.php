@@ -30,7 +30,7 @@ class BirdPdfImporter
             $this->birdPdfSave->save($bird);
 
             if ($bird->getPdfUrl()) {
-                $this->createJpeg();
+                $this->createJpeg($bird);
                 $listBirdWithPdf[] = $bird;
             }
         }
@@ -40,10 +40,10 @@ class BirdPdfImporter
         return $listBirdWithPdf;
     }
 
-    private function createJpeg(): void
+    private function createJpeg(ImportedBird $bird): void
     {
-        // $bird->setSavedImgPath(str_replace('pdf', 'jpg', $bird->getSavedPdfPath()));
-        // $this->pdfToJpegConverter->convert($bird);
+        $bird->setSavedImgPath(str_replace('pdf', 'jpg', $bird->getSavedPdfPath()));
+        $this->pdfToJpegConverter->convert($bird);
     }
 
     private function save(array $birds): void
