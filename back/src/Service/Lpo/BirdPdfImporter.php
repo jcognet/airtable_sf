@@ -5,18 +5,21 @@ namespace App\Service\Lpo;
 
 use App\ValueObject\Lpo\ImportedBird;
 use Carbon\Carbon;
+use Psr\Log\LoggerInterface;
 use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\Serializer\SerializerInterface;
 
 class BirdPdfImporter
 {
     public function __construct(
-        private readonly BirdListFetcher $birdListFetcher,
-        private readonly BirdPdfSave $birdPdfSave,
-        private readonly Config $config,
+        private readonly BirdListFetcher     $birdListFetcher,
+        private readonly BirdPdfSave         $birdPdfSave,
+        private readonly Config              $config,
         private readonly SerializerInterface $serializer,
-        private readonly PdfToJpegConverter $pdfToJpegConverter
-    ) {
+        private readonly LoggerInterface     $logger,
+        #private readonly PdfToJpegConverter $pdfToJpegConverter
+    )
+    {
     }
 
     /**
@@ -44,7 +47,14 @@ class BirdPdfImporter
     private function createJpeg(ImportedBird $bird): void
     {
         $bird->setSavedImgPath(str_replace('pdf', 'jpg', $bird->getSavedPdfPath()));
-        $this->pdfToJpegConverter->convert($bird);
+        $this->logger->info(
+            sprintf('PDF path: %s, JPG path: %s',
+                $bird->getSavedPdfPath(),
+                $bird->getSavedImgPath(),
+            ),
+            [$bird]
+        );
+        //$this->pdfToJpegConverter->convert($bird);
     }
 
     private function save(array $birds): void
