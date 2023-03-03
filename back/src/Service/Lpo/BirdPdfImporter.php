@@ -11,12 +11,12 @@ use Symfony\Component\Serializer\SerializerInterface;
 class BirdPdfImporter
 {
     public function __construct(
-        private readonly BirdListFetcher     $birdListFetcher,
-        private readonly BirdPdfSave         $birdPdfSave,
-        private readonly Config              $config,
-        private readonly SerializerInterface $serializer
-    )
-    {
+        private readonly BirdListFetcher $birdListFetcher,
+        private readonly BirdPdfSave $birdPdfSave,
+        private readonly Config $config,
+        private readonly SerializerInterface $serializer,
+        private readonly PdfToJpegConverter $pdfToJpegConverter
+    ) {
     }
 
     /**
