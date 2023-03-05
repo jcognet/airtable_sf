@@ -32,12 +32,15 @@ class ExportToSpreadsheet
     public function getData(): array
     {
         $currencies = $this->currencyRepository->getCurrencies();
+        $nbArticleNotRead = count($this->ALireClient->findAll());
+        $nbArticleNotConcept = count($this->luClient->findAll(['filterByFormula' => '{Conceptualisé} = 0']));
+        $nbArticleNotReadAndNbArticleWithNoConcept = $nbArticleNotRead + $nbArticleNotConcept;
 
         return [
             Carbon::now()->format('d/m/Y'),
             count($this->itemClient->findAll()),
             count($this->luClient->findAll()),
-            count($this->ALireClient->findAll()),
+            $nbArticleNotRead,
             count($this->bookClient->findAll(['filterByFormula' => '{Status} = "A lire"'])),
             count($this->bookClient->findAll(['filterByFormula' => '{Status} = "Fini"'])),
             count($this->imageClient->findAll()),
@@ -49,7 +52,8 @@ class ExportToSpreadsheet
             $currencies[3]->getValue(),
             $currencies[4]->getValue(),
             count($this->conceptClient->findAll()),
-            count($this->luClient->findAll(['filterByFormula' => '{Conceptualisé} = 0'])),
+            $nbArticleNotConcept,
+            $nbArticleNotReadAndNbArticleWithNoConcept,
         ];
     }
 
