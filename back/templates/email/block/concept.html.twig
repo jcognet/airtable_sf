@@ -52,38 +52,41 @@
                                             <hr/>
                                             {% for linked_content in block.linkedContents %}
                                                 {% if loop.index0 % 3 == 0 %}
-                                                    <div style="display: flex;justify-content: center">
+                                                    <div style="display: flex;justify-content: left">
                                                 {% endif %}
                                                 <div
-                                                    style="width:33%;margin-right: 10px;text-align:justify;font-size: 14px; mso-line-height-alt: 21px; color: #000000; line-height: 1.5; font-family: Poppins, Arial, Helvetica, sans-serif;">
-                                                <div
-                                                    style="text-align: center; font-family: Poppins, Arial, Helvetica, sans-serif;">
-                                                    <a href="{{ linked_content.url }}"
-                                                       style="color:#{{ main_color }};font-size:18px"
-                                                       target="_blank">{{ linked_content.title }}
-                                                    </a>
-                                                    {% if linked_content.seeAgain %}
-                                                        <a href="{{ linked_content.airTableUrl }}" title="Relire {{ linked_content.title }}"> 🕶</a>
-                                                    {% endif %}
-                                                </div>
-                                                {% if is_class(linked_content,'App\\ValueObject\\Article\\Image') %}
-                                                    <div>
+                                                    style="width:33%;margin-right: 10px;text-align:justify;font-size: 14px; mso-line-height-alt: 21px; color: #000000; line-height: 1.5; font-family: Poppins, Arial, Helvetica, sans-serif;"
+                                                >
+                                                    <div
+                                                        style="text-align: center; font-family: Poppins, Arial, Helvetica, sans-serif;">
                                                         <a href="{{ linked_content.url }}"
                                                            style="color:#{{ main_color }};font-size:18px"
-                                                           target="_blank">
-                                                            <img style="width:100%;" src="{{ linked_content.url }}"
-                                                                 alt="{{ linked_content.title }}"/>
+                                                           target="_blank">{{ linked_content.title }}
                                                         </a>
+                                                        {% if linked_content.seeAgain %}
+                                                            <a href="{{ linked_content.airTableUrl }}"
+                                                               title="Relire {{ linked_content.title }}"> 🕶</a>
+                                                        {% endif %}
                                                     </div>
-                                                {% else %}
-                                                    <div>
-                                                        {{ linked_content.content|u.truncate(200, '...', false)|striptags }}
-                                                        <a href="{{ linked_content.airTableUrl }}"
-                                                           style="color:#{{ main_color }};font-size:18px"
-                                                           target="_blank">>>
-                                                        </a>
-                                                    </div>
-                                                {% endif %}
+                                                    {% if is_class(linked_content,'App\\ValueObject\\Article\\Image') %}
+                                                        <div>
+                                                            <a href="{{ linked_content.url }}"
+                                                               style="color:#{{ main_color }};font-size:18px"
+                                                               target="_blank">
+                                                                <img style="width:100%;" src="{{ linked_content.url }}"
+                                                                     alt="{{ linked_content.title }}"/>
+                                                            </a>
+                                                        </div>
+                                                    {% else %}
+                                                        <div>
+                                                            {{ linked_content.content|u.truncate(200, '...', false)|striptags }}
+                                                            <a href="{{ linked_content.airTableUrl }}"
+                                                               style="color:#{{ main_color }};font-size:18px"
+                                                               target="_blank">>>
+                                                            </a>
+                                                        </div>
+                                                    {% endif %}
+                                                </div>
                                                 {% if loop.index0 % 3 == 2 %}
                                                     </div>
                                                 {% endif %}
