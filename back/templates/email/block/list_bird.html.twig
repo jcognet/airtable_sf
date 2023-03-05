@@ -37,6 +37,7 @@
                             <tbody>
                             <tr>
                                 <td style="padding-bottom:20px;padding-left:10px;padding-right:10px;padding-top:10px;width= 700px">
+                                    {% set has_to_close_div = false %}
                                     {% for bird in block.content %}
                                         {% if loop.index0 % 4 == 0 %}
                                             <div style="display: flex;justify-content: center">
@@ -59,7 +60,9 @@
                                         {% if loop.index0 % 4 == 3 %}
                                             </div>
                                         {% endif %}
+                                        {% set has_to_close_div = not(loop.index0 % 4 == 3) %}
                                     {% endfor %}
+                                    {% if has_to_close_div %}</div>{% endif %}
                                     </div>
                                 </td>
                             </tr>

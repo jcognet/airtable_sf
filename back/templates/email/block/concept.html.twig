@@ -50,6 +50,7 @@
                                             {{ block.content|nl2br }}
                                             {% if block.linkedContents|length >0 %}
                                             <hr/>
+                                            {% set has_to_close_div = false %}
                                             {% for linked_content in block.linkedContents %}
                                                 {% if loop.index0 % 3 == 0 %}
                                                     <div style="display: flex;justify-content: left">
@@ -90,7 +91,9 @@
                                                 {% if loop.index0 % 3 == 2 %}
                                                     </div>
                                                 {% endif %}
+                                                {% set has_to_close_div = not(loop.index0 % 3 == 2) %}
                                             {% endfor %}
+                                            {% if has_to_close_div %}</div>{% endif %}
                                         </div>
                                         <hr/>
                                         {% endif %}

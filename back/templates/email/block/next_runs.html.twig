@@ -43,6 +43,7 @@
                                         <div
                                             style="font-size: 14px; mso-line-height-alt: 21px; color: #000000; line-height: 1.5; font-family: Poppins, Arial, Helvetica, sans-serif;">
                                             {% if block.content|length >0 %}
+                                            {% set has_to_close_div = false %}
                                             {% for run in block.content %}
                                                 {% if loop.index0 % 3 == 0 %}
                                                     <div style="display: flex;justify-content: left">
@@ -65,7 +66,9 @@
                                                 {% if loop.index0 % 3 == 2 %}
                                                     </div>
                                                 {% endif %}
+                                                {% set has_to_close_div = not(loop.index0 % 3 == 2) %}
                                             {% endfor %}
+                                            {% if has_to_close_div %}</div>{% endif %}
                                         </div>
                                         <hr/>
                                         {% endif %}

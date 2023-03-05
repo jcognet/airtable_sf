@@ -3,7 +3,7 @@
 {% block body %}
     {% if show_block is defined and show_block %}
         <div style="background-color: darkkhaki;margin: 10px; position:fixed;width: 100%;top:0px">
-        {% set has_to_close_div= false %}
+        {% set has_to_close_div = false %}
         {% for block in newspaper.blocks %}
             {% if loop.index0 % 5 == 0 %}
                 <div style="display: flex;justify-content: left">
