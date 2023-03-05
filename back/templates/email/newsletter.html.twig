@@ -1,10 +1,44 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    {% for block in newspaper.blocks %}
-        {% if show_block is defined and show_block%}
+    {% if show_block is defined and show_block %}
+        <div style="background-color: darkkhaki;margin: 10px; position:fixed;width: 100%;top:0px">
+        {% set has_to_close_div= false %}
+        {% for block in newspaper.blocks %}
+            {% if loop.index0 % 5 == 0 %}
+                <div style="display: flex;justify-content: left">
+            {% endif %}
             {% set block_type = convert_to_manager_type(block.managerType).value %}
-            <h1>
+            <div style="padding-right: 10px;width: 20%">
+                <a
+                    href="#{{ block_type }}"
+                    title="Voir ce bloc"
+                >
+                    {{ block_type }}
+                </a>
+
+                <a style="font-size: 10px"
+                    href="{{ path('test_mail_one', {
+                        'blockType': block_type
+                    }) }}"
+                    title="Voir seulement ce bloc"
+                >
+                    >>
+                </a>
+            </div>
+            {% if loop.index0 % 5 == 4 %}
+                </div>
+            {% endif %}
+            {% set has_to_close_div = not(loop.index0 % 5 == 4) %}
+        {% endfor %}
+        {% if has_to_close_div %}</div>{% endif %}
+        </div>
+    {% endif %}
+
+    {% for block in newspaper.blocks %}
+        {% if show_block is defined and show_block %}
+            {% set block_type = convert_to_manager_type(block.managerType).value %}
+            <h1 id="{{ block_type }}">
                 <a
                     href="{{ path('test_mail_one', {
                         'blockType': block_type
