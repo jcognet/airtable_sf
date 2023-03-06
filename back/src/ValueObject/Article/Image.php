@@ -5,12 +5,13 @@ namespace App\ValueObject\Article;
 
 use App\ValueObject\AbstractBlock;
 use App\ValueObject\NewsletterBlockManager\BlockType;
+use App\ValueObject\Picture\CachedImage;
 
 class Image extends AbstractBlock
 {
     public function __construct(
         private readonly string $name,
-        private readonly ?string $url,
+        private readonly ?CachedImage $url,
         private readonly ?array $sujets,
         private readonly ?string $source
     ) {
@@ -21,7 +22,7 @@ class Image extends AbstractBlock
         return $this->name;
     }
 
-    public function getUrl(): ?string
+    public function getUrl(): ?CachedImage
     {
         return $this->url;
     }
@@ -43,7 +44,7 @@ class Image extends AbstractBlock
 
     public function getContent(): string
     {
-        return $this->getUrl();
+        return $this->getTitle();
     }
 
     public function getType(): BlockType

@@ -10,8 +10,14 @@
                    width="750">
                 <tr>
                     <td>
-                        <a target="_blank" href="{{ block.content }}">
-                            <img src="{{ block.content }}" alt="{{ block.title }}" width="750"/>
+                        <a
+                            href="{{ absolute_url( path('img_normal', {'pathImage': block.url.picture.id})) }}"
+                            style=" outline:none" tabindex="-1"
+                            target="_blank">
+                            <img
+                                src="{{ absolute_url(path('img_thumbnail', {'pathImage': block.url.picture.id})) }}?format=newsletter_width"
+                                alt="{{ block.content }}"
+                            />
                         </a>
                     </td>
                 </tr>

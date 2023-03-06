@@ -81,12 +81,18 @@
                     <tbody>
                     <tr>
                         <td style="width:100%;padding-right:0px;padding-left:0px;">
-                            <div align="center" style="line-height:10px"><a
-                                    href="{{ beer.photo }}" style=" outline:none" tabindex="-1"
-                                    target="_blank"><img alt="Image" class="fullMobileWidth big"
-                                                         src="{{ beer.photo }}"
-                                                         style="display: block; height: auto; border: 0; width: 355px; max-width: 100%;"
-                                                         title="Image" width="355"></a></div>
+                            <div align="center" style="line-height:10px">
+                                <a
+                                    href="{{ absolute_url( path('img_normal', {'pathImage': beer.photo.picture.id})) }}"
+                                    style=" outline:none" tabindex="-1"
+                                    target="_blank">
+                                    <img
+                                        src="{{ absolute_url(path('img_thumbnail', {'pathImage': beer.photo.picture.id})) }}?format=list_beer"
+                                        alt="{{ beer.title }}"
+                                        width="355"
+                                    />
+                                </a>
+                            </div>
                         </td>
                     </tr>
                     </tbody>
@@ -112,13 +118,13 @@
                                         </a>
                                     </strong>
                                     {% if beer.brasserie %}
-                                    par
-                                    <strong>
-                                        <a href="{{ beer.brasserie.url }}"
-                                           target="_blank"
-                                           style="color: #{{ main_color }};font-family: Poppins, Arial, Helvetica, sans-serif;text-decoration: none"
-                                           title="Site officiel de {{ beer.brasserie.label }}">{{ beer.brasserie.label }}</a>
-                                    </strong>
+                                        par
+                                        <strong>
+                                            <a href="{{ beer.brasserie.url }}"
+                                               target="_blank"
+                                               style="color: #{{ main_color }};font-family: Poppins, Arial, Helvetica, sans-serif;text-decoration: none"
+                                               title="Site officiel de {{ beer.brasserie.label }}">{{ beer.brasserie.label }}</a>
+                                        </strong>
                                     {% endif %}
                                 </div>
                             </div>

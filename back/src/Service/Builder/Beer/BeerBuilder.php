@@ -5,6 +5,7 @@ namespace App\Service\Builder\Beer;
 
 use App\Service\AirTable\UrlBuilder;
 use App\Service\Builder\BuilderInterface;
+use App\Service\Builder\Picture\CachedImageBuilder;
 use App\Service\Repository\Beer\BeerTypeRepository;
 use App\Service\Repository\Beer\BreweryRepository;
 use App\ValueObject\Beer\Beer;
@@ -19,7 +20,8 @@ class BeerBuilder implements BuilderInterface
         private readonly BreweryRepository $brasserieRepository,
         private readonly BeerTypeRepository $beerTypeRepository,
         private readonly string $airtableAppBiereId,
-        private readonly UrlBuilder $urlBuilder
+        private readonly UrlBuilder $urlBuilder,
+        private readonly CachedImageBuilder $cachedImageBuilder
     ) {
     }
 
@@ -36,13 +38,21 @@ class BeerBuilder implements BuilderInterface
             $beerType = $this->beerTypeRepository->getById($data['fields']['Type'][0]);
         }
 
+        $cachedImage = $this->cachedImageBuilder->build(
+            Beer::class,
+            $data['id'],
+            'photo',
+            $data['fields']['Bière'] ?? null,
+            $data['fields']['Photo'][0]['url'] ?? null,
+        );
+
         return new Beer(
             $data['fields']['Bière'] ?? null,
             $data['fields']['Notes'] ?? null,
             $brasserie,
             $data['fields']['Note'] ?? null,
             $data['fields']['IBU'] ?? null,
-            $data['fields']['Photo'][0]['url'] ?? null,
+            $cachedImage,
             isset($data['fields']['Date de test']) ? Carbon::parse($data['fields']['Date de test']) : null,
             $beerType,
             $data['fields']['Degré alcool'] ?? null,

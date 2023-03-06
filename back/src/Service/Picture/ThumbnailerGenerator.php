@@ -23,11 +23,12 @@ class ThumbnailerGenerator
 
         $sourceGdImage = match ($sourceType) {
             IMAGETYPE_JPEG => imagecreatefromjpeg($sourceImage),
-            default => throw new UnknownTypeFileException($sourceType, ['jpg']),
+            IMAGETYPE_PNG => imagecreatefrompng($sourceImage),
+            default => throw new UnknownTypeFileException($sourceType, ['jpg', 'png']),
         };
 
         if ($sourceGdImage === false) {
-            throw new UnknownTypeFileException($sourceType, ['jpg']);
+            throw new UnknownTypeFileException($sourceType, ['jpg', 'png']);
         }
 
         $thumbnailConfiguration = $this->thumbnailList[$format->value];
