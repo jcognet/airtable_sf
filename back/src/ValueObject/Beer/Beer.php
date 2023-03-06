@@ -6,6 +6,7 @@ namespace App\ValueObject\Beer;
 use App\Exception\MethodNotUsableException;
 use App\ValueObject\AbstractBlock;
 use App\ValueObject\NewsletterBlockManager\BlockType;
+use App\ValueObject\Picture\CachedImage;
 use Carbon\Carbon;
 
 class Beer extends AbstractBlock
@@ -16,7 +17,7 @@ class Beer extends AbstractBlock
         private readonly ?Brewery $brasserie,
         private readonly ?int $note,
         private readonly ?int $ibu,
-        private readonly ?string $photo,
+        private readonly ?CachedImage $photo,
         private readonly Carbon $dateTest,
         private readonly ?BeerType $beerType,
         private readonly ?float $alcolholDegree,
@@ -59,7 +60,7 @@ class Beer extends AbstractBlock
         return $this->ibu;
     }
 
-    public function getPhoto(): ?string
+    public function getPhoto(): ?CachedImage
     {
         return $this->photo;
     }

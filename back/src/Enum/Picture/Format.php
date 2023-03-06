@@ -9,6 +9,7 @@ enum Format: string
 {
     case DEFAULT = 'default';
     case NEWSLETTER_WIDTH = 'newsletter_width';
+    case LIST_BEER = 'list_beer';
 
     public static function make(?string $type): self
     {
