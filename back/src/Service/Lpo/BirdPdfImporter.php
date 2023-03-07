@@ -17,7 +17,7 @@ class BirdPdfImporter
         private readonly Config $config,
         private readonly SerializerInterface $serializer,
         private readonly LoggerInterface $logger,
-        // private readonly PdfToJpegConverter $pdfToJpegConverter
+         private readonly PdfToJpegConverter $pdfToJpegConverter
     ) {
     }
 
@@ -54,7 +54,7 @@ class BirdPdfImporter
             ),
             [$bird]
         );
-        // $this->pdfToJpegConverter->convert($bird);
+        $this->pdfToJpegConverter->convert($bird);
     }
 
     private function save(array $birds): void
