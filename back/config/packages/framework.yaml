@@ -51,6 +51,8 @@ framework:
           access_key: '%env(EXCHANGE_RATES_API_IO_KEY)%'
       lpo.client:
         base_uri: '%lpoBaseUrl%'
+      passport.client:
+        base_uri:  https://rendezvouspasseport.ants.gouv.fr/
 
 when@test:
   framework:
