@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace App\Service\Archive;
+namespace App\Service\Picture;
 
 use App\Service\Contract\CleanerInterface;
 use Carbon\Carbon;
@@ -10,8 +10,9 @@ use Symfony\Component\Finder\Finder;
 
 class Cleaner implements CleanerInterface
 {
-    public function __construct(private readonly string $deployArchiveJsonPath)
-    {
+    public function __construct(
+        private readonly string $cachedImagePath
+    ) {
     }
 
     public function clean(Carbon $from): int
@@ -20,10 +21,11 @@ class Cleaner implements CleanerInterface
         $filesystem = new Filesystem();
 
         $files = $finder->files()
-            ->in($this->deployArchiveJsonPath)
-            ->name('*.json')
+            ->in($this->cachedImagePath)
+            ->name('*.jpg')
             ->date(sprintf('<=%s', $from->format('Y-m-d')))
         ;
+
         $nb = $files->count();
         $filesystem->remove($files);
 

@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace App\Command;
 
-use App\Service\Archive\Cleaner;
+use App\Service\Contract\CleanerInterface;
 use Carbon\Carbon;
 use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
@@ -13,7 +13,10 @@ use Symfony\Component\Console\Output\OutputInterface;
 #[AsCommand(name: 'app:newspaper:clean')]
 class CleanDataCommand extends Command
 {
-    public function __construct(private readonly Cleaner $cleaner)
+    /**
+     * @param CleanerInterface[] $listCleaners
+     */
+    public function __construct(private readonly iterable $listCleaners)
     {
         parent::__construct();
     }
@@ -31,9 +34,16 @@ class CleanDataCommand extends Command
         $from = Carbon::now()->subMonth();
         $output->writeln(sprintf('Remove file from %s', $from->format('d/m/Y')));
 
-        $nb = $this->cleaner->clean($from);
-
-        $output->writeln(sprintf('Number of files removed: %d', $nb));
+        foreach ($this->listCleaners as $cleaner) {
+            $nb = $cleaner->clean($from);
+            $output->writeln(
+                sprintf(
+                    'Number of files removed by %s: %d',
+                    $cleaner::class,
+                    $nb
+                )
+            );
+        }
 
         $end = Carbon::now();
         $interval = $end->diffAsCarbonInterval($start);
