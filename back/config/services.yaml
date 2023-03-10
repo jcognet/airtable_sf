@@ -67,6 +67,9 @@ services:
     App\Service\Repository\Random\RandomImageRepositoryInterface:
       tags: [ 'app.random_image_repository' ]
 
+    App\Service\Contract\CleanerInterface:
+      tags: [ 'app.cleaner' ]
+
   App\Service\NewsletterManager\ManagerContentFactory:
     arguments:
       - !tagged_iterator app.block_manager
@@ -74,6 +77,10 @@ services:
   App\Service\Block\Random\RandomPicBlockManager:
     arguments:
       - !tagged_iterator app.random_image_repository
+
+  App\Command\CleanDataCommand:
+    arguments:
+      - !tagged_iterator app.cleaner
 
   App\Service\Security\LoginLinkHandler:
     arguments:

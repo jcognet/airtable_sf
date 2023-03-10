@@ -17,7 +17,7 @@ class BirdPdfImporter
         private readonly Config $config,
         private readonly SerializerInterface $serializer,
         private readonly LoggerInterface $logger,
-         private readonly PdfToJpegConverter $pdfToJpegConverter
+        private readonly PdfToJpegConverter $pdfToJpegConverter
     ) {
     }
 
