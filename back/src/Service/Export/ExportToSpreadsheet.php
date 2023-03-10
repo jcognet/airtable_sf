@@ -34,7 +34,8 @@ class ExportToSpreadsheet
         $currencies = $this->currencyRepository->getCurrencies();
         $nbArticleNotRead = count($this->ALireClient->findAll());
         $nbArticleNotConcept = count($this->luClient->findAll(['filterByFormula' => '{Conceptualisé} = 0']));
-        $nbArticleNotReadAndNbArticleWithNoConcept = $nbArticleNotRead + $nbArticleNotConcept;
+        $nbImageNotConcept = count($this->imageClient->findAll(['filterByFormula' => '{Conceptualisé} = 0']));
+        $nbArticleNotReadAndNbArticleWithNoConcept = $nbArticleNotRead + $nbArticleNotConcept + $nbImageNotConcept;
 
         return [
             Carbon::now()->format('d/m/Y'),
@@ -54,6 +55,7 @@ class ExportToSpreadsheet
             count($this->conceptClient->findAll()),
             $nbArticleNotConcept,
             $nbArticleNotReadAndNbArticleWithNoConcept,
+            $nbImageNotConcept,
         ];
     }
 
