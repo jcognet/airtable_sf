@@ -6,11 +6,17 @@ namespace App\Service\Archive;
 use App\ValueObject\Archive\NewsLetter;
 use Carbon\Carbon;
 use Symfony\Component\Filesystem\Filesystem;
+use Symfony\Component\Serializer\Normalizer\AbstractNormalizer;
+use Symfony\Component\Serializer\Normalizer\DenormalizerInterface;
+use Symfony\Component\Serializer\SerializerInterface;
 
 class DataInputOuputHandler
 {
-    public function __construct(private readonly string $deployArchiveJsonPath)
-    {
+    public function __construct(
+        private readonly string $deployArchiveJsonPath,
+        private readonly SerializerInterface $serializer,
+        private readonly DenormalizerInterface $denormalizer
+    ) {
     }
 
     public function write(
@@ -20,15 +26,20 @@ class DataInputOuputHandler
 
         $fs->dumpFile(
             $this->getFileName($newsLetter->getDate()),
-            json_encode([
-                'data' => [
-                    'content' => $newsLetter->getContent(),
+            $this->serializer->serialize(
+                [
+                    'data' => [
+                        'newsletter_html' => $newsLetter->getNewsletterHtml(),
+                        'blocks' => $newsLetter->getBlocks(),
+                    ],
+                    'metadata' => [
+                        'created' => $newsLetter->getDate(),
+                        'was_sent' => $newsLetter->wasSent(),
+                    ],
                 ],
-                'metadata' => [
-                    'created' => $newsLetter->getDate(),
-                    'was_sent' => $newsLetter->wasSent(),
-                ],
-            ])
+                'json',
+                [AbstractNormalizer::IGNORED_ATTRIBUTES => ['managerTypeValue', 'type', 'videoId']]
+            )
         );
     }
 
@@ -40,12 +51,30 @@ class DataInputOuputHandler
             return null;
         }
 
-        $data = json_decode(file_get_contents($this->getFileName($date)), true, 512, JSON_THROW_ON_ERROR);
+        $data = json_decode(
+            file_get_contents(
+                $this->getFileName($date)
+            ),
+            true,
+            512,
+            JSON_THROW_ON_ERROR
+        );
+        $blocks = null;
+
+        if (isset($data['data']['blocks'])) {
+            $blocks = [];
+
+            foreach ($data['data']['blocks'] as $block) {
+                $blockDenormalized = $this->denormalizer->denormalize($block, $block['class']);
+                $blocks[] = $blockDenormalized;
+            }
+        }
 
         return new NewsLetter(
-            Carbon::parse($data['metadata']['created']),
-            $data['data']['content'],
-            isset($data['metadata']['was_sent']) && (bool) $data['metadata']['was_sent']
+            date: Carbon::parse($data['metadata']['created']),
+            newsletterHtml: $data['data']['newsletter_html'],
+            wasSent: isset($data['metadata']['was_sent']) && (bool) $data['metadata']['was_sent'],
+            blocks: $blocks
         );
     }
 

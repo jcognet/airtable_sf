@@ -11,7 +11,11 @@ class MeteoList extends AbstractBlock
     /**
      * @param MeteoItem[] $meteoItemLists
      */
-    public function __construct(private readonly array $meteoItemLists, private readonly string $latitude, private readonly string $longitude)
+    public function __construct(
+        private readonly array $meteoItemLists,
+        private readonly string $latitude,
+        private readonly string $longitude
+    )
     {
     }
 

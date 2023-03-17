@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
-use App\Service\NewsletterManager\Creater;
+use App\Service\NewsletterManager\Creator;
 use App\Service\NewsletterManager\Manager;
 use Carbon\Carbon;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -23,25 +23,25 @@ class TestMailController extends AbstractController
         );
 
         return new Response(
-            $newsletter->getContent()
+            $newsletter->getNewsletterHtml()
         );
     }
 
     #[Route(path: '/test/mail/all', name: 'all_mail_show', methods: ['GET'])]
-    public function all(Creater $creater): Response
+    public function all(Creator $creator): Response
     {
-        $creater->createAllContent();
+        $creator->createAllContent();
 
-        return new Response($creater->getHtml(true));
+        return new Response($creator->getHtml(true));
     }
 
     #[Route(path: '/test/mail/one/{blockType}', name: 'test_mail_one', methods: ['GET'])]
     public function one(
-        Creater $creater,
+        Creator $creator,
         string $blockType
     ): Response {
-        $creater->createOneContent($blockType);
+        $creator->createOneContent($blockType);
 
-        return new Response($creater->getHtml());
+        return new Response($creator->getHtml());
     }
 }

@@ -5,7 +5,15 @@ namespace App\ValueObject\Random;
 
 class Criteria
 {
-    public function __construct(private readonly string $id, private readonly string $url, private readonly string $critere, private readonly string $thematique, private readonly string $objectif, private readonly string $miseEnOeuvre, private readonly string $controle)
+    public function __construct(
+        private readonly string $id,
+        private readonly string $url,
+        private readonly string $critere,
+        private readonly string $thematique,
+        private readonly string $objectif,
+        private readonly string $miseEnOeuvre,
+        private readonly string $controle
+    )
     {
     }
 

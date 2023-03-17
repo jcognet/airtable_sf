@@ -11,7 +11,7 @@ class Manager
 {
     public function __construct(
         private readonly DataInputOuputHandler $dataInputOuputHandler,
-        private readonly Creater $creater
+        private readonly Creator $creator
     ) {
     }
 
@@ -21,11 +21,12 @@ class Manager
             return $newsLetter;
         }
 
-        $this->creater->createContent($date);
+        $this->creator->createContent($date);
         $archiveNewsLetter = new NewsLetter(
-            $date,
-            $this->creater->getHtml(),
-            false
+            date: $date,
+            newsletterHtml: $this->creator->getHtml(),
+            wasSent: false,
+            blocks: $this->creator->getBlocks()
         );
 
         $this->dataInputOuputHandler->write(

@@ -12,7 +12,13 @@ class Video extends AbstractBlock
     /**
      * @param Sujet[] $sujets
      */
-    public function __construct(private readonly string $title, private readonly string $body, private readonly Carbon $addedAt, private readonly array $sujets, private readonly ?string $url)
+    public function __construct(
+        private readonly string $title,
+        private readonly string $body,
+        private readonly Carbon $addedAt,
+        private readonly array $sujets,
+        private readonly ?string $url
+    )
     {
     }
 

@@ -28,6 +28,11 @@ abstract class AbstractArticleList extends AbstractBlock
         return $this->articles;
     }
 
+    public function getArticles(): array
+    {
+        return $this->articles;
+    }
+
     abstract public function getType(): BlockType;
 
     public function getNbArticles(): int

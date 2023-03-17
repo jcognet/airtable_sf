@@ -7,7 +7,17 @@ use Carbon\Carbon;
 
 class Item
 {
-    public function __construct(private readonly string $id, private readonly Carbon $createdAt, private readonly ?string $label, private readonly ?string $notes, private readonly ?string $etat, private readonly ?Carbon $dueAt, private readonly ?string $category, private readonly ?string $sprint, private readonly bool $isImportant)
+    public function __construct(
+        private readonly string $id,
+        private readonly Carbon $createdAt,
+        private readonly ?string $label,
+        private readonly ?string $notes,
+        private readonly ?string $etat,
+        private readonly ?Carbon $dueAt,
+        private readonly ?string $category,
+        private readonly ?string $sprint,
+        private readonly bool $isImportant
+    )
     {
     }
 
