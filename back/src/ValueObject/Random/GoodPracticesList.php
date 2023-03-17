@@ -11,7 +11,10 @@ class GoodPracticesList extends AbstractBlock
     /**
      * @param GoodPractice[] $goodPractices
      */
-    public function __construct(private readonly string $title, private readonly array $goodPractices)
+    public function __construct(
+        private readonly string $title,
+        private readonly array $goodPractices
+    )
     {
     }
 
@@ -21,6 +24,11 @@ class GoodPracticesList extends AbstractBlock
     }
 
     public function getContent()
+    {
+        return $this->goodPractices;
+    }
+
+    public function getGoodPractices(): array
     {
         return $this->goodPractices;
     }

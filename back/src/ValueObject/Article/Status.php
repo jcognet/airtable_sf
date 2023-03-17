@@ -23,8 +23,14 @@ class Status
 
     public function __construct(string $status)
     {
+        if (in_array($status, array_values(self::CONVERT_FROM_AIRTABLE), true)) {
+            $this->value = $status;
+
+            return;
+        }
+
         if (!isset(self::CONVERT_FROM_AIRTABLE[$status])) {
-            throw new \InvalidArgumentException(sprintf('Wrong status, got: %s, expected: %s', $status, implode(',', self::CONVERT_FROM_AIRTABLE)));
+            throw new \InvalidArgumentException(sprintf('Wrong status, got: %s, expected: %s.', $status, implode(',', array_keys(self::CONVERT_FROM_AIRTABLE))));
         }
 
         $this->value = self::CONVERT_FROM_AIRTABLE[$status];

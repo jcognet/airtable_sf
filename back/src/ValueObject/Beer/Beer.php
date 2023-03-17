@@ -37,7 +37,9 @@ class Beer extends AbstractBlock
 
     public function getType(): BlockType
     {
-        throw new MethodNotUsableException('Method getType from %s it not callable.', self::class);
+        throw new MethodNotUsableException(
+            sprintf('Method getType from %s it not callable.', self::class)
+        );
     }
 
     public function getAvis(): ?string

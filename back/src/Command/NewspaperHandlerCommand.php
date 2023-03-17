@@ -40,7 +40,7 @@ class NewspaperHandlerCommand extends Command
             $newsLetter = $this->manager->get(Carbon::now());
 
             if (!$newsLetter->wasSent()) {
-                $this->sender->send($newsLetter->getContent());
+                $this->sender->send($newsLetter->getNewsletterHtml());
                 $newsLetter->setWasSent(true);
                 $this->dataInputOuputHandler->write(
                     $newsLetter

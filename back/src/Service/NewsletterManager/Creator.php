@@ -13,11 +13,11 @@ use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerAwareTrait;
 use Twig\Environment;
 
-class Creater implements LoggerAwareInterface
+class Creator implements LoggerAwareInterface
 {
     use LoggerAwareTrait;
 
-    private Newspaper $newspaper;
+    private ?Newspaper $newspaper = null;
     private ?string $html = null;
 
     public function __construct(
@@ -50,6 +50,15 @@ class Creater implements LoggerAwareInterface
         }
 
         return $this->html;
+    }
+
+    public function getBlocks(): ?array
+    {
+        if (!$this->newspaper) {
+            return null;
+        }
+
+        return $this->newspaper->getBlocks();
     }
 
     public function createContent(Carbon $date): void

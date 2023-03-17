@@ -5,7 +5,11 @@ namespace App\ValueObject\Beer;
 
 class Brewery
 {
-    public function __construct(private readonly string $id, private readonly ?string $label, private readonly ?string $url)
+    public function __construct(
+        private readonly string $id,
+        private readonly ?string $label,
+        private readonly ?string $url
+    )
     {
     }
 

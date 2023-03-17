@@ -41,7 +41,7 @@ class Famille
         return $this->randomContent;
     }
 
-    public function addRandomContent(Inr491Recommandation $item): void
+    public function setRandomContent(Inr491Recommandation $item): void
     {
         $this->randomContent = $item;
     }

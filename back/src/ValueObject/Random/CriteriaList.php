@@ -11,7 +11,10 @@ class CriteriaList extends AbstractBlock
     /**
      * @param Criteria[] $criterias
      */
-    public function __construct(private readonly string $title, private readonly array $criterias)
+    public function __construct(
+        private readonly string $title,
+        private readonly array $criterias
+    )
     {
     }
 

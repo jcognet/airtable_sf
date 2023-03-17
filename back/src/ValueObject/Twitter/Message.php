@@ -10,7 +10,11 @@ class Message extends AbstractBlock
 {
     private string $title = '';
 
-    public function __construct(private readonly string $content, private ?User $user = null, ?string $title = null)
+    public function __construct(
+        private readonly string $content,
+        private ?User $user = null,
+        ?string $title = null
+    )
     {
         if (null !== $title) {
             $this->title = $title;

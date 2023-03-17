@@ -25,6 +25,8 @@ class InterestingTopic extends AbstractBlock
 
     public function getType(): BlockType
     {
-        throw new MethodNotUsableException('Method getType from %s it not callable.', self::class);
+        throw new MethodNotUsableException(
+            sprintf('Method getType from %s it not callable.', self::class)
+        );
     }
 }

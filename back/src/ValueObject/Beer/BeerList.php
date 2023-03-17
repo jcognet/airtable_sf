@@ -11,7 +11,10 @@ class BeerList extends AbstractBlock
     /**
      * @param Beer[] $beers
      */
-    public function __construct(private readonly ?string $title, private readonly array $beers)
+    public function __construct(
+        private readonly ?string $title,
+        private readonly array $beers
+    )
     {
     }
 

@@ -68,7 +68,7 @@ class Inr491Repository
 
         $this->randomKey[] = $key;
 
-        $this->famille->addRandomContent(
+        $this->famille->setRandomContent(
             $this->recommandationBuilder->build(
                 $this->records[$key]->ownerDocument->saveHTML($this->records[$key])
             )

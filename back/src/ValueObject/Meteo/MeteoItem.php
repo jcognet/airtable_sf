@@ -7,7 +7,15 @@ use Carbon\Carbon;
 
 class MeteoItem
 {
-    public function __construct(private readonly Carbon $day, private readonly Weather $weather, private readonly float $rain, private readonly int $probaRain, private readonly int $temperatureMin, private readonly int $temperatureMax, private readonly int $sunHours)
+    public function __construct(
+        private readonly Carbon $day,
+        private readonly Weather $weather,
+        private readonly float $rain,
+        private readonly int $probaRain,
+        private readonly int $temperatureMin,
+        private readonly int $temperatureMax,
+        private readonly int $sunHours
+    )
     {
     }
 
