@@ -15,14 +15,14 @@ class ListBlockNextRunDenormalizer implements DenormalizerInterface
         $nextRunDenormalizer = new NextRunDenormalizer();
         $listRuns = [];
 
-        foreach ($data['content'] as $imageUrl) {
-            $listRuns[] = $nextRunDenormalizer->denormalize($imageUrl, NextRun::class);
+        foreach ($data['content'] as $run) {
+            $listRuns[] = $nextRunDenormalizer->denormalize($run, NextRun::class, $format, $context);
         }
 
         $data['runs'] = $listRuns;
         unset($data['content']);
 
-        return (new ObjectNormalizer())->denormalize($data, ListBlockNextRun::class);
+        return (new ObjectNormalizer())->denormalize($data, ListBlockNextRun::class, $format, $context);
     }
 
     public function supportsDenormalization(mixed $data, string $type, string $format = null)

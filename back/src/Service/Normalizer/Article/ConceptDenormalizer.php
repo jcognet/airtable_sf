@@ -19,10 +19,13 @@ class ConceptDenormalizer implements DenormalizerInterface
                 $denormalizer = new ImageDenormalizer();
             }
 
-            $linkedContents[] = $denormalizer->denormalize($linkedContent, $linkedContent['class']);
+            $linkedContents[] = $denormalizer->denormalize($linkedContent, $linkedContent['class'], $format, $context);
         }
 
         $data['linkedContents'] = $linkedContents;
+        $data['name'] = $data['title'];
+        $data['text'] = $data['content'];
+        unset($data['title'], $data['content'], $data['class']);
 
         return new Concept(...$data);
     }

@@ -12,7 +12,7 @@ class BlockFamilleDenormalizer implements DenormalizerInterface
     public function denormalize(mixed $data, string $type, string $format = null, array $context = [])
     {
         return new BlockFamille(
-            famille: (new FamilleDenormalizer())->denormalize($data['content'], Famille::class)
+            famille: (new FamilleDenormalizer())->denormalize($data['content'], Famille::class, $format, $context)
         );
     }
 

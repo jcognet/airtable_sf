@@ -13,7 +13,7 @@ class MeteoItemDenormalizer implements DenormalizerInterface
     public function denormalize(mixed $data, string $type, string $format = null, array $context = [])
     {
         $data['day'] = Carbon::parse($data['day']);
-        $data['weather'] = new Weather(...$data['weather']);
+        $data['weather'] = (new WeatherDenormalizer())->denormalize($data['weather'], Weather::class, $format, $context);
 
         return new MeteoItem(...$data);
     }

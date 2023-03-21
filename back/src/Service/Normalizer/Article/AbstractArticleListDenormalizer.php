@@ -21,13 +21,13 @@ class AbstractArticleListDenormalizer implements DenormalizerInterface
 
         if (isset($data['articles'])) {
             foreach ($data['articles'] as $key => $article) {
-                $articles[$key] = $articleDenormalizer->denormalize($article, Article::class);
+                $articles[$key] = $articleDenormalizer->denormalize($article, Article::class, $format, $context);
             }
         }
 
         $data['articles'] = $articles;
 
-        return (new ObjectNormalizer())->denormalize($data, $data['class']);
+        return (new ObjectNormalizer())->denormalize($data, $data['class'], $format, $context);
     }
 
     public function supportsDenormalization(mixed $data, string $type, string $format = null)

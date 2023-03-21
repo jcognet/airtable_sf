@@ -17,14 +17,14 @@ class CriteriaListDenormalizer implements DenormalizerInterface
 
         if (isset($data['content'])) {
             foreach ($data['content'] as $criteria) {
-                $criterias[] = $criteriaDenormalizer->denormalize($criteria, Criteria::class);
+                $criterias[] = $criteriaDenormalizer->denormalize($criteria, Criteria::class, $format, $context);
             }
         }
 
         $data['criterias'] = $criterias;
         unset($data['content']);
 
-        return (new ObjectNormalizer())->denormalize($data, CriteriaList::class);
+        return (new ObjectNormalizer())->denormalize($data, CriteriaList::class, $format, $context);
     }
 
     public function supportsDenormalization(mixed $data, string $type, string $format = null)

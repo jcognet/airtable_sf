@@ -16,15 +16,15 @@ class BeerDenormalizer implements DenormalizerInterface
     public function denormalize(mixed $data, string $type, string $format = null, array $context = [])
     {
         if (isset($data['beerType'])) {
-            $data['beerType'] = (new BeerTypeDenormalizer())->denormalize($data['beerType'], BeerType::class);
+            $data['beerType'] = (new BeerTypeDenormalizer())->denormalize($data['beerType'], BeerType::class, $format, $context);
         }
 
         if (isset($data['brasserie'])) {
-            $data['brasserie'] = (new BreweryDenormalizer())->denormalize($data['brasserie'], Brewery::class);
+            $data['brasserie'] = (new BreweryDenormalizer())->denormalize($data['brasserie'], Brewery::class, $format, $context);
         }
 
         if (isset($data['photo'])) {
-            $data['photo'] = (new CachedImageDenormalizer())->denormalize($data['photo'], CachedImage::class);
+            $data['photo'] = (new CachedImageDenormalizer())->denormalize($data['photo'], CachedImage::class, $format, $context);
         }
 
         if (isset($data['dateTest'])) {

@@ -13,7 +13,7 @@ class ItemDenormalizer implements DenormalizerInterface
     {
         $data['createdAt'] = Carbon::parse($data['createdAt']);
 
-        if ($data['dueAt'] !== null) {
+        if (isset($data['dueAt'])) {
             $data['dueAt'] = Carbon::parse($data['dueAt']);
         }
 

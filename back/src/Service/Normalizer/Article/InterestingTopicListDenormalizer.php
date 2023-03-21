@@ -17,13 +17,13 @@ class InterestingTopicListDenormalizer implements DenormalizerInterface
 
         if (isset($data['articles'])) {
             foreach ($data['articles'] as $article) {
-                $interestingTopics[] = $interestingTopicDenormalizer->denormalize($article, InterestingTopic::class);
+                $interestingTopics[] = $interestingTopicDenormalizer->denormalize($article, InterestingTopic::class, $format, $context);
             }
         }
 
         $data['articles'] = $interestingTopics;
 
-        return (new ObjectNormalizer())->denormalize($data, $data['class']);
+        return (new ObjectNormalizer())->denormalize($data, $data['class'], $format, $context);
     }
 
     public function supportsDenormalization(mixed $data, string $type, string $format = null)

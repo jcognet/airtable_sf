@@ -16,12 +16,12 @@ class ItemListDenormalizer implements DenormalizerInterface
         $denormalizer = new ItemDenormalizer();
 
         foreach ($data['content'] as $key => $item) {
-            $itemLists[$key] = $denormalizer->denormalize($item, Item::class);
+            $itemLists[$key] = $denormalizer->denormalize($item, Item::class, $format, $context);
         }
 
         $data['toDos'] = $itemLists;
 
-        return (new ObjectNormalizer())->denormalize($data, ItemList::class);
+        return (new ObjectNormalizer())->denormalize($data, ItemList::class, $format, $context);
     }
 
     public function supportsDenormalization(mixed $data, string $type, string $format = null)

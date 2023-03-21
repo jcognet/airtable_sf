@@ -16,13 +16,13 @@ class ListBlockBirdDenormalizer implements DenormalizerInterface
         $birds = [];
 
         foreach ($data['content'] as $bird) {
-            $birds[] = $birdDenormalizer->denormalize($bird, BlockBird::class);
+            $birds[] = $birdDenormalizer->denormalize($bird, BlockBird::class, $format, $context);
         }
 
         unset($data['content']);
         $data['birds'] = $birds;
 
-        return (new ObjectNormalizer())->denormalize($data, ListBlockBird::class);
+        return (new ObjectNormalizer())->denormalize($data, ListBlockBird::class, $format, $context);
     }
 
     public function supportsDenormalization(mixed $data, string $type, string $format = null)

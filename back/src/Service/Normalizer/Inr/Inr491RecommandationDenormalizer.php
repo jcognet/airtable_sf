@@ -15,7 +15,7 @@ class Inr491RecommandationDenormalizer implements DenormalizerInterface
         $items = [];
 
         foreach ($data['items'] as $item) {
-            $items[] = $itemDenormalizer->denormalize($item, Inr491Item::class);
+            $items[] = $itemDenormalizer->denormalize($item, Inr491Item::class, $format, $context);
         }
 
         unset($data['items']);

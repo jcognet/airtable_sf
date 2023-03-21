@@ -1,20 +1,20 @@
 <?php
 declare(strict_types=1);
 
-namespace App\Service\Normalizer\Twitter;
+namespace App\Service\Normalizer\Meteo;
 
-use App\ValueObject\Twitter\User;
+use App\ValueObject\Meteo\Weather;
 use Symfony\Component\Serializer\Normalizer\DenormalizerInterface;
 
-class UserDenormalizer implements DenormalizerInterface
+class WeatherDenormalizer implements DenormalizerInterface
 {
     public function denormalize(mixed $data, string $type, string $format = null, array $context = [])
     {
-        return new User(...$data);
+        return new Weather(...$data);
     }
 
     public function supportsDenormalization(mixed $data, string $type, string $format = null)
     {
-        return $type === User::class;
+        return $type === Weather::class;
     }
 }

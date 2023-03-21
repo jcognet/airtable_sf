@@ -13,16 +13,16 @@ class ListImageUrlDenormalizer implements DenormalizerInterface
     public function denormalize(mixed $data, string $type, string $format = null, array $context = [])
     {
         $imageUrlDernormalizer = new ImageUrlDenormalizer();
-        $listImageURl = [];
+        $listImageUrl = [];
 
         foreach ($data['content'] as $imageUrl) {
-            $listImageURl[] = $imageUrlDernormalizer->denormalize($imageUrl, ImageUrl::class);
+            $listImageUrl[] = $imageUrlDernormalizer->denormalize($imageUrl, ImageUrl::class, $format, $context);
         }
 
-        $data['listImages'] = $listImageURl;
+        $data['listImages'] = $listImageUrl;
         unset($data['content']);
 
-        return (new ObjectNormalizer())->denormalize($data, ListImageUrl::class);
+        return (new ObjectNormalizer())->denormalize($data, ListImageUrl::class, $format, $context);
     }
 
     public function supportsDenormalization(mixed $data, string $type, string $format = null)

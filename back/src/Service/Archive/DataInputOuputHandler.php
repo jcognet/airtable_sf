@@ -65,8 +65,7 @@ class DataInputOuputHandler
             $blocks = [];
 
             foreach ($data['data']['blocks'] as $block) {
-                $blockDenormalized = $this->denormalizer->denormalize($block, $block['class']);
-                $blocks[] = $blockDenormalized;
+                $blocks[] = $this->denormalizer->denormalize($block, $block['class']);
             }
         }
 

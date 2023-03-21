@@ -12,17 +12,15 @@ class VideoDenormalizer implements DenormalizerInterface
 {
     public function denormalize(mixed $data, string $type, string $format = null, array $context = [])
     {
+        $sujets = [];
+
         if (isset($data['sujets'])) {
-            $sujets = [];
             foreach ($data['sujets'] as $sujet) {
-                $sujets[] = new Sujet(
-                    id: $sujet['id'],
-                    label: $sujet['label']
-                );
+                $sujets[] = new Sujet(...$sujet);
             }
-            $data['sujets'] = $sujets;
         }
 
+        $data['sujets'] = $sujets;
         $data['body'] = $data['content'];
         $data['addedAt'] = Carbon::parse($data['addedAt']);
         unset($data['content'], $data['class']);

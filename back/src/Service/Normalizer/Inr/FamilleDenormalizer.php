@@ -15,7 +15,9 @@ class FamilleDenormalizer implements DenormalizerInterface
         $randomContent = $data['randomContent'];
         unset($data['randomContent']);
         $famille = new Famille(...$data);
-        $famille->setRandomContent($inr491RecommandationDenormalizer->denormalize($randomContent, Inr491Recommandation::class));
+        $famille->setRandomContent(
+            $inr491RecommandationDenormalizer->denormalize($randomContent, Inr491Recommandation::class, $format, $context)
+        );
 
         return $famille;
     }
