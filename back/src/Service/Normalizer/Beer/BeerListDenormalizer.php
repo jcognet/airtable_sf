@@ -15,7 +15,7 @@ class BeerListDenormalizer implements DenormalizerInterface
         $beers = [];
 
         foreach ($data['content'] as $beer) {
-            $beers[] = $beerDenormalizer->denormalize($beer, Beer::class);
+            $beers[] = $beerDenormalizer->denormalize($beer, Beer::class, $format, $context);
         }
 
         $data['beers'] = $beers;

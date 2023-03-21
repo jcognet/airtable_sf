@@ -15,19 +15,19 @@ class ImageDenormalizer implements DenormalizerInterface
     public function denormalize(mixed $data, string $type, string $format = null, array $context = [])
     {
         $sujets = [];
-        foreach ($data['sujets'] as $sujet) {
-            $sujets[] = new Sujet(
-                id: $sujet['id'],
-                label: $sujet['label']
-            );
+
+        if (isset($data['sujets'])) {
+            foreach ($data['sujets'] as $sujet) {
+                $sujets[] = new Sujet(...$sujet);
+            }
         }
 
         $denormalizer = new ObjectNormalizer();
         $data['sujets'] = $sujets;
-        $data['url'] = (new CachedImageDenormalizer())->denormalize($data['url'], CachedImage::class);
+        $data['url'] = (new CachedImageDenormalizer())->denormalize($data['url'], CachedImage::class, $format, $context);
         unset($data['url']);
 
-        return $denormalizer->denormalize($data, Image::class);
+        return $denormalizer->denormalize($data, Image::class, $format, $context);
     }
 
     public function supportsDenormalization(mixed $data, string $type, string $format = null)

@@ -11,7 +11,7 @@ class ImportedBirdDenormalizer implements DenormalizerInterface
 {
     public function denormalize(mixed $data, string $type, string $format = null, array $context = [])
     {
-        return (new ObjectNormalizer())->denormalize($data, ImportedBird::class);
+        return (new ObjectNormalizer())->denormalize($data, ImportedBird::class, $format, $context);
     }
 
     public function supportsDenormalization(mixed $data, string $type, string $format = null)

@@ -17,13 +17,11 @@ class ArticleDenormalizer implements DenormalizerInterface
         $sujets = [];
         if (isset($data['sujets'])) {
             foreach ($data['sujets'] as $sujet) {
-                $sujets[] = new Sujet(
-                    id: $sujet['id'],
-                    label: $sujet['label']
-                );
+                $sujets[] = new Sujet(...$sujet);
             }
-            $data['sujets'] = $sujets;
         }
+
+        $data['sujets'] = $sujets;
 
         if (isset($data['status'])) {
             $data['status'] = new Status($data['status']['value']);

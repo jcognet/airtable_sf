@@ -16,12 +16,12 @@ class MeteoListDenormalizer implements DenormalizerInterface
         $denormalizer = new MeteoItemDenormalizer();
 
         foreach ($data['meteoItemLists'] as $meteoItem) {
-            $meteoItemLists[] = $denormalizer->denormalize($meteoItem, MeteoItem::class);
+            $meteoItemLists[] = $denormalizer->denormalize($meteoItem, MeteoItem::class, $format, $context);
         }
 
         $data['meteoItemLists'] = $meteoItemLists;
 
-        return (new ObjectNormalizer())->denormalize($data, MeteoList::class);
+        return (new ObjectNormalizer())->denormalize($data, MeteoList::class, $format, $context);
     }
 
     public function supportsDenormalization(mixed $data, string $type, string $format = null)

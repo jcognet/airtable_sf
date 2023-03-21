@@ -15,11 +15,10 @@ class MessageDenormalizer implements DenormalizerInterface
 
     public function denormalize(mixed $data, string $type, string $format = null, array $context = [])
     {
-        return new Message(
-            content: $data['content'],
-            user: $this->userDenormalizer->denormalize($data['user'], $type, $format, $context),
-            title: $data['title']
-        );
+        $data['user'] = $this->userDenormalizer->denormalize($data['user'], $type, $format, $context);
+        unset($data['class']);
+
+        return new Message(...$data);
     }
 
     public function supportsDenormalization(mixed $data, string $type, string $format = null)
