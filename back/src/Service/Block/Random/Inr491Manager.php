@@ -17,8 +17,12 @@ class Inr491Manager implements BlockManagerInterface
 
     public function getContent(): ?BlockInterface
     {
-        return new BlockFamille(
-            $this->inr491Repository->fetchRandomData()
-        );
+        $famille = $this->inr491Repository->fetchRandomData();
+
+        if ($famille === null) {
+            return null;
+        }
+
+        return new BlockFamille($famille);
     }
 }

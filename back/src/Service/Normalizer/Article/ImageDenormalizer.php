@@ -8,7 +8,6 @@ use App\ValueObject\Article\Image;
 use App\ValueObject\Article\Sujet;
 use App\ValueObject\Picture\CachedImage;
 use Symfony\Component\Serializer\Normalizer\DenormalizerInterface;
-use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
 
 class ImageDenormalizer implements DenormalizerInterface
 {
@@ -22,12 +21,12 @@ class ImageDenormalizer implements DenormalizerInterface
             }
         }
 
-        $denormalizer = new ObjectNormalizer();
         $data['sujets'] = $sujets;
         $data['url'] = (new CachedImageDenormalizer())->denormalize($data['url'], CachedImage::class, $format, $context);
-        unset($data['url']);
+        $data['name'] = $data['title'];
+        unset($data['class'], $data['title'], $data['content']);
 
-        return $denormalizer->denormalize($data, Image::class, $format, $context);
+        return new Image(...$data);
     }
 
     public function supportsDenormalization(mixed $data, string $type, string $format = null)

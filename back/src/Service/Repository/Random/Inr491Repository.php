@@ -7,6 +7,7 @@ use App\Service\Builder\Inr\Inr491FamilleBuilder;
 use App\Service\Builder\Inr\Inr491RecommandationBuilder;
 use App\ValueObject\Inr\Famille;
 use Symfony\Component\DomCrawler\Crawler;
+use Symfony\Component\HttpClient\Exception\TransportException;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
 
 class Inr491Repository
@@ -37,11 +38,16 @@ class Inr491Repository
     public function fetchRandomData(): ?Famille
     {
         if (count($this->records) === 0) {
-            $request = $this->inr491Client->request(
-                'GET',
-                sprintf('?famille=%s', $this->getRandomUrlFamille()),
-            );
-            $html = $request->getContent();
+            try {
+                $request = $this->inr491Client->request(
+                    'GET',
+                    sprintf('?famille=%s', $this->getRandomUrlFamille()),
+                );
+                $html = $request->getContent();
+            } catch (TransportException) {
+                return null;
+            }
+
             $crawler = new Crawler($html);
             $this->famille = $this->familleBuilder->build(
                 $crawler->filter('h1')->html(),
