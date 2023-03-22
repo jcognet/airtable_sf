@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace App\ValueObject\Archive;
 
 use App\ValueObject\BlockInterface;
+use App\ValueObject\Newspaper;
 use Carbon\Carbon;
 
 class NewsLetter
@@ -13,9 +14,9 @@ class NewsLetter
      */
     public function __construct(
         private readonly Carbon $date,
-        private readonly string $newsletterHtml,
+        private string $newsletterHtml,
         private bool $wasSent,
-        private readonly ?array $blocks
+        private readonly Newspaper $newspaper
     ) {
     }
 
@@ -29,6 +30,11 @@ class NewsLetter
         return $this->newsletterHtml;
     }
 
+    public function setNewsletterHtml(string $newsletterHtml): void
+    {
+        $this->newsletterHtml = $newsletterHtml;
+    }
+
     public function wasSent(): bool
     {
         return $this->wasSent;
@@ -39,11 +45,8 @@ class NewsLetter
         $this->wasSent = $wasSent;
     }
 
-    /**
-     * @return BlockInterface[]|null
-     */
-    public function getBlocks(): ?array
+    public function getNewspaper(): Newspaper
     {
-        return $this->blocks;
+        return $this->newspaper;
     }
 }

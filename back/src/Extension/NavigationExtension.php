@@ -6,6 +6,7 @@ namespace App\Extension;
 use App\Service\Converter\ConvertBlockTypeToManagerType;
 use App\Service\Security\LoginLinkHandler;
 use App\ValueObject\NewsletterBlockManager\BlockType;
+use App\ValueObject\NewsletterBlockManager\ManagerType;
 use Symfony\Component\Security\Core\Exception\UserNotFoundException;
 use Symfony\Component\Security\Core\User\UserProviderInterface;
 use Twig\Extension\AbstractExtension;
@@ -49,10 +50,10 @@ class NavigationExtension extends AbstractExtension
         }
     }
 
-    public function convertToManagerType($managerClass): BlockType
+    public function convertToManagerType(ManagerType $managerType): BlockType
     {
         return $this->convertBlockTypeToManagerType->reverseConvert(
-            $managerClass
+            $managerType
         );
     }
 }

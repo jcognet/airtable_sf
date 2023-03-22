@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace App\Service\Archive;
 
 use App\ValueObject\Archive\NewsLetter;
+use App\ValueObject\Newspaper;
 use Carbon\Carbon;
 use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\Serializer\Normalizer\AbstractNormalizer;
@@ -30,7 +31,7 @@ class DataInputOuputHandler
                 [
                     'data' => [
                         'newsletter_html' => $newsLetter->getNewsletterHtml(),
-                        'blocks' => $newsLetter->getBlocks(),
+                        'blocks' => $newsLetter->getNewspaper()->getBlocks(),
                     ],
                     'metadata' => [
                         'created' => $newsLetter->getDate(),
@@ -38,7 +39,7 @@ class DataInputOuputHandler
                     ],
                 ],
                 'json',
-                [AbstractNormalizer::IGNORED_ATTRIBUTES => ['managerTypeValue', 'type', 'videoId']]
+                [AbstractNormalizer::IGNORED_ATTRIBUTES => ['managerType', 'managerTypeValue', 'type', 'videoId']]
             )
         );
     }
@@ -59,13 +60,15 @@ class DataInputOuputHandler
             512,
             JSON_THROW_ON_ERROR
         );
-        $blocks = null;
+        $newspaper = new Newspaper(
+            date: $date
+        );
 
         if (isset($data['data']['blocks'])) {
-            $blocks = [];
-
             foreach ($data['data']['blocks'] as $block) {
-                $blocks[] = $this->denormalizer->denormalize($block, $block['class']);
+                $newspaper->addBlock(
+                    $this->denormalizer->denormalize($block, $block['class'])
+                );
             }
         }
 
@@ -73,7 +76,7 @@ class DataInputOuputHandler
             date: Carbon::parse($data['metadata']['created']),
             newsletterHtml: $data['data']['newsletter_html'],
             wasSent: isset($data['metadata']['was_sent']) && (bool) $data['metadata']['was_sent'],
-            blocks: $blocks
+            newspaper: $newspaper
         );
     }
 

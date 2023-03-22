@@ -11,28 +11,37 @@ class Manager
 {
     public function __construct(
         private readonly DataInputOuputHandler $dataInputOuputHandler,
-        private readonly Creator $creator
+        private readonly NewspaperCreator $creator,
+        private readonly NewspaperRenderer $newspaperRenderer
     ) {
     }
 
-    public function get(Carbon $date): NewsLetter
-    {
+    public function get(
+        Carbon $date,
+        bool $forceTwig = false
+    ): NewsLetter {
         if ($newsLetter = $this->dataInputOuputHandler->get($date)) {
+            if ($forceTwig) {
+                $newsLetter->setNewsletterHtml(
+                    $this->newspaperRenderer->renderHtml($newsLetter->getNewspaper())
+                );
+            }
+
             return $newsLetter;
         }
 
-        $this->creator->createContent($date);
-        $archiveNewsLetter = new NewsLetter(
+        $newspaper = $this->creator->createContent($date);
+        $newsLetter = new NewsLetter(
             date: $date,
-            newsletterHtml: $this->creator->getHtml(),
+            newsletterHtml: $this->newspaperRenderer->renderHtml($newspaper),
             wasSent: false,
-            blocks: $this->creator->getBlocks()
+            newspaper: $newspaper
         );
 
         $this->dataInputOuputHandler->write(
-            $archiveNewsLetter
+            $newsLetter
         );
 
-        return $archiveNewsLetter;
+        return $newsLetter;
     }
 }
