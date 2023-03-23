@@ -10,7 +10,7 @@ use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
 
 class ItemListDenormalizer implements DenormalizerInterface
 {
-    public function denormalize(mixed $data, string $type, string $format = null, array $context = [])
+    public function denormalize(mixed $data, string $type, string $format = null, array $context = []): ItemList
     {
         $itemLists = [];
         $denormalizer = new ItemDenormalizer();
@@ -24,7 +24,7 @@ class ItemListDenormalizer implements DenormalizerInterface
         return (new ObjectNormalizer())->denormalize($data, ItemList::class, $format, $context);
     }
 
-    public function supportsDenormalization(mixed $data, string $type, string $format = null)
+    public function supportsDenormalization(mixed $data, string $type, string $format = null, array $context = []): bool
     {
         return $type === ItemList::class;
     }

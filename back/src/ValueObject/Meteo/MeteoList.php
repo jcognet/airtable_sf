@@ -15,8 +15,7 @@ class MeteoList extends AbstractBlock
         private readonly array $meteoItemLists,
         private readonly string $latitude,
         private readonly string $longitude
-    )
-    {
+    ) {
     }
 
     public function getTitle(): string

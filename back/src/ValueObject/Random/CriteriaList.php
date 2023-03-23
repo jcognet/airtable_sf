@@ -14,8 +14,7 @@ class CriteriaList extends AbstractBlock
     public function __construct(
         private readonly string $title,
         private readonly array $criterias
-    )
-    {
+    ) {
     }
 
     public function getTitle(): string

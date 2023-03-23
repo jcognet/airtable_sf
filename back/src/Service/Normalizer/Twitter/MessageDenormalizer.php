@@ -13,7 +13,7 @@ class MessageDenormalizer implements DenormalizerInterface
     ) {
     }
 
-    public function denormalize(mixed $data, string $type, string $format = null, array $context = [])
+    public function denormalize(mixed $data, string $type, string $format = null, array $context = []): Message
     {
         $data['user'] = $this->userDenormalizer->denormalize($data['user'], $type, $format, $context);
         unset($data['class']);
@@ -21,7 +21,7 @@ class MessageDenormalizer implements DenormalizerInterface
         return new Message(...$data);
     }
 
-    public function supportsDenormalization(mixed $data, string $type, string $format = null)
+    public function supportsDenormalization(mixed $data, string $type, string $format = null, array $context = []): bool
     {
         return $type === Message::class;
     }

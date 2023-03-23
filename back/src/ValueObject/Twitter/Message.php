@@ -14,8 +14,7 @@ class Message extends AbstractBlock
         private readonly string $content,
         private ?User $user = null,
         ?string $title = null
-    )
-    {
+    ) {
         if (null !== $title) {
             $this->title = $title;
         }
