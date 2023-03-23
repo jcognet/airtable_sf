@@ -14,8 +14,7 @@ class BeerList extends AbstractBlock
     public function __construct(
         private readonly ?string $title,
         private readonly array $beers
-    )
-    {
+    ) {
     }
 
     public function getTitle(): string

@@ -4,14 +4,12 @@ declare(strict_types=1);
 namespace App\Service\NewsletterManager;
 
 use App\Service\Converter\ConvertBlockTypeToManagerType;
-use App\Service\Mailer\NewspaperSender;
 use App\ValueObject\NewsletterBlockManager\BlockType;
 use App\ValueObject\NewsletterBlockManager\ManagerType;
 use App\ValueObject\Newspaper;
 use Carbon\Carbon;
 use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerAwareTrait;
-use Twig\Environment;
 
 class NewspaperCreator implements LoggerAwareInterface
 {

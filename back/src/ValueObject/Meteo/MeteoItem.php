@@ -15,8 +15,7 @@ class MeteoItem
         private readonly int $temperatureMin,
         private readonly int $temperatureMax,
         private readonly int $sunHours
-    )
-    {
+    ) {
     }
 
     public function getDay(): Carbon

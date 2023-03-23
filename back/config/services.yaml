@@ -88,5 +88,6 @@ services:
 
 when@test:
   services:
-    App\Service\Archive\DataInputOuputHandler:
-      $deployArchiveJsonPath: '%kernel.project_dir%/tests/data/'
+    _defaults:
+      bind:
+        $deployArchiveJsonPath: '%kernel.project_dir%/tests/data/'

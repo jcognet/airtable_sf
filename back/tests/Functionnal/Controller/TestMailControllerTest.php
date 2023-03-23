@@ -39,6 +39,7 @@ final class TestMailControllerTest extends WebTestCase
 
         // Request a specific page
         $client->request('GET', '/test/mail/show/?date=2022-01-02');
+        $this->assertResponseIsSuccessful();
         $this->assertSelectorTextContains('h1.test-img-random', 'Images de');
 
         // Validate a successful response and some content
@@ -54,8 +55,9 @@ final class TestMailControllerTest extends WebTestCase
         $this->loginUser($client);
 
         // Request a specific page
-        $client->request('GET', '/test/mail/show/?date=2022-01-02');
-        $this->assertSelectorTextContains('h1.test-img-random', 'Images de');
+        $client->request('GET', '/test/mail/show/?date=2022-01-01');
+        $this->assertResponseIsSuccessful();
+        $this->assertSelectorExists('h2#test-see-again');
 
         // Validate a successful response and some content
         $this->assertResponseIsSuccessful();
@@ -71,6 +73,7 @@ final class TestMailControllerTest extends WebTestCase
 
         // Request a specific page
         $client->request('GET', '/test/mail/all');
+        $this->assertResponseIsSuccessful();
         $this->assertSelectorTextContains('h1.test-img-random', 'Images de');
 
         // Validate a successful response and some content

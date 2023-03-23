@@ -18,8 +18,7 @@ class NewspaperRenderer
     public function renderHtml(
         Newspaper $newspaper,
         bool $showBlock = false
-    ): string
-    {
+    ): string {
         if ($this->cache === null) {
             $this->cache = $this->twig->render(
                 'email/newsletter.html.twig',

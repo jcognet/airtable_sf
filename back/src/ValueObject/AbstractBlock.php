@@ -23,7 +23,7 @@ abstract class AbstractBlock implements BlockInterface
         return $this->managerType->getType();
     }
 
-    // Used for deserializsation process
+    // Used for deserialization process
     public function getClass(): string
     {
         return $this::class; // $this to get the real class not the current one (AbstractBlock)

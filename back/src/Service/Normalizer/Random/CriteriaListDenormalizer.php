@@ -10,7 +10,7 @@ use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
 
 class CriteriaListDenormalizer implements DenormalizerInterface
 {
-    public function denormalize(mixed $data, string $type, string $format = null, array $context = [])
+    public function denormalize(mixed $data, string $type, string $format = null, array $context = []): CriteriaList
     {
         $criteriaDenormalizer = new CriteriaDenormalizer();
         $criterias = [];
@@ -27,7 +27,7 @@ class CriteriaListDenormalizer implements DenormalizerInterface
         return (new ObjectNormalizer())->denormalize($data, CriteriaList::class, $format, $context);
     }
 
-    public function supportsDenormalization(mixed $data, string $type, string $format = null)
+    public function supportsDenormalization(mixed $data, string $type, string $format = null, array $context = []): bool
     {
         return $type === CriteriaList::class;
     }

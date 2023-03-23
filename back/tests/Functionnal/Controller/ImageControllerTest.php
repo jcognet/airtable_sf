@@ -23,6 +23,7 @@ final class ImageControllerTest extends WebTestCase
 
         // Request a specific page
         $client->request('GET', '/img/list/?directory=2021/dir2');
+        $this->assertResponseIsSuccessful();
         $this->assertSelectorTextContains('h1.test-img-random', 'Images de');
 
         // Validate a successful response and some content
@@ -39,6 +40,7 @@ final class ImageControllerTest extends WebTestCase
 
         // Request a specific page
         $client->request('GET', '/img/random/');
+        $this->assertResponseIsSuccessful();
         $this->assertSelectorTextContains('h1.test-img-random', 'Images de');
 
         // Validate a successful response and some content

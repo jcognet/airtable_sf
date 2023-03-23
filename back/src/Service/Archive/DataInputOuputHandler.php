@@ -6,7 +6,6 @@ namespace App\Service\Archive;
 use App\ValueObject\Archive\NewsLetter;
 use App\ValueObject\Newspaper;
 use Carbon\Carbon;
-use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\Serializer\Normalizer\AbstractNormalizer;
 use Symfony\Component\Serializer\Normalizer\DenormalizerInterface;
 use Symfony\Component\Serializer\SerializerInterface;
@@ -14,19 +13,16 @@ use Symfony\Component\Serializer\SerializerInterface;
 class DataInputOuputHandler
 {
     public function __construct(
-        private readonly string $deployArchiveJsonPath,
         private readonly SerializerInterface $serializer,
-        private readonly DenormalizerInterface $denormalizer
+        private readonly DenormalizerInterface $denormalizer,
+        private readonly DataIoHandler $dataIoHandler
     ) {
     }
 
     public function write(
         NewsLetter $newsLetter
     ): void {
-        $fs = new Filesystem();
-
-        $fs->dumpFile(
-            $this->getFileName($newsLetter->getDate()),
+        $this->dataIoHandler->write(
             $this->serializer->serialize(
                 [
                     'data' => [
@@ -40,26 +36,15 @@ class DataInputOuputHandler
                 ],
                 'json',
                 [AbstractNormalizer::IGNORED_ATTRIBUTES => ['managerType', 'managerTypeValue', 'type', 'videoId']]
-            )
+            ),
+            $newsLetter->getDate()
         );
     }
 
     public function get(Carbon $date): ?NewsLetter
     {
-        $filesystem = new Filesystem();
+        $data = $this->dataIoHandler->read($date);
 
-        if (!$filesystem->exists($this->getFileName($date))) {
-            return null;
-        }
-
-        $data = json_decode(
-            file_get_contents(
-                $this->getFileName($date)
-            ),
-            true,
-            512,
-            JSON_THROW_ON_ERROR
-        );
         $newspaper = new Newspaper(
             date: $date
         );
@@ -78,10 +63,5 @@ class DataInputOuputHandler
             wasSent: isset($data['metadata']['was_sent']) && (bool) $data['metadata']['was_sent'],
             newspaper: $newspaper
         );
-    }
-
-    protected function getFileName(Carbon $date): string
-    {
-        return sprintf('%s/%s_newsletter.json', $this->deployArchiveJsonPath, $date->format('Y-m-d'));
     }
 }

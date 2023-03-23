@@ -10,7 +10,7 @@ use Symfony\Component\Serializer\Normalizer\DenormalizerInterface;
 
 class MeteoItemDenormalizer implements DenormalizerInterface
 {
-    public function denormalize(mixed $data, string $type, string $format = null, array $context = [])
+    public function denormalize(mixed $data, string $type, string $format = null, array $context = []): MeteoItem
     {
         $data['day'] = Carbon::parse($data['day']);
         $data['weather'] = (new WeatherDenormalizer())->denormalize($data['weather'], Weather::class, $format, $context);
@@ -18,7 +18,7 @@ class MeteoItemDenormalizer implements DenormalizerInterface
         return new MeteoItem(...$data);
     }
 
-    public function supportsDenormalization(mixed $data, string $type, string $format = null)
+    public function supportsDenormalization(mixed $data, string $type, string $format = null, array $context = []): bool
     {
         return $type === MeteoItem::class;
     }

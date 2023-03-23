@@ -10,7 +10,7 @@ use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
 
 class ListBlockNextRunDenormalizer implements DenormalizerInterface
 {
-    public function denormalize(mixed $data, string $type, string $format = null, array $context = [])
+    public function denormalize(mixed $data, string $type, string $format = null, array $context = []): ListBlockNextRun
     {
         $nextRunDenormalizer = new NextRunDenormalizer();
         $listRuns = [];
@@ -25,7 +25,7 @@ class ListBlockNextRunDenormalizer implements DenormalizerInterface
         return (new ObjectNormalizer())->denormalize($data, ListBlockNextRun::class, $format, $context);
     }
 
-    public function supportsDenormalization(mixed $data, string $type, string $format = null)
+    public function supportsDenormalization(mixed $data, string $type, string $format = null, array $context = []): bool
     {
         return $type === ListBlockNextRun::class;
     }
