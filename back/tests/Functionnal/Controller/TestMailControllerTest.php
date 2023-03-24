@@ -79,4 +79,21 @@ final class TestMailControllerTest extends WebTestCase
         // Validate a successful response and some content
         $this->assertResponseIsSuccessful();
     }
+
+    public function test_all_denormalization(): void
+    {
+        // This calls KernelTestCase::bootKernel(), and creates a
+        // "client" that is acting as the browser
+        $client = static::createClient();
+        $client->followRedirects(true);
+        $this->loginUser($client);
+
+        // Request a specific page
+        $client->request('GET', '/test/mail/show/?date=2022-01-04&force_twig=true');
+        $this->assertResponseIsSuccessful();
+        $this->assertSelectorExists('h2#test-see-again');
+
+        // Validate a successful response and some content
+        $this->assertResponseIsSuccessful();
+    }
 }

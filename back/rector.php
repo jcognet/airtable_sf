@@ -31,10 +31,10 @@ return static function (RectorConfig $rectorConfig): void {
 
     $rectorConfig->skip([
         \Rector\Php80\Rector\ClassConstFetch\ClassOnThisVariableObjectRector::class => [
-            __DIR__ . '/src/ValueObject/AbstractBlock.php'
+            __DIR__ . '/src/ValueObject/AbstractBlock.php',
         ],
-        \Rector\Symfony\Rector\Class_\MessageHandlerInterfaceToAttributeRector::class =>[
-            __DIR__ . '/src/ValueObject/AbstractBlock.php'
-        ]
+        \Rector\Symfony\Rector\Class_\MessageHandlerInterfaceToAttributeRector::class => [
+            __DIR__ . '/src/ValueObject/AbstractBlock.php',
+        ],
     ]);
 };

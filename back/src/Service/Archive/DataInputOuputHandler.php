@@ -16,14 +16,12 @@ class DataInputOuputHandler
         private readonly SerializerInterface $serializer,
         private readonly DenormalizerInterface $denormalizer,
         private readonly DataIoHandler $dataIoHandler
-    )
-    {
+    ) {
     }
 
     public function write(
         NewsLetter $newsLetter
-    ): void
-    {
+    ): void {
         $this->dataIoHandler->write(
             $this->serializer->serialize(
                 [
@@ -66,7 +64,7 @@ class DataInputOuputHandler
         return new NewsLetter(
             date: Carbon::parse($data['metadata']['created']),
             newsletterHtml: $data['data']['newsletter_html'],
-            wasSent: isset($data['metadata']['was_sent']) && (bool)$data['metadata']['was_sent'],
+            wasSent: isset($data['metadata']['was_sent']) && (bool) $data['metadata']['was_sent'],
             newspaper: $newspaper
         );
     }
