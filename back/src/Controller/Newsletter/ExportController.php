@@ -1,16 +1,16 @@
 <?php
 declare(strict_types=1);
 
-namespace App\Controller;
+namespace App\Controller\Newsletter;
 
 use App\Service\Export\ExportToSpreadsheet;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-class TestExportController extends AbstractController
+class ExportController extends AbstractController
 {
-    #[Route(path: '/test/export/show', name: 'test_export_show', methods: ['GET'])]
+    #[Route(path: '/newsletter/export/show', name: 'newsletter_export_show', methods: ['GET'])]
     public function show(
         ExportToSpreadsheet $exportToSpreadsheet
     ): Response {
