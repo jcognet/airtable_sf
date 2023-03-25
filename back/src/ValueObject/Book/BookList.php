@@ -11,7 +11,10 @@ class BookList extends AbstractBlock
     /**
      * @param Book[] $books
      */
-    public function __construct(private readonly ?string $title, private readonly array $books)
+    public function __construct(
+        private readonly ?string $title,
+        private readonly array $books
+    )
     {
     }
 
