@@ -32,4 +32,9 @@ class NewspaperRenderer
 
         return $this->cache;
     }
+
+    public function resetHtml(): void
+    {
+        $this->cache = null;
+    }
 }
