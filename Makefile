@@ -13,5 +13,5 @@ clean: # clean le code
 	docker exec -it airtable_php vendor/bin/rector process
 
 
-test: # lance les tests PHP
-	docker exec -it airtable_php vendor/bin/phpunit
+test: # lance les tests PHP /!\ xdebug à installer en mode docker
+	docker exec -it airtable_php vendor/bin/phpunit --coverage-html coverage
