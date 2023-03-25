@@ -23,6 +23,15 @@ abstract class AbstractBlock implements BlockInterface
         return $this->managerType->getType();
     }
 
+    public function getManagerType(): ?ManagerType
+    {
+        if ($this->managerType === null) {
+            return null;
+        }
+
+        return $this->managerType;
+    }
+
     // Used for deserialization process
     public function getClass(): string
     {

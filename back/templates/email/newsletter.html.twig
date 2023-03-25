@@ -18,7 +18,7 @@
                 </a>
 
                 <a style="font-size: 10px"
-                    href="{{ path('test_mail_one', {
+                    href="{{ path('newsletter_content_one', {
                         'blockType': block_type
                     }) }}"
                     title="Voir seulement ce bloc"
@@ -40,7 +40,7 @@
             {% set block_type = convert_to_manager_type(block.managerType).value %}
             <h1 id="{{ block_type }}">
                 <a
-                    href="{{ path('test_mail_one', {
+                    href="{{ path('newsletter_content_one', {
                         'blockType': block_type
                     }) }}"
                     title="Voir seulement ce bloc"
