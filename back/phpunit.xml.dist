@@ -28,6 +28,11 @@
         <include>
             <directory suffix=".php">src</directory>
         </include>
+        <exclude>
+            <directory suffix=".php">Enum</directory>
+            <directory suffix=".php">Exception</directory>
+            <directory suffix=".php">Command</directory>
+        </exclude>
         <report>
             <clover outputFile="coverage/coverage.xml"/>
             <html outputDirectory="coverage"/>

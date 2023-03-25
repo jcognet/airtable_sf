@@ -2,6 +2,7 @@ deploy
 mysql
 back/public/assets/*
 back/public/media/*
+back/coverage
 back/public/manifest.json
 composer_cache/
 back/composer.phar
