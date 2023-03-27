@@ -2,6 +2,7 @@ blocks:
   - image
   - bot_doux
   - list_meteo
+  - passport
   - list_todo
   - image_google_in_progess
   - image_url

@@ -2,6 +2,7 @@ blocks:
   - image
   - bot_doux
   - list_meteo
+  - passport
   - bird
   - list_todo
   - book
