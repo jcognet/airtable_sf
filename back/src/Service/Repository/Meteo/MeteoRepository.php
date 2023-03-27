@@ -9,7 +9,10 @@ use Symfony\Contracts\HttpClient\HttpClientInterface;
 
 class MeteoRepository
 {
-    public function __construct(private readonly HttpClientInterface $meteoClient, private readonly MeteoListBuilder $meteoListBuilder)
+    public function __construct(
+        private readonly HttpClientInterface $meteoClient,
+        private readonly MeteoListBuilder $meteoListBuilder
+    )
     {
     }
 

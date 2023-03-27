@@ -5,7 +5,14 @@ namespace App\ValueObject\Random;
 
 class GoodPractice
 {
-    public function __construct(private readonly string $id, private readonly string $priority, private readonly string $difficulty, private readonly array $indicators, private readonly string $url, private readonly string $title)
+    public function __construct(
+        private readonly string $id,
+        private readonly string $priority,
+        private readonly string $difficulty,
+        private readonly array $indicators,
+        private readonly string $url,
+        private readonly string $title
+    )
     {
     }
 
