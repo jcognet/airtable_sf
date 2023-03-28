@@ -10,7 +10,7 @@ class InterestingTopicDenormalizer implements DenormalizerInterface
 {
     public function denormalize(mixed $data, string $type, string $format = null, array $context = []): InterestingTopic
     {
-        unset($data['content'], $data['class']);
+        unset($data['content'], $data['class'], $data['managerType'], $data['managerTypeValue']);
 
         return new InterestingTopic(...$data);
     }

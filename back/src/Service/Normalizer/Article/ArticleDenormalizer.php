@@ -35,7 +35,7 @@ class ArticleDenormalizer implements DenormalizerInterface
         $data['addedAt'] = Carbon::parse($data['addedAt']);
         $data['hasConcept'] = $data['concept'];
 
-        unset($data['content'], $data['class'], $data['concept']);
+        unset($data['content'], $data['class'], $data['concept'], $data['type'], $data['managerTypeValue'], $data['managerType']);
 
         return new Article(...$data);
     }

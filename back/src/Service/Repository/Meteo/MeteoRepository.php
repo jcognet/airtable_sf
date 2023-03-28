@@ -12,8 +12,7 @@ class MeteoRepository
     public function __construct(
         private readonly HttpClientInterface $meteoClient,
         private readonly MeteoListBuilder $meteoListBuilder
-    )
-    {
+    ) {
     }
 
     public function fetch(): MeteoList

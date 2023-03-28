@@ -31,7 +31,7 @@ class BeerDenormalizer implements DenormalizerInterface
             $data['dateTest'] = Carbon::parse($data['dateTest']);
         }
 
-        unset($data['content'], $data['class']);
+        unset($data['content'], $data['class'], $data['managerType'], $data['managerTypeValue']);
 
         return new Beer(...$data);
     }

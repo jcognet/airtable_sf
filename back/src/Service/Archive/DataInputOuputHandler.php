@@ -35,7 +35,7 @@ class DataInputOuputHandler
                     ],
                 ],
                 'json',
-                [AbstractNormalizer::IGNORED_ATTRIBUTES => ['managerType', 'managerTypeValue', 'type', 'videoId']]
+                [AbstractNormalizer::IGNORED_ATTRIBUTES => ['videoId']]
             ),
             $newsLetter->getDate()
         );
@@ -55,9 +55,11 @@ class DataInputOuputHandler
 
         if (isset($data['data']['blocks'])) {
             foreach ($data['data']['blocks'] as $block) {
-                $newspaper->addBlock(
-                    $this->denormalizer->denormalize($block, $block['class'])
-                );
+                $managerType = $block['managerType'];
+                unset($block['type'], $block['managerTypeValue'], $block['managerType']);
+                $block = $this->denormalizer->denormalize($block, $block['class']);
+                $block->setManagerType($managerType['type']);
+                $newspaper->addBlock($block);
             }
         }
 

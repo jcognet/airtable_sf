@@ -12,8 +12,7 @@ class GoodPractice
         private readonly array $indicators,
         private readonly string $url,
         private readonly string $title
-    )
-    {
+    ) {
     }
 
     public function getId(): string
