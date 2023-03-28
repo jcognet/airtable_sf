@@ -5,7 +5,7 @@ namespace App\Command;
 
 use App\Service\Archive\DataInputOuputHandler;
 use App\Service\Mailer\ErrorSender;
-use App\Service\Mailer\NewspaperSender;
+use App\Service\Mailer\NewsletterSender;
 use App\Service\NewsletterManager\Manager;
 use Carbon\Carbon;
 use Symfony\Component\Console\Attribute\AsCommand;
@@ -20,7 +20,7 @@ class NewspaperHandlerCommand extends Command
         private readonly string $environment,
         private readonly ErrorSender $errorSender,
         private readonly Manager $manager,
-        private readonly NewspaperSender $sender,
+        private readonly NewsletterSender $sender,
         private readonly DataInputOuputHandler $dataInputOuputHandler
     ) {
         parent::__construct();
