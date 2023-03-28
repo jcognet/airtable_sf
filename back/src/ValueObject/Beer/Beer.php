@@ -8,6 +8,7 @@ use App\ValueObject\AbstractBlock;
 use App\ValueObject\NewsletterBlockManager\BlockType;
 use App\ValueObject\Picture\CachedImage;
 use Carbon\Carbon;
+use Symfony\Component\Serializer\Annotation\Ignore;
 
 class Beer extends AbstractBlock
 {
@@ -35,6 +36,7 @@ class Beer extends AbstractBlock
         return $this->title;
     }
 
+    #[Ignore]
     public function getType(): BlockType
     {
         throw new MethodNotUsableException(

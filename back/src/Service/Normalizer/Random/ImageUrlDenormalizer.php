@@ -12,6 +12,7 @@ class ImageUrlDenormalizer implements DenormalizerInterface
     public function denormalize(mixed $data, string $type, string $format = null, array $context = []): ImageUrl
     {
         $data['url'] = $data['content'];
+        unset($data['managerType'], $data['managerTypeValue']);
 
         return (new ObjectNormalizer())->denormalize($data, ImageUrl::class, $format, $context);
     }

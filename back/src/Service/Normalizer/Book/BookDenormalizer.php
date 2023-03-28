@@ -11,7 +11,7 @@ class BookDenormalizer implements DenormalizerInterface
     public function denormalize(mixed $data, string $type, string $format = null, array $context = []): Book
     {
         $data['body'] = $data['content'];
-        unset($data['content'], $data['content'], $data['class']);
+        unset($data['content'], $data['content'], $data['class'], $data['type'], $data['managerTypeValue'], $data['managerType']);
 
         return new Book(...$data);
     }

@@ -15,7 +15,7 @@ class BlockBirdDenormalizer implements DenormalizerInterface
     {
         $data['bird'] = (new ImportedBirdDenormalizer())->denormalize($data['content'], ImportedBird::class, $format, $context);
         $data['image'] = (new ObjectNormalizer())->denormalize($data['image'], Picture::class, $format, $context);
-        unset($data['title'], $data['content'], $data['class']);
+        unset($data['title'], $data['content'], $data['class'], $data['type'], $data['managerTypeValue'], $data['managerType']);
 
         return new BlockBird(...$data);
     }

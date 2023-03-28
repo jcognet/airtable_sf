@@ -6,6 +6,7 @@ namespace App\ValueObject\Article;
 use App\Exception\MethodNotUsableException;
 use App\ValueObject\AbstractBlock;
 use App\ValueObject\NewsletterBlockManager\BlockType;
+use Symfony\Component\Serializer\Annotation\Ignore;
 
 class InterestingTopic extends AbstractBlock
 {
@@ -23,6 +24,7 @@ class InterestingTopic extends AbstractBlock
         return $this->getTitle();
     }
 
+    #[Ignore]
     public function getType(): BlockType
     {
         throw new MethodNotUsableException(

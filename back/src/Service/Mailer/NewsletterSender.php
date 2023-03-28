@@ -14,7 +14,8 @@ class NewsletterSender
     public function __construct(
         private readonly MailerInterface $mailer,
         private readonly string $mailerFrom,
-        private readonly string $mailerTo)
+        private readonly string $mailerTo
+    )
     {
     }
 
