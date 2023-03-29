@@ -1,0 +1,33 @@
+{% extends './page/base.html.twig' %}
+{% block body %}
+    <div class="section-light about-me" id="about-me">
+        <div class="container">
+            <div class="column is-12 about-me">
+                <h1 class="title has-text-centered section-title">Dashboard</h1>
+            </div>
+        </div>
+    </div>
+
+    <div class="section-dark resume">
+        <div class="container">
+            <div
+                class="columns is-multiline"
+                data-aos="fade-in"
+                data-aos-easing="linear"
+            >
+                <div class="column is-12 about-me">
+                    <h1 class="title has-text-centered section-title">
+                        Newsletter
+                    </h1>
+                </div>
+                <div class="column is-10 has-text-centered is-offset-1">
+                    <object
+                        data="{{ url_front }}/newsletter/content/show"
+                        type="text/html"
+                        style="width: 1000px;height: 400px"
+                    />
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
