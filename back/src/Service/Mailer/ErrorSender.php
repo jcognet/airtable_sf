@@ -21,7 +21,7 @@ class ErrorSender
             ->to($this->mailerTo)
             ->from($this->mailerFrom)
             ->subject(sprintf(self::SUBJECT, Carbon::now()->format('d/m/Y')))
-            ->htmlTemplate('email/error.html.twig')
+            ->htmlTemplate('newsletter/error.html.twig')
             ->context([
                 'text' => $e->getMessage(),
                 'date' => Carbon::now(),
