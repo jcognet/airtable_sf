@@ -24,7 +24,7 @@ class ImageDenormalizer implements DenormalizerInterface
         $data['sujets'] = $sujets;
         $data['url'] = (new CachedImageDenormalizer())->denormalize($data['url'], CachedImage::class, $format, $context);
         $data['name'] = $data['title'];
-        unset($data['class'], $data['title'], $data['content']);
+        unset($data['class'], $data['title'], $data['content'], $data['type'], $data['managerTypeValue'], $data['managerType']);
 
         return new Image(...$data);
     }
