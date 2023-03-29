@@ -1,4 +1,4 @@
-{% extends 'base.html.twig' %}
+{% extends './newsletter/base.html.twig' %}
 
 {% block body %}
     {% if show_block is defined and show_block %}
@@ -50,6 +50,6 @@
             </h1>
         {% endif %}
 
-        {% include 'email/block/'~block.type.value~'.html.twig' with {block:block} %}
+        {% include 'newsletter/block/'~block.type.value~'.html.twig' with {block:block} %}
     {% endfor %}
 {% endblock %}

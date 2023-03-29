@@ -15,7 +15,7 @@
                                             <h2 style="margin: 0; font-size: 14px; text-align: center;"><strong><span style="font-size:26px;">{{ block.title }}</span></strong></h2>
                                         </div>
                                         <div style="color:white">{{ block.content|nl2br }}</div>
-                                        {% include 'email/sujets.html.twig' with {sujets:block.sujets} %}
+                                        {% include 'newsletter/include/sujets.html.twig' with {sujets:block.sujets} %}
                                     </div>
                                 </td>
                             </tr>

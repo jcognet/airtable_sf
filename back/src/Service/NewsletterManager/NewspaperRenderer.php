@@ -21,7 +21,7 @@ class NewspaperRenderer
     ): string {
         if ($this->cache === null) {
             $this->cache = $this->twig->render(
-                'email/newsletter.html.twig',
+                'newsletter/newsletter.html.twig',
                 [
                     'newspaper' => $newspaper,
                     'date' => $newspaper->getDate(),

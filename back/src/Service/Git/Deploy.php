@@ -41,7 +41,7 @@ class Deploy implements LoggerAwareInterface
     {
         $returns = [];
 
-        $body = $this->twig->render('email/git.html.twig', [
+        $body = $this->twig->render('newsletter/git.html.twig', [
             'date' => Carbon::now(),
             'git' => $git,
         ]);
