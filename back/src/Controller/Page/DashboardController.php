@@ -10,14 +10,16 @@ use Symfony\Component\Routing\Annotation\Route;
 class DashboardController extends AbstractController
 {
     #[Route(path: '/dashboard/', name: 'dashboard_show', methods: ['GET'])]
-    public function show(): Response {
+    public function show(): Response
+    {
         return $this->render(
             'dashboard/show.html.twig'
         );
     }
 
     #[Route(path: '/example/', name: 'dashboard_example', methods: ['GET'])]
-    public function example(): Response {
+    public function example(): Response
+    {
         return $this->render(
             'dashboard/example.html.twig'
         );
