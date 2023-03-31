@@ -3,25 +3,64 @@
     <div class="section-light about-me" id="about-me">
         <div class="container">
             <div class="column is-12 about-me">
-                <h1 class="title has-text-centered section-title">Dashboard</h1>
+                <h1 class="title has-text-centered section-title">Newsletter</h1>
             </div>
-        </div>
-    </div>
-
-    <div class="section-dark resume">
-        <div class="container">
-            <div
-                class="columns is-multiline"
-                data-aos="fade-in"
-                data-aos-easing="linear"
-            >
-                <div class="column is-12 about-me">
-                    <h1 class="title has-text-centered section-title">
-                        Newsletter
-                    </h1>
+            <div class="columns is-multiline">
+                <div
+                    class="column is-6 has-vertically-aligned-content"
+                    data-aos="fade-right"
+                >
+                    <p class="is-larger">
+                        &emsp;&emsp;<strong>Journal du {{ newspaper_date|date('d/m/Y') }}</strong>
+                    </p>
+                    <br/>
+                    <p>
+                        Résumé (concept, ...) à écrire ici
+                    </p>
+                    <div class="is-divider"></div>
+                    <div class="columns about-links">
+                        <div class="column">
+                            <p class="heading">
+                                <strong>Passeport</strong>
+                            </p>
+                            <p class="subheading">
+                                <a href="{{ passport_url }}"
+                                   title="Voir le lien pour le passeport + CI"
+                                   target="_blank"
+                                >
+                                    ➡
+                                </a>
+                            </p>
+                        </div>
+                        <div class="column">
+                            <p class="heading">
+                                <strong>Accès</strong>
+                            </p>
+                            <p class="subheading">
+                                <a href="{{ path('newsletter_content_show', {'date': newspaper_date|date('Y-m-d') }) }}"
+                                   title="Voir le journal du  {{ newspaper_date|date('d/m/Y') }}"
+                                   target="_blank"
+                                >
+                                    &#128240;
+                                </a>
+                            </p>
+                        </div>
+                    </div>
                 </div>
-                <div class="column is-10 has-text-centered is-offset-1">
-
+                <div class="column is-6 right-image " data-aos="fade-left">
+                    {% if main_image is defined and main_image is not null %}
+                        <a
+                            href="{{ absolute_url( path('img_normal', {'pathImage': main_image.url.picture.id})) }}"
+                            title="Voir l'image taille réelle"
+                            target="_blank"
+                        >
+                        <img
+                            class="is-rounded"
+                            src="{{ absolute_url(path('img_thumbnail', {'pathImage': main_image.url.picture.id})) }}?format=main_image"
+                            alt="{{ main_image.content }}"
+                        />
+                        </a>
+                    {% endif %}
                 </div>
             </div>
         </div>

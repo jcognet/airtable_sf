@@ -6,6 +6,7 @@ namespace App\Service\Block;
 use App\Service\Archive\DataInputOuputHandler;
 use App\ValueObject\BlockInterface;
 use App\ValueObject\NewsletterBlockManager\BlockType;
+use App\ValueObject\Newspaper;
 use Carbon\Carbon;
 
 class BlockFinder
@@ -17,7 +18,7 @@ class BlockFinder
     /**
      * @return BlockInterface[]|null
      */
-    public function find(Carbon $date, BlockType $blockType): ?array
+    public function findByDate(Carbon $date, BlockType $blockType): ?array
     {
         $newsletter = $this->dataInputOuputHandler->get($date);
 
@@ -25,9 +26,19 @@ class BlockFinder
             return null;
         }
 
+        return $this->findInNewspaper(
+            $newsletter->getNewspaper(),
+            $blockType
+        );
+    }
+
+    public function findInNewspaper(
+        Newspaper $newspaper,
+        BlockType $blockType
+    ): ?array {
         $blocks = [];
 
-        foreach ($newsletter->getNewspaper()->getBlocks() as $block) {
+        foreach ($newspaper->getBlocks() as $block) {
             if ($block->getType() === $blockType) {
                 $blocks[] = $block;
             }

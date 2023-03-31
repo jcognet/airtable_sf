@@ -18,6 +18,9 @@ parameters:
     list_beer:
       height: 350
       width: 350
+    main_image:
+      width: 500
+      height: 400
 
 services:
   # default configuration for services in *this* file

@@ -29,7 +29,7 @@ class ContentController extends AbstractController
             throw $this->createNotFoundException($e->getMessage());
         }
 
-        $blocks = $blockFinder->find(
+        $blocks = $blockFinder->findByDate(
             Carbon::parse($request->query->get('date', null)),
             $blockType
         );
