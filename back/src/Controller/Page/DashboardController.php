@@ -25,7 +25,7 @@ class DashboardController extends AbstractController
         $newsletter = $dataInputOuputHandler->get($date);
 
         if ($newsletter === null) {
-            throw $this->createNotFoundException(sprintf('No newsletter found for date %s', $date->format('m/d/Y')));
+            throw $this->createNotFoundException(sprintf('No newsletter found for date %s', $date->format('d/m/Y')));
         }
 
         return $this->render(
