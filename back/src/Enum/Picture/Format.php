@@ -11,6 +11,7 @@ enum Format: string
     case NEWSLETTER_WIDTH = 'newsletter_width';
     case LIST_BEER = 'list_beer';
     case MAIN_IMAGE = 'main_image';
+    case MAIN_IMAGE_PREVIOUS = 'main_image_previous';
 
     public static function make(?string $type): self
     {

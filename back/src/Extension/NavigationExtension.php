@@ -4,9 +4,14 @@ declare(strict_types=1);
 namespace App\Extension;
 
 use App\Service\Converter\ConvertBlockTypeToManagerType;
+use App\Service\Page\BotDouxFetcher;
+use App\Service\Page\MainImageFetcher;
 use App\Service\Security\LoginLinkHandler;
+use App\ValueObject\Article\Image;
 use App\ValueObject\NewsletterBlockManager\BlockType;
 use App\ValueObject\NewsletterBlockManager\ManagerType;
+use App\ValueObject\Newspaper;
+use App\ValueObject\Twitter\Message;
 use Symfony\Component\Security\Core\Exception\UserNotFoundException;
 use Symfony\Component\Security\Core\User\UserProviderInterface;
 use Twig\Extension\AbstractExtension;
@@ -20,7 +25,9 @@ class NavigationExtension extends AbstractExtension
         private readonly UserProviderInterface $userProvider,
         private readonly LoginLinkHandler $loginLinkHandler,
         private readonly string $absoluteUrlFront,
-        private readonly ConvertBlockTypeToManagerType $convertBlockTypeToManagerType
+        private readonly ConvertBlockTypeToManagerType $convertBlockTypeToManagerType,
+        private readonly MainImageFetcher $mainImageFetcher,
+        private readonly BotDouxFetcher $botDouxFetcher
     ) {
     }
 
@@ -30,6 +37,8 @@ class NavigationExtension extends AbstractExtension
             new TwigFunction('is_google_mail', $this->isGoogleMail(...)),
             new TwigFunction('email_connection', $this->getEmailConnection(...)),
             new TwigFunction('convert_to_manager_type', $this->convertToManagerType(...)),
+            new TwigFunction('main_image', $this->mainImage(...)),
+            new TwigFunction('bot_doux', $this->botDoux(...)),
         ];
     }
 
@@ -55,5 +64,15 @@ class NavigationExtension extends AbstractExtension
         return $this->convertBlockTypeToManagerType->reverseConvert(
             $managerType
         );
+    }
+
+    public function mainImage(Newspaper $newspaper): ?Image
+    {
+        return $this->mainImageFetcher->fetch($newspaper);
+    }
+
+    public function botDoux(Newspaper $newspaper): ?Message
+    {
+        return $this->botDouxFetcher->fetch($newspaper);
     }
 }

@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace App\Service\Block;
 
-use App\Service\Archive\DataInputOuputHandler;
+use App\Service\Archive\NewsletterWriterFetcher;
 use App\ValueObject\BlockInterface;
 use App\ValueObject\NewsletterBlockManager\BlockType;
 use App\ValueObject\Newspaper;
@@ -11,7 +11,7 @@ use Carbon\Carbon;
 
 class BlockFinder
 {
-    public function __construct(private readonly DataInputOuputHandler $dataInputOuputHandler)
+    public function __construct(private readonly NewsletterWriterFetcher $newsletterWriterFetcher)
     {
     }
 
@@ -20,7 +20,7 @@ class BlockFinder
      */
     public function findByDate(Carbon $date, BlockType $blockType): ?array
     {
-        $newsletter = $this->dataInputOuputHandler->get($date);
+        $newsletter = $this->newsletterWriterFetcher->get($date);
 
         if ($newsletter === null) {
             return null;
