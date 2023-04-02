@@ -7,7 +7,11 @@ use Carbon\Carbon;
 
 class Currency
 {
-    public function __construct(private readonly string $symbol, private readonly float $value, private readonly Carbon $date)
+    public function __construct(
+        private readonly string $symbol,
+        private readonly float $value,
+        private readonly Carbon $date
+    )
     {
     }
 

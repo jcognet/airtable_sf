@@ -15,14 +15,14 @@ class NewsletterWriterFetcher
     public function __construct(
         private readonly SerializerInterface $serializer,
         private readonly DenormalizerInterface $denormalizer,
-        private readonly DataIoHandler $dataIoHandler
+        private readonly NewsletterReadWriteHandler $newsletterReadWriteHandler
     ) {
     }
 
     public function write(
         NewsLetter $newsLetter
     ): void {
-        $this->dataIoHandler->write(
+        $this->newsletterReadWriteHandler->write(
             $this->serializer->serialize(
                 [
                     'data' => [
@@ -43,7 +43,7 @@ class NewsletterWriterFetcher
 
     public function get(Carbon $date): ?NewsLetter
     {
-        $data = $this->dataIoHandler->read($date);
+        $data = $this->newsletterReadWriteHandler->read($date);
 
         if ($data === null) {
             return null;

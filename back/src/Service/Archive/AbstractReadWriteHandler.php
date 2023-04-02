@@ -6,10 +6,10 @@ namespace App\Service\Archive;
 use Carbon\Carbon;
 use Symfony\Component\Filesystem\Filesystem;
 
-class DataIoHandler
+abstract class AbstractReadWriteHandler
 {
     public function __construct(
-        private readonly string $deployArchiveJsonPath
+        protected readonly string $deployArchiveJsonPath
     ) {
     }
 
@@ -41,8 +41,5 @@ class DataIoHandler
         );
     }
 
-    protected function getFileName(Carbon $date): string
-    {
-        return sprintf('%s/%s_newsletter.json', $this->deployArchiveJsonPath, $date->format('Y-m-d'));
-    }
+    abstract protected function getFileName(Carbon $date): string;
 }
