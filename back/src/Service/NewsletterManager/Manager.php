@@ -3,14 +3,14 @@ declare(strict_types=1);
 
 namespace App\Service\NewsletterManager;
 
-use App\Service\Archive\DataInputOuputHandler;
+use App\Service\Archive\NewsletterWriterFetcher;
 use App\ValueObject\Archive\NewsLetter;
 use Carbon\Carbon;
 
 class Manager
 {
     public function __construct(
-        private readonly DataInputOuputHandler $dataInputOuputHandler,
+        private readonly NewsletterWriterFetcher $newsletterWriterFetcher,
         private readonly NewspaperCreator $creator,
         private readonly NewspaperRenderer $newspaperRenderer
     ) {
@@ -20,7 +20,7 @@ class Manager
         Carbon $date,
         bool $forceTwig = false
     ): NewsLetter {
-        if ($newsLetter = $this->dataInputOuputHandler->get($date)) {
+        if ($newsLetter = $this->newsletterWriterFetcher->get($date)) {
             if ($forceTwig) {
                 $newsLetter->setNewsletterHtml(
                     $this->newspaperRenderer->renderHtml($newsLetter->getNewspaper())
@@ -38,7 +38,7 @@ class Manager
             newspaper: $newspaper
         );
 
-        $this->dataInputOuputHandler->write(
+        $this->newsletterWriterFetcher->write(
             $newsLetter
         );
 

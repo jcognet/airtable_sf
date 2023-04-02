@@ -21,6 +21,9 @@ parameters:
     main_image:
       width: 500
       height: 400
+    main_image_previous:
+      width: 400
+      height: 200
 
 services:
   # default configuration for services in *this* file

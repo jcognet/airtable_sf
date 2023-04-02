@@ -21,7 +21,16 @@ class Deploy implements LoggerAwareInterface
     private const SUBJECT = 'Fun Effect %s déploiement du %s';
     private const SUBJECT_FAILURE = 'Caca déploiement du %s';
 
-    public function __construct(private readonly MailerInterface $mailer, private readonly string $mailerFrom, private readonly string $mailerTo, private readonly string $projectDir, private readonly string $githubSecret, private readonly TagHandler $tagHandler, private readonly string $environment, private readonly Environment $twig)
+    public function __construct(
+        private readonly MailerInterface $mailer,
+        private readonly string $mailerFrom,
+        private readonly string $mailerTo,
+        private readonly string $projectDir,
+        private readonly string $githubSecret,
+        private readonly TagHandler $tagHandler,
+        private readonly string $environment,
+        private readonly Environment $twig
+    )
     {
     }
 

@@ -10,7 +10,7 @@ use Symfony\Component\Serializer\Normalizer\AbstractNormalizer;
 use Symfony\Component\Serializer\Normalizer\DenormalizerInterface;
 use Symfony\Component\Serializer\SerializerInterface;
 
-class DataInputOuputHandler
+class NewsletterWriterFetcher
 {
     public function __construct(
         private readonly SerializerInterface $serializer,

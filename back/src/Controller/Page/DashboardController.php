@@ -3,8 +3,8 @@ declare(strict_types=1);
 
 namespace App\Controller\Page;
 
-use App\Service\Archive\DataInputOuputHandler;
-use App\Service\Page\MainImageFetcher;
+use App\Service\Archive\NewsletterWriterFetcher;
+use App\Service\Archive\PreviousNewsletterFetcher;
 use App\Service\Repository\Official\PassportRepository;
 use Carbon\Carbon;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -17,12 +17,12 @@ class DashboardController extends AbstractController
     #[Route(path: '/dashboard/', name: 'dashboard_show', methods: ['GET'])]
     public function show(
         Request $request,
-        DataInputOuputHandler $dataInputOuputHandler,
-        MainImageFetcher $mainImageFetcher,
-        PassportRepository $passportRepository
+        NewsletterWriterFetcher $newsletterWriterFetcher,
+        PassportRepository $passportRepository,
+        PreviousNewsletterFetcher $previousNewsletterFetcher
     ): Response {
         $date = Carbon::parse($request->query->get('date', null));
-        $newsletter = $dataInputOuputHandler->get($date);
+        $newsletter = $newsletterWriterFetcher->get($date);
 
         if ($newsletter === null) {
             throw $this->createNotFoundException(sprintf('No newsletter found for date %s', $date->format('d/m/Y')));
@@ -31,9 +31,10 @@ class DashboardController extends AbstractController
         return $this->render(
             'dashboard/show.html.twig',
             [
-                'main_image' => $mainImageFetcher->fetch($newsletter->getNewspaper()),
                 'newspaper_date' => $newsletter->getNewspaper()->getDate(),
                 'passport_url' => $passportRepository->getUrl(),
+                'newspaper' => $newsletter->getNewspaper(),
+                'previous_newspapers' => $previousNewsletterFetcher->fetchNewspaper($date),
             ]
         );
     }

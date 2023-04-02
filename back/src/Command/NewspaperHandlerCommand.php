@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace App\Command;
 
-use App\Service\Archive\DataInputOuputHandler;
+use App\Service\Archive\NewsletterWriterFetcher;
 use App\Service\Mailer\ErrorSender;
 use App\Service\Mailer\NewsletterSender;
 use App\Service\NewsletterManager\Manager;
@@ -21,7 +21,7 @@ class NewspaperHandlerCommand extends Command
         private readonly ErrorSender $errorSender,
         private readonly Manager $manager,
         private readonly NewsletterSender $sender,
-        private readonly DataInputOuputHandler $dataInputOuputHandler
+        private readonly NewsletterWriterFetcher $newsletterWriterFetcher
     ) {
         parent::__construct();
     }
@@ -42,7 +42,7 @@ class NewspaperHandlerCommand extends Command
             if (!$newsLetter->wasSent()) {
                 $this->sender->send($newsLetter->getNewsletterHtml());
                 $newsLetter->setWasSent(true);
-                $this->dataInputOuputHandler->write(
+                $this->newsletterWriterFetcher->write(
                     $newsLetter
                 );
             }

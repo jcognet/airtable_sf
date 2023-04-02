@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace App\Command\Test;
 
-use App\Service\Archive\DataInputOuputHandler;
+use App\Service\Archive\NewsletterWriterFetcher;
 use App\Service\NewsletterManager\NewspaperCreator;
 use App\Service\NewsletterManager\NewspaperRenderer;
 use App\ValueObject\Archive\NewsLetter;
@@ -24,7 +24,7 @@ class CreateAllJsonCommand extends Command
     ];
 
     public function __construct(
-        private readonly DataInputOuputHandler $dataInputOuputHandler,
+        private readonly NewsletterWriterFetcher $newsletterWriterFetcher,
         private readonly NewspaperCreator $creator,
         private readonly string $deployArchiveJsonPath,
         private readonly string $projectDir,
@@ -47,7 +47,7 @@ class CreateAllJsonCommand extends Command
             $output->writeln(sprintf('Create data test for %s with function %s.', $dateTest, $function));
             $date = Carbon::parse($dateTest);
             $newspaper = $this->creator->{$function}($date);
-            $this->dataInputOuputHandler->write(
+            $this->newsletterWriterFetcher->write(
                 new NewsLetter(
                     date: $date,
                     newsletterHtml: $this->newspaperRenderer->renderHtml($newspaper),

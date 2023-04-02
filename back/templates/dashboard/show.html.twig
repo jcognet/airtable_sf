@@ -11,11 +11,19 @@
                     data-aos="fade-right"
                 >
                     <p class="is-larger">
-                        &emsp;&emsp;<strong>Journal du {{ newspaper_date|date('d/m/Y') }}</strong>
+                        <a href="{{ path('newsletter_content_show', {'date': newspaper_date|date('Y-m-d') }) }}"
+                           title="Voir le journal du  {{ newspaper_date|date('d/m/Y') }}"
+                           target="_blank"
+                        >
+                            &emsp;&emsp;<strong>Journal du {{ newspaper_date|date('d/m/Y') }}</strong>
+                        </a>
                     </p>
                     <br/>
                     <p>
-                        Résumé (concept, ...) à écrire ici
+                        {% set bot_doux =  bot_doux(newspaper) %}
+                        {% if bot_doux is not null %}
+                            {{ bot_doux.content }}<br/>
+                        {% endif %}
                     </p>
                     <div class="is-divider"></div>
                     <div class="columns about-links">
@@ -38,7 +46,7 @@
                             </p>
                             <p class="subheading">
                                 <a href="{{ path('newsletter_content_show', {'date': newspaper_date|date('Y-m-d') }) }}"
-                                   title="Voir le journal du  {{ newspaper_date|date('d/m/Y') }}"
+                                   title="Voir le email du  {{ newspaper_date|date('d/m/Y') }}"
                                    target="_blank"
                                 >
                                     &#128240;
@@ -48,20 +56,51 @@
                     </div>
                 </div>
                 <div class="column is-6 right-image " data-aos="fade-left">
-                    {% if main_image is defined and main_image is not null %}
+                    {% set main_image = main_image(newspaper) %}
+                    {% if main_image is not null %}
                         <a
                             href="{{ absolute_url( path('img_normal', {'pathImage': main_image.url.picture.id})) }}"
                             title="Voir l'image taille réelle"
                             target="_blank"
                         >
-                        <img
-                            class="is-rounded"
-                            src="{{ absolute_url(path('img_thumbnail', {'pathImage': main_image.url.picture.id})) }}?format=main_image"
-                            alt="{{ main_image.content }}"
-                        />
+                            <img
+                                class="is-rounded"
+                                src="{{ absolute_url(path('img_thumbnail', {'pathImage': main_image.url.picture.id})) }}?format=main_image"
+                                alt="{{ main_image.content }}"
+                            />
                         </a>
                     {% endif %}
                 </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="section-dark my-work" id="my-work">
+        <div class="container">
+            <div
+                class="columns is-multiline"
+                data-aos="fade-in"
+                data-aos-easing="linear"
+            >
+                <div class="column is-12">
+                    <h1 class="title has-text-centered section-title">Précédents journaux</h1>
+                </div>
+                {% for previous_newspaper in previous_newspapers %}
+                    <div class="column is-3">
+                        <a href="{{ path('newsletter_content_show', {'date': previous_newspaper.date|date('Y-m-d') }) }}"
+                           title="Voir le email du {{ previous_newspaper.date|date('d/m/Y') }}"
+                           target="_blank"
+                        >
+                            {% set main_image_previous_newspaper = main_image(previous_newspaper) %}
+                            {% if main_image_previous_newspaper is not null %}
+                                <figure
+                                    class="image is-2by1 work-item"
+                                    style="background-image: url('{{ absolute_url(path('img_thumbnail', {'pathImage': main_image_previous_newspaper.url.picture.id})) }}?format=main_image_previous')"
+                                ></figure>
+                            {% endif %}
+                        </a>
+                    </div>
+                {% endfor %}
             </div>
         </div>
     </div>
