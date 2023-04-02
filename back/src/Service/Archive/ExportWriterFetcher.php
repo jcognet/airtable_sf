@@ -10,7 +10,7 @@ class ExportWriterFetcher
 {
     public function __construct(
         private readonly SerializerInterface $serializer,
-        private readonly NewsletterReadWriteHandler $dataIoHandler
+        private readonly ExportReadWriteHandler $exportReadWriteHandler
     ) {
     }
 
@@ -18,7 +18,7 @@ class ExportWriterFetcher
         array $data,
         Carbon $date
     ): void {
-        $this->dataIoHandler->write(
+        $this->exportReadWriteHandler->write(
             $this->serializer->serialize(
                 [
                     'data' => [
@@ -36,7 +36,7 @@ class ExportWriterFetcher
 
     public function get(Carbon $date): ?array
     {
-        $data = $this->dataIoHandler->read($date);
+        $data = $this->exportReadWriteHandler->read($date);
 
         if ($data === null) {
             return null;
