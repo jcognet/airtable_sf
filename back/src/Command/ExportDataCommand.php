@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace App\Command;
 
-use App\Service\Export\ExportToSpreadsheet;
+use App\Service\Export\Exporter;
 use Carbon\Carbon;
 use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
@@ -13,7 +13,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 #[AsCommand(name: 'app:export:spreadsheet')]
 class ExportDataCommand extends Command
 {
-    public function __construct(private readonly ExportToSpreadsheet $exportToSpreadsheet)
+    public function __construct(private readonly Exporter $exporter)
     {
         parent::__construct();
     }
@@ -28,7 +28,7 @@ class ExportDataCommand extends Command
         $start = Carbon::now();
         $output->writeln(sprintf('Start of command %s at %s', self::$defaultName, $start->format('d/m/Y H:i')));
 
-        $this->exportToSpreadsheet->export();
+        $this->exporter->export();
 
         $end = Carbon::now();
         $interval = $end->diffAsCarbonInterval($start);
