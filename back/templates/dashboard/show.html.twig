@@ -53,6 +53,26 @@
                                 </a>
                             </p>
                         </div>
+                        {% if kpi is not null and kpi.article_image_no_concept_count is defined %}
+                            <div class="column">
+                                <p class="heading">
+                                    <strong>En cours</strong>
+                                </p>
+                                <p class="subheading">
+                                    {% set class = 'is-danger' %}
+                                    {% if kpi.article_image_no_concept_count <20 %}
+                                        {% set class = 'is-sucess' %}
+                                    {% elseif kpi.article_image_no_concept_count <30 %}
+                                        {% set class = 'is-warning' %}
+                                    {% endif %}
+                                <article class="message {{ class }}">
+                                    <div class="message-body">
+                                        {{ kpi.article_image_no_concept_count }}
+                                    </div>
+                                </article>
+                                </p>
+                            </div>
+                        {% endif %}
                     </div>
                 </div>
                 <div class="column is-6 right-image " data-aos="fade-left">

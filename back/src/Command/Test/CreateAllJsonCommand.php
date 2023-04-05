@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace App\Command\Test;
 
 use App\Service\Archive\NewsletterWriterFetcher;
+use App\Service\Export\Exporter;
 use App\Service\NewsletterManager\NewspaperCreator;
 use App\Service\NewsletterManager\NewspaperRenderer;
 use App\ValueObject\Archive\NewsLetter;
@@ -28,8 +29,10 @@ class CreateAllJsonCommand extends Command
         private readonly NewspaperCreator $creator,
         private readonly string $deployArchiveJsonPath,
         private readonly string $projectDir,
-        private readonly NewspaperRenderer $newspaperRenderer
-    ) {
+        private readonly NewspaperRenderer $newspaperRenderer,
+        private readonly Exporter $exporter
+    )
+    {
         parent::__construct();
     }
 
@@ -41,7 +44,7 @@ class CreateAllJsonCommand extends Command
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $start = Carbon::now();
-        $output->writeln(sprintf('Start of command %s at %s', self::$defaultName, $start->format('d/m/Y H:i')));
+        $output->writeln(sprintf('Start of command %s at %s', $this->getName(), $start->format('d/m/Y H:i')));
 
         foreach (self::LIST_CALL as $dateTest => $function) {
             $output->writeln(sprintf('Create data test for %s with function %s.', $dateTest, $function));
@@ -64,6 +67,15 @@ class CreateAllJsonCommand extends Command
             );
             $this->newspaperRenderer->resetHtml();
         }
+
+        $this->exporter->export(false);
+        $from = sprintf('%s%s_export.json', $this->deployArchiveJsonPath, (Carbon::now())->format('Y-m-d'));
+        $to = sprintf('%s/tests/data/%s_export.json', $this->projectDir, $date->format('Y-m-d'));
+        $output->writeln(sprintf('Try to move from %s to %s for day %s.', $from, $to, $date->format('Y-m-d')));
+        copy(
+            $from,
+            $to,
+        );
 
         $end = Carbon::now();
         $interval = $end->diffAsCarbonInterval($start);

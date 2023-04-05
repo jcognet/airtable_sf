@@ -21,9 +21,7 @@ class ExportWriterFetcher
         $this->exportReadWriteHandler->write(
             $this->serializer->serialize(
                 [
-                    'data' => [
-                        $data,
-                    ],
+                    'data' => $data,
                     'metadata' => [
                         'created' => $date,
                     ],

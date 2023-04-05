@@ -5,6 +5,7 @@ namespace App\Controller\Page;
 
 use App\Service\Archive\NewsletterWriterFetcher;
 use App\Service\Archive\PreviousNewsletterFetcher;
+use App\Service\Export\Fetcher;
 use App\Service\Repository\Official\PassportRepository;
 use Carbon\Carbon;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -19,8 +20,10 @@ class DashboardController extends AbstractController
         Request $request,
         NewsletterWriterFetcher $newsletterWriterFetcher,
         PassportRepository $passportRepository,
-        PreviousNewsletterFetcher $previousNewsletterFetcher
-    ): Response {
+        PreviousNewsletterFetcher $previousNewsletterFetcher,
+        Fetcher $exporterFetcher
+    ): Response
+    {
         $date = Carbon::parse($request->query->get('date', null));
         $newsletter = $newsletterWriterFetcher->get($date);
 
@@ -35,6 +38,7 @@ class DashboardController extends AbstractController
                 'passport_url' => $passportRepository->getUrl(),
                 'newspaper' => $newsletter->getNewspaper(),
                 'previous_newspapers' => $previousNewsletterFetcher->fetchNewspapers($date),
+                'kpi' => $exporterFetcher->fetch($date)
             ]
         );
     }
