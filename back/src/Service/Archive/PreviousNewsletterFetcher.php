@@ -19,13 +19,13 @@ class PreviousNewsletterFetcher
     /**
      * @return NewsLetter[]
      */
-    public function fetch(Carbon $date): array
+    public function fetchNewsletters(Carbon $date): array
     {
         $newsletters = [];
         $tmpDate = $date->copy();
 
         for ($i = 0; $i < self::NB_NEWSLETTER; ++$i) {
-            $newsletter = $this->newsletterWriterFetcher->get($tmpDate->subDay());
+            $newsletter = $this->newsletterWriterFetcher->get($tmpDate->subDay()->copy());
 
             if ($newsletter === null) {
                 return $newsletters;
@@ -40,11 +40,11 @@ class PreviousNewsletterFetcher
     /**
      * @return Newspaper[]
      */
-    public function fetchNewspaper(Carbon $date): array
+    public function fetchNewspapers(Carbon $date): array
     {
         $newspapers = [];
 
-        foreach ($this->fetch($date) as $newsLetter) {
+        foreach ($this->fetchNewsletters($date) as $newsLetter) {
             $newspapers[] = $newsLetter->getNewspaper();
         }
 
