@@ -28,7 +28,8 @@ class Exporter
         private readonly CurrencyRepository $currencyRepository,
         private readonly ConceptClient $conceptClient,
         private readonly ExportWriterFetcher $exportWriterFetcher
-    ) {
+    )
+    {
     }
 
     public function getData(): array
@@ -61,15 +62,17 @@ class Exporter
         ];
     }
 
-    public function export(): int
+    public function export(bool $writeData): void
     {
         $data = $this->getData();
         $this->exportWriterFetcher->write($data, Carbon::now());
 
-        return $this->exportAirtableWriter->write(
-            [
-                array_values($data),
-            ]
-        );
+        if ($writeData) {
+            $this->exportAirtableWriter->write(
+                [
+                    array_values($data),
+                ]
+            );
+        }
     }
 }
