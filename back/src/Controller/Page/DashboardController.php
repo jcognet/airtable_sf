@@ -34,7 +34,7 @@ class DashboardController extends AbstractController
                 'newspaper_date' => $newsletter->getNewspaper()->getDate(),
                 'passport_url' => $passportRepository->getUrl(),
                 'newspaper' => $newsletter->getNewspaper(),
-                'previous_newspapers' => $previousNewsletterFetcher->fetchNewspaper($date),
+                'previous_newspapers' => $previousNewsletterFetcher->fetchNewspapers($date),
             ]
         );
     }

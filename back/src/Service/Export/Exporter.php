@@ -28,8 +28,7 @@ class Exporter
         private readonly CurrencyRepository $currencyRepository,
         private readonly ConceptClient $conceptClient,
         private readonly ExportWriterFetcher $exportWriterFetcher
-    )
-    {
+    ) {
     }
 
     public function getData(): array
