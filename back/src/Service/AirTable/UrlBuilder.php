@@ -17,7 +17,6 @@ class UrlBuilder
             $tableUrl,
             $viewUrl,
             $id
-        )
-        ;
+        );
     }
 }

@@ -6,11 +6,13 @@ namespace App\Extension;
 use App\Service\Converter\ConvertBlockTypeToManagerType;
 use App\Service\Page\BotDouxFetcher;
 use App\Service\Page\MainImageFetcher;
+use App\Service\Picture\RandomPictorySelector;
 use App\Service\Security\LoginLinkHandler;
 use App\ValueObject\Article\Image;
 use App\ValueObject\NewsletterBlockManager\BlockType;
 use App\ValueObject\NewsletterBlockManager\ManagerType;
 use App\ValueObject\Newspaper;
+use App\ValueObject\Picture\Picture;
 use App\ValueObject\Twitter\Message;
 use Symfony\Component\Security\Core\Exception\UserNotFoundException;
 use Symfony\Component\Security\Core\User\UserProviderInterface;
@@ -27,7 +29,8 @@ class NavigationExtension extends AbstractExtension
         private readonly string $absoluteUrlFront,
         private readonly ConvertBlockTypeToManagerType $convertBlockTypeToManagerType,
         private readonly MainImageFetcher $mainImageFetcher,
-        private readonly BotDouxFetcher $botDouxFetcher
+        private readonly BotDouxFetcher $botDouxFetcher,
+        private readonly RandomPictorySelector $randomPictorySelector
     ) {
     }
 
@@ -39,6 +42,7 @@ class NavigationExtension extends AbstractExtension
             new TwigFunction('convert_to_manager_type', $this->convertToManagerType(...)),
             new TwigFunction('main_image', $this->mainImage(...)),
             new TwigFunction('bot_doux', $this->botDoux(...)),
+            new TwigFunction('random_image_from_directory', $this->randomImageFromDirectory(...)),
         ];
     }
 
@@ -74,5 +78,10 @@ class NavigationExtension extends AbstractExtension
     public function botDoux(Newspaper $newspaper): ?Message
     {
         return $this->botDouxFetcher->fetch($newspaper);
+    }
+
+    public function randomImageFromDirectory(string $directory): Picture
+    {
+        return $this->randomPictorySelector->select($directory);
     }
 }

@@ -22,7 +22,8 @@ class ExportDataCommand extends Command
     protected function configure(): void
     {
         $this->setDescription('Export data in google spreadsheet.')
-            ->addOption('no_google_save', null, InputOption::VALUE_NONE, 'if given, the command will not update google.');
+            ->addOption('no_google_save', null, InputOption::VALUE_NONE, 'if given, the command will not update google.')
+        ;
     }
 
     protected function execute(InputInterface $input, OutputInterface $output): int
