@@ -3,32 +3,18 @@ declare(strict_types=1);
 
 namespace App\Service\Picture;
 
-use Symfony\Component\Finder\Finder;
-
 class RandomDirectorySelector
 {
-    public function __construct(private readonly string $pathPictures)
-    {
+    public function __construct(
+        private readonly DirectoryLister $directoryLister
+    ) {
     }
 
     public function getRandomDirectory(): ?string
     {
-        $finder = new Finder();
-        $directoryFinder = $finder
-            ->directories()
-            ->in($this->pathPictures)
-            ->exclude('thumbnail')
-        ;
+        $directories = $this->directoryLister->list();
 
-        $directories = [];
-        foreach ($directoryFinder as $directory) {
-            /** @var \SplFileInfo $directory */
-            if (substr_count((string) $directory->getRelativePathName(), \DIRECTORY_SEPARATOR) >= 1) {
-                $directories[] = $directory;
-            }
-        }
-
-        if (count($directories) === 0) {
+        if ($directories === null) {
             return null;
         }
 

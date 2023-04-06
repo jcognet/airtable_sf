@@ -31,8 +31,7 @@ class CreateAllJsonCommand extends Command
         private readonly string $projectDir,
         private readonly NewspaperRenderer $newspaperRenderer,
         private readonly Exporter $exporter
-    )
-    {
+    ) {
         parent::__construct();
     }
 
@@ -69,7 +68,7 @@ class CreateAllJsonCommand extends Command
         }
 
         $this->exporter->export(false);
-        $from = sprintf('%s%s_export.json', $this->deployArchiveJsonPath, (Carbon::now())->format('Y-m-d'));
+        $from = sprintf('%s%s_export.json', $this->deployArchiveJsonPath, Carbon::now()->format('Y-m-d'));
         $to = sprintf('%s/tests/data/%s_export.json', $this->projectDir, $date->format('Y-m-d'));
         $output->writeln(sprintf('Try to move from %s to %s for day %s.', $from, $to, $date->format('Y-m-d')));
         copy(

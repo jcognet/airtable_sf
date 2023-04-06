@@ -11,18 +11,18 @@ class InrManager implements BlockManagerInterface
     public function getContent(): ?BlockInterface
     {
         return null;
-//        $inrTools = [];
-//
-//        for ($i = 1; $i <= self::NB_CRITERIA; ++$i) {
-//            $inrTools[] = $this->inrRepository->fetchRandomData();
-//        }
-//
-//        // Remove null links
-//        $inrTools = array_filter($inrTools);
-//
-//        return new InrToolList(
-//            'Outils conseillés par INR',
-//            $inrTools
-//        );
+        //        $inrTools = [];
+        //
+        //        for ($i = 1; $i <= self::NB_CRITERIA; ++$i) {
+        //            $inrTools[] = $this->inrRepository->fetchRandomData();
+        //        }
+        //
+        //        // Remove null links
+        //        $inrTools = array_filter($inrTools);
+        //
+        //        return new InrToolList(
+        //            'Outils conseillés par INR',
+        //            $inrTools
+        //        );
     }
 }

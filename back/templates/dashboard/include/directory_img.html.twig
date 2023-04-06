@@ -1,0 +1,35 @@
+<!-- Begin Services Content -->
+<div class="section-color services" id="services">
+    <div class="container">
+        <div class="columns is-multiline">
+            <div
+                class="column is-12 about-me"
+                data-aos="fade-in"
+                data-aos-easing="linear"
+            >
+                <h1 class="title has-text-centered section-title">Services</h1>
+                <br/>
+            </div>
+            {% for directory in directory_image_list %}
+                {% set main_image = random_image_from_directory(directory.relativePathName) %}
+                <div class="column is-3">
+                    <a
+                        href="{{ path('img_list', {directory: directory.relativePathName}) }}"
+                        title="Voir les images du répertoire"
+                        target="_blank"
+                    >
+                        <figure
+                            class="image is-2by1 work-item"
+                            style="background-image: url('{{ absolute_url(path('img_thumbnail', {'pathImage': main_image.id})) }}?format=main_image_previous')"
+                        ></figure>
+                        <div class="notification is-info">
+                            {{ directory.relativePathName }}
+                        </div>
+                    </a>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+<!-- End Services Content -->
+
