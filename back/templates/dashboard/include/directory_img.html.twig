@@ -6,7 +6,7 @@
                 data-aos="fade-in"
                 data-aos-easing="linear"
             >
-                <h1 class="title has-text-centered section-title">Services</h1>
+                <h1 class="title has-text-centered section-title">Mes répertoires d'image</h1>
                 <br/>
             </div>
             {% for directory in directory_image_list %}
@@ -14,7 +14,7 @@
                 <div class="column is-3">
                     <a
                         href="{{ path('img_list', {directory: directory.relativePathName}) }}"
-                        title="Voir les images du répertoire {{ directory.relativePathNameImagecontrol }}"
+                        title="Voir les images du répertoire {{ directory.relativePathName }}"
                         target="_blank"
                     >
                         <figure
