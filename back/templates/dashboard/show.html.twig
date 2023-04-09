@@ -1,6 +1,6 @@
 {% extends './page/base.html.twig' %}
 {% block body %}
-    {% include './dashboard/include/current_newspaper.html.twig' with {newspaper: newspaper} %}
-    {% include './dashboard/include/previous_newspapers.html.twig' with {previous_newspapers: previous_newspapers} %}
-    {% include './dashboard/include/directory_img.html.twig' %}
+    {% include './dashboard/include/current_newspaper.html.twig' with {newspaper, passport_url, newspaper_date} only %}
+    {% include './dashboard/include/previous_newspapers.html.twig' with {previous_newspapers} only %}
+    {% include './dashboard/include/directory_img.html.twig'  with {directory_image_list} only %}
 {% endblock %}

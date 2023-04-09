@@ -8,8 +8,11 @@ use App\ValueObject\NewsletterBlockManager\BlockType;
 
 class Directory extends AbstractBlock
 {
-    public function __construct(private readonly string $path, private readonly array $pictures)
-    {
+    public function __construct(
+        private readonly string $path,
+        private array $pictures
+    ) {
+        usort($this->pictures, fn (Picture $a, Picture $b) => $a->getPath() <=> $b->getPath());
     }
 
     public function getPath(): string

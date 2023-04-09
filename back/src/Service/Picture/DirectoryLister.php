@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace App\Service\Picture;
 
 use Symfony\Component\Finder\Finder;
+use Symfony\Component\Finder\SplFileInfo;
 
 class DirectoryLister
 {
@@ -34,6 +35,7 @@ class DirectoryLister
         if (count($directories) === 0) {
             return null;
         }
+        usort($directories, fn (SplFileInfo $a, SplFileInfo $b) => $a->getRelativePathname() <=> $b->getRelativePathname());
 
         return $directories;
     }
