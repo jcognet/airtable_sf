@@ -29,7 +29,7 @@ class CleanDataCommand extends Command
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $start = Carbon::now();
-        $output->writeln(sprintf('Start of command %s at %s', self::$defaultName, $start->format('d/m/Y H:i')));
+        $output->writeln(sprintf('Start of command %s at %s', $this->getName(), $start->format('d/m/Y H:i')));
 
         $from = Carbon::now()->subMonth();
         $output->writeln(sprintf('Remove file from %s', $from->format('d/m/Y')));
