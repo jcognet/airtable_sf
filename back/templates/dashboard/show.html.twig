@@ -1,6 +1,7 @@
 {% extends './page/base.html.twig' %}
 {% block body %}
-    {% include './dashboard/include/current_newspaper.html.twig' with {newspaper, passport_url, newspaper_date} only %}
+    {% include './dashboard/include/current_newspaper.html.twig' with {newspaper, passport_url, newspaper_date, kpi} only %}
     {% include './dashboard/include/previous_newspapers.html.twig' with {previous_newspapers} only %}
-    {% include './dashboard/include/directory_img.html.twig'  with {directory_image_list} only %}
+    {% include './dashboard/include/directory_img.html.twig' with {directory_image_list} only %}
+    {% include './dashboard/include/interesting_topic_list.html.twig' with {newspaper} only %}
 {% endblock %}

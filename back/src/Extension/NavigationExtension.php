@@ -5,10 +5,12 @@ namespace App\Extension;
 
 use App\Service\Converter\ConvertBlockTypeToManagerType;
 use App\Service\Page\BotDouxFetcher;
+use App\Service\Page\InterestingTopicListFetcher;
 use App\Service\Page\MainImageFetcher;
 use App\Service\Picture\RandomPictorySelector;
 use App\Service\Security\LoginLinkHandler;
 use App\ValueObject\Article\Image;
+use App\ValueObject\Article\InterestingTopicList;
 use App\ValueObject\NewsletterBlockManager\BlockType;
 use App\ValueObject\NewsletterBlockManager\ManagerType;
 use App\ValueObject\Newspaper;
@@ -30,7 +32,8 @@ class NavigationExtension extends AbstractExtension
         private readonly ConvertBlockTypeToManagerType $convertBlockTypeToManagerType,
         private readonly MainImageFetcher $mainImageFetcher,
         private readonly BotDouxFetcher $botDouxFetcher,
-        private readonly RandomPictorySelector $randomPictorySelector
+        private readonly RandomPictorySelector $randomPictorySelector,
+        private readonly InterestingTopicListFetcher $interestingTopicListFetcher
     ) {
     }
 
@@ -43,6 +46,7 @@ class NavigationExtension extends AbstractExtension
             new TwigFunction('main_image', $this->mainImage(...)),
             new TwigFunction('bot_doux', $this->botDoux(...)),
             new TwigFunction('random_image_from_directory', $this->randomImageFromDirectory(...)),
+            new TwigFunction('interesting_topic_list', $this->interestingTopicList(...)),
         ];
     }
 
@@ -83,5 +87,10 @@ class NavigationExtension extends AbstractExtension
     public function randomImageFromDirectory(string $directory): Picture
     {
         return $this->randomPictorySelector->select($directory);
+    }
+
+    public function interestingTopicList(Newspaper $newspaper): InterestingTopicList
+    {
+        return $this->interestingTopicListFetcher->fetch($newspaper);
     }
 }
