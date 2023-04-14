@@ -11,7 +11,10 @@ class ErrorSender
 {
     private const SUBJECT = 'Fun Effect erreur du %s';
 
-    public function __construct(private readonly MailerInterface $mailer, private readonly string $mailerFrom, private readonly string $mailerTo)
+    public function __construct(
+        private readonly MailerInterface $mailer,
+        private readonly string $mailerFrom,
+        private readonly string $mailerTo)
     {
     }
 

@@ -22,7 +22,8 @@ class NewspaperHandlerCommand extends Command
         private readonly Manager $manager,
         private readonly NewsletterSender $sender,
         private readonly NewsletterWriterFetcher $newsletterWriterFetcher
-    ) {
+    )
+    {
         parent::__construct();
     }
 
@@ -47,6 +48,7 @@ class NewspaperHandlerCommand extends Command
                 );
             }
         } catch (\Throwable $e) {
+            $output->write(sprintf('<error>Error: %s</error>', $e->getMessage()));
             $this->errorSender->send($e);
 
             if ($this->environment !== 'prod') {
