@@ -10,13 +10,21 @@ use Symfony\Contracts\HttpClient\HttpClientInterface;
 
 class TwitterClient
 {
-    public function __construct(private readonly HttpClientInterface $twitterClient, private readonly MessageBuilder $messageBuilder, private readonly UserBuilder $userBuilder)
+    public function __construct(
+        private readonly HttpClientInterface $twitterClient,
+        private readonly MessageBuilder $messageBuilder,
+        private readonly UserBuilder $userBuilder)
     {
     }
 
     public function fetchRandomMessageFromUser(string $account): ?Message
     {
         $messages = json_decode($this->twitterClient->request('GET', sprintf('tweets/search/recent/?query=from:%s', $account))->getContent(), true, 512, JSON_THROW_ON_ERROR);
+
+        if (!isset($messages['data'])) {
+            return null;
+        }
+
         $dataMessages = $messages['data'];
         $randomMessage = $this->messageBuilder->build($dataMessages[array_rand($dataMessages)]);
 
