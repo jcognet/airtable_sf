@@ -18,6 +18,11 @@ class BotDouxManager implements BlockManagerInterface
     public function getContent(): ?BlockInterface
     {
         $message = $this->twitterClient->fetchRandomMessageFromUser(self::TWITTER_ACCOUNT);
+
+        if ($message === null) {
+            return null;
+        }
+
         $message->setTitle('Petit mot doux du jour');
 
         return $message;
