@@ -1,31 +1,26 @@
 {% set interesting_topic_list = interesting_topic_list(newspaper) %}
 {% if interesting_topic_list is not null %}
     <div class="section-light about-me" id="about-me">
-    {% set has_to_close_div = false %}
-    {% for interesting_topic in interesting_topic_list.contentRandomOrder %}
-        {% if loop.index0 %7 == 0 %}
-            <div class="columns is-centered">
-        {% endif %}
-        {% set colour = get_random_color_bulma() %}
-        <div class="column is-1">
-            <div class="card has-background-{{ colour }}-dark">
-                <div class="card-header">
-                    <div class="card-content">
-                        <a href="https://www.google.fr/search?q={{ interesting_topic.content }}"
-                           target="_blank"
-                           class="has-text-{{ colour }}-light"
-                        >
-                            {{ interesting_topic.content }}
-                        </a>
+        <div class="container">
+            <div class="columns is-centered is-multiline">
+                {% for interesting_topic in interesting_topic_list.contentRandomOrder %}
+                    {% set colour = get_random_color_bulma() %}
+                    <div class="column is-2">
+                        <div class="card has-background-{{ colour }}-dark">
+                            <div class="card-header">
+                                <div class="card-content">
+                                    <a href="https://www.google.fr/search?q={{ interesting_topic.content }}"
+                                       target="_blank"
+                                       class="has-text-{{ colour }}-light"
+                                    >
+                                        {{ interesting_topic.content }}
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                </div>
+                {% endfor %}
             </div>
         </div>
-        {% if loop.index0 %7 == 6 %}
-            </div>
-        {% endif %}
-        {% set has_to_close_div = not(loop.index0 % 7 == 6) %}
-    {% endfor %}
-    {% if has_to_close_div %}</div>{% endif %}
     </div>
 {% endif %}
