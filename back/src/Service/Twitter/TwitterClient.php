@@ -13,8 +13,8 @@ class TwitterClient
     public function __construct(
         private readonly HttpClientInterface $twitterClient,
         private readonly MessageBuilder $messageBuilder,
-        private readonly UserBuilder $userBuilder)
-    {
+        private readonly UserBuilder $userBuilder
+    ) {
     }
 
     public function fetchRandomMessageFromUser(string $account): ?Message

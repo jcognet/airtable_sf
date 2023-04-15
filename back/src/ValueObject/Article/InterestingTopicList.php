@@ -11,4 +11,12 @@ class InterestingTopicList extends AbstractArticleList
     {
         return BlockType::LIST_ARTICLE_INTERESTING_TOPIC_BLOCK;
     }
+
+    public function getContentRandomOrder(): array
+    {
+        $list = $this->getContent();
+        shuffle($list);
+
+        return $list;
+    }
 }

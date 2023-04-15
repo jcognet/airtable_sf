@@ -2,7 +2,7 @@
 {% if interesting_topic_list is not null %}
     <div class="section-light about-me" id="about-me">
     {% set has_to_close_div = false %}
-    {% for interesting_topic in interesting_topic_list.content %}
+    {% for interesting_topic in interesting_topic_list.contentRandomOrder %}
         {% if loop.index0 %7 == 0 %}
             <div class="columns is-centered">
         {% endif %}
