@@ -22,8 +22,7 @@ class NewspaperHandlerCommand extends Command
         private readonly Manager $manager,
         private readonly NewsletterSender $sender,
         private readonly NewsletterWriterFetcher $newsletterWriterFetcher
-    )
-    {
+    ) {
         parent::__construct();
     }
 

@@ -14,8 +14,8 @@ class ErrorSender
     public function __construct(
         private readonly MailerInterface $mailer,
         private readonly string $mailerFrom,
-        private readonly string $mailerTo)
-    {
+        private readonly string $mailerTo
+    ) {
     }
 
     public function send(\Throwable $e): void

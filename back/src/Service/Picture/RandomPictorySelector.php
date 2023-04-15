@@ -11,10 +11,14 @@ class RandomPictorySelector
     {
     }
 
-    public function select(string $directory): Picture
+    public function select(string $directory): ?Picture
     {
         $directory = $this->imageInPathLister->getPicturesFromDirectory($directory);
         $pictures = $directory->getPictures();
+
+        if (count($pictures) === 0) {
+            return null;
+        }
 
         return $pictures[array_rand($pictures)];
     }

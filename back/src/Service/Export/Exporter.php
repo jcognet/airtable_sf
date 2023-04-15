@@ -6,6 +6,7 @@ namespace App\Service\Export;
 use App\Service\AirTable\Article\ALireClient;
 use App\Service\AirTable\Article\ConceptClient;
 use App\Service\AirTable\Article\ImageClient;
+use App\Service\AirTable\Article\InterestingTopicClient;
 use App\Service\AirTable\Article\LuClient;
 use App\Service\AirTable\Book\BookClient;
 use App\Service\AirTable\ToDo\ItemClient;
@@ -27,7 +28,8 @@ class Exporter
         private readonly GithubRepository $githubRepository,
         private readonly CurrencyRepository $currencyRepository,
         private readonly ConceptClient $conceptClient,
-        private readonly ExportWriterFetcher $exportWriterFetcher
+        private readonly ExportWriterFetcher $exportWriterFetcher,
+        private readonly InterestingTopicClient $interestingTopicClient
     ) {
     }
 
@@ -37,7 +39,8 @@ class Exporter
         $nbArticleNotRead = count($this->ALireClient->findAll());
         $nbArticleNotConcept = count($this->luClient->findAll(['filterByFormula' => '{Conceptualisé} = 0']));
         $nbImageNotConcept = count($this->imageClient->findAll(['filterByFormula' => '{Conceptualisé} = 0']));
-        $nbArticleNotReadAndNbArticleWithNoConcept = $nbArticleNotRead + $nbArticleNotConcept + $nbImageNotConcept;
+        $nbInterestingTopic = count($this->interestingTopicClient->findAll());
+        $nbWaitingForAction = $nbArticleNotRead + $nbArticleNotConcept + $nbImageNotConcept + $nbInterestingTopic;
 
         return [
             'date' => Carbon::now()->format('d/m/Y'),
@@ -56,8 +59,9 @@ class Exporter
             $currencies[4]->getSymbol() => $currencies[4]->getValue(),
             'concept_count' => count($this->conceptClient->findAll()),
             'article_with_no_concept_count' => $nbArticleNotConcept,
-            'article_image_no_concept_count' => $nbArticleNotReadAndNbArticleWithNoConcept,
-            'image_no_councept_count' => $nbImageNotConcept,
+            'waiting_for_action_count' => $nbWaitingForAction,
+            'image_no_concept_count' => $nbImageNotConcept,
+            'interesting_topic_count' => $nbInterestingTopic,
         ];
     }
 

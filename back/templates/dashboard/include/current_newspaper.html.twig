@@ -51,21 +51,21 @@
                             </a>
                         </p>
                     </div>
-                    {% if kpi.article_image_no_concept_count is defined %}
+                    {% if kpi.waiting_for_action_count is defined %}
                         <div class="column">
                             <p class="heading">
                                 <strong>En cours</strong>
                             </p>
                             <p class="subheading">
                                 {% set class = 'is-danger' %}
-                                {% if kpi.article_image_no_concept_count <20 %}
+                                {% if kpi.waiting_for_action_count < 30 %}
                                     {% set class = 'is-sucess' %}
-                                {% elseif kpi.article_image_no_concept_count <30 %}
+                                {% elseif kpi.waiting_for_action_count < 40 %}
                                     {% set class = 'is-warning' %}
                                 {% endif %}
                             <article class="message {{ class }}">
                                 <div class="message-body">
-                                    {{ kpi.article_image_no_concept_count }}
+                                    {{ kpi.waiting_for_action_count }}
                                 </div>
                             </article>
                             </p>
