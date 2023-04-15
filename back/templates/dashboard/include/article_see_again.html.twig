@@ -1,0 +1,46 @@
+{% set article_see_again = article_see_again(newspaper) %}
+{% if article_see_again is not null %}
+    <div class="section-dark">
+        <div class="container">
+            <div class="columns is-centered is-multiline">
+                {% for article in article_see_again.content %}
+                    <div class="column is-5">
+                        <div class="card">
+                            <div class="card-content">
+                                <p class="title">
+                                    {{ article.title }}
+                                </p>
+                                <p class="subtitle">
+                                    {{ article.addedAt|date('d/m/Y') }}
+                                </p>
+                                <p>
+                                    {{ article.content|u.truncate(300, '...', false)|nl2br }}
+                                </p>
+                            </div>
+                            <footer class="card-footer">
+                                <p class="card-footer-item">
+                                  <span>
+                                    Voir les note sur <a href="{{ article.AirTableUrl }}"
+                                                         target="_blank"
+                                                         title="Lire l'article sur Airtable">
+                                          Airtable
+                                      </a>
+                                  </span>
+                                </p>
+                                <p class="card-footer-item">
+                                  <span>
+                                    <a href="{{ article.url }}"
+                                       target="_blank"
+                                       title="Accéder à l'élément">
+                                        Lien d'origine
+                                    </a>
+                                  </span>
+                                </p>
+                            </footer>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+{% endif %}

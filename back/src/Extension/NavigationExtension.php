@@ -4,11 +4,13 @@ declare(strict_types=1);
 namespace App\Extension;
 
 use App\Service\Converter\ConvertBlockTypeToManagerType;
+use App\Service\Page\ArticleSeeAgainListFetcher;
 use App\Service\Page\BotDouxFetcher;
 use App\Service\Page\InterestingTopicListFetcher;
 use App\Service\Page\MainImageFetcher;
 use App\Service\Picture\RandomPictorySelector;
 use App\Service\Security\LoginLinkHandler;
+use App\ValueObject\Article\ArticleSeeAgainList;
 use App\ValueObject\Article\Image;
 use App\ValueObject\Article\InterestingTopicList;
 use App\ValueObject\NewsletterBlockManager\BlockType;
@@ -33,7 +35,8 @@ class NavigationExtension extends AbstractExtension
         private readonly MainImageFetcher $mainImageFetcher,
         private readonly BotDouxFetcher $botDouxFetcher,
         private readonly RandomPictorySelector $randomPictorySelector,
-        private readonly InterestingTopicListFetcher $interestingTopicListFetcher
+        private readonly InterestingTopicListFetcher $interestingTopicListFetcher,
+        private readonly ArticleSeeAgainListFetcher $articleSeeAgainListFetcher
     ) {
     }
 
@@ -47,6 +50,7 @@ class NavigationExtension extends AbstractExtension
             new TwigFunction('bot_doux', $this->botDoux(...)),
             new TwigFunction('random_image_from_directory', $this->randomImageFromDirectory(...)),
             new TwigFunction('interesting_topic_list', $this->interestingTopicList(...)),
+            new TwigFunction('article_see_again', $this->articleSeeAgain(...)),
         ];
     }
 
@@ -89,8 +93,13 @@ class NavigationExtension extends AbstractExtension
         return $this->randomPictorySelector->select($directory);
     }
 
-    public function interestingTopicList(Newspaper $newspaper): InterestingTopicList
+    public function interestingTopicList(Newspaper $newspaper): ?InterestingTopicList
     {
         return $this->interestingTopicListFetcher->fetch($newspaper);
+    }
+
+    public function articleSeeAgain(Newspaper $newspaper): ArticleSeeAgainList
+    {
+        return $this->articleSeeAgainListFetcher->fetch($newspaper);
     }
 }
