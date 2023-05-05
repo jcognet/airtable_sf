@@ -47,7 +47,7 @@
                                     <div style="font-family: sans-serif">
                                         <div
                                             style="font-size: 14px; mso-line-height-alt: 21px; color: #000000; line-height: 1.5; font-family: Poppins, Arial, Helvetica, sans-serif;">
-                                            {{ block.content|nl2br }}
+                                            {{ block.content|markdown_to_html }}
                                             {% if block.linkedContents|length >0 %}
                                             <hr/>
                                             {% set has_to_close_div = false %}

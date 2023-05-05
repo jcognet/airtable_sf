@@ -14,7 +14,7 @@
                                         <div style="font-size: 14px; mso-line-height-alt: 16.8px; color: #ffffff; line-height: 1.2; font-family: Poppins, Arial, Helvetica, sans-serif;">
                                             <h2 style="margin: 0; font-size: 14px; text-align: center;"><strong><span style="font-size:26px;">{{ block.title }}</span></strong></h2>
                                         </div>
-                                        <div style="color:white">{{ block.content|nl2br }}</div>
+                                        <div style="color:white">{{ block.content|markdown_to_html }}</div>
                                         {% include 'newsletter/include/sujets.html.twig' with {sujets:block.sujets} %}
                                     </div>
                                 </td>
