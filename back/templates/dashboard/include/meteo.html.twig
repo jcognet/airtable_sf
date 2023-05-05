@@ -1,0 +1,48 @@
+{% set meteo_list = meteo_list(newspaper) %}
+{% if meteo_list is not null %}
+    <div class="section-dark">
+        <div class="container">
+            <div
+                class="column is-12 about-me"
+                data-aos="fade-in"
+                data-aos-easing="linear"
+            >
+                <h1 class="title has-text-centered section-title">Météo</h1>
+            </div>
+            <div class="columns is-centered is-multiline">
+                {% for meteo in meteo_list.content %}
+                    <div class="column is-2">
+                        <div>{{ meteo.day|date('d/m/Y') }}</div>
+                        <div>
+                            <strong>{{ meteo.weather.label }}</strong></div>
+                        <div>
+                            <div>
+                                <i class="wi wi-day-thunderstorm"></i>
+                            </div>
+                            <div>
+                                {{ meteo.probaRain }} % de pluie
+                            </div>
+                        </div>
+                        <div>
+                            <div>
+                                <i class="wi wi-day-sunny"></i>
+                            </div>
+                            <div>
+                                {{ meteo.sunHours }}&nbsp;heures
+                            </div>
+                        </div>
+                        <div>
+                            <div>
+                                <i class="wi wi-thermometer"></i>
+                            </div>
+                            <div>
+                                {{ meteo.temperatureMin }} °C
+                                /{{ meteo.temperatureMax }} °C
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+{% endif %}

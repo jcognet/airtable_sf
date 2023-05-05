@@ -8,11 +8,13 @@ use App\Service\Page\ArticleSeeAgainListFetcher;
 use App\Service\Page\BotDouxFetcher;
 use App\Service\Page\InterestingTopicListFetcher;
 use App\Service\Page\MainImageFetcher;
+use App\Service\Page\MeteoListFetcher;
 use App\Service\Picture\RandomPictorySelector;
 use App\Service\Security\LoginLinkHandler;
 use App\ValueObject\Article\ArticleSeeAgainList;
 use App\ValueObject\Article\Image;
 use App\ValueObject\Article\InterestingTopicList;
+use App\ValueObject\Meteo\MeteoList;
 use App\ValueObject\NewsletterBlockManager\BlockType;
 use App\ValueObject\NewsletterBlockManager\ManagerType;
 use App\ValueObject\Newspaper;
@@ -36,7 +38,8 @@ class NavigationExtension extends AbstractExtension
         private readonly BotDouxFetcher $botDouxFetcher,
         private readonly RandomPictorySelector $randomPictorySelector,
         private readonly InterestingTopicListFetcher $interestingTopicListFetcher,
-        private readonly ArticleSeeAgainListFetcher $articleSeeAgainListFetcher
+        private readonly ArticleSeeAgainListFetcher $articleSeeAgainListFetcher,
+        private readonly MeteoListFetcher $meteoListFetcher
     ) {
     }
 
@@ -51,6 +54,7 @@ class NavigationExtension extends AbstractExtension
             new TwigFunction('random_image_from_directory', $this->randomImageFromDirectory(...)),
             new TwigFunction('interesting_topic_list', $this->interestingTopicList(...)),
             new TwigFunction('article_see_again', $this->articleSeeAgain(...)),
+            new TwigFunction('meteo_list', $this->meteoList(...)),
         ];
     }
 
@@ -98,8 +102,13 @@ class NavigationExtension extends AbstractExtension
         return $this->interestingTopicListFetcher->fetch($newspaper);
     }
 
-    public function articleSeeAgain(Newspaper $newspaper): ArticleSeeAgainList
+    public function articleSeeAgain(Newspaper $newspaper): ?ArticleSeeAgainList
     {
         return $this->articleSeeAgainListFetcher->fetch($newspaper);
+    }
+
+    public function meteoList(Newspaper $newspaper): ?MeteoList
+    {
+        return $this->meteoListFetcher->fetch($newspaper);
     }
 }
