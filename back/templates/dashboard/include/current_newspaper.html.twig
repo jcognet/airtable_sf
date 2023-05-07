@@ -59,13 +59,63 @@
                             <p class="subheading">
                                 {% set class = 'is-danger' %}
                                 {% if kpi.waiting_for_action_count < 30 %}
-                                    {% set class = 'is-sucess' %}
+                                    {% set class = 'is-info' %}
                                 {% elseif kpi.waiting_for_action_count < 40 %}
                                     {% set class = 'is-warning' %}
                                 {% endif %}
                             <article class="message {{ class }}">
                                 <div class="message-body">
                                     {{ kpi.waiting_for_action_count }}
+                                </div>
+                            </article>
+                            </p>
+                        </div>
+                    {% endif %}
+                    {% if kpi.article_not_read_count is defined %}
+                        <div class="column">
+                            <p class="heading">
+                                <strong>A lire</strong>
+                            </p>
+                            <p class="subheading">
+                                {% set class = 'is-danger' %}
+                                {% if kpi.article_not_read_count <= 10 %}
+                                    {% set class = 'is-info' %}
+                                {% elseif kpi.article_not_read_count < 20 %}
+                                    {% set class = 'is-warning' %}
+                                {% endif %}
+                            <article class="message {{ class }}">
+                                <div class="message-body">
+                                    <a
+                                        href="https://airtable.com/appY4TYoXjtjua3KD/tbla72IEwy6EYrX2I/viw5gxaUcsWbVaKBp?blocks=hide"
+                                        target="_blank"
+                                        title="Liste des articles non lus">
+                                        {{ kpi.article_not_read_count }}
+                                    </a>
+                                </div>
+                            </article>
+                            </p>
+                        </div>
+                    {% endif %}
+                    {% if kpi.article_with_no_concept_count is defined %}
+                        <div class="column">
+                            <p class="heading">
+                                <strong>Sans concept</strong>
+                            </p>
+                            <p class="subheading">
+                                {% set class = 'is-danger' %}
+                                {% if kpi.article_with_no_concept_count <= 10 %}
+                                    {% set class = 'is-info' %}
+                                {% elseif kpi.article_with_no_concept_count < 20 %}
+                                    {% set class = 'is-warning' %}
+                                {% endif %}
+                            <article class="message {{ class }}">
+                                <div class="message-body">
+                                    <a
+                                        href="https://airtable.com/appY4TYoXjtjua3KD/tblPLpYPyAOT2q13Q/viwVUNvHA6wewcQem?blocks=hide"
+                                        target="_blank"
+                                        title="Liste des articles sans concept">
+                                        {{ kpi.article_with_no_concept_count }}
+                                    </a>
                                 </div>
                             </article>
                             </p>
