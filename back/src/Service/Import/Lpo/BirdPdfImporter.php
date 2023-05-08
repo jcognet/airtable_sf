@@ -1,8 +1,12 @@
 <?php
 declare(strict_types=1);
 
-namespace App\Service\Lpo;
+namespace App\Service\Import\Lpo;
 
+use App\Service\Lpo\BirdListFetcher;
+use App\Service\Lpo\BirdPdfSave;
+use App\Service\Lpo\Config;
+use App\Service\Lpo\PdfToJpegConverter;
 use App\ValueObject\Lpo\ImportedBird;
 use Carbon\Carbon;
 use Psr\Log\LoggerInterface;
