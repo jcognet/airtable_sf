@@ -1,27 +1,26 @@
 <?php
 declare(strict_types=1);
 
-namespace App\Command\Lpo;
+namespace App\Command\Airtable;
 
-use App\Service\Import\Lpo\BirdPdfImporter;
+use App\Service\Import\Airtable\Qcm\Question\QcmImporter;
 use Carbon\Carbon;
 use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
-#[AsCommand(name: 'app:lpo:pdf:fetch')]
-class LpoPdfFetchCommand extends Command
+#[AsCommand(name: 'app:airtable:import')]
+class ImportCommand extends Command
 {
-    public function __construct(
-        private readonly BirdPdfImporter $birdPdfImporter
-    ) {
+    public function __construct(private readonly QcmImporter $qcmImporter)
+    {
         parent::__construct();
     }
 
     protected function configure(): void
     {
-        $this->setDescription('Get PDF file from LPO.');
+        $this->setDescription('Import data from Airtable');
     }
 
     protected function execute(InputInterface $input, OutputInterface $output): int
@@ -29,8 +28,8 @@ class LpoPdfFetchCommand extends Command
         $start = Carbon::now();
         $output->writeln(sprintf('Start of command %s at %s', $this->getName(), $start->format('d/m/Y H:i')));
 
-        $birds = $this->birdPdfImporter->import();
-        $output->writeln(sprintf('Number of found birds: %d', count($birds)));
+        $questions = $this->qcmImporter->import();
+        $output->writeln(sprintf('Questions imported: %d', count($questions)));
 
         $end = Carbon::now();
         $interval = $end->diffAsCarbonInterval($start);
