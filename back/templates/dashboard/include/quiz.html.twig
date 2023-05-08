@@ -1,0 +1,28 @@
+{% set current_question = question(newspaper) %}
+{% if current_question is not null %}
+    <div class="section-light">
+        <div class="container">
+            <div
+                class="column is-12 about-me"
+                data-aos="fade-in"
+                data-aos-easing="linear"
+            >
+                <h1 class="title has-text-centered">
+                    {{ current_question.question }}
+                </h1>
+            </div>
+            <div>
+                {% for question in current_question.randomizedQuestions %}
+                    <div class="mb-4">
+                        <a
+                            title="Répondre à la question"
+                            href="{{ path('question_answer', {id: current_question.id}) }}?answer={{ code_question_key(question) }}"
+                            class="button is-inverted is-success is-rounded">
+                            {{ question }}
+                        </a>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+{% endif %}

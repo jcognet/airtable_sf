@@ -4,13 +4,14 @@ declare(strict_types=1);
 namespace App\ValueObject\Qcm;
 
 use Carbon\Carbon;
+use Symfony\Component\Serializer\Annotation\Ignore;
 
 class Question
 {
     public function __construct(
         private readonly string $id,
         private readonly string $question,
-        private readonly string $goodAnwser,
+        private readonly string $answer,
         private readonly ?string $wrongAnswer1,
         private readonly ?string $wrongAnswer2,
         private readonly ?string $wrongAnswer3,
@@ -30,9 +31,9 @@ class Question
         return $this->question;
     }
 
-    public function getGoodAnwser(): string
+    public function getAnswer(): string
     {
-        return $this->goodAnwser;
+        return $this->answer;
     }
 
     public function getWrongAnswer1(): ?string
@@ -63,5 +64,19 @@ class Question
     public function getUsedDate(): ?Carbon
     {
         return $this->usedDate;
+    }
+
+    #[Ignore]
+    public function getRandomizedQuestions(): array
+    {
+        $list = [
+            $this->answer,
+            $this->getWrongAnswer1(),
+            $this->getWrongAnswer2(),
+            $this->getWrongAnswer3(),
+        ];
+        shuffle($list);
+
+        return $list;
     }
 }

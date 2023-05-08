@@ -14,7 +14,7 @@ class QuestionBuilder implements BuilderInterface
         return new Question(
             id: $data['id'],
             question: $data['fields']['Question'],
-            goodAnwser: $data['fields']['Bonne réponse'],
+            answer: $data['fields']['Bonne réponse'],
             wrongAnswer1: $data['fields']['Mauvaise réponse 1'] ?? null,
             wrongAnswer2: $data['fields']['Mauvaise réponse 2'] ?? null,
             wrongAnswer3: $data['fields']['Mauvaise réponse 3'] ?? null,

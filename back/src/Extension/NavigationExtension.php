@@ -9,6 +9,7 @@ use App\Service\Page\BotDouxFetcher;
 use App\Service\Page\InterestingTopicListFetcher;
 use App\Service\Page\MainImageFetcher;
 use App\Service\Page\MeteoListFetcher;
+use App\Service\Page\QuestionFetcher;
 use App\Service\Picture\RandomPictorySelector;
 use App\Service\Security\LoginLinkHandler;
 use App\ValueObject\Article\ArticleSeeAgainList;
@@ -19,6 +20,7 @@ use App\ValueObject\NewsletterBlockManager\BlockType;
 use App\ValueObject\NewsletterBlockManager\ManagerType;
 use App\ValueObject\Newspaper;
 use App\ValueObject\Picture\Picture;
+use App\ValueObject\Qcm\Question;
 use App\ValueObject\Twitter\Message;
 use Symfony\Component\Security\Core\Exception\UserNotFoundException;
 use Symfony\Component\Security\Core\User\UserProviderInterface;
@@ -39,7 +41,8 @@ class NavigationExtension extends AbstractExtension
         private readonly RandomPictorySelector $randomPictorySelector,
         private readonly InterestingTopicListFetcher $interestingTopicListFetcher,
         private readonly ArticleSeeAgainListFetcher $articleSeeAgainListFetcher,
-        private readonly MeteoListFetcher $meteoListFetcher
+        private readonly MeteoListFetcher $meteoListFetcher,
+        private readonly QuestionFetcher $questionFetcher
     ) {
     }
 
@@ -55,6 +58,7 @@ class NavigationExtension extends AbstractExtension
             new TwigFunction('interesting_topic_list', $this->interestingTopicList(...)),
             new TwigFunction('article_see_again', $this->articleSeeAgain(...)),
             new TwigFunction('meteo_list', $this->meteoList(...)),
+            new TwigFunction('question', $this->question(...)),
         ];
     }
 
@@ -110,5 +114,10 @@ class NavigationExtension extends AbstractExtension
     public function meteoList(Newspaper $newspaper): ?MeteoList
     {
         return $this->meteoListFetcher->fetch($newspaper);
+    }
+
+    public function question(Newspaper $newspaper): ?Question
+    {
+        return $this->questionFetcher->fetch($newspaper);
     }
 }
