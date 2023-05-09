@@ -6,6 +6,7 @@ blocks:
   - list_todo
   - image_google_in_progess
   - image_url
+  - quiz
   - list_beer
   - image_google_done
   - see_again

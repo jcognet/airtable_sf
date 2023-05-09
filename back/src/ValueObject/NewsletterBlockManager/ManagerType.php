@@ -24,6 +24,7 @@ use App\Service\Block\Lpo\ListBirdManager;
 use App\Service\Block\Meteo\MeteoBlockManager;
 use App\Service\Block\Official\PassportManager;
 use App\Service\Block\Picture\PictureManager;
+use App\Service\Block\Question\QuestionManager;
 use App\Service\Block\Random\GoodPracticeOrganizationManager;
 use App\Service\Block\Random\Inr491Manager;
 use App\Service\Block\Random\InrManager;
@@ -64,6 +65,7 @@ class ManagerType
         ImageStatementManager::class,
         Inr491Manager::class,
         PassportManager::class,
+        QuestionManager::class,
     ];
 
     private readonly string $type;

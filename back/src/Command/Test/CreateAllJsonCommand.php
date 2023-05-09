@@ -5,6 +5,7 @@ namespace App\Command\Test;
 
 use App\Service\Archive\NewsletterWriterFetcher;
 use App\Service\Export\Exporter;
+use App\Service\Import\Airtable\Qcm\Question\QcmImporter;
 use App\Service\NewsletterManager\NewspaperCreator;
 use App\Service\NewsletterManager\NewspaperRenderer;
 use App\ValueObject\Archive\NewsLetter;
@@ -30,7 +31,9 @@ class CreateAllJsonCommand extends Command
         private readonly string $deployArchiveJsonPath,
         private readonly string $projectDir,
         private readonly NewspaperRenderer $newspaperRenderer,
-        private readonly Exporter $exporter
+        private readonly Exporter $exporter,
+        private readonly QcmImporter $qcmImporter,
+        private readonly string $questionPath
     ) {
         parent::__construct();
     }
@@ -70,6 +73,15 @@ class CreateAllJsonCommand extends Command
         $this->exporter->export(false);
         $from = sprintf('%s%s_export.json', $this->deployArchiveJsonPath, Carbon::now()->format('Y-m-d'));
         $to = sprintf('%s/tests/data/%s_export.json', $this->projectDir, $date->format('Y-m-d'));
+        $output->writeln(sprintf('Try to move from %s to %s for day %s.', $from, $to, $date->format('Y-m-d')));
+        copy(
+            $from,
+            $to,
+        );
+
+        $this->qcmImporter->import();
+        $from = sprintf('%squestions.json', $this->questionPath);
+        $to = sprintf('%s/tests/data/question/questions.json', $this->projectDir);
         $output->writeln(sprintf('Try to move from %s to %s for day %s.', $from, $to, $date->format('Y-m-d')));
         copy(
             $from,

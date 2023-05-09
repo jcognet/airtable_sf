@@ -3,10 +3,12 @@ declare(strict_types=1);
 
 namespace App\ValueObject\Qcm;
 
+use App\ValueObject\AbstractBlock;
+use App\ValueObject\NewsletterBlockManager\BlockType;
 use Carbon\Carbon;
 use Symfony\Component\Serializer\Annotation\Ignore;
 
-class Question
+class Question extends AbstractBlock
 {
     public function __construct(
         private readonly string $id,
@@ -78,5 +80,23 @@ class Question
         shuffle($list);
 
         return $list;
+    }
+
+    #[Ignore]
+    public function getTitle(): string
+    {
+        return $this->question;
+    }
+
+    #[Ignore]
+    public function getContent()
+    {
+        return $this->getRandomizedQuestions();
+    }
+
+    #[Ignore]
+    public function getType(): BlockType
+    {
+        return BlockType::QUIZ;
     }
 }

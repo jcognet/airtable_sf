@@ -28,6 +28,7 @@ class QuestionLister
         $questions = [];
 
         foreach ($data['data']['questions'] as $questionJson) {
+            unset($questionJson['managerType'], $questionJson['managerTypeValue'], $questionJson['class']);
             $questions[] = new Question(...$questionJson);
         }
 
