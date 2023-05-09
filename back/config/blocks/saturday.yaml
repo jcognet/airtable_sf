@@ -7,6 +7,7 @@ blocks:
   - list_todo
   - book
   - image_url
+  - quiz
   - rgesn
   - list_beer
   - image_url

@@ -34,7 +34,7 @@ class QcmImporter
             $this->serializer->serialize(
                 [
                     'data' => [
-                        'questions' => $questions,
+                        'questions' => array_values($questions),
                     ],
                     'metadata' => [
                         'created' => Carbon::now(),

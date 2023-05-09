@@ -16,6 +16,7 @@ blocks:
   - list_article_read
   - list_interesting_topic
   - rgesn
+  - quiz
   - list_bird
   - list_inr_tool
   - list_beer

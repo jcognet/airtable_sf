@@ -16,17 +16,11 @@ class QuizExtension extends AbstractExtension
     {
         return [
             new TwigFunction('code_question_key', $this->codeQuestionKey(...)),
-            new TwigFunction('decode_question_key', $this->decodeQuestionKey(...)),
         ];
     }
 
     private function codeQuestionKey(string $question): string
     {
         return base64_encode($question);
-    }
-
-    private function decodeQuestionKey(string $question): string
-    {
-        return base64_decode($question, true);
     }
 }
