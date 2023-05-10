@@ -18,22 +18,20 @@ class QuestionController extends AbstractController
         QuestionFetcher $questionFetcher
     ): Response {
         $answer = $request->query->get('answer', null);
-
-        if ($answer === null) {
-            throw $this->createNotFoundException('No answer is provided.');
-        }
-
         $question = $questionFetcher->fetch($id);
 
         if ($question === null) {
             throw $this->createNotFoundException(sprintf('Wrong question provided: %s.', $id));
         }
 
+        $showAnswer = $answer !== null;
+
         return $this->render(
             'question/answer.html.twig',
             [
                 'question' => $question,
                 'answer' => $answer,
+                'show_answer' => $showAnswer,
             ]
         );
     }
