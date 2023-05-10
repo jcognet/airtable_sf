@@ -27,9 +27,41 @@
                     </div>
                 {% endfor %}
             </div>
+            {% if question.url %}
+                <div class="has-text-right mb-5">
+                    <a href="{{ question.url }}"
+                       target="_blank"
+                       title="Explication sur la question"
+                       class="button is-primary is-larger"
+                    >
+                        Plus de détails
+                        <span class="icon-text ml-5">
+                          <span class="icon">
+                              <i class="fas fa-arrow-right"></i>
+                          </span>
+                        </span>
+                    </a>
+                </div>
+            {% endif %}
             {% if question.explanation %}
                 <div class="box">
                     {{ question.explanation|markdown_to_html }}
+                </div>
+            {% endif %}
+            {% if question.url %}
+                <div class="has-text-right mb-5">
+                    <a href="{{ question.url }}"
+                       target="_blank"
+                       title="Explication sur la question"
+                       class="button is-primary is-larger"
+                    >
+                        Plus de détails
+                        <span class="icon-text ml-5">
+                          <span class="icon">
+                              <i class="fas fa-arrow-right"></i>
+                          </span>
+                        </span>
+                    </a>
                 </div>
             {% endif %}
         </div>
