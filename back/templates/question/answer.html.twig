@@ -1,87 +1,101 @@
 {% extends './page/base.html.twig' %}
 {% block body %}
-<div class="section-light">
-    <div class="container">
-        <nav class="breadcrumb" aria-label="breadcrumbs">
-            <ul>
-                <li><a href="{{ url_front }}">Dashboard</a></li>
-                <li>Quiz</li>
-            </ul>
-        </nav>
-        <div
-            class="column is-12 about-me"
-            data-aos="fade-in"
-            data-aos-easing="linear"
-        >
-            <h1 class="title has-text-centered test-question-h1">
-                {{ question.question }}
-            </h1>
-        </div>
-        <div>
-            {% for proposed_question in question.randomizedQuestions %}
-            {% set class = '' %}
-            {% if show_answer %}
-                {% if proposed_question == question.answer %}
-                    {% set class = ' is-success' %}
-                {% elseif answer == code_question_key(proposed_question) %}
-                    {% set class = ' is-danger' %}
-                {% else %}
-                    {% set class = ' is-inverted' %}
-                {% endif %}
-            {% endif %}
-            <div class="mb-4">
-                <div
-                    class="button{{ class }} is-rounded">
-                    {% if not show_answer %}
-                        <a  title="Répondre à la question"
-                            href="{{ path('question_answer', {id: question.id}) }}?answer={{ code_question_key(proposed_question) }}"
-                        >
+    <div class="section-light">
+        <div class="container">
+            <nav class="breadcrumb" aria-label="breadcrumbs">
+                <ul>
+                    <li><a href="{{ url_front }}">Dashboard</a></li>
+                    <li>Quiz</li>
+                </ul>
+            </nav>
+            <div
+                class="column is-12 about-me"
+                data-aos="fade-in"
+                data-aos-easing="linear"
+            >
+                <h1 class="title has-text-centered test-question-h1">
+                    {{ question.question }}
+                </h1>
+            </div>
+            <div>
+                {% for proposed_question in question.randomizedQuestions %}
+                    {% set class = '' %}
+                    {% if show_answer %}
+                        {% if proposed_question == question.answer %}
+                            {% set class = ' is-success' %}
+                        {% elseif answer == code_question_key(proposed_question) %}
+                            {% set class = ' is-danger' %}
+                        {% else %}
+                            {% set class = ' is-inverted' %}
+                        {% endif %}
                     {% endif %}
-                        {{ proposed_question }}
-                    {% if not show_answer %}
+                    <div class="mb-4">
+                        <div
+                            class="button{{ class }} is-rounded">
+                            {% if not show_answer %}
+                            <a title="Répondre à la question"
+                               href="{{ path('question_answer', {id: question.id}) }}?answer={{ code_question_key(proposed_question) }}"
+                            >
+                                {% endif %}
+                                {{ proposed_question }}
+                                {% if not show_answer %}
+                            </a>
+                            {% endif %}
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+            {% if question.url and show_answer %}
+                <div class="has-text-right mb-5">
+                    <a href="{{ question.url }}"
+                       target="_blank"
+                       title="Explication sur la question"
+                       class="button is-primary is-larger"
+                    >
+                        Plus de détails
+                        <span class="icon-text ml-5">
+                          <span class="icon">
+                              <i class="fas fa-arrow-right"></i>
+                          </span>
+                        </span>
                     </a>
-                    {% endif %}
                 </div>
-            </div>
-            {% endfor %}
+            {% endif %}
+            {% if question.explanation and show_answer %}
+                <div class="box">
+                    {{ question.explanation|markdown_to_html }}
+                    <div class="has-text-right mb-5">
+                        <a href="{{ question.airtableUrl }}"
+                           target="_blank"
+                           title="Texte sur Airtable"
+                           class="button is-primary"
+                        >
+                            Texte sur AT
+                            <span class="icon-text ml-5">
+                          <span class="icon">
+                              <i class="fas fa-arrow-right"></i>
+                          </span>
+                        </span>
+                        </a>
+                    </div>
+                </div>
+            {% endif %}
+            {% if question.url and show_answer %}
+                <div class="has-text-right mb-5">
+                    <a href="{{ question.url }}"
+                       target="_blank"
+                       title="Explication sur la question"
+                       class="button is-primary is-larger"
+                    >
+                        Plus de détails
+                        <span class="icon-text ml-5">
+                          <span class="icon">
+                              <i class="fas fa-arrow-right"></i>
+                          </span>
+                        </span>
+                    </a>
+                </div>
+            {% endif %}
         </div>
-        {% if question.url and show_answer %}
-            <div class="has-text-right mb-5">
-                <a href="{{ question.url }}"
-                   target="_blank"
-                   title="Explication sur la question"
-                   class="button is-primary is-larger"
-                >
-                    Plus de détails
-                    <span class="icon-text ml-5">
-                          <span class="icon">
-                              <i class="fas fa-arrow-right"></i>
-                          </span>
-                        </span>
-                </a>
-            </div>
-        {% endif %}
-        {% if question.explanation and show_answer %}
-            <div class="box">
-                {{ question.explanation|markdown_to_html }}
-            </div>
-        {% endif %}
-        {% if question.url and show_answer %}
-            <div class="has-text-right mb-5">
-                <a href="{{ question.url }}"
-                   target="_blank"
-                   title="Explication sur la question"
-                   class="button is-primary is-larger"
-                >
-                    Plus de détails
-                    <span class="icon-text ml-5">
-                          <span class="icon">
-                              <i class="fas fa-arrow-right"></i>
-                          </span>
-                        </span>
-                </a>
-            </div>
-        {% endif %}
     </div>
-</div>
 {% endblock %}
