@@ -15,8 +15,8 @@ abstract class AbstractClient
     private array $randomKeyByParam = [];
 
     public function __construct(
-        private readonly AirtableClient $airtableClient,
-        private readonly string $airtableAppId,
+        protected readonly AirtableClient $airtableClient,
+        protected readonly string $airtableAppId,
         private readonly BuilderInterface $builder
     ) {
     }

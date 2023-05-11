@@ -47,4 +47,20 @@ final class QuestionControllerTest extends WebTestCase
         $this->assertSelectorExists('div.is-success');
         $this->assertSelectorExists('div.is-inverted');
     }
+
+    public function test_random(): void
+    {
+        // This calls KernelTestCase::bootKernel(), and creates a
+        // "client" that is acting as the browser
+        $client = static::createClient();
+        $client->followRedirects(true);
+        $this->loginUser($client);
+
+        // Request a specific page
+        $client->request('GET', '/question');
+
+        // Validate a successful response and some content
+        $this->assertResponseIsSuccessful();
+        $this->assertSelectorExists('h1.test-question-h1');
+    }
 }
