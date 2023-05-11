@@ -19,7 +19,8 @@ class Question extends AbstractBlock
         private readonly ?string $wrongAnswer3,
         private readonly ?string $explanation,
         private readonly ?string $url,
-        private readonly ?Carbon $usedDate
+        private readonly ?Carbon $usedDate,
+        private readonly string $airTableUrl
     ) {
     }
 
@@ -98,5 +99,10 @@ class Question extends AbstractBlock
     public function getType(): BlockType
     {
         return BlockType::QUIZ;
+    }
+
+    public function getAirTableUrl(): string
+    {
+        return $this->airTableUrl;
     }
 }
