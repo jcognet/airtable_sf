@@ -4,13 +4,15 @@ declare(strict_types=1);
 namespace App\Service\Import\Airtable\Qcm\Question;
 
 use App\ValueObject\Qcm\Question;
+use Carbon\Carbon;
 use Symfony\Component\Filesystem\Filesystem;
 
 class QuestionLister
 {
     public function __construct(
         private readonly Config $config
-    ) {
+    )
+    {
     }
 
     /**
@@ -29,6 +31,7 @@ class QuestionLister
 
         foreach ($data['data']['questions'] as $questionJson) {
             unset($questionJson['managerType'], $questionJson['managerTypeValue'], $questionJson['class']);
+            $questionJson['usedDate'] = isset($questionJson['usedDate']) ? Carbon::parse($questionJson['usedDate']) : null;
             $questions[] = new Question(...$questionJson);
         }
 

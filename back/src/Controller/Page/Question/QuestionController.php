@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace App\Controller\Page\Question;
 
+use App\Service\Block\Question\QuestionManager;
 use App\Service\Import\Airtable\Qcm\Question\QuestionFetcher;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -32,6 +33,26 @@ class QuestionController extends AbstractController
                 'question' => $question,
                 'answer' => $answer,
                 'show_answer' => $showAnswer,
+            ]
+        );
+    }
+
+    #[Route(path: '/question/', name: 'question_random', methods: ['GET'])]
+    public function random(
+        QuestionManager $questionManager
+    ): Response {
+        $question = $questionManager->getContent();
+
+        if ($question === null) {
+            throw $this->createNotFoundException('No question found.');
+        }
+
+        return $this->render(
+            'question/answer.html.twig',
+            [
+                'question' => $question,
+                'answer' => null,
+                'show_answer' => null,
             ]
         );
     }

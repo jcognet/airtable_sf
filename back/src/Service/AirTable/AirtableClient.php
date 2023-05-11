@@ -21,4 +21,9 @@ final class AirtableClient
 
         return $this->airtableClient->request($verb, $url, $options)->getContent();
     }
+
+    public function rawRequest(string $verb, string $url, ?array $parameters = []): string
+    {
+        return $this->airtableClient->request($verb, $url, $parameters)->getContent();
+    }
 }

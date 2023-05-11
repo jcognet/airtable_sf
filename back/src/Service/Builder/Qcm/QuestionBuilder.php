@@ -39,6 +39,16 @@ class QuestionBuilder implements BuilderInterface
         );
     }
 
+    public function unBuild(Question $question): array
+    {
+        return [
+            'id' => $question->getId(),
+            'fields' => [
+                'Date d\'utilisation' => Carbon::now()->format('Y-m-d H:i:s'),
+            ],
+        ];
+    }
+
     private function getViewUrl(): string
     {
         return 'viw5t0rcjSWFHP9X6';
