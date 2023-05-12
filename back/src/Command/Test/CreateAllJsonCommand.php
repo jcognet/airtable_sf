@@ -4,8 +4,8 @@ declare(strict_types=1);
 namespace App\Command\Test;
 
 use App\Service\Archive\NewsletterWriterFetcher;
+use App\Service\Contract\AirtableImporterInterface;
 use App\Service\Export\Exporter;
-use App\Service\Import\Airtable\Qcm\Question\QcmImporter;
 use App\Service\NewsletterManager\NewspaperCreator;
 use App\Service\NewsletterManager\NewspaperRenderer;
 use App\ValueObject\Archive\NewsLetter;
@@ -32,8 +32,7 @@ class CreateAllJsonCommand extends Command
         private readonly string $projectDir,
         private readonly NewspaperRenderer $newspaperRenderer,
         private readonly Exporter $exporter,
-        private readonly QcmImporter $qcmImporter,
-        private readonly string $questionPath
+        private readonly iterable $importers
     ) {
         parent::__construct();
     }
@@ -47,6 +46,35 @@ class CreateAllJsonCommand extends Command
     {
         $start = Carbon::now();
         $output->writeln(sprintf('Start of command %s at %s', $this->getName(), $start->format('d/m/Y H:i')));
+
+        /**
+         * @var AirtableImporterInterface $importer
+         */
+        foreach ($this->importers as $importer) {
+            $output->writeln(
+                sprintf(
+                    'Start import of %s',
+                    $importer->getLabel(),
+                )
+            );
+            $items = $importer->import();
+            $output->writeln(
+                sprintf(
+                    'items of %s imported: %d',
+                    $importer->getLabel(),
+                    count($items)
+                )
+            );
+            $from = $importer->getConfig()->getCompleteName();
+            $to = sprintf(
+                '%s/tests/data/%s%s',
+                $this->projectDir,
+                $importer->getConfig()->getSubPath(),
+                $importer->getConfig()->getFileName()
+            );
+            $output->writeln(sprintf('Try to move from %s to %s.', $from, $to));
+            copy($from, $to);
+        }
 
         foreach (self::LIST_CALL as $dateTest => $function) {
             $output->writeln(sprintf('Create data test for %s with function %s.', $dateTest, $function));
@@ -73,15 +101,6 @@ class CreateAllJsonCommand extends Command
         $this->exporter->export(false);
         $from = sprintf('%s%s_export.json', $this->deployArchiveJsonPath, Carbon::now()->format('Y-m-d'));
         $to = sprintf('%s/tests/data/%s_export.json', $this->projectDir, $date->format('Y-m-d'));
-        $output->writeln(sprintf('Try to move from %s to %s for day %s.', $from, $to, $date->format('Y-m-d')));
-        copy(
-            $from,
-            $to,
-        );
-
-        $this->qcmImporter->import();
-        $from = sprintf('%squestions.json', $this->questionPath);
-        $to = sprintf('%s/tests/data/question/questions.json', $this->projectDir);
         $output->writeln(sprintf('Try to move from %s to %s for day %s.', $from, $to, $date->format('Y-m-d')));
         copy(
             $from,

@@ -4,7 +4,7 @@ declare(strict_types=1);
 namespace App\Controller\Page\Question;
 
 use App\Service\Block\Question\QuestionManager;
-use App\Service\Import\Airtable\Qcm\Question\QuestionFetcher;
+use App\Service\Import\Airtable\Qcm\Question\Fetcher;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -16,7 +16,7 @@ class QuestionController extends AbstractController
     public function answer(
         Request $request,
         string $id,
-        QuestionFetcher $questionFetcher
+        Fetcher $questionFetcher
     ): Response {
         $answer = $request->query->get('answer', null);
         $question = $questionFetcher->fetch($id);

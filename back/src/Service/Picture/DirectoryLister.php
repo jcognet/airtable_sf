@@ -8,7 +8,7 @@ use Symfony\Component\Finder\SplFileInfo;
 
 class DirectoryLister
 {
-    public function __construct(private readonly string $pathPictures)
+    public function __construct(private readonly string $picturePath)
     {
     }
 
@@ -20,7 +20,7 @@ class DirectoryLister
         $finder = new Finder();
         $directoryFinder = $finder
             ->directories()
-            ->in($this->pathPictures)
+            ->in($this->picturePath)
             ->exclude('thumbnail')
         ;
 

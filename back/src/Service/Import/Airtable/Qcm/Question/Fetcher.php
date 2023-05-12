@@ -5,10 +5,10 @@ namespace App\Service\Import\Airtable\Qcm\Question;
 
 use App\ValueObject\Qcm\Question;
 
-class QuestionFetcher
+class Fetcher
 {
     public function __construct(
-        private readonly QuestionLister $questionLister
+        private readonly Lister $questionLister
     ) {
     }
 
