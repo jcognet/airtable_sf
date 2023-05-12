@@ -37,6 +37,7 @@ services:
       $airtableAppBookId: '%env(AIRTABLE_APP_BOOK_ID)%'
       $airtableAppRunId: '%env(AIRTABLE_APP_RUN_ID)%'
       $airtableAppQcmId: '%env(AIRTABLE_APP_QCM_ID)%'
+      $airtableAppHollidayId: '%env(AIRTABLE_APP_HOLLIDAY_ID)%'
       $mailerFrom: '%env(MAILER_FROM)%'
       $mailerTo: '%env(MAILER_TO)%'
       $projectDir: '%kernel.project_dir%'
@@ -45,8 +46,7 @@ services:
       $deployJsonPath: '%kernel.project_dir%/src/Data/deploy.json'
       $deployArchiveJsonPath: '%kernel.project_dir%/src/Data/archive/'
       $birdPath: '%kernel.project_dir%/src/Data/bird/'
-      $questionPath: '%kernel.project_dir%/src/Data/question/'
-      $pathPictures: '%kernel.project_dir%/src/Data/photo/'
+      $picturePath: '%kernel.project_dir%/src/Data/photo/'
       $googleCredentialFile: '%kernel.project_dir%/config/google_credential.json'
       $spreadSheetAirtableId: '%env(GOOGLE_SPREADSHEET_EXPORT_ID)%'
       $progressContentUrl: '%env(GOOGLE_PROGRESS_CONTENT_URL)%'
@@ -80,6 +80,9 @@ services:
     App\Service\Contract\CleanerInterface:
       tags: [ 'app.cleaner' ]
 
+    App\Service\Contract\AirtableImporterInterface:
+      tags: [ 'app.airtable_importer' ]
+
   App\Service\NewsletterManager\ManagerContentFactory:
     arguments:
       - !tagged_iterator app.block_manager
@@ -91,6 +94,14 @@ services:
   App\Command\CleanDataCommand:
     arguments:
       - !tagged_iterator app.cleaner
+
+  App\Command\Airtable\ImportCommand:
+    arguments:
+      - !tagged_iterator app.airtable_importer
+
+  App\Command\Test\CreateAllJsonCommand:
+    arguments:
+      $importers: !tagged_iterator app.airtable_importer
 
   App\Service\Security\LoginLinkHandler:
     arguments:

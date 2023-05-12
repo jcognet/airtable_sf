@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace App\Command\Airtable;
 
-use App\Service\Import\Airtable\Qcm\Question\QcmImporter;
+use App\Service\Contract\AirtableImporterInterface;
 use Carbon\Carbon;
 use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
@@ -13,7 +13,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 #[AsCommand(name: 'app:airtable:import')]
 class ImportCommand extends Command
 {
-    public function __construct(private readonly QcmImporter $qcmImporter)
+    public function __construct(private readonly iterable $importers)
     {
         parent::__construct();
     }
@@ -28,8 +28,26 @@ class ImportCommand extends Command
         $start = Carbon::now();
         $output->writeln(sprintf('Start of command %s at %s', $this->getName(), $start->format('d/m/Y H:i')));
 
-        $questions = $this->qcmImporter->import();
-        $output->writeln(sprintf('Questions imported: %d', count($questions)));
+        /**
+         * @var AirtableImporterInterface $importer
+         */
+        foreach ($this->importers as $importer) {
+            $output->writeln(
+                sprintf(
+                    'Start import of %s',
+                    $importer->getLabel(),
+                )
+            );
+            $items = $importer->import();
+            $output->writeln(
+                sprintf(
+                    'items of %s imported is %s: %d',
+                    $importer->getLabel(),
+                    $importer->getConfig()->getCompleteName(),
+                    count($items)
+                )
+            );
+        }
 
         $end = Carbon::now();
         $interval = $end->diffAsCarbonInterval($start);

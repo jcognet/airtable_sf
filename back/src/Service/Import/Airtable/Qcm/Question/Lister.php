@@ -7,12 +7,11 @@ use App\ValueObject\Qcm\Question;
 use Carbon\Carbon;
 use Symfony\Component\Filesystem\Filesystem;
 
-class QuestionLister
+class Lister
 {
     public function __construct(
         private readonly Config $config
-    )
-    {
+    ) {
     }
 
     /**
@@ -22,11 +21,11 @@ class QuestionLister
     {
         $filesystem = new Filesystem();
 
-        if (!$filesystem->exists($this->config->getFileName())) {
+        if (!$filesystem->exists($this->config->getCompleteName())) {
             return null;
         }
 
-        $data = json_decode(file_get_contents($this->config->getFileName()), true, 512, JSON_THROW_ON_ERROR);
+        $data = json_decode(file_get_contents($this->config->getCompleteName()), true, 512, JSON_THROW_ON_ERROR);
         $questions = [];
 
         foreach ($data['data']['questions'] as $questionJson) {
@@ -34,13 +33,8 @@ class QuestionLister
             $questionJson['usedDate'] = isset($questionJson['usedDate']) ? Carbon::parse($questionJson['usedDate']) : null;
             $questions[] = new Question(...$questionJson);
         }
-        usort($questions, [self::class, 'sort']);
+        usort($questions, fn (Question $a, Question $b) => $a->getUsedDate() <=> $b->getUsedDate());
 
         return $questions;
-    }
-
-    private function sort(Question $a, Question $b): int
-    {
-        return $a->getUsedDate() <=> $b->getUsedDate();
     }
 }

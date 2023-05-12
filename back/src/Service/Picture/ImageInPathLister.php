@@ -12,13 +12,13 @@ class ImageInPathLister
 
     public function __construct(
         private readonly PictureFactory $pictureFactory,
-        private readonly string $pathPictures
+        private readonly string $picturePath
     ) {
     }
 
     public function getPicturesFromDirectory(string $subDirectory): Directory
     {
-        $absolutePath = sprintf('%s%s', $this->pathPictures, $subDirectory);
+        $absolutePath = sprintf('%s%s', $this->picturePath, $subDirectory);
 
         $finder = new Finder();
         $images = $finder->files()

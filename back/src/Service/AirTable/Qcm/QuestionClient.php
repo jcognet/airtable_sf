@@ -7,9 +7,8 @@ use App\Service\AirTable\AbstractClient;
 use App\Service\AirTable\AirtableClient;
 use App\Service\Builder\Qcm\QuestionBuilder;
 use App\ValueObject\Qcm\Question;
-use Symfony\Component\Serializer\SerializerInterface;
 
-class QuestionsClient extends AbstractClient
+class QuestionClient extends AbstractClient
 {
     private readonly QuestionBuilder $questionBuilder;
 

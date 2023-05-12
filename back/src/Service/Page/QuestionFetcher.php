@@ -4,7 +4,7 @@ declare(strict_types=1);
 namespace App\Service\Page;
 
 use App\Service\Block\BlockFinder;
-use App\Service\Import\Airtable\Qcm\Question\QuestionLister;
+use App\Service\Import\Airtable\Qcm\Question\Lister;
 use App\ValueObject\NewsletterBlockManager\BlockType;
 use App\ValueObject\Newspaper;
 use App\ValueObject\Qcm\Question;
@@ -12,7 +12,7 @@ use App\ValueObject\Qcm\Question;
 class QuestionFetcher
 {
     public function __construct(
-        private readonly QuestionLister $questionLister,
+        private readonly Lister $questionLister,
         private readonly BlockFinder $blockFinder
     ) {
     }

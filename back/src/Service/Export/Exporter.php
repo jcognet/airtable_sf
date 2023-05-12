@@ -12,7 +12,7 @@ use App\Service\AirTable\Book\BookClient;
 use App\Service\AirTable\ToDo\ItemClient;
 use App\Service\Archive\ExportWriterFetcher;
 use App\Service\Google\ExportAirtableWriter;
-use App\Service\Import\Airtable\Qcm\Question\QuestionLister;
+use App\Service\Import\Airtable\Qcm\Question\Lister;
 use App\Service\Repository\Random\CurrencyRepository;
 use App\Service\Repository\Random\GithubRepository;
 use Carbon\Carbon;
@@ -31,7 +31,7 @@ class Exporter
         private readonly ConceptClient $conceptClient,
         private readonly ExportWriterFetcher $exportWriterFetcher,
         private readonly InterestingTopicClient $interestingTopicClient,
-        private readonly QuestionLister $questionLister
+        private readonly Lister $questionLister
     ) {
     }
 
@@ -64,7 +64,7 @@ class Exporter
             'waiting_for_action_count' => $nbWaitingForAction,
             'image_no_concept_count' => $nbImageNotConcept,
             'interesting_topic_count' => $nbInterestingTopic,
-            'questions' => count($this->questionLister->list()),
+            'questions' => count((array) $this->questionLister->list()),
         ];
     }
 

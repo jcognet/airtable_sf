@@ -3,15 +3,18 @@ declare(strict_types=1);
 
 namespace App\Service\Import\Airtable\Qcm\Question;
 
-use App\Service\AirTable\Qcm\QuestionsClient;
+use App\Service\AirTable\Qcm\QuestionClient;
+use App\Service\Contract\AirtableConfigInterface;
+use App\Service\Contract\AirtableImporterInterface;
+use App\ValueObject\Qcm\Question;
 use Carbon\Carbon;
 use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\Serializer\SerializerInterface;
 
-class QcmImporter
+class Importer implements AirtableImporterInterface
 {
     public function __construct(
-        private readonly QuestionsClient $questionsClient,
+        private readonly QuestionClient $questionClient,
         private readonly SerializerInterface $serializer,
         private readonly Config $config
     ) {
@@ -19,10 +22,20 @@ class QcmImporter
 
     public function import(): array
     {
-        $questions = $this->questionsClient->findAll();
+        $questions = $this->questionClient->findAll();
         $this->save($questions);
 
         return $questions;
+    }
+
+    public function getLabel(): string
+    {
+        return Question::class;
+    }
+
+    public function getConfig(): AirtableConfigInterface
+    {
+        return $this->config;
     }
 
     private function save(array $questions): void
@@ -30,7 +43,7 @@ class QcmImporter
         $fs = new Filesystem();
 
         $fs->dumpFile(
-            $this->config->getFileName(),
+            $this->config->getCompleteName(),
             $this->serializer->serialize(
                 [
                     'data' => [

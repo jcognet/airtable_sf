@@ -1,0 +1,13 @@
+<?php
+declare(strict_types=1);
+
+namespace App\Service\Contract;
+
+interface AirtableConfigInterface
+{
+    public function getSubPath(): string;
+
+    public function getFileName(): string;
+
+    public function getCompleteName(): string;
+}
