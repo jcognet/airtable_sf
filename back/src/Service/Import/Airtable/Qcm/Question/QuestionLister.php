@@ -34,7 +34,13 @@ class QuestionLister
             $questionJson['usedDate'] = isset($questionJson['usedDate']) ? Carbon::parse($questionJson['usedDate']) : null;
             $questions[] = new Question(...$questionJson);
         }
+        usort($questions, [self::class, 'sort']);
 
         return $questions;
+    }
+
+    private function sort(Question $a, Question $b): int
+    {
+        return $a->getUsedDate() <=> $b->getUsedDate();
     }
 }

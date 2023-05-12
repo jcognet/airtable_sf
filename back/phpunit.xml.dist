@@ -35,8 +35,8 @@
       <file>src/Kernel.php</file>
       <directory>src/Controller</directory>
       <directory>src/Command</directory>
-      <directory>Enum</directory>
-      <directory>Exception</directory>
+      <directory>src/Enum</directory>
+      <directory>src/Exception</directory>
     </exclude>
   </source>
 </phpunit>
