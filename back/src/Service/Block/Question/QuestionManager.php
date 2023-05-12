@@ -10,6 +10,8 @@ use App\ValueObject\BlockInterface;
 
 class QuestionManager implements BlockManagerInterface
 {
+    private const NB_RANDOM_ELT = 10;
+
     public function __construct(
         private readonly QuestionLister $questionLister,
         private readonly QuestionsClient $questionsClient
@@ -19,8 +21,8 @@ class QuestionManager implements BlockManagerInterface
     public function getContent(): ?BlockInterface
     {
         $list = $this->questionLister->list();
-        $chosenQuestion = $list[array_rand($list)];
-
+        $oldestUsedQuestion = array_slice($list, 0, self::NB_RANDOM_ELT);
+        $chosenQuestion = $oldestUsedQuestion[array_rand($oldestUsedQuestion)];
         $this->questionsClient->update($chosenQuestion);
 
         return $chosenQuestion;
