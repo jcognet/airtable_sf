@@ -1,20 +1,20 @@
 <?php
 declare(strict_types=1);
 
-namespace App\Service\AirTable\Holliday;
+namespace App\Service\AirTable\Holiday;
 
 use App\Service\AirTable\AbstractClient;
 use App\Service\AirTable\AirtableClient;
-use App\Service\Builder\Holliday\HollidayBuilder;
+use App\Service\Builder\Holiday\HolidayBuilder;
 
-class HollidayClient extends AbstractClient
+class HolidayClient extends AbstractClient
 {
     public function __construct(
         AirtableClient $airtableClient,
         string $airtableAppHollidayId,
-        HollidayBuilder $hollidayBuilder
+        HolidayBuilder $holidayBuilder
     ) {
-        parent::__construct($airtableClient, $airtableAppHollidayId, $hollidayBuilder);
+        parent::__construct($airtableClient, $airtableAppHollidayId, $holidayBuilder);
     }
 
     protected function getFetchUrl(): string

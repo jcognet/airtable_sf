@@ -15,7 +15,7 @@ class QuestionDenormalizer implements DenormalizerInterface
             $data['usedDate'] = Carbon::parse($data['usedDate']);
         }
 
-        unset($data['class']);
+        unset($data['class'], $data['managerType'], $data['managerTypeValue']);
 
         return new Question(...$data);
     }

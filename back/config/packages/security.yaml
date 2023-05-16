@@ -35,4 +35,3 @@ security:
         - { path: ^/img/thumbnail/*, roles: PUBLIC_ACCESS }
         - { path: ^/img/normal/*, roles: PUBLIC_ACCESS }
         - { path: ^/, roles: ROLE_USER }
-        - { path: ^/newspaper, roles: ROLE_USER }

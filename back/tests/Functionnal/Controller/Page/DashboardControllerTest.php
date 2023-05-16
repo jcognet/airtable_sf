@@ -42,4 +42,36 @@ final class DashboardControllerTest extends WebTestCase
         // Validate a successful response and some content
         $this->assertResponseIsSuccessful();
     }
+
+    public function test_holiday(): void
+    {
+        // This calls KernelTestCase::bootKernel(), and creates a
+        // "client" that is acting as the browser
+        $client = static::createClient();
+        $client->followRedirects(true);
+        $this->loginUser($client);
+
+        // Request a specific page
+        $client->request('GET', '/dashboard?holiday=true');
+
+        // Validate a successful response and some content
+        $this->assertResponseIsSuccessful();
+        $this->assertSelectorExists('h1.test-holiday');
+    }
+
+    public function test_holiday_date(): void
+    {
+        // This calls KernelTestCase::bootKernel(), and creates a
+        // "client" that is acting as the browser
+        $client = static::createClient();
+        $client->followRedirects(true);
+        $this->loginUser($client);
+
+        // Request a specific page
+        $client->request('GET', '/dashboard?date=2023-06-17');
+
+        // Validate a successful response and some content
+        $this->assertResponseIsSuccessful();
+        $this->assertSelectorExists('h1.test-holiday');
+    }
 }

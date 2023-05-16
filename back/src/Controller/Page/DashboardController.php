@@ -6,6 +6,7 @@ namespace App\Controller\Page;
 use App\Service\Archive\NewsletterWriterFetcher;
 use App\Service\Archive\PreviousNewsletterFetcher;
 use App\Service\Export\Fetcher;
+use App\Service\Holiday\IsHolidayDeterminator;
 use App\Service\Picture\DirectoryLister;
 use App\Service\Repository\Official\PassportRepository;
 use Carbon\Carbon;
@@ -23,9 +24,15 @@ class DashboardController extends AbstractController
         PassportRepository $passportRepository,
         PreviousNewsletterFetcher $previousNewsletterFetcher,
         Fetcher $exporterFetcher,
-        DirectoryLister $directoryLister
+        DirectoryLister $directoryLister,
+        IsHolidayDeterminator $isHolidayDeterminator
     ): Response {
         $date = Carbon::parse($request->query->get('date', null));
+
+        if ($isHolidayDeterminator->isHoliday($date)) {
+            return $this->redirectToRoute('dashboard_holiday', $request->query->all());
+        }
+
         $newsletter = $newsletterWriterFetcher->get($date);
 
         if ($newsletter === null) {
@@ -50,6 +57,14 @@ class DashboardController extends AbstractController
     {
         return $this->render(
             'dashboard/example.html.twig'
+        );
+    }
+
+    #[Route(path: '/holiday', name: 'dashboard_holiday', methods: ['GET'])]
+    public function holiday(): Response
+    {
+        return $this->render(
+            'dashboard/holiday.html.twig'
         );
     }
 }

@@ -16,6 +16,8 @@ abstract class AbstractConfig implements AirtableConfigInterface
 
     abstract public function getSubPath(): string;
 
+    abstract public function getClass(): string;
+
     public function getCompleteName(): string
     {
         return sprintf(
