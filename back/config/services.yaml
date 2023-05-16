@@ -107,6 +107,24 @@ services:
     arguments:
       $loginLinkHandler: '@security.authenticator.login_link_handler.main'
 
+  App\Service\Import\Airtable\Qcm\Question\Lister:
+    arguments:
+      $config: '@App\Service\Import\Airtable\Qcm\Question\Config'
+
+  App\Service\Import\Airtable\Holiday\Holiday\Lister:
+    arguments:
+      $config: '@App\Service\Import\Airtable\Holiday\Holiday\Config'
+
+  App\Service\Import\Airtable\Holiday\Holiday\Importer:
+    arguments:
+      $config: '@App\Service\Import\Airtable\Holiday\Holiday\Config'
+      $client: '@App\Service\AirTable\Holiday\HolidayClient'
+
+  App\Service\Import\Airtable\Qcm\Question\Importer:
+    arguments:
+      $config: '@App\Service\Import\Airtable\Qcm\Question\Config'
+      $client: '@App\Service\AirTable\Qcm\QuestionClient'
+
 when@test:
   services:
     _defaults:

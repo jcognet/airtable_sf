@@ -1,11 +1,11 @@
 <?php
 declare(strict_types=1);
 
-namespace App\ValueObject\Holliday;
+namespace App\ValueObject\Holiday;
 
 use Carbon\Carbon;
 
-class Holliday
+class Holiday
 {
     public function __construct(
         private readonly string $id,

@@ -10,4 +10,8 @@ interface AirtableConfigInterface
     public function getFileName(): string;
 
     public function getCompleteName(): string;
+
+    public function getDataEntryName(): string;
+
+    public function getClass(): string;
 }

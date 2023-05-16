@@ -1,30 +1,30 @@
 <?php
 declare(strict_types=1);
 
-namespace App\Service\Import\Airtable\Qcm\Question;
+namespace App\Service\Import\Airtable\Holiday\Holiday;
 
 use App\Service\Import\Airtable\AbstractConfig;
-use App\ValueObject\Qcm\Question;
+use App\ValueObject\Holiday\Holiday;
 
 class Config extends AbstractConfig
 {
     public function getFileName(): string
     {
-        return 'questions.json';
+        return 'holidays.json';
     }
 
     public function getSubPath(): string
     {
-        return 'question/';
+        return 'holiday/';
     }
 
     public function getDataEntryName(): string
     {
-        return 'questions';
+        return 'holidays';
     }
 
     public function getClass(): string
     {
-        return Question::class;
+        return Holiday::class;
     }
 }

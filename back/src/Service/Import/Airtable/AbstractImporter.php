@@ -1,36 +1,30 @@
 <?php
 declare(strict_types=1);
 
-namespace App\Service\Import\Airtable\Holliday\Holliday;
+namespace App\Service\Import\Airtable;
 
-use App\Service\AirTable\Holliday\HollidayClient;
+use App\Service\AirTable\AbstractClient;
 use App\Service\Contract\AirtableConfigInterface;
 use App\Service\Contract\AirtableImporterInterface;
-use App\ValueObject\Holliday\Holliday;
 use Carbon\Carbon;
 use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\Serializer\SerializerInterface;
 
-class Importer implements AirtableImporterInterface
+abstract class AbstractImporter implements AirtableImporterInterface
 {
     public function __construct(
-        private readonly HollidayClient $hollidayClient,
+        private readonly AbstractClient $client,
         private readonly SerializerInterface $serializer,
-        private readonly Config $config
+        private readonly AirtableConfigInterface $config
     ) {
     }
 
     public function import(): array
     {
-        $hollidays = $this->hollidayClient->findAll();
-        $this->save($hollidays);
+        $data = $this->client->findAll();
+        $this->save($data);
 
-        return $hollidays;
-    }
-
-    public function getLabel(): string
-    {
-        return Holliday::class;
+        return $data;
     }
 
     public function getConfig(): AirtableConfigInterface
@@ -38,7 +32,12 @@ class Importer implements AirtableImporterInterface
         return $this->config;
     }
 
-    private function save(array $hollidays): void
+    public function getLabel(): string
+    {
+        return $this->config->getClass();
+    }
+
+    private function save(array $data): void
     {
         $fs = new Filesystem();
 
@@ -47,7 +46,7 @@ class Importer implements AirtableImporterInterface
             $this->serializer->serialize(
                 [
                     'data' => [
-                        'hollidays' => array_values($hollidays),
+                        $this->config->getDataEntryName() => array_values($data),
                     ],
                     'metadata' => [
                         'created' => Carbon::now(),

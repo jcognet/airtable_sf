@@ -3,38 +3,17 @@ declare(strict_types=1);
 
 namespace App\Service\Import\Airtable\Qcm\Question;
 
+use App\Service\Import\Airtable\AbstractLister;
 use App\ValueObject\Qcm\Question;
-use Carbon\Carbon;
-use Symfony\Component\Filesystem\Filesystem;
 
-class Lister
+class Lister extends AbstractLister
 {
-    public function __construct(
-        private readonly Config $config
-    ) {
-    }
-
     /**
-     * @return Question[]|null
+     * @param Question $a
+     * @param Question $b
      */
-    public function list(): ?array
+    protected static function sort($a, $b): int
     {
-        $filesystem = new Filesystem();
-
-        if (!$filesystem->exists($this->config->getCompleteName())) {
-            return null;
-        }
-
-        $data = json_decode(file_get_contents($this->config->getCompleteName()), true, 512, JSON_THROW_ON_ERROR);
-        $questions = [];
-
-        foreach ($data['data']['questions'] as $questionJson) {
-            unset($questionJson['managerType'], $questionJson['managerTypeValue'], $questionJson['class']);
-            $questionJson['usedDate'] = isset($questionJson['usedDate']) ? Carbon::parse($questionJson['usedDate']) : null;
-            $questions[] = new Question(...$questionJson);
-        }
-        usort($questions, fn (Question $a, Question $b) => $a->getUsedDate() <=> $b->getUsedDate());
-
-        return $questions;
+        return $a->getUsedDate() <=> $b->getUsedDate();
     }
 }
