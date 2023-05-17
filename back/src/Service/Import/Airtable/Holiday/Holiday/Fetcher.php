@@ -13,7 +13,7 @@ class Fetcher
     }
 
     /**
-     * @return Holiday[]
+     * @return Holiday[]|null
      */
     public function fetchFromDate(Carbon $date): ?array
     {
