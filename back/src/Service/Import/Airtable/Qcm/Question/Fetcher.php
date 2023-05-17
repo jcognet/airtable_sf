@@ -14,7 +14,13 @@ class Fetcher
 
     public function fetch(string $id): ?Question
     {
-        foreach ($this->questionLister->list() as $question) {
+        $list = $this->questionLister->list();
+        
+        if ($list === null) {
+            return null;
+        }
+
+        foreach ($list as $question) {
             if ($question->getId() === $id) {
                 return $question;
             }

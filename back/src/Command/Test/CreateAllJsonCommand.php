@@ -14,6 +14,7 @@ use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
+use Symfony\Component\Filesystem\Filesystem;
 
 #[AsCommand(name: 'app:test:create-json-all')]
 class CreateAllJsonCommand extends Command
@@ -46,6 +47,7 @@ class CreateAllJsonCommand extends Command
     {
         $start = Carbon::now();
         $output->writeln(sprintf('Start of command %s at %s', $this->getName(), $start->format('d/m/Y H:i')));
+        $fs = new Filesystem();
 
         /**
          * @var AirtableImporterInterface $importer
@@ -73,6 +75,7 @@ class CreateAllJsonCommand extends Command
                 $importer->getConfig()->getFileName()
             );
             $output->writeln(sprintf('Try to move from %s to %s.', $from, $to));
+            $fs->mkdir(dirname($to));
             copy($from, $to);
         }
 
