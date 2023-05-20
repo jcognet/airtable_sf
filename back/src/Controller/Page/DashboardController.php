@@ -61,10 +61,21 @@ class DashboardController extends AbstractController
     }
 
     #[Route(path: '/holiday', name: 'dashboard_holiday', methods: ['GET'])]
-    public function holiday(): Response
-    {
+    public function holiday(
+        Request $request,
+        NewsletterWriterFetcher $newsletterWriterFetcher,
+        DirectoryLister $directoryLister,
+    ): Response {
+        $date = Carbon::parse($request->query->get('date', null));
+        $newsletter = $newsletterWriterFetcher->get($date);
+
         return $this->render(
-            'dashboard/holiday.html.twig'
+            'dashboard/holiday.html.twig',
+            [
+                'newspaper_date' => $newsletter->getNewspaper()->getDate(),
+                'directory_image_list' => $directoryLister->list(),
+                'newspaper' => $newsletter->getNewspaper(),
+            ]
         );
     }
 }

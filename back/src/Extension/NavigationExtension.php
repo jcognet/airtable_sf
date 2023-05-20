@@ -10,6 +10,7 @@ use App\Service\Page\InterestingTopicListFetcher;
 use App\Service\Page\MainImageFetcher;
 use App\Service\Page\MeteoListFetcher;
 use App\Service\Page\QuestionFetcher;
+use App\Service\Page\RandomPicFetcher;
 use App\Service\Picture\RandomPictorySelector;
 use App\Service\Security\LoginLinkHandler;
 use App\ValueObject\Article\ArticleSeeAgainList;
@@ -21,6 +22,7 @@ use App\ValueObject\NewsletterBlockManager\ManagerType;
 use App\ValueObject\Newspaper;
 use App\ValueObject\Picture\Picture;
 use App\ValueObject\Qcm\Question;
+use App\ValueObject\Random\ImageUrl;
 use App\ValueObject\Twitter\Message;
 use Symfony\Component\Security\Core\Exception\UserNotFoundException;
 use Symfony\Component\Security\Core\User\UserProviderInterface;
@@ -42,7 +44,8 @@ class NavigationExtension extends AbstractExtension
         private readonly InterestingTopicListFetcher $interestingTopicListFetcher,
         private readonly ArticleSeeAgainListFetcher $articleSeeAgainListFetcher,
         private readonly MeteoListFetcher $meteoListFetcher,
-        private readonly QuestionFetcher $questionFetcher
+        private readonly QuestionFetcher $questionFetcher,
+        private readonly RandomPicFetcher $randomPicFetcher
     ) {
     }
 
@@ -59,6 +62,7 @@ class NavigationExtension extends AbstractExtension
             new TwigFunction('article_see_again', $this->articleSeeAgain(...)),
             new TwigFunction('meteo_list', $this->meteoList(...)),
             new TwigFunction('question', $this->question(...)),
+            new TwigFunction('random_image', $this->randomImage(...)),
         ];
     }
 
@@ -119,5 +123,10 @@ class NavigationExtension extends AbstractExtension
     public function question(Newspaper $newspaper): ?Question
     {
         return $this->questionFetcher->fetch($newspaper);
+    }
+
+    public function randomImage(Newspaper $newspaper): ?ImageUrl
+    {
+        return $this->randomPicFetcher->fetch($newspaper);
     }
 }

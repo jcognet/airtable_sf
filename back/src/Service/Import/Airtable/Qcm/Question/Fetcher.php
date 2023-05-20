@@ -15,7 +15,7 @@ class Fetcher
     public function fetch(string $id): ?Question
     {
         $list = $this->questionLister->list();
-        
+
         if ($list === null) {
             return null;
         }
