@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace App\Service\NewsletterManager;
 
 use App\Service\Converter\ConvertBlockTypeToManagerType;
+use App\Service\Holiday\IsHolidayDeterminator;
 use App\ValueObject\NewsletterBlockManager\BlockType;
 use App\ValueObject\NewsletterBlockManager\ManagerType;
 use Carbon\Carbon;
@@ -12,8 +13,14 @@ use Symfony\Component\Yaml\Yaml;
 
 class ConfigSelector
 {
-    public function __construct(private readonly string $pathToConfigurationYaml, private readonly ConvertBlockTypeToManagerType $convertBlockTypeToManagerType)
-    {
+    private const DEFAULT_FILENAME = 'default';
+    private const HOLIDAY_FILENAME = 'holiday';
+
+    public function __construct(
+        private readonly string $pathToConfigurationYaml,
+        private readonly ConvertBlockTypeToManagerType $convertBlockTypeToManagerType,
+        private readonly IsHolidayDeterminator $isHolidayDeterminator
+    ) {
     }
 
     /**
@@ -22,12 +29,16 @@ class ConfigSelector
     public function getBlocks(Carbon $date): array
     {
         $fs = new Filesystem();
-        $weekDay = $this->getFilePath($date->format('l'));
+        $fileName = $this->getFilePath($date->format('l'));
 
-        if ($fs->exists($weekDay)) {
-            $blockTypeListString = Yaml::parseFile($weekDay);
+        if ($this->isHolidayDeterminator->isHoliday($date)) {
+            $fileName = $this->getFilePath(self::HOLIDAY_FILENAME);
+        }
+
+        if ($fs->exists($fileName)) {
+            $blockTypeListString = Yaml::parseFile($fileName);
         } else {
-            $blockTypeListString = Yaml::parseFile($this->getFilePath('default'));
+            $blockTypeListString = Yaml::parseFile($this->getFilePath(self::DEFAULT_FILENAME));
         }
 
         $blockTypeList = [];
