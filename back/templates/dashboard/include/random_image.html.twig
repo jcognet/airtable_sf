@@ -1,0 +1,23 @@
+{% set random_image = random_image(newspaper) %}
+{% if random_image is not null %}
+    <div class="section-light">
+        <div class="container">
+            <div
+                class="column is-12 about-me"
+                data-aos="fade-in"
+                data-aos-easing="linear"
+            >
+                <h1 class="title has-text-centered">
+                    Have fun
+                </h1>
+            </div>
+            <div class="card-image has-text-centered">
+                <a target="_blank" href="{{ random_image.content }}">
+                    <figure class="image is-inline-block">
+                        <img src="{{ random_image.content }}" alt="{{ random_image.title }}"/>
+                    </figure>
+                </a>
+            </div>
+        </div>
+    </div>
+{% endif %}
