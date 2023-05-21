@@ -19,7 +19,7 @@ class IsHolidayDeterminator
 
     public function isHoliday(?Carbon $date): bool
     {
-        if ($this->requestStack->getMainRequest()->query->has(self::HOLIDAY_GET_KEYWORD)) {
+        if ($this->requestStack->getMainRequest() !== null && $this->requestStack->getMainRequest()->query->has(self::HOLIDAY_GET_KEYWORD)) {
             return true;
         }
 
