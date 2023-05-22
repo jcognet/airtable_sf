@@ -8,6 +8,8 @@ use App\ValueObject\NewsletterBlockManager\BlockType;
 
 class MeteoList extends AbstractBlock
 {
+    private ?Place $place = null;
+
     /**
      * @param MeteoItem[] $meteoItemLists
      */
@@ -20,7 +22,7 @@ class MeteoList extends AbstractBlock
 
     public function getTitle(): string
     {
-        return 'Météo';
+        return sprintf('Météo de %s', $this->place->getLabel());
     }
 
     public function getContent()
@@ -46,5 +48,15 @@ class MeteoList extends AbstractBlock
     public function getLongitude(): string
     {
         return $this->longitude;
+    }
+
+    public function setPlace(?Place $place): void
+    {
+        $this->place = $place;
+    }
+
+    public function getPlace(): ?Place
+    {
+        return $this->place;
     }
 }
