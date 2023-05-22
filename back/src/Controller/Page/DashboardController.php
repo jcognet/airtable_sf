@@ -69,6 +69,10 @@ class DashboardController extends AbstractController
         $date = Carbon::parse($request->query->get('date', null));
         $newsletter = $newsletterWriterFetcher->get($date);
 
+        if ($newsletter === null) {
+            throw $this->createNotFoundException(sprintf('No newsletter found for date %s', $date->format('d/m/Y')));
+        }
+
         return $this->render(
             'dashboard/holiday.html.twig',
             [
