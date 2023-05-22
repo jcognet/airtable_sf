@@ -12,6 +12,8 @@ class NextRun
         private readonly ?Carbon $date,
         private readonly ?int $distance,
         private readonly ?string $url,
+        private readonly ?int $duration,
+        private readonly ?string $comment,
     ) {
     }
 
@@ -42,5 +44,15 @@ class NextRun
         }
 
         return $this->date->diffInDays(Carbon::now());
+    }
+
+    public function getDuration(): ?int
+    {
+        return $this->duration;
+    }
+
+    public function getComment(): ?string
+    {
+        return $this->comment;
     }
 }

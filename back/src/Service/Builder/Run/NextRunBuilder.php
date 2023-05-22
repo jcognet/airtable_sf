@@ -16,6 +16,8 @@ class NextRunBuilder implements BuilderInterface
             date: isset($data['fields']['Date']) ? Carbon::parse($data['fields']['Date']) : null,
             distance: $data['fields']['Distance'] ?? null,
             url: $data['fields']['URL'] ?? null,
+            duration: $data['fields']['Durée (min)'] ?? null,
+            comment: $data['fields']['Commentaire'] ?? null,
         );
     }
 }
