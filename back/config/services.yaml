@@ -4,6 +4,8 @@
 # Put parameters here that don't need to change on each machine where the app is deployed
 # https://symfony.com/doc/current/best_practices.html#use-parameters-for-application-configuration
 parameters:
+  deployArchiveJsonPath: '%kernel.project_dir%/tests/data/'
+  deployJsonPath: '%kernel.project_dir%/src/Data/deploy.json'
   inr491BaseUrl: 'https://gr491.isit-europe.org/'
   ecoresponsaglegouvBaseUrl: 'https://ecoresponsable.numerique.gouv.fr/'
   lpoBaseUrl: 'https://www.oiseauxdesjardins.fr/index.php'
@@ -43,8 +45,8 @@ services:
       $projectDir: '%kernel.project_dir%'
       $githubSecret: '%env(GITHUB_SECRET)%'
       $pathToConfigurationYaml: '%kernel.project_dir%/config/blocks/'
-      $deployJsonPath: '%kernel.project_dir%/src/Data/deploy.json'
-      $deployArchiveJsonPath: '%kernel.project_dir%/src/Data/archive/'
+      $deployJsonPath: '%deployJsonPath%'
+      $deployArchiveJsonPath: '%deployArchiveJsonPath%'
       $birdPath: '%kernel.project_dir%/src/Data/bird/'
       $picturePath: '%kernel.project_dir%/src/Data/photo/'
       $googleCredentialFile: '%kernel.project_dir%/config/google_credential.json'
@@ -135,7 +137,6 @@ services:
       $client: '@App\Service\AirTable\Run\RunClient'
 
 when@test:
-  services:
-    _defaults:
-      bind:
-        $deployArchiveJsonPath: '%kernel.project_dir%/tests/data/'
+  parameters:
+    deployArchiveJsonPath: '%kernel.project_dir%/tests/data/'
+    deployJsonPath: '%kernel.project_dir%/tests/data/test/deploy_result.json'

@@ -58,15 +58,8 @@ class Deploy implements LoggerAwareInterface
             foreach ($this->getCalls() as $call) {
                 $process = new Process($call);
                 $process->setWorkingDirectory($this->projectDir);
-
-                if (is_string($call)) {
-                    $this->logger->info(sprintf('Current command: %s ', $call));
-                } elseif (is_array($call)) {
-                    $this->logger->info(sprintf('Current command: %s ', implode(' ', $call)));
-                }
-
+                $this->logger->info(sprintf('Current command: %s ', implode(' ', $call)));
                 $process->mustRun(null, ['COMPOSER_HOME' => $this->projectDir . '/../composer_cache']);
-
                 $this->logger->info($process->getOutput());
                 $returns[] = new Command(
                     $call,
@@ -75,7 +68,6 @@ class Deploy implements LoggerAwareInterface
             }
 
             $this->tagHandler->write($git['ref']);
-
             $this->sendEmail(
                 $body,
                 sprintf(self::SUBJECT, $git['ref'], Carbon::now()->format('d/m/Y')),
@@ -104,6 +96,9 @@ class Deploy implements LoggerAwareInterface
                 [$phpBinaryPath, sprintf('%s/composer.phar', $this->projectDir), 'install'],
                 [$phpBinaryPath, sprintf('%s/composer.phar', $this->projectDir), 'dump-autoload', '--no-dev', '--classmap-authoritative'],
                 [$phpBinaryPath, 'bin/console', 'cache:clear'],
+            ],
+            'test' => [
+                ['ls'],
             ],
             default => [
                 ['composer', 'install'],
