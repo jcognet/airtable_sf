@@ -52,7 +52,7 @@ final class DashboardControllerTest extends WebTestCase
         $this->loginUser($client);
 
         // Request a specific page
-        $client->request('GET', '/dashboard?holiday=true');
+        $client->request('GET', '/dashboard?holiday=true&date=2023-06-17');
 
         // Validate a successful response and some content
         $this->assertResponseIsSuccessful();
