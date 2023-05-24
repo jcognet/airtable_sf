@@ -41,7 +41,7 @@ final class GitControllerTest extends WebTestCase
             '/git/deploy',
             [],
             [],
-            ['HTTP_X-Hub-Signature-256' => 'sha256=584efbcc4289a124c81e5cac7b48e2dc31916a8d514f2b7ca5f86fc7a9498c46'],
+            ['HTTP_X-Hub-Signature-256' => 'sha256=217dd101e8760611dda71aedde3a1562e5cab95aea77781b8be3edc121b55f6e'],
             file_get_contents(self::DEPLOY_JSON_PATH)
         );
         $this->assertResponseIsSuccessful();
@@ -60,7 +60,7 @@ final class GitControllerTest extends WebTestCase
         $content = $client->getResponse()->getContent();
         $this->assertResponseIsSuccessful();
         static::assertJson($content);
-        static::assertSame('0.0.7', json_decode($content, true)['tag']);
+        static::assertSame('0.0.7', json_decode($content, true, 512, JSON_THROW_ON_ERROR)['tag']);
     }
 
     private function getContentJson(): string

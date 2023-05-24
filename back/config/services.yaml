@@ -97,7 +97,7 @@ services:
     arguments:
       - !tagged_iterator app.cleaner
 
-  App\Command\Airtable\ImportCommand:
+  App\Service\Import\Airtable\AllImporter:
     arguments:
       - !tagged_iterator app.airtable_importer
 
