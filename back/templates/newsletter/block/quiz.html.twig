@@ -45,7 +45,7 @@
                                             {% for question in block.randomizedQuestions %}
                                                 <div style="margin-bottom: 10px">
                                                     <a title="Répondre à la question"
-                                                       href="{{ path('question_answer', {id: block.id}) }}?answer={{ code_question_key(question) }}"
+                                                       href="{{ absolute_url(path('question_answer', {id: block.id})) }}?answer={{ code_question_key(question) }}"
                                                        style="text-decoration:none;display:inline-block;color:#ffffff;background-color:#{{ main_color }};border-radius:20px;width:auto;border-top:1px solid #7354c4;border-right:1px solid #7354c4;border-bottom:1px solid #7354c4;border-left:1px solid #7354c4;padding-top:5px;padding-bottom:5px;font-family:Poppins, Arial, Helvetica, sans-serif;text-align:center;mso-border-alt:none;word-break:keep-all;"
                                                        target="_blank"><span
                                                             style="padding-left:30px;padding-right:30px;font-size:13px;display:inline-block;letter-spacing:normal;"><span
