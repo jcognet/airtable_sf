@@ -17,7 +17,7 @@ final class ImportControllerTest extends WebTestCase
     {
         // This calls KernelTestCase::bootKernel(), and creates a
         // "client" that is acting as the browser
-        $client = static::createClient();
+        $client = self::createClient();
         $client->followRedirects(true);
         $this->loginUser($client);
 
@@ -25,6 +25,6 @@ final class ImportControllerTest extends WebTestCase
         $client->request('GET', '/import/all');
         $this->assertResponseIsSuccessful();
         $content = $client->getResponse()->getContent();
-        static::assertJson($content);
+        self::assertJson($content);
     }
 }

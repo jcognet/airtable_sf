@@ -3,15 +3,11 @@ declare(strict_types=1);
 
 namespace App\ValueObject\Archive;
 
-use App\ValueObject\BlockInterface;
 use App\ValueObject\Newspaper;
 use Carbon\Carbon;
 
 class NewsLetter
 {
-    /**
-     * @param BlockInterface[]|null $blocks
-     */
     public function __construct(
         private readonly Carbon $date,
         private string $newsletterHtml,

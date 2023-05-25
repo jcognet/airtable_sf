@@ -32,7 +32,7 @@ final class GitControllerTest extends WebTestCase
     {
         // This calls KernelTestCase::bootKernel(), and creates a
         // "client" that is acting as the browser
-        $client = static::createClient();
+        $client = self::createClient();
         $client->followRedirects(true);
 
         // Request a specific page
@@ -52,15 +52,15 @@ final class GitControllerTest extends WebTestCase
     {
         // This calls KernelTestCase::bootKernel(), and creates a
         // "client" that is acting as the browser
-        $client = static::createClient();
+        $client = self::createClient();
         $client->followRedirects(true);
 
         // Request a specific page
         $client->request('GET', '/git/show');
         $content = $client->getResponse()->getContent();
         $this->assertResponseIsSuccessful();
-        static::assertJson($content);
-        static::assertSame('0.0.7', json_decode($content, true, 512, JSON_THROW_ON_ERROR)['tag']);
+        self::assertJson($content);
+        self::assertSame('0.0.7', json_decode($content, true, 512, JSON_THROW_ON_ERROR)['tag']);
     }
 
     private function getContentJson(): string
