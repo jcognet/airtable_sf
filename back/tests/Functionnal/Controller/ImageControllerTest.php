@@ -17,7 +17,7 @@ final class ImageControllerTest extends WebTestCase
     {
         // This calls KernelTestCase::bootKernel(), and creates a
         // "client" that is acting as the browser
-        $client = static::createClient();
+        $client = self::createClient();
         $client->followRedirects(true);
         $this->loginUser($client);
 
@@ -31,7 +31,7 @@ final class ImageControllerTest extends WebTestCase
     {
         // This calls KernelTestCase::bootKernel(), and creates a
         // "client" that is acting as the browser
-        $client = static::createClient();
+        $client = self::createClient();
         $client->followRedirects(true);
         $this->loginUser($client);
 
