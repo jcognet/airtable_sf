@@ -22,4 +22,9 @@ class NextRunDenormalizer implements DenormalizerInterface
     {
         return $type === NextRun::class;
     }
+
+    public function getSupportedTypes(?string $format): array
+    {
+        return ['*' => true];
+    }
 }

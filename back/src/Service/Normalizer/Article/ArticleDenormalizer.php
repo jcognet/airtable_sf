@@ -44,4 +44,9 @@ class ArticleDenormalizer implements DenormalizerInterface
     {
         return $type === Article::class;
     }
+
+    public function getSupportedTypes(?string $format): array
+    {
+        return ['*' => true];
+    }
 }

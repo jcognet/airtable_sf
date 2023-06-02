@@ -22,4 +22,9 @@ class MeteoItemDenormalizer implements DenormalizerInterface
     {
         return $type === MeteoItem::class;
     }
+
+    public function getSupportedTypes(?string $format): array
+    {
+        return ['*' => true];
+    }
 }

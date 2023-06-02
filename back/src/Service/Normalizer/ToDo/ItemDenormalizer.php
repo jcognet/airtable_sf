@@ -27,4 +27,9 @@ class ItemDenormalizer implements DenormalizerInterface
     {
         return $type === Item::class;
     }
+
+    public function getSupportedTypes(?string $format): array
+    {
+        return ['*' => true];
+    }
 }

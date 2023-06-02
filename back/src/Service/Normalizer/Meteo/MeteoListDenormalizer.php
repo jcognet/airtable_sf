@@ -37,4 +37,9 @@ class MeteoListDenormalizer implements DenormalizerInterface
     {
         return $type === MeteoList::class;
     }
+
+    public function getSupportedTypes(?string $format): array
+    {
+        return ['*' => true];
+    }
 }

@@ -24,4 +24,9 @@ class BlockBirdDenormalizer implements DenormalizerInterface
     {
         return $type === BlockBird::class;
     }
+
+    public function getSupportedTypes(?string $format): array
+    {
+        return ['*' => true];
+    }
 }

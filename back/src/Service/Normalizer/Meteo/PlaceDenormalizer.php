@@ -18,4 +18,9 @@ class PlaceDenormalizer implements DenormalizerInterface
     {
         return $type === Place::class;
     }
+
+    public function getSupportedTypes(?string $format): array
+    {
+        return ['*' => true];
+    }
 }

@@ -17,4 +17,9 @@ class WeatherDenormalizer implements DenormalizerInterface
     {
         return $type === Weather::class;
     }
+
+    public function getSupportedTypes(?string $format): array
+    {
+        return ['*' => true];
+    }
 }

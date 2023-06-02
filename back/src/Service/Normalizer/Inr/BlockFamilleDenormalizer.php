@@ -20,4 +20,9 @@ class BlockFamilleDenormalizer implements DenormalizerInterface
     {
         return $type === BlockFamille::class;
     }
+
+    public function getSupportedTypes(?string $format): array
+    {
+        return ['*' => true];
+    }
 }

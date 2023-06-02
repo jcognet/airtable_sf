@@ -23,4 +23,9 @@ class HolidayDenormalizer implements DenormalizerInterface
     {
         return $type === Holiday::class;
     }
+
+    public function getSupportedTypes(?string $format): array
+    {
+        return ['*' => true];
+    }
 }

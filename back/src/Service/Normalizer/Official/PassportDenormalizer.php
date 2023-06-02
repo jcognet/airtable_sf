@@ -20,4 +20,9 @@ class PassportDenormalizer implements DenormalizerInterface
     {
         return $type === Passport::class;
     }
+
+    public function getSupportedTypes(?string $format): array
+    {
+        return ['*' => true];
+    }
 }

@@ -17,4 +17,9 @@ class CriteriaDenormalizer implements DenormalizerInterface
     {
         return $type === Criteria::class;
     }
+
+    public function getSupportedTypes(?string $format): array
+    {
+        return ['*' => true];
+    }
 }

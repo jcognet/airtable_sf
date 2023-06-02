@@ -34,4 +34,9 @@ class ConceptDenormalizer implements DenormalizerInterface
     {
         return $type === Concept::class;
     }
+
+    public function getSupportedTypes(?string $format): array
+    {
+        return ['*' => true];
+    }
 }

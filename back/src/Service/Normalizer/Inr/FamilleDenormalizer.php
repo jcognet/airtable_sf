@@ -26,4 +26,9 @@ class FamilleDenormalizer implements DenormalizerInterface
     {
         return $type === Famille::class;
     }
+
+    public function getSupportedTypes(?string $format): array
+    {
+        return ['*' => true];
+    }
 }

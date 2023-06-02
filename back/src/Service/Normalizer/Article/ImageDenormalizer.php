@@ -33,4 +33,9 @@ class ImageDenormalizer implements DenormalizerInterface
     {
         return $type === Image::class;
     }
+
+    public function getSupportedTypes(?string $format): array
+    {
+        return ['*' => true];
+    }
 }

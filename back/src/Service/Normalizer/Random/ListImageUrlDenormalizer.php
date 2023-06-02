@@ -29,4 +29,9 @@ class ListImageUrlDenormalizer implements DenormalizerInterface
     {
         return $type === ListImageUrl::class;
     }
+
+    public function getSupportedTypes(?string $format): array
+    {
+        return ['*' => true];
+    }
 }

@@ -29,4 +29,9 @@ class ListBlockBirdDenormalizer implements DenormalizerInterface
     {
         return $type === ListBlockBird::class;
     }
+
+    public function getSupportedTypes(?string $format): array
+    {
+        return ['*' => true];
+    }
 }

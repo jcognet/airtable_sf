@@ -29,4 +29,9 @@ class ListBlockNextRunDenormalizer implements DenormalizerInterface
     {
         return $type === ListBlockNextRun::class;
     }
+
+    public function getSupportedTypes(?string $format): array
+    {
+        return ['*' => true];
+    }
 }
