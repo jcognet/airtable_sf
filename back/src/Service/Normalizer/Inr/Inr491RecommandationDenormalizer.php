@@ -33,4 +33,9 @@ class Inr491RecommandationDenormalizer implements DenormalizerInterface
     {
         return $type === Inr491Recommandation::class;
     }
+
+    public function getSupportedTypes(?string $format): array
+    {
+        return ['*' => true];
+    }
 }

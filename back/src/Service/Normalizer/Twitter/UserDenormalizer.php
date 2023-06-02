@@ -17,4 +17,9 @@ class UserDenormalizer implements DenormalizerInterface
     {
         return $type === User::class;
     }
+
+    public function getSupportedTypes(?string $format): array
+    {
+        return ['*' => true];
+    }
 }

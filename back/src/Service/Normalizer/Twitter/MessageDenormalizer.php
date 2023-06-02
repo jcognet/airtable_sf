@@ -25,4 +25,9 @@ class MessageDenormalizer implements DenormalizerInterface
     {
         return $type === Message::class;
     }
+
+    public function getSupportedTypes(?string $format): array
+    {
+        return ['*' => true];
+    }
 }

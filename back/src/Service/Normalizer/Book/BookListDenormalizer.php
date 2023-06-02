@@ -28,4 +28,9 @@ class BookListDenormalizer implements DenormalizerInterface
     {
         return $type === BookList::class;
     }
+
+    public function getSupportedTypes(?string $format): array
+    {
+        return ['*' => true];
+    }
 }

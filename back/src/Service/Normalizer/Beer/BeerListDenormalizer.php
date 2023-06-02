@@ -28,4 +28,9 @@ class BeerListDenormalizer implements DenormalizerInterface
     {
         return $type === BeerList::class;
     }
+
+    public function getSupportedTypes(?string $format): array
+    {
+        return ['*' => true];
+    }
 }

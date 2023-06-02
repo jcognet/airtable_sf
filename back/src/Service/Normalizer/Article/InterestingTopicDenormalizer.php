@@ -19,4 +19,9 @@ class InterestingTopicDenormalizer implements DenormalizerInterface
     {
         return $type === InterestingTopic::class;
     }
+
+    public function getSupportedTypes(?string $format): array
+    {
+        return ['*' => true];
+    }
 }

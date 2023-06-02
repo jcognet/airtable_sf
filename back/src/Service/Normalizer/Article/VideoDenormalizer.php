@@ -32,4 +32,9 @@ class VideoDenormalizer implements DenormalizerInterface
     {
         return $type === Video::class;
     }
+
+    public function getSupportedTypes(?string $format): array
+    {
+        return ['*' => true];
+    }
 }

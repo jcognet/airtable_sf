@@ -18,4 +18,9 @@ class ImportedBirdDenormalizer implements DenormalizerInterface
     {
         return $type === ImportedBird::class;
     }
+
+    public function getSupportedTypes(?string $format): array
+    {
+        return ['*' => true];
+    }
 }

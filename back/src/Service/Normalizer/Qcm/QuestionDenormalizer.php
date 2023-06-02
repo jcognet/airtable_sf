@@ -24,4 +24,9 @@ class QuestionDenormalizer implements DenormalizerInterface
     {
         return $type === Question::class;
     }
+
+    public function getSupportedTypes(?string $format): array
+    {
+        return ['*' => true];
+    }
 }

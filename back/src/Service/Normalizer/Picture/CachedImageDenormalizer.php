@@ -20,4 +20,9 @@ class CachedImageDenormalizer implements DenormalizerInterface
     {
         return $type === CachedImage::class;
     }
+
+    public function getSupportedTypes(?string $format): array
+    {
+        return ['*' => true];
+    }
 }

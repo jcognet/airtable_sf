@@ -34,4 +34,9 @@ class AbstractArticleListDenormalizer implements DenormalizerInterface
     {
         return in_array($type, self::LIST_CLASS, true);
     }
+
+    public function getSupportedTypes(?string $format): array
+    {
+        return ['*' => true];
+    }
 }

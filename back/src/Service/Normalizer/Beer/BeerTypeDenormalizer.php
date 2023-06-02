@@ -17,4 +17,9 @@ class BeerTypeDenormalizer implements DenormalizerInterface
     {
         return $type === BeerType::class;
     }
+
+    public function getSupportedTypes(?string $format): array
+    {
+        return ['*' => true];
+    }
 }

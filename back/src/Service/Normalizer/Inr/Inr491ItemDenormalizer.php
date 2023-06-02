@@ -17,4 +17,9 @@ class Inr491ItemDenormalizer implements DenormalizerInterface
     {
         return $type === Inr491Item::class;
     }
+
+    public function getSupportedTypes(?string $format): array
+    {
+        return ['*' => true];
+    }
 }

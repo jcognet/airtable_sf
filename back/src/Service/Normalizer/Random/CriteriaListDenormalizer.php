@@ -31,4 +31,9 @@ class CriteriaListDenormalizer implements DenormalizerInterface
     {
         return $type === CriteriaList::class;
     }
+
+    public function getSupportedTypes(?string $format): array
+    {
+        return ['*' => true];
+    }
 }
