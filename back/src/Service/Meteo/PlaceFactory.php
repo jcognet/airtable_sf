@@ -17,9 +17,13 @@ class PlaceFactory
     ) {
     }
 
-    public function make(): Place
+    public function make(?Carbon $date = null): Place
     {
-        $place = $this->getPlaceFromHoliday();
+        if ($date === null) {
+            $date = Carbon::now();
+        }
+
+        $place = $this->getPlaceFromHoliday($date);
 
         if ($place !== null) {
             return $place;
@@ -36,9 +40,9 @@ class PlaceFactory
         );
     }
 
-    private function getPlaceFromHoliday(): ?Place
+    private function getPlaceFromHoliday(Carbon $date): ?Place
     {
-        $holidays = $this->holidayFetcher->fetchFromDate(Carbon::now());
+        $holidays = $this->holidayFetcher->fetchFromDate($date);
 
         if ($holidays === null || count($holidays) === 0) {
             return null;
