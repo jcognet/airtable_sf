@@ -19,7 +19,9 @@ class TwitterClient
 
     public function fetchRandomMessageFromUser(string $account): ?Message
     {
-        $messages = json_decode($this->twitterClient->request('GET', sprintf('tweets/search/recent/?query=from:%s', $account))->getContent(), true, 512, JSON_THROW_ON_ERROR);
+        //TODO : migrer API twitter
+        //$messages = json_decode($this->twitterClient->request('GET', sprintf('tweets/search/recent/?query=from:%s', $account))->getContent(), true, 512, JSON_THROW_ON_ERROR);
+        $messages = [];
 
         if (!isset($messages['data'])) {
             return null;
