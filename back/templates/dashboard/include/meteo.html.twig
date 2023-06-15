@@ -7,14 +7,18 @@
                 data-aos="fade-in"
                 data-aos-easing="linear"
             >
-                <h1 class="title has-text-centered section-title">Météo</h1>
+                <h1 class="title has-text-centered section-title">{{ meteo_list.title }}</h1>
             </div>
             <div class="columns is-centered is-multiline">
                 {% for meteo in meteo_list.content %}
                     <div class="column is-2">
                         <div>{{ meteo.day|date('d/m/Y') }}</div>
                         <div>
-                            <strong>{{ meteo.weather.label }}</strong></div>
+                            {{ meteo.place.label }}
+                        </div>
+                        <div>
+                            <strong>{{ meteo.weather.label }}</strong>
+                        </div>
                         <div>
                             <div>
                                 <i class="wi wi-day-thunderstorm"></i>

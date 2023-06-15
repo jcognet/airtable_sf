@@ -22,7 +22,8 @@ class MeteoItemBuilder implements BuilderInterface
             $data['probarain'],
             $data['tmin'],
             $data['tmax'],
-            $data['sun_hours']
+            $data['sun_hours'],
+            $data['place']
         );
     }
 }

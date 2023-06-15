@@ -14,7 +14,8 @@ class MeteoItem
         private readonly int $probaRain,
         private readonly int $temperatureMin,
         private readonly int $temperatureMax,
-        private readonly int $sunHours
+        private readonly int $sunHours,
+        private readonly Place $place
     ) {
     }
 
@@ -51,5 +52,10 @@ class MeteoItem
     public function getSunHours(): int
     {
         return $this->sunHours;
+    }
+
+    public function getPlace(): Place
+    {
+        return $this->place;
     }
 }

@@ -8,21 +8,24 @@ use App\ValueObject\NewsletterBlockManager\BlockType;
 
 class MeteoList extends AbstractBlock
 {
-    private ?Place $place = null;
-
     /**
      * @param MeteoItem[] $meteoItemLists
      */
     public function __construct(
-        private readonly array $meteoItemLists,
-        private readonly string $latitude,
-        private readonly string $longitude
+        private readonly array $meteoItemLists
     ) {
     }
 
     public function getTitle(): string
     {
-        return sprintf('Météo de %s', $this->place->getLabel());
+        $places = array_unique(
+            array_map(
+                fn ($meteoItem) => $meteoItem->getPlace()->getLabel(),
+                $this->meteoItemLists
+            )
+        );
+
+        return sprintf('Météo de %s.', implode(', ', $places));
     }
 
     public function getContent()
@@ -38,25 +41,5 @@ class MeteoList extends AbstractBlock
     public function getMeteoItemLists(): array
     {
         return $this->meteoItemLists;
-    }
-
-    public function getLatitude(): string
-    {
-        return $this->latitude;
-    }
-
-    public function getLongitude(): string
-    {
-        return $this->longitude;
-    }
-
-    public function setPlace(?Place $place): void
-    {
-        $this->place = $place;
-    }
-
-    public function getPlace(): ?Place
-    {
-        return $this->place;
     }
 }
