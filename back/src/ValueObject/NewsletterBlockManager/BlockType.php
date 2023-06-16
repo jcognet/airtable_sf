@@ -18,7 +18,6 @@ enum BlockType: string
     case LIST_TODO_BLOCK = 'list_todo';
     case LIST_ARTICLE_BLOCK = 'list_article';
     case VIDEO_BLOCK = 'video';
-    case BOT_DOUX_BLOCK = 'bot_doux';
     case IMAGE_GOOGLE_EXPORT_IN_PROGRESS_BLOCK = 'image_google_in_progess';
     case RGESN_BLOCK = 'rgesn';
     case GOOD_PRACTICE_ORGANIZATION_BLOCK = 'good_practice_organization';
