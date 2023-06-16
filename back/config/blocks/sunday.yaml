@@ -1,6 +1,5 @@
 blocks:
   - image
-  - bot_doux
   - list_meteo
   - passport
   - list_todo

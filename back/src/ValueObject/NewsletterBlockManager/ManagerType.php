@@ -32,7 +32,6 @@ use App\Service\Block\Random\RandomPicBlockManager;
 use App\Service\Block\Random\RgesnManager;
 use App\Service\Block\Run\NextRunBlockManager;
 use App\Service\Block\ToDo\ItemBlockManager;
-use App\Service\Block\Twitter\BotDouxManager;
 
 class ManagerType
 {
@@ -47,7 +46,6 @@ class ManagerType
         ItemBlockManager::class,
         ArticleListALireBlockManager::class,
         VideoBlockManager::class,
-        BotDouxManager::class,
         InProgressContentManager::class,
         RgesnManager::class,
         DoneContentManager::class,
