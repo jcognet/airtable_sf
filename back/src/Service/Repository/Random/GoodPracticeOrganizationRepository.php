@@ -25,7 +25,7 @@ class GoodPracticeOrganizationRepository
             $themes = json_decode(
                 $this->ecoresponsablegouvClient->request(
                     'GET',
-                    'publications/bonnes-pratiques/guide-bonnes-pratiques-numerique-responsable-export-version-beta.json',
+                    'publications/bonnes-pratiques/guide-bonnes-pratiques-numerique-responsable-export-version-v1.json',
                 )->getContent(),
                 true,
                 512,
