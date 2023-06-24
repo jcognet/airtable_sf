@@ -30,7 +30,7 @@ class AllImporter
             $items = $importer->import();
             $this->logger->info(
                 sprintf(
-                    'items of %s imported is %s: %d',
+                    'Items of %s were imported in %s. %d items found.',
                     $importer->getLabel(),
                     $importer->getConfig()->getCompleteName(),
                     count($items)
