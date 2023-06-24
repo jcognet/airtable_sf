@@ -18,6 +18,7 @@ class Fetcher
     public function fetchFromDate(Carbon $date): ?array
     {
         $list = $this->lister->list();
+        $dateReference = $date->copy()->startOfDay();
 
         if ($list === null) {
             return null;
@@ -26,7 +27,7 @@ class Fetcher
         $holidays = [];
         foreach ($list as $holiday) {
             /** @var Holiday $holiday */
-            if ($date >= $holiday->getStartDate() && $date <= $holiday->getEndDate()) {
+            if ($dateReference  >= $holiday->getStartDate() && $dateReference <= $holiday->getEndDate()) {
                 $holidays[] = $holiday;
             }
         }

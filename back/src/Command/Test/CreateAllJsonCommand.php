@@ -25,6 +25,7 @@ class CreateAllJsonCommand extends Command
         '2022-01-03' => 'createContent',
         '2022-01-04' => 'createAllContent',
         '2023-06-17' => 'createContent',
+        '2023-06-24' => 'createContent',
     ];
 
     public function __construct(
