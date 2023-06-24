@@ -27,7 +27,7 @@ class Fetcher
         $holidays = [];
         foreach ($list as $holiday) {
             /** @var Holiday $holiday */
-            if ($dateReference  >= $holiday->getStartDate() && $dateReference <= $holiday->getEndDate()) {
+            if ($dateReference >= $holiday->getStartDate() && $dateReference <= $holiday->getEndDate()) {
                 $holidays[] = $holiday;
             }
         }

@@ -27,4 +27,14 @@ class Config extends AbstractConfig
     {
         return Holiday::class;
     }
+
+    public function getPublicKey(): string
+    {
+        return 'holiday';
+    }
+
+    public function getPublicLabel(): string
+    {
+        return 'vacances';
+    }
 }

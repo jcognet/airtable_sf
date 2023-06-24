@@ -85,6 +85,9 @@ services:
     App\Service\Contract\AirtableImporterInterface:
       tags: [ 'app.airtable_importer' ]
 
+    App\Service\Contract\AirtableConfigInterface:
+      tags: [ 'app.airtable_config' ]
+
   App\Service\NewsletterManager\ManagerContentFactory:
     arguments:
       - !tagged_iterator app.block_manager
@@ -100,6 +103,14 @@ services:
   App\Service\Import\Airtable\AllImporter:
     arguments:
       - !tagged_iterator app.airtable_importer
+
+  App\Service\Import\Airtable\IsImported:
+    arguments:
+      - !tagged_iterator app.airtable_config
+
+  App\Service\Import\Airtable\ConfigFactory:
+    arguments:
+      - !tagged_iterator app.airtable_config
 
   App\Command\Test\CreateAllJsonCommand:
     arguments:

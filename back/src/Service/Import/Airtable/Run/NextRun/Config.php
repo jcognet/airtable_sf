@@ -27,4 +27,14 @@ class Config extends AbstractConfig
     {
         return NextRun::class;
     }
+
+    public function getPublicKey(): string
+    {
+        return 'next_runs';
+    }
+
+    public function getPublicLabel(): string
+    {
+        return 'courses';
+    }
 }

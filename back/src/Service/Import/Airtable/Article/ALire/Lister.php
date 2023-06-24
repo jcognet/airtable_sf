@@ -5,7 +5,6 @@ namespace App\Service\Import\Airtable\Article\ALire;
 
 use App\Service\Import\Airtable\AbstractLister;
 use App\ValueObject\Article\Article;
-use App\ValueObject\Holiday\Holiday;
 
 class Lister extends AbstractLister
 {
