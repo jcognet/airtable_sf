@@ -1,0 +1,4 @@
+fields:
+  -
+    label: titre
+    property: title

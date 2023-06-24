@@ -14,4 +14,8 @@ interface AirtableConfigInterface
     public function getDataEntryName(): string;
 
     public function getClass(): string;
+
+    public function getPublicKey(): string;
+
+    public function getPublicLabel(): string;
 }

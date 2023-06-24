@@ -1,0 +1,50 @@
+{% extends './page/base.html.twig' %}
+
+{% block body %}
+    <div class="section-light">
+        <div class="container">
+            <div
+                class="column is-12 about-me"
+                data-aos="fade-in"
+                data-aos-easing="linear"
+            >
+                <h1 class="title has-text-centered section-title test-holiday">Données importées : {{ label }}</h1>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="columns">
+            <div class="column is-one-quarter">
+                {% for item in type_listable %}
+                    <ul>
+                        <li>
+                            <a
+                                href="{{ path('list_imported_data_show', {'importedDataType': item}) }}"
+                                class="{% if current_item == item %}has-text-primary {% else %}has-text-link{% endif %}">
+                                {{ item }}
+                            </a>
+                        </li>
+                    </ul>
+                {% endfor %}
+            </div>
+            <div class="column">
+                <table class="table">
+                    <thead>
+                    <tr>
+                        {% for field in fields %}
+                            <th>{{ field.label }}</th>
+                        {% endfor %}
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for data in list_data %}
+                        <tr>
+                            <td>{{ data.title }}</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+{% endblock %}

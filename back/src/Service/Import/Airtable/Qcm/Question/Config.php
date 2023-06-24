@@ -27,4 +27,14 @@ class Config extends AbstractConfig
     {
         return Question::class;
     }
+
+    public function getPublicKey(): string
+    {
+        return 'questions';
+    }
+
+    public function getPublicLabel(): string
+    {
+        return 'questions';
+    }
 }
