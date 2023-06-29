@@ -50,6 +50,7 @@ class NavigationExtension extends AbstractExtension
     {
         return [
             new TwigFunction('is_google_mail', $this->isGoogleMail(...)),
+            new TwigFunction('is_url', $this->isUrl(...)),
             new TwigFunction('email_connection', $this->getEmailConnection(...)),
             new TwigFunction('convert_to_manager_type', $this->convertToManagerType(...)),
             new TwigFunction('main_image', $this->mainImage(...)),
@@ -119,5 +120,10 @@ class NavigationExtension extends AbstractExtension
     public function randomImage(Newspaper $newspaper): ?ImageUrl
     {
         return $this->randomPicFetcher->fetch($newspaper);
+    }
+
+    public function isUrl(?string $url): bool
+    {
+        return !filter_var($url, FILTER_VALIDATE_URL) === false;
     }
 }

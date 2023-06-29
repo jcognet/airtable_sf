@@ -3,7 +3,10 @@ declare(strict_types=1);
 
 namespace App\Service\Import\Airtable;
 
+use App\Enum\Import\Airtable\Order;
+use App\Exception\Import\Airtable\UnknownFieldException;
 use App\Service\Contract\AirtableConfigInterface;
+use App\ValueObject\Import\Airtable\Sort;
 use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\Serializer\Normalizer\DenormalizerInterface;
 
@@ -15,7 +18,7 @@ abstract class AbstractLister
     ) {
     }
 
-    public function list(): ?array
+    public function list(Sort $sort = null): ?array
     {
         $filesystem = new Filesystem();
 
@@ -30,7 +33,21 @@ abstract class AbstractLister
             $items[] = $this->denormalizer->denormalize($item, $this->config->getClass());
         }
 
-        usort($items, [static::class, 'sort']);
+        if ($sort === null) {
+            usort($items, [static::class, 'sort']);
+        } else {
+            $functionName = sprintf('get%s', $sort->getProperty());
+
+            try {
+                if ($sort->getOrder() === Order::ASC) {
+                    usort($items, fn ($a, $b) => $a->{$functionName}() <=> $b->{$functionName}());
+                } else {
+                    usort($items, fn ($a, $b) => $b->{$functionName}() <=> $a->{$functionName}());
+                }
+            } catch (\Throwable $e) {
+                throw new UnknownFieldException($e->getMessage());
+            }
+        }
 
         return $items;
     }

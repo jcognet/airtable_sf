@@ -32,14 +32,49 @@
                     <thead>
                     <tr>
                         {% for field in fields %}
-                            <th>{{ field.label }}</th>
+                            <th>
+                                {{ field.label|capitalize }}
+                                {% if field.isSortable and (sort is null or sort.order.value != 'asc' or field.property != sort.property) %}
+                                    <a
+                                        href="{{ path('list_imported_data_show', {'importedDataType': current_item, 'sort_field': field.property,'sort_order': 'asc' }) }}"
+                                        title="Trier la liste par {{ field.label}} et par ordre croissant"
+                                    >
+                                        <span class="icon">
+                                            <i class="fas fa-arrow-up"></i>
+                                        </span>
+                                    </a>
+                                {% endif %}
+                                {% if field.isSortable and (sort is null or sort.order.value != 'desc' or field.property != sort.property) %}
+                                    <a
+                                        href="{{ path('list_imported_data_show', {'importedDataType': current_item, 'sort_field': field.property,'sort_order': 'desc' }) }}"
+                                        title="Trier la liste par {{ field.label}} et par ordre décroissant"
+                                    >
+                                        <span class="icon">
+                                            <i class="fas fa-arrow-down"></i>
+                                        </span>
+                                    </a>
+                                {% endif %}
+                            </th>
                         {% endfor %}
                     </tr>
                     </thead>
                     <tbody>
                     {% for data in list_data %}
                         <tr>
-                            <td>{{ data.title }}</td>
+                            {% for field in fields %}
+                                <td>
+                                    {% set value = attribute(data, field.property) %}
+                                    {% if is_url(value) %}
+                                        <a href="{{ value }}" target="_blank">
+                                            <span class="icon">
+                                                <i class="fas fa-arrow-right"></i>
+                                            </span>
+                                        </a>
+                                    {% else %}
+                                        {{ value }}
+                                    {% endif %}
+                                </td>
+                            {% endfor %}
                         </tr>
                     {% endfor %}
                     </tbody>
