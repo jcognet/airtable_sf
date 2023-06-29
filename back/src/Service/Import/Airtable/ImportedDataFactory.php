@@ -27,7 +27,7 @@ class ImportedDataFactory implements ServiceSubscriberInterface
             $lister = $this->locator->get(
                 str_replace('Config', 'Lister', $config::class)
             );
-        } catch (ServiceNotFoundException $e) {
+        } catch (ServiceNotFoundException) {
             throw new UnknownListServiceException($config::class, self::class);
         }
 
