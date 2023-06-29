@@ -3,6 +3,8 @@ declare(strict_types=1);
 
 namespace App\Controller\Page;
 
+use App\Exception\Import\Airtable\UnknownDataImportedTypeException;
+use App\Exception\Import\Airtable\UnknownListServiceException;
 use App\Service\Import\Airtable\ImportedDataFactory;
 use App\Service\Import\Airtable\IsListable;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -17,7 +19,11 @@ class ListImportedDataController extends AbstractController
         string $importedDataType,
         ImportedDataFactory $importedDataFactory
     ): Response {
-        $importedData = $importedDataFactory->make($importedDataType);
+        try {
+            $importedData = $importedDataFactory->make($importedDataType);
+        } catch (UnknownDataImportedTypeException|UnknownListServiceException $e) {
+            throw $this->createNotFoundException($e->getMessage());
+        }
 
         return $this->render(
             'list_imported_data/show.html.twig',

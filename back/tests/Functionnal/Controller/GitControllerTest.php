@@ -30,12 +30,9 @@ final class GitControllerTest extends WebTestCase
 
     public function test_deploy(): void
     {
-        // This calls KernelTestCase::bootKernel(), and creates a
-        // "client" that is acting as the browser
         $client = self::createClient();
         $client->followRedirects(true);
 
-        // Request a specific page
         $client->request(
             'POST',
             '/git/deploy',
@@ -50,12 +47,9 @@ final class GitControllerTest extends WebTestCase
 
     public function test_version(): void
     {
-        // This calls KernelTestCase::bootKernel(), and creates a
-        // "client" that is acting as the browser
         $client = self::createClient();
         $client->followRedirects(true);
 
-        // Request a specific page
         $client->request('GET', '/git/show');
         $content = $client->getResponse()->getContent();
         $this->assertResponseIsSuccessful();
