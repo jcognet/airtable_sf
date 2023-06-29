@@ -15,16 +15,15 @@ final class ImportControllerTest extends WebTestCase
 
     public function test_import(): void
     {
-        // This calls KernelTestCase::bootKernel(), and creates a
-        // "client" that is acting as the browser
         $client = self::createClient();
         $client->followRedirects(true);
         $this->loginUser($client);
 
-        // Request a specific page
         $client->request('GET', '/import/all');
+
         $this->assertResponseIsSuccessful();
         $content = $client->getResponse()->getContent();
+
         self::assertJson($content);
     }
 }

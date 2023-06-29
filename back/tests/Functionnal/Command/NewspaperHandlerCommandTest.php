@@ -32,7 +32,7 @@ final class NewspaperHandlerCommandTest extends KernelTestCase
         $commandTester->execute([]);
 
         $commandTester->assertCommandIsSuccessful();
-        // the output of the command in the console
+
         $output = $commandTester->getDisplay();
         self::assertStringContainsString('Duration', $output);
         $this->assertEmailCount(1);
