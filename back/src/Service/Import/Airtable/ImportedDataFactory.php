@@ -6,6 +6,7 @@ namespace App\Service\Import\Airtable;
 use App\Exception\Import\Airtable\UnknownListServiceException;
 use App\Service\Import\Airtable\Article\ALire\Lister as ALireLister;
 use App\ValueObject\Import\Airtable\ImportedData;
+use App\ValueObject\Import\Airtable\Sort;
 use Psr\Container\ContainerInterface;
 use Symfony\Component\DependencyInjection\Exception\ServiceNotFoundException;
 use Symfony\Contracts\Service\ServiceSubscriberInterface;
@@ -19,8 +20,10 @@ class ImportedDataFactory implements ServiceSubscriberInterface
     ) {
     }
 
-    public function make(string $type): ImportedData
-    {
+    public function make(
+        string $type,
+        ?Sort $sort
+    ): ImportedData {
         $config = $this->configFactory->make($type);
         // @var AbstractLister $lister
         try {
@@ -34,7 +37,7 @@ class ImportedDataFactory implements ServiceSubscriberInterface
         return new ImportedData(
             label: $config->getPublicLabel(),
             fields: $this->yamlListReader->getFields($config),
-            data: $lister->list()
+            data: $lister->list($sort)
         );
     }
 

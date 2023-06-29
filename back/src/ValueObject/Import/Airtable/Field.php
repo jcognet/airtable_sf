@@ -7,7 +7,8 @@ class Field
 {
     public function __construct(
         private readonly string $property,
-        private readonly ?string $label = null
+        private readonly ?string $label = null,
+        private readonly bool $isSortable = false,
     ) {
     }
 
@@ -23,5 +24,10 @@ class Field
     public function getProperty(): string
     {
         return $this->property;
+    }
+
+    public function isSortable(): bool
+    {
+        return $this->isSortable;
     }
 }

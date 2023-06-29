@@ -31,7 +31,8 @@ class YamlListReader
         foreach ($yamlFields as $yamlField) {
             $fields[] = new Field(
                 property: $yamlField['property'] ?? $yamlField,
-                label: $yamlField['label'] ?? null
+                label: $yamlField['label'] ?? null,
+                isSortable: $yamlField['is_sortable'] ?? true,
             );
         }
 
