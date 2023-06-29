@@ -24,9 +24,17 @@ class MeteoRepository
     {
         $meteoItemList = [];
         $date = Carbon::now();
+        $places = [];
 
         for ($i = 0; $i <= self::NB_DAYS - 1; ++$i) {
-            $place = $this->placeFactory->make($date);
+            $places[$i] = $this->placeFactory->make($date);
+            $date->addDay();
+        }
+
+        $meteoByPlace = [];
+        $uniquePlaces = array_unique($places, SORT_REGULAR);
+
+        foreach ($uniquePlaces as $place) {
             $meteoContent = json_decode(
                 $this->meteoClient->request(
                     'GET',
@@ -41,10 +49,16 @@ class MeteoRepository
                 512,
                 JSON_THROW_ON_ERROR
             );
-            $meteoItemList[] = $this->meteoItemBuilder->build(
-                [...$meteoContent['forecast'][$i], ...['place' => $place]]
-            );
-            $date->addDay();
+
+            for ($i = 0; $i <= self::NB_DAYS - 1; ++$i) {
+                $meteoByPlace[$place->getResearchKey()][$i] = $this->meteoItemBuilder->build(
+                    [...$meteoContent['forecast'][$i], ...['place' => $place]]
+                );
+            }
+        }
+
+        for ($i = 0; $i <= self::NB_DAYS - 1; ++$i) {
+            $meteoItemList[] = $meteoByPlace[$places[$i]->getResearchKey()][$i];
         }
 
         return new MeteoList(
