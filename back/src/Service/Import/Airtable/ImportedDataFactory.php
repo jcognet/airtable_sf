@@ -5,6 +5,7 @@ namespace App\Service\Import\Airtable;
 
 use App\Exception\Import\Airtable\UnknownListServiceException;
 use App\Service\Import\Airtable\Article\ALire\Lister as ALireLister;
+use App\Service\Import\Airtable\Article\SeeAgain\Lister as SeeAgainLister;
 use App\ValueObject\Import\Airtable\ImportedData;
 use App\ValueObject\Import\Airtable\Sort;
 use Psr\Container\ContainerInterface;
@@ -45,6 +46,7 @@ class ImportedDataFactory implements ServiceSubscriberInterface
     {
         return [
             ALireLister::class,
+            SeeAgainLister::class,
         ];
     }
 }
