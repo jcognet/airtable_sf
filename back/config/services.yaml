@@ -136,6 +136,10 @@ services:
     arguments:
       $config: '@App\Service\Import\Airtable\Article\ALire\Config'
 
+  App\Service\Import\Airtable\Article\SeeAgain\Lister:
+    arguments:
+      $config: '@App\Service\Import\Airtable\Article\SeeAgain\Config'
+
   App\Service\Import\Airtable\Holiday\Holiday\Importer:
     arguments:
       $config: '@App\Service\Import\Airtable\Holiday\Holiday\Config'
@@ -155,6 +159,11 @@ services:
     arguments:
       $config: '@App\Service\Import\Airtable\Article\ALire\Config'
       $client: '@App\Service\AirTable\Article\ALireClient'
+
+  App\Service\Import\Airtable\Article\SeeAgain\Importer:
+    arguments:
+      $config: '@App\Service\Import\Airtable\Article\SeeAgain\Config'
+      $client: '@App\Service\AirTable\Article\SeeAgainClient'
 
 when@test:
   parameters:

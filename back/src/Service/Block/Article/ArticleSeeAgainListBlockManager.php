@@ -21,9 +21,7 @@ class ArticleSeeAgainListBlockManager implements BlockManagerInterface
         $articles = [];
 
         for ($i = 0; $i < self::NB_ARTICLE; ++$i) {
-            $articles[] = $this->seeAgainClient->fetchRandomData(
-                ['filterByFormula' => '{A revoir} = 1']
-            );
+            $articles[] = $this->seeAgainClient->fetchRandomData();
         }
 
         $articles = array_filter($articles);

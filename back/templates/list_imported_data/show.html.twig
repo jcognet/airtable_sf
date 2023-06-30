@@ -8,7 +8,9 @@
                 data-aos="fade-in"
                 data-aos-easing="linear"
             >
-                <h1 class="title has-text-centered section-title test-list">Données importées : {{ label }}</h1>
+                <h1 class="title has-text-centered section-title test-list">
+                    Données importées : {{ label }}
+                </h1>
             </div>
         </div>
     </div>
@@ -28,6 +30,11 @@
                 {% endfor %}
             </div>
             <div class="column">
+                <div>
+                    <span class="tag is-info is-rounded">
+                        {{ list_data|length }} éléments
+                    </span>
+                </div>
                 <table class="table">
                     <thead>
                     <tr>
@@ -37,7 +44,7 @@
                                 {% if field.isSortable and (sort is null or sort.order.value != 'asc' or field.property != sort.property) %}
                                     <a
                                         href="{{ path('list_imported_data_show', {'importedDataType': current_item, 'sort_field': field.property,'sort_order': 'asc' }) }}"
-                                        title="Trier la liste par {{ field.label}} et par ordre croissant"
+                                        title="Trier la liste par {{ field.label }} et par ordre croissant"
                                     >
                                         <span class="icon">
                                             <i class="fas fa-arrow-up"></i>
@@ -47,7 +54,7 @@
                                 {% if field.isSortable and (sort is null or sort.order.value != 'desc' or field.property != sort.property) %}
                                     <a
                                         href="{{ path('list_imported_data_show', {'importedDataType': current_item, 'sort_field': field.property,'sort_order': 'desc' }) }}"
-                                        title="Trier la liste par {{ field.label}} et par ordre décroissant"
+                                        title="Trier la liste par {{ field.label }} et par ordre décroissant"
                                     >
                                         <span class="icon">
                                             <i class="fas fa-arrow-down"></i>
