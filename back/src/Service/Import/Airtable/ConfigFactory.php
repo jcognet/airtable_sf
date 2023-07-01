@@ -22,6 +22,6 @@ class ConfigFactory
             }
         }
 
-        throw new UnknownDataImportedTypeException($type, $this->isImported->fetchAll());
+        throw new UnknownDataImportedTypeException($type, array_map(fn (AirtableConfigInterface $config) => $config->getPublicKey(), $this->isImported->fetchAll()));
     }
 }

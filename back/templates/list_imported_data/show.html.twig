@@ -21,9 +21,11 @@
                     <ul>
                         <li>
                             <a
-                                href="{{ path('list_imported_data_show', {'importedDataType': item}) }}"
-                                class="{% if current_item == item %}has-text-primary {% else %}has-text-link{% endif %}">
-                                {{ item }}
+                                href="{{ path('list_imported_data_show', {'importedDataType': item.publicKey}) }}"
+                                class="{% if current_item == item.publicKey %}has-text-primary {% else %}has-text-link{% endif %}"
+                                title="Voir les données importées : {{ item.publicLabel }}"
+                            >
+                                {{ item.publicLabel|capitalize }}
                             </a>
                         </li>
                     </ul>
