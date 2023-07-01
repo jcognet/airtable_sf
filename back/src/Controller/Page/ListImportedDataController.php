@@ -42,6 +42,7 @@ class ListImportedDataController extends AbstractController
                 'type_listable' => $isListable->fetchAll(),
                 'current_item' => $importedDataType,
                 'sort' => $sort,
+                'head_title' => sprintf('Données importées : %s', $importedData->getLabel()),
             ]
         );
     }

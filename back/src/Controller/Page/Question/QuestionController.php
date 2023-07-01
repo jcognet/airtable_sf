@@ -33,6 +33,7 @@ class QuestionController extends AbstractController
                 'question' => $question,
                 'answer' => $answer,
                 'show_answer' => $showAnswer,
+                'head_title' => sprintf('Réponse à la question : %s', $question->getQuestion()),
             ]
         );
     }
@@ -53,6 +54,7 @@ class QuestionController extends AbstractController
                 'question' => $question,
                 'answer' => null,
                 'show_answer' => null,
+                'head_title' => sprintf('Question : %s', $question->getQuestion()),
             ]
         );
     }
