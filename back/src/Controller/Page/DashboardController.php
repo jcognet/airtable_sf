@@ -56,7 +56,10 @@ class DashboardController extends AbstractController
     public function example(): Response
     {
         return $this->render(
-            'dashboard/example.html.twig'
+            'dashboard/example.html.twig',
+            [
+                'head_title' => 'Page d\'exemple',
+            ]
         );
     }
 
@@ -79,6 +82,7 @@ class DashboardController extends AbstractController
                 'newspaper_date' => $newsletter->getNewspaper()->getDate(),
                 'directory_image_list' => $directoryLister->list(),
                 'newspaper' => $newsletter->getNewspaper(),
+                'head_title' => 'Vacances !!',
             ]
         );
     }
