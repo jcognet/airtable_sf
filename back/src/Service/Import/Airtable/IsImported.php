@@ -24,12 +24,15 @@ class IsImported
         return false;
     }
 
+    /**
+     * AirtableConfigInterface[]
+     */
     public function fetchAll(): array
     {
         $data = [];
         /** @var AirtableConfigInterface $config */
         foreach ($this->configs as $config) {
-            $data[] = $config->getPublicKey();
+            $data[] = $config;
         }
 
         return $data;

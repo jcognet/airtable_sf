@@ -5,6 +5,7 @@ namespace App\Service\Import\Airtable;
 
 use App\Exception\Import\Airtable\NoFileYamlException;
 use App\Exception\Import\Airtable\UnknownDataImportedTypeException;
+use App\Service\Contract\AirtableConfigInterface;
 
 class IsListable
 {
@@ -41,12 +42,12 @@ class IsListable
         $typeListable = [];
 
         foreach ($this->isImported->fetchAll() as $type) {
-            if ($this->isListable($type)) {
+            if ($this->isListable($type->getPublicKey())) {
                 $typeListable[] = $type;
             }
         }
 
-        sort($typeListable);
+        usort($typeListable, fn (AirtableConfigInterface $a, AirtableConfigInterface $b) => $a->getPublicLabel() <=> $b->getPublicLabel());
 
         return $typeListable;
     }
