@@ -7,6 +7,7 @@ use App\Service\Archive\NewsletterWriterFetcher;
 use App\Service\Archive\PreviousNewsletterFetcher;
 use App\Service\Export\Fetcher;
 use App\Service\Holiday\IsHolidayDeterminator;
+use App\Service\Import\Airtable\IsListable;
 use App\Service\Picture\DirectoryLister;
 use App\Service\Repository\Official\PassportRepository;
 use Carbon\Carbon;
@@ -25,7 +26,8 @@ class DashboardController extends AbstractController
         PreviousNewsletterFetcher $previousNewsletterFetcher,
         Fetcher $exporterFetcher,
         DirectoryLister $directoryLister,
-        IsHolidayDeterminator $isHolidayDeterminator
+        IsHolidayDeterminator $isHolidayDeterminator,
+        IsListable $isListable,
     ): Response {
         $date = Carbon::parse($request->query->get('date', null));
 
@@ -48,6 +50,7 @@ class DashboardController extends AbstractController
                 'previous_newspapers' => $previousNewsletterFetcher->fetchNewspapers($date),
                 'kpi' => $exporterFetcher->fetch($date),
                 'directory_image_list' => $directoryLister->list(),
+                'type_listable' => $isListable->fetchAll(),
             ]
         );
     }
@@ -68,6 +71,7 @@ class DashboardController extends AbstractController
         Request $request,
         NewsletterWriterFetcher $newsletterWriterFetcher,
         DirectoryLister $directoryLister,
+        IsListable $isListable,
     ): Response {
         $date = Carbon::parse($request->query->get('date', null));
         $newsletter = $newsletterWriterFetcher->get($date);
@@ -83,6 +87,7 @@ class DashboardController extends AbstractController
                 'directory_image_list' => $directoryLister->list(),
                 'newspaper' => $newsletter->getNewspaper(),
                 'head_title' => 'Vacances !!',
+                'type_listable' => $isListable->fetchAll(),
             ]
         );
     }

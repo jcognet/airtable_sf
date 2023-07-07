@@ -10,6 +10,7 @@ use Symfony\Component\HttpFoundation\RequestStack;
 class IsHolidayDeterminator
 {
     private const HOLIDAY_GET_KEYWORD = 'holiday';
+    private const HOLIDAY_GET_KEYWORD_FORCE_FALSE = 'false';
 
     public function __construct(
         private readonly RequestStack $requestStack,
@@ -19,8 +20,11 @@ class IsHolidayDeterminator
 
     public function isHoliday(?Carbon $date): bool
     {
-        if ($this->requestStack->getMainRequest() !== null && $this->requestStack->getMainRequest()->query->has(self::HOLIDAY_GET_KEYWORD)) {
-            return true;
+        if (
+            $this->requestStack->getMainRequest() !== null
+            && $this->requestStack->getMainRequest()->query->has(self::HOLIDAY_GET_KEYWORD)
+        ) {
+            return $this->requestStack->getMainRequest()->query->get(self::HOLIDAY_GET_KEYWORD) !== self::HOLIDAY_GET_KEYWORD_FORCE_FALSE;
         }
 
         if ($date === null) {
