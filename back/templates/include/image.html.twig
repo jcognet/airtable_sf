@@ -6,7 +6,7 @@
     >
         <figure
             class="image is-2by1 work-item"
-            style="background-image: url('{{ absolute_url(path('img_thumbnail', {'pathImage': picture.id})) }}');background-repeat: no-repeat;background-position:center"
+            style="background-image: url('{{ absolute_url(path('img_thumbnail', {'pathImage': picture.id})) }}?format=main_image_previous');background-repeat: no-repeat;background-position:center"
         ></figure>
         {% if legend is defined and legend is not null %}
             <div class="notification is-info">
