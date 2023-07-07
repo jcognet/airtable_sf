@@ -67,6 +67,7 @@ class ImageController extends AbstractController
             'img/list.html.twig',
             [
                 'directory' => $directory,
+                'directory_current' => $directory->getPath(),
             ],
         );
     }

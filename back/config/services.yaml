@@ -40,6 +40,7 @@ services:
       $airtableAppRunId: '%env(AIRTABLE_APP_RUN_ID)%'
       $airtableAppQcmId: '%env(AIRTABLE_APP_QCM_ID)%'
       $airtableAppHollidayId: '%env(AIRTABLE_APP_HOLLIDAY_ID)%'
+      $airtableAppClientId: '%env(AIRTABLE_APP_FILE_ID)%'
       $mailerFrom: '%env(MAILER_FROM)%'
       $mailerTo: '%env(MAILER_TO)%'
       $projectDir: '%kernel.project_dir%'
@@ -49,6 +50,7 @@ services:
       $deployArchiveJsonPath: '%deployArchiveJsonPath%'
       $birdPath: '%kernel.project_dir%/src/Data/bird/'
       $picturePath: '%kernel.project_dir%/src/Data/photo/'
+      $filePath: '%kernel.project_dir%/src/Data/file/'
       $googleCredentialFile: '%kernel.project_dir%/config/google_credential.json'
       $spreadSheetAirtableId: '%env(GOOGLE_SPREADSHEET_EXPORT_ID)%'
       $progressContentUrl: '%env(GOOGLE_PROGRESS_CONTENT_URL)%'
@@ -140,6 +142,10 @@ services:
     arguments:
       $config: '@App\Service\Import\Airtable\Article\SeeAgain\Config'
 
+  App\Service\Import\Airtable\File\File\Lister:
+    arguments:
+      $config: '@App\Service\Import\Airtable\File\File\Config'
+
   App\Service\Import\Airtable\Holiday\Holiday\Importer:
     arguments:
       $config: '@App\Service\Import\Airtable\Holiday\Holiday\Config'
@@ -164,6 +170,11 @@ services:
     arguments:
       $config: '@App\Service\Import\Airtable\Article\SeeAgain\Config'
       $client: '@App\Service\AirTable\Article\SeeAgainClient'
+
+  App\Service\Import\Airtable\File\File\Importer:
+    arguments:
+      $config: '@App\Service\Import\Airtable\File\File\Config'
+      $client: '@App\Service\AirTable\File\FileClient'
 
 when@test:
   parameters:

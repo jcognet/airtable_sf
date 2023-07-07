@@ -1,12 +1,12 @@
 <?php
 declare(strict_types=1);
 
-namespace App\Service\Picture;
+namespace App\Service;
 
 use App\Exception\Picture\ImageNotDownloadableException;
 use Symfony\Component\Filesystem\Filesystem;
 
-class ImageDownloader
+class FileDownloader
 {
     public function download(
         string $url,

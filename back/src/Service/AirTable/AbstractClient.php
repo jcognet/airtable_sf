@@ -10,7 +10,6 @@ use Symfony\Component\HttpClient\Exception\ClientException;
 abstract class AbstractClient
 {
     private const NB_TRY_RANDOM = 5;
-
     private array $recordsByParam = [];
     private array $randomKeyByParam = [];
 
@@ -26,16 +25,7 @@ abstract class AbstractClient
         $keyResearch = $this->createKey($param);
 
         if (!isset($this->recordsByParam[$keyResearch])) {
-            $this->recordsByParam[$keyResearch] = json_decode(
-                $this->airtableClient->request(
-                    'GET',
-                    sprintf('%s/%s', $this->airtableAppId, $this->getFetchUrl()),
-                    $param,
-                ),
-                true,
-                512,
-                JSON_THROW_ON_ERROR
-            )['records'];
+            $this->findAll($param);
         }
 
         $articles = $this->recordsByParam[$keyResearch];
@@ -56,14 +46,14 @@ abstract class AbstractClient
             ++$count;
         }
 
-        // key is already used
+        // key is already used and we are at the max attempt => we stop there.
         if (in_array($key, $this->randomKeyByParam[$keyResearch], true)) {
             return null;
         }
 
         $this->randomKeyByParam[$keyResearch][] = $key;
 
-        return $this->builder->build($articles[$key]);
+        return $articles[$key];
     }
 
     public function findAll(array $param = []): array
