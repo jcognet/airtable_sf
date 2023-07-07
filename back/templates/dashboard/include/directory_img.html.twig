@@ -11,7 +11,12 @@
             </div>
             {% for directory in directory_image_list %}
                 {% set main_image = random_image_from_directory(directory.relativePathName) %}
-                {% include './include/image.html.twig' with {'picture': main_image, 'legend': directory.relativePathName} only %}
+                {% include './include/image.html.twig' with {
+                    'picture': main_image,
+                    'legend': directory.relativePathName,
+                    'picture_url': path('img_list', {directory: directory.relativePathName}),
+                    'picture_title': 'Voir les images du répertoire '~directory.relativePathName
+                    } only %}
             {% endfor %}
         </div>
     </div>

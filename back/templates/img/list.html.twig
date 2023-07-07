@@ -16,7 +16,11 @@
         <div class="container">
             <div class="columns is-multiline">
                 {% for picture in directory.pictures %}
-                    {% include './include/image.html.twig' with {picture} only %}
+                    {% include './include/image.html.twig' with {
+                        picture,
+                        'picture_url': absolute_url( path('img_normal', {'pathImage': picture.id})),
+                        'picture_title': 'Voir la taille 1 de la photo'
+                    } only %}
                 {% endfor %}
             </div>
         </div>
