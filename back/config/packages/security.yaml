@@ -34,4 +34,5 @@ security:
         - { path: ^/git/*, roles: PUBLIC_ACCESS }
         - { path: ^/img/thumbnail/*, roles: PUBLIC_ACCESS }
         - { path: ^/img/normal/*, roles: PUBLIC_ACCESS }
+        - { path: ^/img/list, roles: PUBLIC_ACCESS }
         - { path: ^/, roles: ROLE_USER }

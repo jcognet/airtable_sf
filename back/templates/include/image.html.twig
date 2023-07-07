@@ -1,0 +1,17 @@
+<div class="column is-3">
+    <a
+        href="{{ absolute_url( path('img_normal', {'pathImage': picture.id})) }}"
+        title="Voir la taille 1 de la photo"
+        target="_blank"
+    >
+        <figure
+            class="image is-2by1 work-item"
+            style="background-image: url('{{ absolute_url(path('img_thumbnail', {'pathImage': picture.id})) }}');background-repeat: no-repeat;background-position:center"
+        ></figure>
+        {% if legend is defined and legend is not null %}
+            <div class="notification is-info">
+                {{ legend }}
+            </div>
+        {% endif %}
+    </a>
+</div>
