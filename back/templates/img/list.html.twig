@@ -1,5 +1,24 @@
-{% extends 'newsletter/base.html.twig' %}
+{% extends './page/base.html.twig' %}
 
 {% block body %}
-    {% include 'newsletter/block/image_list_pictures.html.twig' with {block: directory} %}
+    <div class="section-light">
+        <div class="container">
+            <div
+                class="column is-12 about-me"
+                data-aos="fade-in"
+                data-aos-easing="linear"
+            >
+                <h1 class="title has-text-centered section-title test-holiday">Images de {{ directory_current }}</h1>
+            </div>
+        </div>
+    </div>
+    <div class="section-color services" id="services">
+        <div class="container">
+            <div class="columns is-multiline">
+                {% for picture in directory.pictures %}
+                    {% include './include/image.html.twig' with {picture} only %}
+                {% endfor %}
+            </div>
+        </div>
+    </div>
 {% endblock %}
