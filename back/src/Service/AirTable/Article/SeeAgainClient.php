@@ -38,7 +38,11 @@ class SeeAgainClient extends AbstractClient
         if (!isset($param['filterByFormula'])) {
             $param['filterByFormula'] = '{A revoir} = 1';
         } else {
-            $param['filterByFormula'] .= ' AND {A revoir} = 1';
+            if (str_contains((string) $param['filterByFormula'], '{A revoir} = 1')) {
+                return $param;
+            }
+
+            $param['filterByFormula'] = sprintf(' AND (%s, {A revoir} = 1)', $param['filterByFormula']);
         }
 
         return $param;

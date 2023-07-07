@@ -22,6 +22,7 @@ abstract class AbstractImporter implements AirtableImporterInterface
     public function import(): array
     {
         $data = $this->client->findAll();
+        $data = $this->preSave($data);
         $this->save($data);
 
         return $data;
@@ -35,6 +36,11 @@ abstract class AbstractImporter implements AirtableImporterInterface
     public function getLabel(): string
     {
         return $this->config->getClass();
+    }
+
+    protected function preSave(array $data): array
+    {
+        return $data;
     }
 
     private function save(array $data): void

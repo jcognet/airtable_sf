@@ -3,8 +3,8 @@ declare(strict_types=1);
 
 namespace App\Service\Builder\Picture;
 
+use App\Service\FileDownloader;
 use App\Service\Picture\CachedImageDirectoryGetter;
-use App\Service\Picture\ImageDownloader;
 use App\Service\Picture\PictureFactory;
 use App\ValueObject\Picture\CachedImage;
 use Symfony\Component\String\Slugger\SluggerInterface;
@@ -15,7 +15,7 @@ class CachedImageBuilder
         private readonly PictureFactory $pictureFactory,
         private readonly SluggerInterface $slugger,
         private readonly CachedImageDirectoryGetter $directoryGetter,
-        private readonly ImageDownloader $imageDownloader
+        private readonly FileDownloader $fileDownloader
     ) {
     }
 
@@ -47,7 +47,7 @@ class CachedImageBuilder
             $slug
         );
 
-        $this->imageDownloader->download(
+        $this->fileDownloader->download(
             $airtableUrl,
             $localPathPicture
         );
