@@ -10,6 +10,7 @@ class File
     private ?string $filePath = null;
     private ?string $airtableTmpFileUrl = null;
     private ?string $airtableTmpFileName = null;
+    private ?string $fileUrl = null;
 
     public function __construct(
         private readonly string $id,
@@ -69,5 +70,15 @@ class File
     public function setAirtableTmpFileName(?string $airtableTmpFileName): void
     {
         $this->airtableTmpFileName = $airtableTmpFileName;
+    }
+
+    public function getFileUrl(): ?string
+    {
+        return $this->fileUrl;
+    }
+
+    public function setFileUrl(?string $fileUrl): void
+    {
+        $this->fileUrl = $fileUrl;
     }
 }
