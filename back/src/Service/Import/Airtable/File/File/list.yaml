@@ -6,7 +6,10 @@ fields:
     label: url
     property: url
     is_sortable: false
-
+  -
+    label: Fichier
+    property: fileUrl
+    is_sortable: false
   -
     label: Notes Airtable
     property: airTableUrl
