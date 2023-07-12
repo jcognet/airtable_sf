@@ -12,7 +12,8 @@ class ImageInPathLister
 
     public function __construct(
         private readonly PictureFactory $pictureFactory,
-        private readonly string $picturePath
+        private readonly string $picturePath,
+        private readonly EncoderDecoder $encoderDecoder
     ) {
     }
 
@@ -34,6 +35,12 @@ class ImageInPathLister
             );
         }
 
-        return new Directory($absolutePath, $pictures);
+        return new Directory(
+            path: $absolutePath,
+            pictures: $pictures,
+            downloadLink: $this->encoderDecoder->encode(
+                ZipAllPictureDirectory::getFileName($absolutePath)
+            )
+        );
     }
 }

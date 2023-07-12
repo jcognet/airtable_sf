@@ -2,7 +2,7 @@
     <a
         href="{{ picture_url }}"
         title=" {{ picture_title }}"
-        target="_blank"
+        {% if is_blank is defined %}target="_blank"{% endif %}
     >
         <figure
             class="image is-2by1 work-item"
