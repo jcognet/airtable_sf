@@ -9,6 +9,13 @@
                 data-aos-easing="linear"
             >
                 <h1 class="title has-text-centered section-title test-img-random">Images de {{ directory_current }}</h1>
+                {% if is_downloadable %}
+                    <a
+                        href="{{ path('file_download', {'pathFile': directory.downloadLink}) }}"
+                        class="button is-link is-rounded">
+                        Télécharger
+                    </a>
+                {% endif %}
             </div>
         </div>
     </div>
@@ -19,7 +26,8 @@
                     {% include './include/image.html.twig' with {
                         picture,
                         'picture_url': absolute_url( path('img_normal', {'pathImage': picture.id})),
-                        'picture_title': 'Voir la taille 1 de la photo'
+                        'picture_title': 'Voir la taille 1 de la photo',
+                        is_blank: true
                     } only %}
                 {% endfor %}
             </div>

@@ -10,7 +10,8 @@ class Directory extends AbstractBlock
 {
     public function __construct(
         private readonly string $path,
-        private array $pictures
+        private array $pictures,
+        private readonly string $downloadLink
     ) {
         usort($this->pictures, fn (Picture $a, Picture $b) => $a->getPath() <=> $b->getPath());
     }
@@ -41,5 +42,10 @@ class Directory extends AbstractBlock
     public function getType(): BlockType
     {
         return BlockType::IMAGE_LIST_PICTURES;
+    }
+
+    public function getDownloadLink(): string
+    {
+        return $this->downloadLink;
     }
 }

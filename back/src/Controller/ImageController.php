@@ -6,6 +6,7 @@ namespace App\Controller;
 use App\Enum\Picture\Format;
 use App\Service\Picture\EncoderDecoder;
 use App\Service\Picture\ImageInPathLister;
+use App\Service\Picture\IsDirectoryDownloadable;
 use App\Service\Picture\PictureFactory;
 use App\Service\Picture\RandomDirectorySelector;
 use App\Service\Picture\ThumbnailerGetter;
@@ -21,7 +22,8 @@ class ImageController extends AbstractController
     #[Route(path: '/img/list/', name: 'img_list', methods: ['GET'])]
     public function list(
         Request $request,
-        ImageInPathLister $imageInPathLister
+        ImageInPathLister $imageInPathLister,
+        IsDirectoryDownloadable $isDirectoryDownloadable
     ): Response {
         if (!$request->query->has('directory')) {
             throw $this->createNotFoundException();
@@ -40,6 +42,7 @@ class ImageController extends AbstractController
             [
                 'directory' => $directory,
                 'directory_current' => $directoryPath,
+                'is_downloadable' => $isDirectoryDownloadable->isDownloadable($directory),
             ],
         );
     }
@@ -47,7 +50,8 @@ class ImageController extends AbstractController
     #[Route(path: '/img/random/', name: 'img_random', methods: ['GET'])]
     public function random(
         ImageInPathLister $imageInPathLister,
-        RandomDirectorySelector $randomDirectorySelector
+        RandomDirectorySelector $randomDirectorySelector,
+        IsDirectoryDownloadable $isDirectoryDownloadable
     ): Response {
         $directoryPath = $randomDirectorySelector->getRandomDirectory();
 
@@ -68,6 +72,7 @@ class ImageController extends AbstractController
             [
                 'directory' => $directory,
                 'directory_current' => $directory->getPath(),
+                'is_downloadable' => $isDirectoryDownloadable->isDownloadable($directory),
             ],
         );
     }
