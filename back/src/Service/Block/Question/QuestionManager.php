@@ -23,7 +23,7 @@ class QuestionManager implements BlockManagerInterface
         $list = $this->questionLister->list();
         $oldestUsedQuestion = array_slice($list, 0, self::NB_RANDOM_ELT);
         $chosenQuestion = $oldestUsedQuestion[array_rand($oldestUsedQuestion)];
-        $this->questionClient->update($chosenQuestion);
+        $this->questionClient->updateLastUsed($chosenQuestion);
 
         return $chosenQuestion;
     }

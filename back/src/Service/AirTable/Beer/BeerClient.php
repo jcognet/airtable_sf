@@ -4,17 +4,15 @@ declare(strict_types=1);
 namespace App\Service\AirTable\Beer;
 
 use App\Service\AirTable\AbstractClient;
-use App\Service\AirTable\AirtableClient;
 use App\Service\Builder\Beer\BeerBuilder;
 
 class BeerClient extends AbstractClient
 {
     public function __construct(
-        AirtableClient $airtableClient,
-        BeerBuilder $beerBuilder,
-        string $airtableAppBiereId
+        string $airtableAppBiereId,
+        BeerBuilder $beerBuilder
     ) {
-        parent::__construct($airtableClient, $airtableAppBiereId, $beerBuilder);
+        parent::__construct($airtableAppBiereId, $beerBuilder);
     }
 
     protected function getFetchUrl(): string

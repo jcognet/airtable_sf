@@ -4,17 +4,15 @@ declare(strict_types=1);
 namespace App\Service\AirTable\Article;
 
 use App\Service\AirTable\AbstractClient;
-use App\Service\AirTable\AirtableClient;
 use App\Service\Builder\Article\ArticleToReadBuilder;
 
 class ALireClient extends AbstractClient
 {
     public function __construct(
-        AirtableClient $airtableClient,
         string $airtableAppArticleId,
         ArticleToReadBuilder $articleBuilder
     ) {
-        parent::__construct($airtableClient, $airtableAppArticleId, $articleBuilder);
+        parent::__construct($airtableAppArticleId, $articleBuilder);
     }
 
     protected function getFetchUrl(): string

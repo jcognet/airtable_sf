@@ -5,7 +5,6 @@ namespace App\Service\AirTable\ToDo;
 
 use App\Exception\MethodNotUsableException;
 use App\Service\AirTable\AbstractClient;
-use App\Service\AirTable\AirtableClient;
 use App\Service\Builder\ToDo\ItemBuilder;
 use App\ValueObject\BlockInterface;
 use App\ValueObject\ToDo\Item;
@@ -13,11 +12,10 @@ use App\ValueObject\ToDo\Item;
 class ItemClient extends AbstractClient
 {
     public function __construct(
-        AirtableClient $airtableClient,
-        string $airtableAppToDoId,
-        ItemBuilder $itemBuilder
+        ItemBuilder $itemBuilder,
+        string $airtableAppToDoId
     ) {
-        parent::__construct($airtableClient, $airtableAppToDoId, $itemBuilder);
+        parent::__construct($airtableAppToDoId, $itemBuilder);
     }
 
     /**

@@ -6,18 +6,34 @@ namespace App\Service\AirTable;
 use App\Service\Builder\BuilderInterface;
 use App\ValueObject\BlockInterface;
 use Symfony\Component\HttpClient\Exception\ClientException;
+use Symfony\Contracts\Service\Attribute\Required;
 
 abstract class AbstractClient
 {
     private const NB_TRY_RANDOM = 5;
+
+    protected readonly AirtableClient $airtableClient;
     private array $recordsByParam = [];
     private array $randomKeyByParam = [];
 
+    private LastUsedManager $lastUsedManager;
+
     public function __construct(
-        protected readonly AirtableClient $airtableClient,
         protected readonly string $airtableAppId,
         private readonly BuilderInterface $builder
     ) {
+    }
+
+    #[Required]
+    public function setLastUsedManager(LastUsedManager $lastUsedManager): void
+    {
+        $this->lastUsedManager = $lastUsedManager;
+    }
+
+    #[Required]
+    public function setAirtableClient(AirtableClient $airtableClient): void
+    {
+        $this->airtableClient = $airtableClient;
     }
 
     public function fetchRandomData(array $param = []): ?BlockInterface
@@ -74,7 +90,9 @@ abstract class AbstractClient
             );
 
             foreach ($response['records'] as $rawData) {
-                $this->recordsByParam[$keyResearch][$rawData['id']] = $this->builder->build($rawData);
+                $object = $this->builder->build($rawData);
+                $this->lastUsedManager->onPostBuild($object, $rawData);
+                $this->recordsByParam[$keyResearch][$rawData['id']] = $object;
             }
 
             while (isset($response['offset'])) {
@@ -124,7 +142,27 @@ abstract class AbstractClient
             throw $exception;
         }
 
-        return $this->builder->build($response);
+        $object = $this->builder->build($response);
+        $this->lastUsedManager->onPostBuild($object, $response);
+
+        return $object;
+    }
+
+    public function updateLastUsed(mixed $object): void
+    {
+        if ($this->lastUsedManager->supports($object::class)) {
+            $this->airtableClient->rawRequest(
+                'PATCH',
+                sprintf('%s/%s', $this->airtableAppId, $this->getFetchUrl()),
+                [
+                    'json' => [
+                        'records' => [
+                            $this->lastUsedManager->unBuild($object),
+                        ],
+                    ],
+                ],
+            );
+        }
     }
 
     abstract protected function getFetchUrl(): string;

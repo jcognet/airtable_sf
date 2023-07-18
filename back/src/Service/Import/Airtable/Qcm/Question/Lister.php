@@ -14,6 +14,6 @@ class Lister extends AbstractLister
      */
     protected static function sort($a, $b): int
     {
-        return $a->getUsedDate() <=> $b->getUsedDate();
+        return $a->getLastUsed() <=> $b->getLastUsed();
     }
 }
