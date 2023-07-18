@@ -5,18 +5,16 @@ namespace App\Service\AirTable\Beer;
 
 use App\Exception\MethodNotUsableException;
 use App\Service\AirTable\AbstractClient;
-use App\Service\AirTable\AirtableClient;
 use App\Service\Builder\Beer\BeerTypeBuilder;
 use App\ValueObject\BlockInterface;
 
 class BeerTypeClient extends AbstractClient
 {
     public function __construct(
-        AirtableClient $airtableClient,
         string $airtableAppBiereId,
         BeerTypeBuilder $beerTypeBuilder
     ) {
-        parent::__construct($airtableClient, $airtableAppBiereId, $beerTypeBuilder);
+        parent::__construct($airtableAppBiereId, $beerTypeBuilder);
     }
 
     public function fetchRandomData(array $param = []): ?BlockInterface

@@ -6,7 +6,6 @@ namespace App\Service\Builder\Qcm;
 use App\Service\AirTable\UrlBuilder;
 use App\Service\Builder\BuilderInterface;
 use App\ValueObject\Qcm\Question;
-use Carbon\Carbon;
 
 class QuestionBuilder implements BuilderInterface
 {
@@ -29,7 +28,6 @@ class QuestionBuilder implements BuilderInterface
             wrongAnswer3: $data['fields']['Mauvaise réponse 3'] ?? null,
             explanation: $data['fields']['Explication'] ?? null,
             url: $data['fields']['URL détail'] ?? null,
-            usedDate: isset($data['fields']['Date d\'utilisation']) ? Carbon::parse($data['fields']['Date d\'utilisation']) : null,
             airTableUrl: $this->urlBuilder->build(
                 $this->airtableAppQcmId,
                 self::TABLE_URL,
@@ -37,16 +35,6 @@ class QuestionBuilder implements BuilderInterface
                 $data['id']
             )
         );
-    }
-
-    public function unBuild(Question $question): array
-    {
-        return [
-            'id' => $question->getId(),
-            'fields' => [
-                'Date d\'utilisation' => Carbon::now()->format('Y-m-d H:i:s'),
-            ],
-        ];
     }
 
     private function getViewUrl(): string

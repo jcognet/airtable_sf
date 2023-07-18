@@ -5,7 +5,6 @@ namespace App\Service\AirTable\Article;
 
 use App\Exception\MethodNotUsableException;
 use App\Service\AirTable\AbstractClient;
-use App\Service\AirTable\AirtableClient;
 use App\Service\Builder\Article\SujetBuilder;
 use App\ValueObject\Article\Sujet;
 use App\ValueObject\BlockInterface;
@@ -13,11 +12,10 @@ use App\ValueObject\BlockInterface;
 class SujetClient extends AbstractClient
 {
     public function __construct(
-        AirtableClient $airtableClient,
         string $airtableAppArticleId,
         SujetBuilder $sujetBuilder
     ) {
-        parent::__construct($airtableClient, $airtableAppArticleId, $sujetBuilder);
+        parent::__construct($airtableAppArticleId, $sujetBuilder);
     }
 
     public function fetchRandomData(array $param = []): ?BlockInterface

@@ -5,7 +5,6 @@ namespace App\Service\AirTable\Beer;
 
 use App\Exception\MethodNotUsableException;
 use App\Service\AirTable\AbstractClient;
-use App\Service\AirTable\AirtableClient;
 use App\Service\Builder\Beer\BreweryBuilder;
 use App\ValueObject\Beer\Brewery;
 use App\ValueObject\BlockInterface;
@@ -13,11 +12,10 @@ use App\ValueObject\BlockInterface;
 class BreweryClient extends AbstractClient
 {
     public function __construct(
-        AirtableClient $airtableClient,
         string $airtableAppBiereId,
         BreweryBuilder $brasserieBuilder
     ) {
-        parent::__construct($airtableClient, $airtableAppBiereId, $brasserieBuilder);
+        parent::__construct($airtableAppBiereId, $brasserieBuilder);
     }
 
     /**

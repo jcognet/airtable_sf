@@ -4,12 +4,14 @@ declare(strict_types=1);
 namespace App\ValueObject\Qcm;
 
 use App\ValueObject\AbstractBlock;
+use App\ValueObject\LastUsedTrait;
 use App\ValueObject\NewsletterBlockManager\BlockType;
-use Carbon\Carbon;
 use Symfony\Component\Serializer\Annotation\Ignore;
 
 class Question extends AbstractBlock
 {
+    use LastUsedTrait;
+
     public function __construct(
         private readonly string $id,
         private readonly string $question,
@@ -19,7 +21,6 @@ class Question extends AbstractBlock
         private readonly ?string $wrongAnswer3,
         private readonly ?string $explanation,
         private readonly ?string $url,
-        private readonly ?Carbon $usedDate,
         private readonly string $airTableUrl
     ) {
     }
@@ -62,11 +63,6 @@ class Question extends AbstractBlock
     public function getUrl(): ?string
     {
         return $this->url;
-    }
-
-    public function getUsedDate(): ?Carbon
-    {
-        return $this->usedDate;
     }
 
     #[Ignore]

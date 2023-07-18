@@ -4,18 +4,16 @@ declare(strict_types=1);
 namespace App\Service\AirTable\Article;
 
 use App\Service\AirTable\AbstractClient;
-use App\Service\AirTable\AirtableClient;
 use App\Service\Builder\Article\ArticleReadBuilder;
 use App\ValueObject\BlockInterface;
 
 class SeeAgainClient extends AbstractClient
 {
     public function __construct(
-        AirtableClient $airtableClient,
         string $airtableAppArticleId,
         ArticleReadBuilder $articleBuilder
     ) {
-        parent::__construct($airtableClient, $airtableAppArticleId, $articleBuilder);
+        parent::__construct($airtableAppArticleId, $articleBuilder);
     }
 
     public function fetchRandomData(array $param = []): ?BlockInterface
