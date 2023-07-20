@@ -5,6 +5,7 @@ namespace App\Service\AirTable;
 
 use App\Service\Builder\BuilderInterface;
 use App\ValueObject\BlockInterface;
+use Psr\Log\LoggerInterface;
 use Symfony\Component\HttpClient\Exception\ClientException;
 use Symfony\Contracts\Service\Attribute\Required;
 
@@ -12,11 +13,12 @@ abstract class AbstractClient
 {
     private const NB_TRY_RANDOM = 5;
 
-    protected readonly AirtableClient $airtableClient;
+    protected ?AirtableClient $airtableClient = null;
     private array $recordsByParam = [];
     private array $randomKeyByParam = [];
 
     private LastUsedManager $lastUsedManager;
+    private LoggerInterface $logger;
 
     public function __construct(
         protected readonly string $airtableAppId,
@@ -34,6 +36,12 @@ abstract class AbstractClient
     public function setAirtableClient(AirtableClient $airtableClient): void
     {
         $this->airtableClient = $airtableClient;
+    }
+
+    #[Required]
+    public function setLoggerInterface(LoggerInterface $logger): void
+    {
+        $this->logger = $logger;
     }
 
     public function fetchRandomData(array $param = []): ?BlockInterface
@@ -109,7 +117,9 @@ abstract class AbstractClient
                 );
 
                 foreach ($response['records'] as $rawData) {
-                    $this->recordsByParam[$keyResearch][$rawData['id']] = $this->builder->build($rawData);
+                    $object = $this->builder->build($rawData);
+                    $this->lastUsedManager->onPostBuild($object, $rawData);
+                    $this->recordsByParam[$keyResearch][$rawData['id']] = $object;
                 }
             }
         }
@@ -151,17 +161,32 @@ abstract class AbstractClient
     public function updateLastUsed(mixed $object): void
     {
         if ($this->lastUsedManager->supports($object::class)) {
-            $this->airtableClient->rawRequest(
-                'PATCH',
-                sprintf('%s/%s', $this->airtableAppId, $this->getFetchUrl()),
-                [
-                    'json' => [
-                        'records' => [
-                            $this->lastUsedManager->unBuild($object),
-                        ],
+            $payload = [
+                'json' => [
+                    'records' => [
+                        $this->lastUsedManager->unBuild($object),
                     ],
                 ],
-            );
+            ];
+            $url = sprintf('%s/%s', $this->airtableAppId, $this->getFetchUrl());
+
+            try {
+                $this->airtableClient->rawRequest(
+                    'PATCH',
+                    $url,
+                    $payload
+                );
+            } catch (ClientException $exception) {
+                $this->logger->error(
+                    $exception->getMessage(),
+                    [
+                        'payload' => $payload,
+                        'url' => $url,
+                    ]
+                );
+
+                throw $exception;
+            }
         }
     }
 

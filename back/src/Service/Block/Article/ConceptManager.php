@@ -15,6 +15,9 @@ class ConceptManager implements BlockManagerInterface
 
     public function getContent(): ?BlockInterface
     {
-        return $this->conceptClient->fetchRandomData();
+        $concept = $this->conceptClient->fetchRandomData();
+        $this->conceptClient->updateLastUsed($concept);
+
+        return $concept;
     }
 }

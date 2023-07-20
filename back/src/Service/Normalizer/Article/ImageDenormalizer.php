@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace App\Service\Normalizer\Article;
 
+use App\Service\AirTable\LastUsedManager;
 use App\Service\Normalizer\Picture\CachedImageDenormalizer;
 use App\ValueObject\Article\Image;
 use App\ValueObject\Article\Sujet;
@@ -11,6 +12,10 @@ use Symfony\Component\Serializer\Normalizer\DenormalizerInterface;
 
 class ImageDenormalizer implements DenormalizerInterface
 {
+    public function __construct(private readonly LastUsedManager $lastUsedManager)
+    {
+    }
+
     public function denormalize(mixed $data, string $type, string $format = null, array $context = []): Image
     {
         $sujets = [];
@@ -26,7 +31,7 @@ class ImageDenormalizer implements DenormalizerInterface
         $data['name'] = $data['title'];
         unset($data['class'], $data['title'], $data['content'], $data['type'], $data['managerTypeValue'], $data['managerType']);
 
-        return new Image(...$data);
+        return $this->lastUsedManager->onPostDenormalize(Image::class, $data);
     }
 
     public function supportsDenormalization(mixed $data, string $type, string $format = null, array $context = []): bool

@@ -4,10 +4,13 @@ declare(strict_types=1);
 namespace App\ValueObject\Article;
 
 use App\ValueObject\AbstractBlock;
+use App\ValueObject\LastUsedTrait;
 use App\ValueObject\NewsletterBlockManager\BlockType;
 
 class Concept extends AbstractBlock
 {
+    use LastUsedTrait;
+
     public function __construct(
         private readonly string $name,
         private readonly string $text,

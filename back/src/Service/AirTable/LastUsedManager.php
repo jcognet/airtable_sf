@@ -17,6 +17,8 @@ class LastUsedManager
             return;
         }
 
+        $object->setAirtableId($data['id']);
+
         if (!isset($data['fields'][self::LAST_USED_AIRTABLE_FIELD_NAME])) {
             return;
         }
@@ -24,7 +26,6 @@ class LastUsedManager
         $object->setLastUsed(
             Carbon::parse($data['fields'][self::LAST_USED_AIRTABLE_FIELD_NAME])
         );
-        $object->setAirtableId($data['id']);
     }
 
     public function onPostDenormalize(string $class, array $data): mixed
