@@ -15,7 +15,7 @@ trait LastUsedTrait
         return $this->lastUsed;
     }
 
-    public function setLastUsed(Carbon $date): void
+    public function setLastUsed(?Carbon $date): void
     {
         $this->lastUsed = $date;
     }
@@ -25,7 +25,7 @@ trait LastUsedTrait
         return $this->airtableId;
     }
 
-    public function setAirtableId(?string $airtableId): void
+    public function setAirtableId(string $airtableId): void
     {
         $this->airtableId = $airtableId;
     }
