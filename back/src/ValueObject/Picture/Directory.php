@@ -13,7 +13,8 @@ class Directory extends AbstractBlock
         private array $pictures,
         private readonly string $downloadLink
     ) {
-        usort($this->pictures, fn (Picture $a, Picture $b) => $a->getPath() <=> $b->getPath());
+        usort($pictures, fn (Picture $a, Picture $b) => $a->getPath() <=> $b->getPath());
+        $this->pictures = $pictures;
     }
 
     public function getPath(): string

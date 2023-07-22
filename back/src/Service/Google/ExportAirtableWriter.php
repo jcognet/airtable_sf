@@ -5,8 +5,10 @@ namespace App\Service\Google;
 
 class ExportAirtableWriter
 {
-    public function __construct(private readonly string $spreadSheetAirtableId, private readonly GoogleClient $googleClient)
-    {
+    public function __construct(
+        private readonly string $spreadSheetAirtableId,
+        private readonly GoogleClient $googleClient
+    ) {
     }
 
     public function write(array $data): int

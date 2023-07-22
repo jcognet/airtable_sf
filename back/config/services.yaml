@@ -53,6 +53,7 @@ services:
       $filePath: '%kernel.project_dir%/src/Data/file/'
       $googleCredentialFile: '%kernel.project_dir%/config/google_credential.json'
       $spreadSheetAirtableId: '%env(GOOGLE_SPREADSHEET_EXPORT_ID)%'
+      $spreadSheetNurseryId: '%env(GOOGLE_NURSERY_EXPORT_ID)%'
       $progressContentUrl: '%env(GOOGLE_PROGRESS_CONTENT_URL)%'
       $doneContentUrl: '%env(GOOGLE_DONE_CONTENT_URL)%'
       $pdfApiKey: '%env(PDF_API_KEY)%'

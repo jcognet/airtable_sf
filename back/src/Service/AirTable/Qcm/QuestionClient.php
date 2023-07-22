@@ -8,14 +8,11 @@ use App\Service\Builder\Qcm\QuestionBuilder;
 
 class QuestionClient extends AbstractClient
 {
-    private readonly QuestionBuilder $questionBuilder;
-
     public function __construct(
         string $airtableAppQcmId,
         QuestionBuilder $questionBuilder
     ) {
         parent::__construct($airtableAppQcmId, $questionBuilder);
-        $this->questionBuilder = $questionBuilder;
     }
 
     protected function getFetchUrl(): string

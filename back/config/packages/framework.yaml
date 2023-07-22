@@ -47,6 +47,11 @@ framework:
           access_key: '%env(EXCHANGE_RATES_API_IO_KEY)%'
       lpo.client:
         base_uri: '%lpoBaseUrl%'
+      google.place.api.client:
+        base_uri: https://maps.googleapis.com/maps/api/place/
+        query:
+          key: '%env(GOOGLE_API_KEY)%'
+          language: 'fr'
 
 when@test:
   framework:
