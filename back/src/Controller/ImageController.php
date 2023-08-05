@@ -77,7 +77,7 @@ class ImageController extends AbstractController
         );
     }
 
-    #[Route(path: '/img/thumbnail/{pathImage}', name: 'img_thumbnail', methods: ['GET'])]
+    #[Route(path: '/img/thumbnail/{pathImage}.jpg', name: 'img_thumbnail', methods: ['GET'])]
     public function thumbnail(
         string $pathImage,
         EncoderDecoder $encoderDecoder,
@@ -95,7 +95,7 @@ class ImageController extends AbstractController
         );
     }
 
-    #[Route(path: '/img/normal/{pathImage}', name: 'img_normal', methods: ['GET'])]
+    #[Route(path: '/img/normal/{pathImage}.jpg', name: 'img_normal', methods: ['GET'])]
     public function normal(
         string $pathImage,
         EncoderDecoder $encoderDecoder,
