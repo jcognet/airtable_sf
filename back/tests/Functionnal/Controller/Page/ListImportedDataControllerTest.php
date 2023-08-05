@@ -78,7 +78,7 @@ final class ListImportedDataControllerTest extends WebTestCase
         $client->followRedirects(true);
         $this->loginUser($client);
 
-        $client->request('GET', '/list_imported_data/questions');
+        $client->request('GET', '/list_imported_data/holiday');
 
         self::assertResponseStatusCodeSame(Response::HTTP_NOT_FOUND);
     }

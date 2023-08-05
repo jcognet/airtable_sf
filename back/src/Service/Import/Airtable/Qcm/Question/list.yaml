@@ -1,14 +1,10 @@
 fields:
   -
-    label: titre
-    property: title
+    label: Question
+    property: question
   -
-    label: url
-    property: url
-    is_sortable: false
-  -
-    label: Fichier
-    property: fileUrl
+    label: Répondre
+    property: urlPageQuestion
     is_sortable: false
   -
     label: Notes Airtable

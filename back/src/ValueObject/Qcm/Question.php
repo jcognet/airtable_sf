@@ -21,7 +21,8 @@ class Question extends AbstractBlock
         private readonly ?string $wrongAnswer3,
         private readonly ?string $explanation,
         private readonly ?string $url,
-        private readonly string $airTableUrl
+        private readonly string $airTableUrl,
+        private ?string $urlPageQuestion = null
     ) {
     }
 
@@ -100,5 +101,15 @@ class Question extends AbstractBlock
     public function getAirTableUrl(): string
     {
         return $this->airTableUrl;
+    }
+
+    public function getUrlPageQuestion(): ?string
+    {
+        return $this->urlPageQuestion;
+    }
+
+    public function setUrlPageQuestion(string $urlPageQuestion): void
+    {
+        $this->urlPageQuestion = $urlPageQuestion;
     }
 }
