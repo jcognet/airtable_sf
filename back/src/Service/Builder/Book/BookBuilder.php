@@ -28,7 +28,7 @@ class BookBuilder implements BuilderInterface
             $data['fields']['URL'] ?? null,
             $data['fields']['Page courante'] ?? null,
             $data['fields']['Page max'] ?? null,
-            urlAirtable: $this->urlBuilder->build(
+            airTableUrl: $this->urlBuilder->build(
                 $this->airtableAppBookId,
                 self::TABLE_URL,
                 self::TABLE_VIEW_ID,

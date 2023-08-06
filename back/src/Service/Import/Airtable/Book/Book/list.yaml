@@ -1,0 +1,15 @@
+fields:
+  -
+    label: titre
+    property: title
+  -
+    label: url
+    property: url
+    is_sortable: false
+  -
+    label: Etat
+    property: status
+  -
+    label: Notes Airtable
+    property: airTableUrl
+    is_sortable: false

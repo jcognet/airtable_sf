@@ -16,7 +16,7 @@ class Book extends AbstractBlock
         private readonly ?string $url,
         private readonly ?int $currentPage,
         private readonly ?int $maxPage,
-        private readonly string $urlAirtable
+        private readonly string $airTableUrl
     ) {
     }
 
@@ -65,9 +65,9 @@ class Book extends AbstractBlock
         return $this->maxPage;
     }
 
-    public function getUrlAirtable(): string
+    public function getAirTableUrl(): string
     {
-        return $this->urlAirtable;
+        return $this->airTableUrl;
     }
 
     public function percentPageRead(): ?float
