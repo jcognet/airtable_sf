@@ -40,7 +40,8 @@ class ImageInPathLister
             pictures: $pictures,
             downloadLink: $this->encoderDecoder->encode(
                 ZipAllPictureDirectory::getFileName($absolutePath)
-            )
+            ),
+            relativePath: str_replace($this->picturePath, '', $absolutePath),
         );
     }
 }
