@@ -147,6 +147,10 @@ services:
     arguments:
       $config: '@App\Service\Import\Airtable\File\File\Config'
 
+  App\Service\Import\Airtable\Book\Book\Lister:
+    arguments:
+      $config: '@App\Service\Import\Airtable\Book\Book\Config'
+
   App\Service\Import\Airtable\Holiday\Holiday\Importer:
     arguments:
       $config: '@App\Service\Import\Airtable\Holiday\Holiday\Config'
@@ -176,6 +180,11 @@ services:
     arguments:
       $config: '@App\Service\Import\Airtable\File\File\Config'
       $client: '@App\Service\AirTable\File\FileClient'
+
+  App\Service\Import\Airtable\Book\Book\Importer:
+    arguments:
+      $config: '@App\Service\Import\Airtable\Book\Book\Config'
+      $client: '@App\Service\AirTable\Book\BookClient'
 
 when@test:
   parameters:

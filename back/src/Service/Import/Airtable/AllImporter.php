@@ -14,7 +14,7 @@ class AllImporter
     ) {
     }
 
-    public function import(?string $class): array
+    public function import(?string $class = null): array
     {
         $data = [];
         /**

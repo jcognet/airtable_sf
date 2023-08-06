@@ -6,6 +6,7 @@ namespace App\Service\Import\Airtable;
 use App\Exception\Import\Airtable\UnknownListServiceException;
 use App\Service\Import\Airtable\Article\ALire\Lister as ALireLister;
 use App\Service\Import\Airtable\Article\SeeAgain\Lister as SeeAgainLister;
+use App\Service\Import\Airtable\Book\Book\Lister as BookLister;
 use App\Service\Import\Airtable\File\File\Lister as FileLister;
 use App\Service\Import\Airtable\Qcm\Question\Lister as QuestionLister;
 use App\ValueObject\Import\Airtable\ImportedData;
@@ -51,6 +52,7 @@ class ImportedDataFactory implements ServiceSubscriberInterface
             SeeAgainLister::class,
             FileLister::class,
             QuestionLister::class,
+            BookLister::class,
         ];
     }
 }
