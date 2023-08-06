@@ -11,7 +11,8 @@ class Directory extends AbstractBlock
     public function __construct(
         private readonly string $path,
         private array $pictures,
-        private readonly string $downloadLink
+        private readonly string $downloadLink,
+        private readonly string $relativePath,
     ) {
         usort($pictures, fn (Picture $a, Picture $b) => $a->getPath() <=> $b->getPath());
         $this->pictures = $pictures;
@@ -48,5 +49,10 @@ class Directory extends AbstractBlock
     public function getDownloadLink(): string
     {
         return $this->downloadLink;
+    }
+
+    public function getRelativePath(): string
+    {
+        return $this->relativePath;
     }
 }

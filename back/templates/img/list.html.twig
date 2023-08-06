@@ -1,36 +1,43 @@
 {% extends './page/base.html.twig' %}
 
 {% block body %}
-    <div class="section-light">
-        <div class="container">
-            <div
-                class="column is-12 about-me"
-                data-aos="fade-in"
-                data-aos-easing="linear"
-            >
-                <h1 class="title has-text-centered section-title test-img-random">Images de {{ directory_current }}</h1>
-                {% if is_downloadable %}
-                    <a
-                        href="{{ path('file_download', {'pathFile': directory.downloadLink}) }}"
-                        class="button is-link is-rounded">
-                        Télécharger
-                    </a>
-                {% endif %}
+    {% if directory is defined %}
+        <div class="section-light">
+            <div class="container">
+                <div
+                    class="column is-12 about-me"
+                    data-aos="fade-in"
+                    data-aos-easing="linear"
+                >
+                    <h1 class="title has-text-centered section-title test-img-random">
+                        Images de {{ directory.relativePath }}
+                        <span class="tag">
+                            ({{ downloadable_info.nbFiles }} image{% if (downloadable_info.nbFiles>1) %}s{% endif %})
+                    </span>
+                    </h1>
+                    {% if downloadable_info.isDownloadable %}
+                        <a
+                            href="{{ path('file_download', {'pathFile': directory.downloadLink}) }}"
+                            class="button is-link is-rounded">
+                            Télécharger ({{ format_file_size(downloadable_info.size) }})
+                        </a>
+                    {% endif %}
+                </div>
             </div>
         </div>
-    </div>
-    <div class="section-color services" id="services">
-        <div class="container">
-            <div class="columns is-multiline">
-                {% for picture in directory.pictures %}
-                    {% include './include/image.html.twig' with {
-                        picture,
-                        'picture_url': absolute_url( path('img_normal', {'pathImage': picture.id})),
-                        'picture_title': 'Voir la taille 1 de la photo',
-                        is_blank: true
-                    } only %}
-                {% endfor %}
+        <div class="section-color services" id="services">
+            <div class="container">
+                <div class="columns is-multiline">
+                    {% for picture in directory.pictures %}
+                        {% include './include/image.html.twig' with {
+                            picture,
+                            'picture_url': absolute_url( path('img_normal', {'pathImage': picture.id})),
+                            'picture_title': 'Voir la taille 1 de la photo',
+                            is_blank: true
+                        } only %}
+                    {% endfor %}
+                </div>
             </div>
         </div>
-    </div>
+    {% endif %}
 {% endblock %}

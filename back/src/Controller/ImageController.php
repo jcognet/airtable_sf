@@ -4,9 +4,9 @@ declare(strict_types=1);
 namespace App\Controller;
 
 use App\Enum\Picture\Format;
+use App\Service\Picture\DownloadableInformationFactory;
 use App\Service\Picture\EncoderDecoder;
 use App\Service\Picture\ImageInPathLister;
-use App\Service\Picture\IsDirectoryDownloadable;
 use App\Service\Picture\PictureFactory;
 use App\Service\Picture\RandomDirectorySelector;
 use App\Service\Picture\ThumbnailerGetter;
@@ -23,7 +23,7 @@ class ImageController extends AbstractController
     public function list(
         Request $request,
         ImageInPathLister $imageInPathLister,
-        IsDirectoryDownloadable $isDirectoryDownloadable
+        DownloadableInformationFactory $downloadableInformationFactory
     ): Response {
         if (!$request->query->has('directory')) {
             throw $this->createNotFoundException();
@@ -41,8 +41,8 @@ class ImageController extends AbstractController
             'img/list.html.twig',
             [
                 'directory' => $directory,
-                'directory_current' => $directoryPath,
-                'is_downloadable' => $isDirectoryDownloadable->isDownloadable($directory),
+                'downloadable_info' => $downloadableInformationFactory->get($directory),
+                'head_title' => sprintf('Images de %s', $directoryPath),
             ],
         );
     }
@@ -51,7 +51,7 @@ class ImageController extends AbstractController
     public function random(
         ImageInPathLister $imageInPathLister,
         RandomDirectorySelector $randomDirectorySelector,
-        IsDirectoryDownloadable $isDirectoryDownloadable
+        DownloadableInformationFactory $downloadableInformationFactory
     ): Response {
         $directoryPath = $randomDirectorySelector->getRandomDirectory();
 
@@ -71,8 +71,8 @@ class ImageController extends AbstractController
             'img/list.html.twig',
             [
                 'directory' => $directory,
-                'directory_current' => $directory->getPath(),
-                'is_downloadable' => $isDirectoryDownloadable->isDownloadable($directory),
+                'downloadable_info' => $downloadableInformationFactory->get($directory),
+                'head_title' => sprintf('Images de %s', $directory->getPath()),
             ],
         );
     }
