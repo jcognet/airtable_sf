@@ -14,13 +14,17 @@ class AllImporter
     ) {
     }
 
-    public function import(): array
+    public function import(?string $class): array
     {
         $data = [];
         /**
          * @var AirtableImporterInterface $importer
          */
         foreach ($this->importers as $importer) {
+            if ($class && $class !== $importer::class) {
+                continue;
+            }
+
             $this->logger->info(
                 sprintf(
                     'Start import of %s',
