@@ -12,7 +12,7 @@
                     <h1 class="title has-text-centered section-title test-img-random">
                         Images de {{ directory.relativePath }}
                         <span class="tag">
-                            ({{ downloadable_info.nbFiles }} image{% if (downloadable_info.nbFiles>1) %}s{% endif %})
+                            ({{ downloadable_info.nbFiles }} image{% if (downloadable_info.nbFiles > 1) %}s{% endif %})
                     </span>
                     </h1>
                     {% if downloadable_info.isDownloadable %}
@@ -28,6 +28,14 @@
         <div class="section-color services" id="services">
             <div class="container">
                 <div class="columns is-multiline">
+                    <div
+                        class="column is-12 about-me"
+                        data-aos="fade-in"
+                        data-aos-easing="linear"
+                    >
+                        <h2 class="title has-text-centered section-title">Images</h2>
+                        <br/>
+                    </div>
                     {% for picture in directory.pictures %}
                         {% include './include/image.html.twig' with {
                             picture,
@@ -39,5 +47,33 @@
                 </div>
             </div>
         </div>
+        {% if directory.subDirectories|length >0 %}
+            <div class="section-light">
+                <div class="container">
+                    <div class="columns is-multiline">
+                        <div
+                            class="column is-12 about-me"
+                            data-aos="fade-in"
+                            data-aos-easing="linear"
+                        >
+                            <h2 class="title has-text-centered section-title">Sous-répertoires
+                                <span class="tag">
+                            ({{ directory.subDirectories|length }} répertoire{% if (directory.subDirectories|length > 1) %}s{% endif %})
+                    </span></h2>
+                            <br/>
+                        </div>
+                        {% for sub_directory in directory.subDirectories %}
+                            {% set main_image = random_image_from_directory(sub_directory.relativePath) %}
+                            {% include './include/image.html.twig' with {
+                                'picture': main_image,
+                                'legend': sub_directory.relativePath,
+                                'picture_url': path('img_list', {directory: sub_directory.relativePath}),
+                                'picture_title': 'Voir les images du répertoire '~sub_directory.relativePath
+                            } only %}
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        {% endif %}
     {% endif %}
 {% endblock %}

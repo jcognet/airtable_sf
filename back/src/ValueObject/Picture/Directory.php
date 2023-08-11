@@ -8,14 +8,20 @@ use App\ValueObject\NewsletterBlockManager\BlockType;
 
 class Directory extends AbstractBlock
 {
+    private array $pictures = [];
+    private array $subDirectories = [];
+
     public function __construct(
         private readonly string $path,
-        private array $pictures,
         private readonly string $downloadLink,
         private readonly string $relativePath,
+        array $pictures,
+        array $subDirectories
     ) {
         usort($pictures, fn (Picture $a, Picture $b) => $a->getPath() <=> $b->getPath());
         $this->pictures = $pictures;
+        usort($subDirectories, fn (Directory $a, Directory $b) => $a->getTitle() <=> $b->getTitle());
+        $this->subDirectories = $subDirectories;
     }
 
     public function getPath(): string
@@ -54,5 +60,10 @@ class Directory extends AbstractBlock
     public function getRelativePath(): string
     {
         return $this->relativePath;
+    }
+
+    public function getSubDirectories(): array
+    {
+        return $this->subDirectories;
     }
 }
