@@ -33,8 +33,8 @@ class ImageController extends AbstractController
 
         try {
             $directory = $imageInPathLister->getPicturesFromDirectory($directoryPath);
-        } catch (DirectoryNotFoundException) {
-            throw $this->createNotFoundException();
+        } catch (DirectoryNotFoundException $e) {
+            throw $this->createNotFoundException($e->getMessage());
         }
 
         return $this->render(
@@ -63,8 +63,8 @@ class ImageController extends AbstractController
 
         try {
             $directory = $imageInPathLister->getPicturesFromDirectory($directoryPath);
-        } catch (DirectoryNotFoundException) {
-            throw $this->createNotFoundException(sprintf('Unknown directory: %s', $directoryPath));
+        } catch (DirectoryNotFoundException $e) {
+            throw $this->createNotFoundException($e->getMessage());
         }
 
         return $this->render(

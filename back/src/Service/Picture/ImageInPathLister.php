@@ -17,15 +17,16 @@ class ImageInPathLister
     ) {
     }
 
-    public function getPicturesFromDirectory(string $subDirectory): Directory
+    public function getPicturesFromDirectory(string $subDirectoryPath, bool $withSubDirectory = true): Directory
     {
-        $absolutePath = sprintf('%s%s', $this->picturePath, $subDirectory);
+        $absolutePath = realpath(sprintf('%s%s', $this->picturePath, $subDirectoryPath));
 
         $finder = new Finder();
         $images = $finder->files()
             ->in($absolutePath)
             ->name(self::ALLOWED_EXTENSIONS)
             ->exclude('thumbnail')
+            ->sortByName()
         ;
 
         $pictures = [];
@@ -35,13 +36,36 @@ class ImageInPathLister
             );
         }
 
+        $subDirectories = [];
+        if ($withSubDirectory) {
+            $finderSubDirectory = new Finder();
+            $subDirectoriesResult = $finderSubDirectory->directories()
+                ->in($absolutePath)
+                ->exclude('thumbnail')
+                ->sortByName()
+                ->depth(0)
+            ;
+
+            foreach ($subDirectoriesResult as $subDirectory) {
+                $subDirectories[] = $this->getPicturesFromDirectory(
+                    sprintf(
+                        '%s/%s',
+                        $subDirectoryPath,
+                        $subDirectory->getRelativePathname()
+                    ),
+                    false
+                );
+            }
+        }
+
         return new Directory(
             path: $absolutePath,
-            pictures: $pictures,
             downloadLink: $this->encoderDecoder->encode(
                 ZipAllPictureDirectory::getFileName($absolutePath)
             ),
-            relativePath: str_replace($this->picturePath, '', $absolutePath),
+            relativePath: $subDirectoryPath,
+            pictures: $pictures,
+            subDirectories: $subDirectories
         );
     }
 }

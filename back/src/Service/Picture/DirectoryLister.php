@@ -26,10 +26,7 @@ class DirectoryLister
 
         $directories = [];
         foreach ($directoryFinder as $directory) {
-            /** @var \SplFileInfo $directory */
-            if (substr_count((string) $directory->getRelativePathName(), \DIRECTORY_SEPARATOR) >= 1) {
-                $directories[] = $directory;
-            }
+            $directories[] = $directory;
         }
 
         if (count($directories) === 0) {
