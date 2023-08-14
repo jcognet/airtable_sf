@@ -111,7 +111,7 @@ services:
     arguments:
       - !tagged_iterator app.airtable_config
 
-  App\Service\Import\Airtable\ConfigFactory:
+  App\Service\Import\Airtable\Factory\ConfigFactory:
     arguments:
       - !tagged_iterator app.airtable_config
 
