@@ -45,7 +45,7 @@ class YamlListReader
 
         foreach ($yamlFilters as $yamlField) {
             $filters[] = new Filter(
-                property: $yamlFiel,
+                property: $yamlField,
             );
         }
 
