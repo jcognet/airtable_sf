@@ -10,3 +10,7 @@ fields:
     label: Notes Airtable
     property: airTableUrl
     is_sortable: false
+
+filters:
+  - title
+  - body

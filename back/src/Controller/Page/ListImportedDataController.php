@@ -6,7 +6,8 @@ namespace App\Controller\Page;
 use App\Enum\Import\Airtable\Order;
 use App\Exception\Import\Airtable\UnknownDataImportedTypeException;
 use App\Exception\Import\Airtable\UnknownListServiceException;
-use App\Service\Import\Airtable\ImportedDataFactory;
+use App\Service\Import\Airtable\Factory\ImportedDataFactory;
+use App\Service\Import\Airtable\IsFiltrable;
 use App\Service\Import\Airtable\IsListable;
 use App\ValueObject\Import\Airtable\Sort;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -19,6 +20,7 @@ class ListImportedDataController extends AbstractController
     #[Route(path: '/list_imported_data/{importedDataType}', name: 'list_imported_data_show', methods: ['GET'])]
     public function show(
         IsListable $isListable,
+        IsFiltrable $isFiltrable,
         Request $request,
         string $importedDataType,
         ImportedDataFactory $importedDataFactory
@@ -43,6 +45,7 @@ class ListImportedDataController extends AbstractController
                 'current_item' => $importedDataType,
                 'sort' => $sort,
                 'head_title' => sprintf('Données importées : %s', $importedData->getLabel()),
+                'is_filtrable' => $isFiltrable->isFiltrable($importedDataType),
             ]
         );
     }

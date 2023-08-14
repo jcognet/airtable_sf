@@ -6,6 +6,7 @@ namespace App\Service\Import\Airtable;
 use App\Exception\Import\Airtable\NoFileYamlException;
 use App\Exception\Import\Airtable\UnknownDataImportedTypeException;
 use App\Service\Contract\AirtableConfigInterface;
+use App\Service\Import\Airtable\Factory\ConfigFactory;
 
 class IsListable
 {

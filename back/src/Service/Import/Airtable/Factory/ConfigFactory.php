@@ -1,10 +1,11 @@
 <?php
 declare(strict_types=1);
 
-namespace App\Service\Import\Airtable;
+namespace App\Service\Import\Airtable\Factory;
 
 use App\Exception\Import\Airtable\UnknownDataImportedTypeException;
 use App\Service\Contract\AirtableConfigInterface;
+use App\Service\Import\Airtable\IsImported;
 
 class ConfigFactory
 {

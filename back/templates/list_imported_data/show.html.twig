@@ -42,6 +42,16 @@
                     <span class="tag is-info is-rounded">
                         {{ list_data|length }} {{ label|lower }}
                     </span>
+                    {% if is_filtrable %}
+                    <span class="tag is-info is-rounded">
+                        Filtrable
+                    </span>
+                    {% else %}
+                        <span class="tag is-rounded">
+                        Nope
+                    </span>
+                    {% endif %}
+
                 </div>
                 <table class="table">
                     <thead>
