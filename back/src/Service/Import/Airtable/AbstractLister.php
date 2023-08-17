@@ -5,20 +5,30 @@ namespace App\Service\Import\Airtable;
 
 use App\Enum\Import\Airtable\Order;
 use App\Exception\Import\Airtable\UnknownFieldException;
+use App\Exception\Import\Airtable\UnknownFilterServiceException;
 use App\Service\Contract\AirtableConfigInterface;
+use App\Service\Import\Airtable\Factory\ImportedDataFilterFactory;
 use App\ValueObject\Import\Airtable\Sort;
 use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\Serializer\Normalizer\DenormalizerInterface;
 
 abstract class AbstractLister
 {
+    private ?AbstractFilter $filter = null;
+
     public function __construct(
         private readonly AirtableConfigInterface $config,
-        private readonly DenormalizerInterface $denormalizer
+        private readonly DenormalizerInterface $denormalizer,
+        private readonly ImportedDataFilterFactory $filterFactory,
     ) {
+        try {
+            $this->filter = $this->filterFactory->make($config);
+        } catch (UnknownFilterServiceException) {
+            $this->filter = null;
+        }
     }
 
-    public function list(Sort $sort = null): ?array
+    public function list(Sort $sort = null, ?string $filter = null): ?array
     {
         $filesystem = new Filesystem();
 
@@ -32,6 +42,8 @@ abstract class AbstractLister
         foreach ($data['data'][$this->config->getDataEntryName()] as $item) {
             $items[] = $this->denormalizer->denormalize($item, $this->config->getClass());
         }
+
+        $items = $this->filter($items, $filter);
 
         if ($sort === null) {
             usort($items, [static::class, 'sort']);
@@ -53,4 +65,13 @@ abstract class AbstractLister
     }
 
     abstract protected static function sort($a, $b): int;
+
+    private function filter(array $items, ?string $filter = null): array
+    {
+        if ($filter && $this->filter) {
+            $items = $this->filter->filter($filter, $items);
+        }
+
+        return $items;
+    }
 }

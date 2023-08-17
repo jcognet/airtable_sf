@@ -7,8 +7,8 @@ use App\Service\Import\Airtable\AbstractFilter;
 
 class Filter extends AbstractFilter
 {
-    public function filter(array $filter): ?array
+    public function getFilterGetter(): array
     {
-        return null;
+        return ['title', 'content'];
     }
 }
