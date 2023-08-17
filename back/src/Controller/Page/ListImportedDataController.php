@@ -26,11 +26,12 @@ class ListImportedDataController extends AbstractController
         ImportedDataFactory $importedDataFactory
     ): Response {
         $field = $request->query->get('sort_field', null);
+        $filter = $request->query->get('filter', null);
         $order = Order::make($request->query->get('sort_order', null));
         $sort = ($field !== null) ? new Sort($field, $order) : null;
 
         try {
-            $importedData = $importedDataFactory->make($importedDataType, $sort);
+            $importedData = $importedDataFactory->make($importedDataType, $sort, $filter);
         } catch (UnknownDataImportedTypeException|UnknownListServiceException $e) {
             throw $this->createNotFoundException($e->getMessage());
         }

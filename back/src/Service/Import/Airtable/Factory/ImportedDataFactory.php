@@ -18,7 +18,8 @@ class ImportedDataFactory
 
     public function make(
         string $type,
-        ?Sort $sort
+        ?Sort $sort,
+        ?string $filter
     ): ImportedData {
         $config = $this->configFactory->make($type);
         $lister = $this->importedDataClassFactory->make($config);
@@ -26,7 +27,7 @@ class ImportedDataFactory
         return new ImportedData(
             label: $config->getPublicLabel(),
             fields: $this->yamlListReader->getFields($config),
-            data: $lister->list($sort)
+            data: $lister->list($sort, $filter)
         );
     }
 }
