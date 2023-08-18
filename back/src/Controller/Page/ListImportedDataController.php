@@ -51,7 +51,23 @@ class ListImportedDataController extends AbstractController
                 'sort' => $sort,
                 'head_title' => sprintf('Données importées : %s', $importedData->getLabel()),
                 'is_filtrable' => $isFiltrable->isFiltrable($importedDataType),
+                'filter' => $filter,
             ]
+        );
+    }
+
+    #[Route(path: '/list_imported_data/{importedDataType}', name: 'list_imported_data_handle_form', methods: ['POST'])]
+    public function handleForm(
+        Request $request,
+        string $importedDataType,
+    ): Response {
+        return $this->redirectToRoute(
+            'list_imported_data_show',
+            [
+                ...$request->query->all(),
+                'importedDataType' => $importedDataType,
+                'filter' => $request->request->get('filter', null),
+            ],
         );
     }
 }

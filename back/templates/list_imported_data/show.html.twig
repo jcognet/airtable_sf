@@ -1,60 +1,75 @@
 {% extends './page/base.html.twig' %}
 
 {% block body %}
-    <div class="section-light">
-        <div class="container">
-            <nav class="breadcrumb" aria-label="breadcrumbs">
-                <ul>
-                    <li><a href="{{ url_front }}">Dashboard</a></li>
-                    <li>Données importées</li>
-                </ul>
-            </nav>
-            <div
-                class="column is-12 about-me"
-                data-aos="fade-in"
-                data-aos-easing="linear"
-            >
-                <h1 class="title has-text-centered section-title test-list">
-                    Données importées : {{ label }}
-                </h1>
-            </div>
+<div class="section-light">
+    <div class="container">
+        <nav class="breadcrumb" aria-label="breadcrumbs">
+            <ul>
+                <li><a href="{{ url_front }}">Dashboard</a></li>
+                <li>Données importées</li>
+            </ul>
+        </nav>
+        <div
+            class="column is-12 about-me"
+            data-aos="fade-in"
+            data-aos-easing="linear"
+        >
+            <h1 class="title has-text-centered section-title test-list">
+                Données importées : {{ label }}
+            </h1>
         </div>
     </div>
-    <div class="container">
-        <div class="columns">
-            <div class="column is-one-quarter">
-                {% for item in type_listable %}
-                    <ul>
-                        <li>
-                            <a
-                                href="{{ path('list_imported_data_show', {'importedDataType': item.publicKey}) }}"
-                                class="{% if current_item == item.publicKey %}has-text-primary {% else %}has-text-link{% endif %}"
-                                title="Voir les données importées : {{ item.publicLabel }}"
-                            >
-                                {{ item.publicLabel|capitalize }}
-                            </a>
-                        </li>
-                    </ul>
-                {% endfor %}
-            </div>
-            <div class="column">
-                <div>
+</div>
+<div class="container">
+    <div class="columns">
+        <div class="column is-one-quarter">
+            {% for item in type_listable %}
+                <ul>
+                    <li>
+                        <a
+                            href="{{ path('list_imported_data_show', {'importedDataType': item.publicKey}) }}"
+                            class="{% if current_item == item.publicKey %}has-text-primary {% else %}has-text-link{% endif %}"
+                            title="Voir les données importées : {{ item.publicLabel }}"
+                        >
+                            {{ item.publicLabel|capitalize }}
+                        </a>
+                    </li>
+                </ul>
+            {% endfor %}
+        </div>
+        <div class="column">
+            <div class="columns">
+                <div class="column is-9">
                     <span class="tag is-info is-rounded">
                         {{ list_data|length }} {{ label|lower }}
                     </span>
-                    {% if is_filtrable %}
-                    <span class="tag is-info is-rounded">
-                        Filtrable
-                    </span>
-                    {% else %}
-                        <span class="tag is-rounded">
-                        Nope
-                    </span>
-                    {% endif %}
-
                 </div>
-                {% include './list_imported_data/include/data_table.html.twig' with {fields, list_data, sort, current_item} only %}
+                {% if is_filtrable %}
+                    <div class="column">
+                        <form method="post">
+                            <div class="field has-addons">
+                                <div class="control">
+                                    <input
+                                        class="input"
+                                        type="text"
+                                        name="filter"
+                                        value="{{ filter }}"
+                                        title="Mot à recherche"
+                                        placeholder="Mot à rechercher"/>
+                                </div>
+                                <div class="control">
+                                    <button class="button is-info">Filter</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                {% endif %}
+            </div>
+            <div class="columns">
+                <div class="column">
+                    {% include './list_imported_data/include/data_table.html.twig' with {fields, list_data, sort, current_item, filter} only %}
+                </div>
             </div>
         </div>
     </div>
-{% endblock %}
+    {% endblock %}
