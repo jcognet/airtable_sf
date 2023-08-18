@@ -13,4 +13,4 @@ fields:
 
 filters:
   - title
-  - body
+  - content

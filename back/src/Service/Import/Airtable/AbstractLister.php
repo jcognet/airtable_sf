@@ -5,27 +5,18 @@ namespace App\Service\Import\Airtable;
 
 use App\Enum\Import\Airtable\Order;
 use App\Exception\Import\Airtable\UnknownFieldException;
-use App\Exception\Import\Airtable\UnknownFilterServiceException;
 use App\Service\Contract\AirtableConfigInterface;
-use App\Service\Import\Airtable\Factory\ImportedDataFilterFactory;
 use App\ValueObject\Import\Airtable\Sort;
 use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\Serializer\Normalizer\DenormalizerInterface;
 
 abstract class AbstractLister
 {
-    private ?AbstractFilter $filter = null;
-
     public function __construct(
         private readonly AirtableConfigInterface $config,
         private readonly DenormalizerInterface $denormalizer,
-        private readonly ImportedDataFilterFactory $filterFactory,
+        private readonly Filtrer $filter
     ) {
-        try {
-            $this->filter = $this->filterFactory->make($config);
-        } catch (UnknownFilterServiceException) {
-            $this->filter = null;
-        }
     }
 
     public function list(Sort $sort = null, ?string $filter = null): ?array
@@ -68,8 +59,8 @@ abstract class AbstractLister
 
     private function filter(array $items, ?string $filter = null): array
     {
-        if ($filter && $this->filter) {
-            $items = $this->filter->filter($filter, $items);
+        if ($filter) {
+            $items = $this->filter->filter($this->config, $filter, $items);
         }
 
         return $items;
