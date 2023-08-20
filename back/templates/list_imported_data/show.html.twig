@@ -41,15 +41,16 @@
             <div class="columns">
                 <div class="column is-9">
                     <span class="tag is-info is-rounded">
-                        {{ list_data|length }} {{ label|lower }}
+                        <span id="span_nb_imported_data">{{ list_data|length }}</span>&nbsp;{{ label|lower }}
                     </span>
                 </div>
                 {% if is_filtrable %}
                     <div class="column">
-                        <form method="post">
+                        <form method="post" id="frmResearch">
                             <div class="field has-addons">
                                 <div class="control">
                                     <input
+                                        id="inputKeyword"
                                         class="input"
                                         type="text"
                                         name="filter"
@@ -72,4 +73,8 @@
             </div>
         </div>
     </div>
+    {% endblock %}
+
+    {% block javascript %}
+    <script src="{{ url_front }}js/ListImportedData.js" type="module"></script>
     {% endblock %}
