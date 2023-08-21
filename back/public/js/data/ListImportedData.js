@@ -4,7 +4,7 @@ export async function fetchImportedData(keyword) {
     const filter = window.location.href.includes('&filter=') ? '' : `&filter=${keyword}`;
     const fetchUrl = window.location.href + paramRoute + addOnUrl + filter;
     const response = await fetch(fetchUrl);
-    
+
     if (!response.ok) {
         throw new Error('Error while fetching: ' + fetchUrl + ' (code: ' + response.status + ')');
     }
