@@ -1,4 +1,5 @@
 import {fetchImportedData} from "../data/ListImportedData.js";
+import {hideLoader, showLoader} from "./loader.js";
 
 export async function addListImportedDataEvent() {
     const form = document.getElementById('frmResearch');
@@ -10,6 +11,7 @@ export async function addListImportedDataEvent() {
 
 async function onFrmResearchSubmit(e) {
     e.preventDefault();
+    showLoader('container_data');
     try {
         disableForm();
         await filterData(document.getElementById('inputKeyword').value);
@@ -17,6 +19,7 @@ async function onFrmResearchSubmit(e) {
         enableForm();
         console.error(e);
     }
+    hideLoader('container_data');
 }
 
 async function filterData(keyword) {
