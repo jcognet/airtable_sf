@@ -8,10 +8,15 @@ export async function addListImportedDataEvent() {
     }
 }
 
-function onFrmResearchSubmit(e) {
-    disableForm();
-    filterData(document.getElementById('inputKeyword').value);
+async function onFrmResearchSubmit(e) {
     e.preventDefault();
+    try {
+        disableForm();
+        await filterData(document.getElementById('inputKeyword').value);
+    } catch (e) {
+        enableForm();
+        console.error(e);
+    }
 }
 
 async function filterData(keyword) {
