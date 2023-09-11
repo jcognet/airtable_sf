@@ -22,12 +22,12 @@ class TagExtension extends AbstractExtension
         ];
     }
 
-    public function getLastDeploy(): Carbon
+    public function getLastDeploy(): ?Carbon
     {
         return $this->tagReader->getLastDeploy();
     }
 
-    public function getLastTag(): string
+    public function getLastTag(): ?string
     {
         return $this->tagReader->getLastTag();
     }

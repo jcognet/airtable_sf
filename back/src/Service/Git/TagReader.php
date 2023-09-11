@@ -13,26 +13,26 @@ class TagReader
     {
     }
 
-    public function read(): array
+    public function getLastTag(): ?string
     {
-        if ($this->data === null) {
+        $this->read();
+
+        return $this->data['tag'] ?? null;
+    }
+
+    public function getLastDeploy(): ?Carbon
+    {
+        $this->read();
+
+        return isset($this->data['date']) ? Carbon::parse($this->data['date']) : null;
+    }
+
+    private function read(): ?array
+    {
+        if ($this->data === null && file_exists($this->deployJsonPath)) {
             $this->data = json_decode(file_get_contents($this->deployJsonPath), true, 512, JSON_THROW_ON_ERROR);
         }
 
         return $this->data;
-    }
-
-    public function getLastTag(): string
-    {
-        $this->read();
-
-        return $this->data['tag'];
-    }
-
-    public function getLastDeploy(): Carbon
-    {
-        $this->read();
-
-        return Carbon::parse($this->data['date']);
     }
 }
