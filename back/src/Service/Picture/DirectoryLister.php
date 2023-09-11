@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace App\Service\Picture;
 
+use Symfony\Component\Finder\Exception\DirectoryNotFoundException;
 use Symfony\Component\Finder\Finder;
 use Symfony\Component\Finder\SplFileInfo;
 
@@ -18,11 +19,16 @@ class DirectoryLister
     public function list(): ?array
     {
         $finder = new Finder();
-        $directoryFinder = $finder
-            ->directories()
-            ->in($this->picturePath)
-            ->exclude('thumbnail')
-        ;
+
+        try {
+            $directoryFinder = $finder
+                ->directories()
+                ->in($this->picturePath)
+                ->exclude('thumbnail')
+            ;
+        } catch (DirectoryNotFoundException) {
+            return null;
+        }
 
         $directories = [];
         foreach ($directoryFinder as $directory) {

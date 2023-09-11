@@ -6,7 +6,7 @@
     <tr>
         <td align="middle">
             <p style="margin: 0; font-size: 14px; mso-line-height-alt: 24px;">
-                <span style="color:#{{ main_color }}">Dernier déploiement</span> : {{ get_last_deploy()|date('d/m/Y à H:i') }} (Version : {{ get_last_tag() }})
+                <span style="color:#{{ main_color }}">Dernier déploiement</span> : {{ get_last_deploy() ? get_last_deploy()|date('d/m/Y à H:i') : '' }} (Version : {{ get_last_tag() }})
             </p>
 
         </td>
