@@ -20,8 +20,7 @@ class NewspaperCreator implements LoggerAwareInterface
         private readonly ManagerContentFactory $managerContentFactory,
         private readonly string $environment,
         private readonly ConvertBlockTypeToManagerType $convertBlockTypeToManagerType
-    ) {
-    }
+    ) {}
 
     public function createContent(Carbon $date): Newspaper
     {

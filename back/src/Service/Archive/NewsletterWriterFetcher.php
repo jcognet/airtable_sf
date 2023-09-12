@@ -16,8 +16,7 @@ class NewsletterWriterFetcher
         private readonly SerializerInterface $serializer,
         private readonly DenormalizerInterface $denormalizer,
         private readonly NewsletterReadWriteHandler $newsletterReadWriteHandler
-    ) {
-    }
+    ) {}
 
     public function write(
         NewsLetter $newsLetter

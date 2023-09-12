@@ -16,8 +16,7 @@ abstract class AbstractImporter implements AirtableImporterInterface
         private readonly AbstractClient $client,
         private readonly SerializerInterface $serializer,
         private readonly AirtableConfigInterface $config
-    ) {
-    }
+    ) {}
 
     public function import(): array
     {

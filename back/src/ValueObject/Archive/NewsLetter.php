@@ -13,8 +13,7 @@ class NewsLetter
         private string $newsletterHtml,
         private bool $wasSent,
         private readonly Newspaper $newspaper
-    ) {
-    }
+    ) {}
 
     public function getDate(): Carbon
     {

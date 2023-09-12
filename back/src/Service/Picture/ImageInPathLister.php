@@ -14,8 +14,7 @@ class ImageInPathLister
         private readonly PictureFactory $pictureFactory,
         private readonly string $picturePath,
         private readonly EncoderDecoder $encoderDecoder
-    ) {
-    }
+    ) {}
 
     public function getPicturesFromDirectory(string $subDirectoryPath, bool $withSubDirectory = true): Directory
     {

@@ -23,8 +23,7 @@ class Question extends AbstractBlock
         private readonly ?string $url,
         private readonly string $airTableUrl,
         private ?string $urlPageQuestion = null
-    ) {
-    }
+    ) {}
 
     public function getId(): string
     {

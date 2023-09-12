@@ -9,9 +9,7 @@ use Carbon\Carbon;
 
 class MeteoItemBuilder implements BuilderInterface
 {
-    public function __construct(private readonly WeatherBuilder $weatherBuilder)
-    {
-    }
+    public function __construct(private readonly WeatherBuilder $weatherBuilder) {}
 
     public function build(array $data)
     {

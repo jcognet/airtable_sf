@@ -19,7 +19,7 @@ class InrToolBuilder
             return null;
         }
 
-        $tags = $crawler->filter('.small2 a')->each(fn ($node, $id) => ltrim((string) $node->text(), '#'));
+        $tags = $crawler->filter('.small2 a')->each(static fn ($node, $id) => ltrim((string) $node->text(), '#'));
         sort($tags);
         $text = $crawler->filter('p.small')->text();
 

@@ -17,8 +17,7 @@ class MeteoRepository
         private readonly HttpClientInterface $meteoClient,
         private readonly MeteoItemBuilder $meteoItemBuilder,
         private readonly PlaceFactory $placeFactory
-    ) {
-    }
+    ) {}
 
     public function fetch(): MeteoList
     {

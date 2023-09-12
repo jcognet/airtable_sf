@@ -13,8 +13,7 @@ class PreviousNewsletterFetcher
 
     public function __construct(
         private readonly NewsletterWriterFetcher $newsletterWriterFetcher
-    ) {
-    }
+    ) {}
 
     /**
      * @return NewsLetter[]

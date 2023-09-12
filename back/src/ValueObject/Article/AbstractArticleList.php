@@ -15,8 +15,7 @@ abstract class AbstractArticleList extends AbstractBlock
         private readonly string $title,
         private readonly array $articles,
         private readonly int $nbArticles
-    ) {
-    }
+    ) {}
 
     public function getTitle(): string
     {

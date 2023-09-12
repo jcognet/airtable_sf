@@ -5,9 +5,7 @@ namespace App\Service\Pdf;
 
 class PdfToJpegConverter
 {
-    public function __construct(private readonly string $pdfApiKey)
-    {
-    }
+    public function __construct(private readonly string $pdfApiKey) {}
 
     public function convert(string $pathPdf, string $pathJpg): void
     {

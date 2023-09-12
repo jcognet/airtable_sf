@@ -12,8 +12,7 @@ class CachedImage
         private readonly string $recordTitle,
         private readonly string $slug,
         private readonly Picture $picture
-    ) {
-    }
+    ) {}
 
     public function getClass(): string
     {

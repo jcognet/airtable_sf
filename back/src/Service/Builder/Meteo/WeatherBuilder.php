@@ -9,9 +9,7 @@ use App\ValueObject\Meteo\Weather;
 
 class WeatherBuilder implements BuilderInterface
 {
-    public function __construct(private readonly ConvertIntToWeatherType $convertIntToWeatherType)
-    {
-    }
+    public function __construct(private readonly ConvertIntToWeatherType $convertIntToWeatherType) {}
 
     public function build(array $data)
     {

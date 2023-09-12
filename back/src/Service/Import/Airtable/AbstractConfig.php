@@ -9,8 +9,7 @@ abstract class AbstractConfig implements AirtableConfigInterface
 {
     public function __construct(
         private readonly string $projectDir
-    ) {
-    }
+    ) {}
 
     abstract public function getFileName(): string;
 

@@ -9,9 +9,7 @@ use App\ValueObject\BlockInterface;
 
 class MeteoBlockManager implements BlockManagerInterface
 {
-    public function __construct(private readonly MeteoRepository $meteoRepository)
-    {
-    }
+    public function __construct(private readonly MeteoRepository $meteoRepository) {}
 
     public function getContent(): ?BlockInterface
     {

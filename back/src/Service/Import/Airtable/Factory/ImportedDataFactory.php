@@ -13,8 +13,7 @@ class ImportedDataFactory
         private readonly ConfigFactory $configFactory,
         private readonly YamlListReader $yamlListReader,
         private readonly ImportedDataListFactory $importedDataClassFactory
-    ) {
-    }
+    ) {}
 
     public function make(
         string $type,

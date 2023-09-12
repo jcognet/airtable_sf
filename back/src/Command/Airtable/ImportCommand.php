@@ -37,10 +37,14 @@ class ImportCommand extends Command
         $output->writeln(sprintf('Start of command %s at %s', $this->getName(), $start->format('d/m/Y H:i')));
         $class = $input->getOption('class', null);
 
+        if ($class) {
+            $class = sprintf('App\Service\Import\Airtable\%s\Importer', $class);
+        }
+
         $importedData = $this->importer->import($class);
 
         if ($class && !$importedData) {
-            $output->writeln(sprintf('No importer found for %s', $class));
+            $output->writeln(sprintf('<error>No importer found for %s</error>', $class));
 
             return Command::INVALID;
         }

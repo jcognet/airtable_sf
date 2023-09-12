@@ -13,8 +13,7 @@ class ImageBuilder implements BuilderInterface
     public function __construct(
         private readonly SujetRepository $sujetRepository,
         private readonly CachedImageBuilder $cachedImageBuilder
-    ) {
-    }
+    ) {}
 
     public function build(array $data): Image
     {

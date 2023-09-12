@@ -11,8 +11,7 @@ class Filtrer
     public function __construct(
         private readonly IsFiltrable $isFiltrable,
         private readonly YamlListReader $yamlListReader
-    ) {
-    }
+    ) {}
 
     public function filter(
         AirtableConfigInterface $config,

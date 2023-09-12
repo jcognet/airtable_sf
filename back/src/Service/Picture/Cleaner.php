@@ -12,8 +12,7 @@ class Cleaner implements CleanerInterface
 {
     public function __construct(
         private readonly string $cachedImagePath
-    ) {
-    }
+    ) {}
 
     public function clean(Carbon $from): int
     {

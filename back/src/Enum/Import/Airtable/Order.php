@@ -25,7 +25,7 @@ enum Order: string
         throw new UnknownFormatException(
             $order,
             array_map(
-                fn ($format) => $format->value,
+                static fn ($format) => $format->value,
                 self::cases()
             )
         );

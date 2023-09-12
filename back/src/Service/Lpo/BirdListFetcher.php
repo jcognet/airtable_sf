@@ -8,9 +8,7 @@ use Symfony\Contracts\HttpClient\HttpClientInterface;
 
 class BirdListFetcher
 {
-    public function __construct(private readonly HttpClientInterface $lpoClient)
-    {
-    }
+    public function __construct(private readonly HttpClientInterface $lpoClient) {}
 
     /**
      * @return ImportedBird[]

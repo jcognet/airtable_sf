@@ -16,8 +16,7 @@ class Holiday
         private readonly ?string $placeMeteo,
         private readonly ?string $picDirectory,
         private readonly ?string $comment
-    ) {
-    }
+    ) {}
 
     public function getId(): string
     {

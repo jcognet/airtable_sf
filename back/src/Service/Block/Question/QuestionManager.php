@@ -15,8 +15,7 @@ class QuestionManager implements BlockManagerInterface
     public function __construct(
         private readonly Lister $questionLister,
         private readonly QuestionClient $questionClient
-    ) {
-    }
+    ) {}
 
     public function getContent(): ?BlockInterface
     {

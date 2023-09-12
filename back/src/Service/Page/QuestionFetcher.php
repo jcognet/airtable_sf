@@ -14,8 +14,7 @@ class QuestionFetcher
     public function __construct(
         private readonly Lister $questionLister,
         private readonly BlockFinder $blockFinder
-    ) {
-    }
+    ) {}
 
     public function fetch(Newspaper $newspaper): ?Question
     {

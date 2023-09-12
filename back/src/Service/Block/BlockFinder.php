@@ -11,9 +11,7 @@ use Carbon\Carbon;
 
 class BlockFinder
 {
-    public function __construct(private readonly NewsletterWriterFetcher $newsletterWriterFetcher)
-    {
-    }
+    public function __construct(private readonly NewsletterWriterFetcher $newsletterWriterFetcher) {}
 
     /**
      * @return BlockInterface[]|null

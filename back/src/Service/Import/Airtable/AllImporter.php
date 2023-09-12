@@ -11,8 +11,7 @@ class AllImporter
     public function __construct(
         private readonly iterable $importers,
         private readonly LoggerInterface $logger
-    ) {
-    }
+    ) {}
 
     public function import(?string $class = null): array
     {

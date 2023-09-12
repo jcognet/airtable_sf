@@ -11,9 +11,7 @@ use App\ValueObject\BlockInterface;
 
 class ArticleListALireBlockManager implements BlockManagerInterface
 {
-    public function __construct(private readonly ALireClient $ALireClient)
-    {
-    }
+    public function __construct(private readonly ALireClient $ALireClient) {}
 
     public function getContent(): ?BlockInterface
     {

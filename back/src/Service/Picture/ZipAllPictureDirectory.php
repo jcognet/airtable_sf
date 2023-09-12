@@ -14,12 +14,17 @@ class ZipAllPictureDirectory
         private readonly DirectoryLister $directoryLister,
         private readonly ImageInPathLister $imageInPathLister,
         private readonly LoggerInterface $logger
-    ) {
-    }
+    ) {}
 
     public function zipAll(): void
     {
-        foreach ($this->directoryLister->list() as $directory) {
+        $dirs = $this->directoryLister->list();
+
+        if (!$dirs) {
+            return;
+        }
+
+        foreach ($dirs as $directory) {
             $this->logger->debug(sprintf('Current directory: %s', $directory->getRealPath()));
             $zip = new \ZipArchive();
             $zipFileName = self::getFileName($directory->getRealPath());

@@ -10,8 +10,7 @@ class BlockFamille extends AbstractBlock
 {
     public function __construct(
         private readonly Famille $famille
-    ) {
-    }
+    ) {}
 
     public function getTitle(): string
     {

@@ -23,8 +23,7 @@ abstract class AbstractClient
     public function __construct(
         protected readonly string $airtableAppId,
         private readonly BuilderInterface $builder
-    ) {
-    }
+    ) {}
 
     #[Required]
     public function setLastUsedManager(LastUsedManager $lastUsedManager): void

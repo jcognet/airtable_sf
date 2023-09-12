@@ -18,9 +18,9 @@ class Directory extends AbstractBlock
         array $pictures,
         array $subDirectories
     ) {
-        usort($pictures, fn (Picture $a, Picture $b) => $a->getPath() <=> $b->getPath());
+        usort($pictures, static fn (Picture $a, Picture $b) => $a->getPath() <=> $b->getPath());
         $this->pictures = $pictures;
-        usort($subDirectories, fn (Directory $a, Directory $b) => $a->getTitle() <=> $b->getTitle());
+        usort($subDirectories, static fn (Directory $a, Directory $b) => $a->getTitle() <=> $b->getTitle());
         $this->subDirectories = $subDirectories;
     }
 

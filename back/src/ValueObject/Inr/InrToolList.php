@@ -14,8 +14,7 @@ class InrToolList extends AbstractBlock
     public function __construct(
         private readonly string $title,
         private readonly array $inrTools
-    ) {
-    }
+    ) {}
 
     public function getTitle(): string
     {

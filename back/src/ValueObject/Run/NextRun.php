@@ -14,8 +14,7 @@ class NextRun
         private readonly ?string $url,
         private readonly ?int $duration,
         private readonly ?string $comment,
-    ) {
-    }
+    ) {}
 
     public function getTitle(): ?string
     {

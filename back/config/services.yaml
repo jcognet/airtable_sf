@@ -41,6 +41,7 @@ services:
       $airtableAppQcmId: '%env(AIRTABLE_APP_QCM_ID)%'
       $airtableAppHollidayId: '%env(AIRTABLE_APP_HOLLIDAY_ID)%'
       $airtableAppClientId: '%env(AIRTABLE_APP_FILE_ID)%'
+      $airtableAppFoodingId: '%env(AIRTABLE_APP_FOODING_ID)%'
       $mailerFrom: '%env(MAILER_FROM)%'
       $mailerTo: '%env(MAILER_TO)%'
       $projectDir: '%kernel.project_dir%'
@@ -151,6 +152,14 @@ services:
     arguments:
       $config: '@App\Service\Import\Airtable\Book\Book\Config'
 
+  App\Service\Import\Airtable\Fooding\Coffee\Lister:
+    arguments:
+      $config: '@App\Service\Import\Airtable\Fooding\Coffee\Config'
+
+  App\Service\Import\Airtable\Fooding\Meat\Lister:
+    arguments:
+      $config: '@App\Service\Import\Airtable\Fooding\Meat\Config'
+
   App\Service\Import\Airtable\Holiday\Holiday\Importer:
     arguments:
       $config: '@App\Service\Import\Airtable\Holiday\Holiday\Config'
@@ -185,6 +194,16 @@ services:
     arguments:
       $config: '@App\Service\Import\Airtable\Book\Book\Config'
       $client: '@App\Service\AirTable\Book\BookClient'
+
+  App\Service\Import\Airtable\Fooding\Coffee\Importer:
+    arguments:
+      $config: '@App\Service\Import\Airtable\Fooding\Coffee\Config'
+      $client: '@App\Service\AirTable\Fooding\CoffeeClient'
+
+  App\Service\Import\Airtable\Fooding\Meat\Importer:
+    arguments:
+      $config: '@App\Service\Import\Airtable\Fooding\Meat\Config'
+      $client: '@App\Service\AirTable\Fooding\MeatClient'
 
 when@test:
   parameters:

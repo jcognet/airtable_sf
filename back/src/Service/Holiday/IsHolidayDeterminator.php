@@ -15,8 +15,7 @@ class IsHolidayDeterminator
     public function __construct(
         private readonly RequestStack $requestStack,
         private readonly Fetcher $fetcher
-    ) {
-    }
+    ) {}
 
     public function isHoliday(?Carbon $date): bool
     {

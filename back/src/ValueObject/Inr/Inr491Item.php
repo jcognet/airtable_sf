@@ -8,8 +8,7 @@ class Inr491Item
     public function __construct(
         private readonly ?string $title,
         private readonly ?string $url,
-    ) {
-    }
+    ) {}
 
     public function getTitle(): ?string
     {

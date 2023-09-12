@@ -10,9 +10,7 @@ use Twig\TwigFunction;
 
 class TagExtension extends AbstractExtension
 {
-    public function __construct(private readonly TagReader $tagReader)
-    {
-    }
+    public function __construct(private readonly TagReader $tagReader) {}
 
     public function getFunctions(): array
     {

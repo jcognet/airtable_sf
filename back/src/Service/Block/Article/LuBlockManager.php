@@ -9,9 +9,7 @@ use App\ValueObject\BlockInterface;
 
 class LuBlockManager implements BlockManagerInterface
 {
-    public function __construct(private readonly LuClient $luClient)
-    {
-    }
+    public function __construct(private readonly LuClient $luClient) {}
 
     public function getContent(): ?BlockInterface
     {

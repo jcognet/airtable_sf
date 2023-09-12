@@ -15,8 +15,7 @@ class Place
         private readonly ?string $phoneNumber,
         private readonly ?string $googleUrl,
         private readonly ?string $url,
-    ) {
-    }
+    ) {}
 
     public function getAddress(): string
     {

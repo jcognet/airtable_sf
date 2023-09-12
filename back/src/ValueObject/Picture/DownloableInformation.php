@@ -9,8 +9,7 @@ class DownloableInformation
         private readonly ?int $nbFiles,
         private readonly ?float $size,
         private readonly bool $isDownloadable
-    ) {
-    }
+    ) {}
 
     public function getNbFiles(): ?int
     {

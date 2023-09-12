@@ -22,8 +22,7 @@ class BeerBuilder implements BuilderInterface
         private readonly string $airtableAppBiereId,
         private readonly UrlBuilder $urlBuilder,
         private readonly CachedImageBuilder $cachedImageBuilder
-    ) {
-    }
+    ) {}
 
     public function build(array $data): Beer
     {

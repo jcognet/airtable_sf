@@ -8,9 +8,7 @@ use App\ValueObject\BlockInterface;
 
 class ManagerContentFactory
 {
-    public function __construct(private readonly iterable $listManager)
-    {
-    }
+    public function __construct(private readonly iterable $listManager) {}
 
     public function getContent(string $class): ?BlockInterface
     {

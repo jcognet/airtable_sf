@@ -7,9 +7,7 @@ use App\ValueObject\Picture\Picture;
 
 class PictureFactory
 {
-    public function __construct(private readonly EncoderDecoder $encoderDecoder)
-    {
-    }
+    public function __construct(private readonly EncoderDecoder $encoderDecoder) {}
 
     public function get(string $absolutePath): Picture
     {

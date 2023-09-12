@@ -14,8 +14,7 @@ class IsListable
         private readonly IsImported $isImported,
         private readonly YamlListReader $yamlListReader,
         private readonly ConfigFactory $configFactory
-    ) {
-    }
+    ) {}
 
     public function isListable(string $type): bool
     {
@@ -48,7 +47,7 @@ class IsListable
             }
         }
 
-        usort($typeListable, fn (AirtableConfigInterface $a, AirtableConfigInterface $b) => $a->getPublicLabel() <=> $b->getPublicLabel());
+        usort($typeListable, static fn (AirtableConfigInterface $a, AirtableConfigInterface $b) => $a->getPublicLabel() <=> $b->getPublicLabel());
 
         return $typeListable;
     }

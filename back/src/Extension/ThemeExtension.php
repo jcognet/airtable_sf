@@ -10,9 +10,7 @@ use Twig\TwigFunction;
 
 class ThemeExtension extends AbstractExtension
 {
-    public function __construct(private readonly ThemeFetcher $themeFetcher)
-    {
-    }
+    public function __construct(private readonly ThemeFetcher $themeFetcher) {}
 
     public function getFunctions(): array
     {

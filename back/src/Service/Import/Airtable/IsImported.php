@@ -9,8 +9,7 @@ class IsImported
 {
     public function __construct(
         private readonly iterable $configs
-    ) {
-    }
+    ) {}
 
     public function isImported(string $type): bool
     {

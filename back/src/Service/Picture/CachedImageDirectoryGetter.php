@@ -9,8 +9,7 @@ class CachedImageDirectoryGetter
 {
     public function __construct(
         private readonly string $cachedImagePath
-    ) {
-    }
+    ) {}
 
     public function get(
         string $class,

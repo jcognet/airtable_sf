@@ -14,8 +14,7 @@ class BirdManager implements BlockManagerInterface
     public function __construct(
         private readonly BirdLister $birdLister,
         private readonly PictureFactory $pictureFactory
-    ) {
-    }
+    ) {}
 
     public function getContent(): ?BlockInterface
     {

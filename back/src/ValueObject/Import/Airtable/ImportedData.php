@@ -12,8 +12,7 @@ class ImportedData
         private readonly string $label,
         private readonly array $fields,
         private readonly ?array $data
-    ) {
-    }
+    ) {}
 
     public function getLabel(): string
     {

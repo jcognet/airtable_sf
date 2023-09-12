@@ -12,8 +12,7 @@ class Inr491Manager implements BlockManagerInterface
 {
     public function __construct(
         private readonly Inr491Repository $inr491Repository
-    ) {
-    }
+    ) {}
 
     public function getContent(): ?BlockInterface
     {

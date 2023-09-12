@@ -15,8 +15,7 @@ class ErrorSender
         private readonly MailerInterface $mailer,
         private readonly string $mailerFrom,
         private readonly string $mailerTo
-    ) {
-    }
+    ) {}
 
     public function send(\Throwable $e): void
     {

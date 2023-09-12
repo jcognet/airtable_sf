@@ -12,9 +12,7 @@ class RgesnManager implements BlockManagerInterface
 {
     private const NB_CRITERIA = 3;
 
-    public function __construct(private readonly RgesnRepository $rgesnRepository)
-    {
-    }
+    public function __construct(private readonly RgesnRepository $rgesnRepository) {}
 
     public function getContent(): ?BlockInterface
     {

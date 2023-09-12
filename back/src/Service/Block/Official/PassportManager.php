@@ -12,8 +12,7 @@ class PassportManager implements BlockManagerInterface
 {
     public function __construct(
         private readonly PassportRepository $passportRepository
-    ) {
-    }
+    ) {}
 
     public function getContent(): ?BlockInterface
     {

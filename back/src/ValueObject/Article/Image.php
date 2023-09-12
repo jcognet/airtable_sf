@@ -17,8 +17,7 @@ class Image extends AbstractBlock
         private readonly ?CachedImage $url,
         private readonly ?array $sujets,
         private readonly ?string $source
-    ) {
-    }
+    ) {}
 
     public function getName(): string
     {

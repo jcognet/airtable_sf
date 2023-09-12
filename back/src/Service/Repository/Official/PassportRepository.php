@@ -9,8 +9,7 @@ class PassportRepository
 {
     public function __construct(
         private readonly string $passportBaseUrl
-    ) {
-    }
+    ) {}
 
     public function getUrl(): string
     {

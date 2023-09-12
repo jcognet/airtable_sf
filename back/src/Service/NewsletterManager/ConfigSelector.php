@@ -20,8 +20,7 @@ class ConfigSelector
         private readonly string $pathToConfigurationYaml,
         private readonly ConvertBlockTypeToManagerType $convertBlockTypeToManagerType,
         private readonly IsHolidayDeterminator $isHolidayDeterminator
-    ) {
-    }
+    ) {}
 
     /**
      * @return ManagerType[]

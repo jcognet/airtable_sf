@@ -12,8 +12,7 @@ class ArticleSeeAgainListFetcher
 {
     public function __construct(
         private readonly BlockFinder $blockFinder
-    ) {
-    }
+    ) {}
 
     public function fetch(Newspaper $newspaper): ?ArticleSeeAgainList
     {

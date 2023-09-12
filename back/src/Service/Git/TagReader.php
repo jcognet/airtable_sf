@@ -9,9 +9,7 @@ class TagReader
 {
     private ?array $data = null;
 
-    public function __construct(private readonly string $deployJsonPath)
-    {
-    }
+    public function __construct(private readonly string $deployJsonPath) {}
 
     public function getLastTag(): ?string
     {

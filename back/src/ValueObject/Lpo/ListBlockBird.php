@@ -13,8 +13,7 @@ class ListBlockBird extends AbstractBlock
      */
     public function __construct(
         private readonly array $birds,
-    ) {
-    }
+    ) {}
 
     public function getType(): BlockType
     {

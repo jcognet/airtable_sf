@@ -8,8 +8,7 @@ class Place
     public function __construct(
         private readonly string $label,
         private readonly string $researchKey
-    ) {
-    }
+    ) {}
 
     public function getLabel(): string
     {

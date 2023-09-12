@@ -7,8 +7,7 @@ class Config
 {
     public function __construct(
         private readonly string $birdPath
-    ) {
-    }
+    ) {}
 
     public function getSavedBirdFileName(): string
     {

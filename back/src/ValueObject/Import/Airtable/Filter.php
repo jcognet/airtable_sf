@@ -7,8 +7,7 @@ class Filter
 {
     public function __construct(
         private readonly string $property,
-    ) {
-    }
+    ) {}
 
     public function getProperty(): string
     {

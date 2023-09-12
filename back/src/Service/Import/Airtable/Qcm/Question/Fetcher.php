@@ -9,8 +9,7 @@ class Fetcher
 {
     public function __construct(
         private readonly Lister $questionLister
-    ) {
-    }
+    ) {}
 
     public function fetch(string $id): ?Question
     {

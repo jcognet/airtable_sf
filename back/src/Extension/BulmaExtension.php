@@ -9,9 +9,7 @@ use Twig\TwigFunction;
 
 class BulmaExtension extends AbstractExtension
 {
-    public function __construct(private readonly ColorBulmaFetcher $bulmaFetcher)
-    {
-    }
+    public function __construct(private readonly ColorBulmaFetcher $bulmaFetcher) {}
 
     public function getFunctions(): array
     {

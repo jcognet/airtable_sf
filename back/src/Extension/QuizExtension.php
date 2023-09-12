@@ -8,9 +8,7 @@ use Twig\TwigFunction;
 
 class QuizExtension extends AbstractExtension
 {
-    public function __construct()
-    {
-    }
+    public function __construct() {}
 
     public function getFunctions(): array
     {

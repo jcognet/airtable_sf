@@ -8,9 +8,7 @@ use Carbon\Carbon;
 
 class Fetcher
 {
-    public function __construct(private readonly ExportWriterFetcher $exportWriterFetcher)
-    {
-    }
+    public function __construct(private readonly ExportWriterFetcher $exportWriterFetcher) {}
 
     public function fetch(Carbon $date): ?array
     {

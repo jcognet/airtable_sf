@@ -9,8 +9,7 @@ class Brewery
         private readonly string $id,
         private readonly ?string $label,
         private readonly ?string $url
-    ) {
-    }
+    ) {}
 
     public function getId(): string
     {

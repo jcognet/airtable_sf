@@ -10,8 +10,7 @@ class Inr491RecommandationBuilder
 {
     public function __construct(
         private readonly Inr491ItemBuilder $itemBuilder
-    ) {
-    }
+    ) {}
 
     public function build(string $data): ?Inr491Recommandation
     {

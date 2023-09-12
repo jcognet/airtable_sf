@@ -18,8 +18,7 @@ class ConceptBuilder implements BuilderInterface
         private readonly ImageClient $imageClient,
         private readonly UrlBuilder $urlBuilder,
         private readonly string $airtableAppArticleId
-    ) {
-    }
+    ) {}
 
     public function build(array $data): Concept
     {

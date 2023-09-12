@@ -16,8 +16,7 @@ abstract class AbstractLister
         private readonly AirtableConfigInterface $config,
         private readonly DenormalizerInterface $denormalizer,
         private readonly Filtrer $filter
-    ) {
-    }
+    ) {}
 
     public function list(Sort $sort = null, ?string $filter = null): ?array
     {
@@ -43,9 +42,9 @@ abstract class AbstractLister
 
             try {
                 if ($sort->getOrder() === Order::ASC) {
-                    usort($items, fn ($a, $b) => $a->{$functionName}() <=> $b->{$functionName}());
+                    usort($items, static fn ($a, $b) => $a->{$functionName}() <=> $b->{$functionName}());
                 } else {
-                    usort($items, fn ($a, $b) => $b->{$functionName}() <=> $a->{$functionName}());
+                    usort($items, static fn ($a, $b) => $b->{$functionName}() <=> $a->{$functionName}());
                 }
             } catch (\Throwable $e) {
                 throw new UnknownFieldException($e->getMessage());

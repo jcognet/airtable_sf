@@ -8,9 +8,7 @@ use Symfony\Component\Security\Http\LoginLink\LoginLinkHandlerInterface;
 
 class LoginLinkHandler
 {
-    public function __construct(private readonly LoginLinkHandlerInterface $loginLinkHandler)
-    {
-    }
+    public function __construct(private readonly LoginLinkHandlerInterface $loginLinkHandler) {}
 
     public function createLink(UserInterface $user): string
     {

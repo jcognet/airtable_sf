@@ -12,8 +12,7 @@ class ImageUrl extends AbstractBlock
         private readonly string $title,
         private readonly string $url,
         private readonly ?int $width = null
-    ) {
-    }
+    ) {}
 
     public function getTitle(): string
     {

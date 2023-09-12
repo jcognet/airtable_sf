@@ -16,7 +16,7 @@ class UnknownConvertBlockTypeToManagerTypeException extends \RuntimeException
                 implode(
                     ', ',
                     array_map(
-                        fn ($format) => $format->value,
+                        static fn ($format) => $format->value,
                         $list
                     )
                 )

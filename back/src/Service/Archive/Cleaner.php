@@ -10,9 +10,7 @@ use Symfony\Component\Finder\Finder;
 
 class Cleaner implements CleanerInterface
 {
-    public function __construct(private readonly string $deployArchiveJsonPath)
-    {
-    }
+    public function __construct(private readonly string $deployArchiveJsonPath) {}
 
     public function clean(Carbon $from): int
     {

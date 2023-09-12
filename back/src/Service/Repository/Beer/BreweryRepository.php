@@ -10,9 +10,7 @@ class BreweryRepository
 {
     private ?array $brasseries = null;
 
-    public function __construct(private readonly BreweryClient $brasserieClient)
-    {
-    }
+    public function __construct(private readonly BreweryClient $brasserieClient) {}
 
     public function getById(string $id): Brewery
     {

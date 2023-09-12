@@ -10,8 +10,7 @@ class BirdLister
 {
     public function __construct(
         private readonly Config $config
-    ) {
-    }
+    ) {}
 
     /**
      * @return ImportedBird[]

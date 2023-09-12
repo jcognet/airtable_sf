@@ -8,9 +8,7 @@ use App\ValueObject\NewsletterBlockManager\BlockType;
 
 class ItemList extends AbstractBlock
 {
-    public function __construct(private readonly string $title, private readonly array $toDos)
-    {
-    }
+    public function __construct(private readonly string $title, private readonly array $toDos) {}
 
     public function getTitle(): string
     {

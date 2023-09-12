@@ -5,9 +5,7 @@ namespace App\ValueObject\Beer;
 
 class BeerType
 {
-    public function __construct(private readonly string $id, private readonly string $label)
-    {
-    }
+    public function __construct(private readonly string $id, private readonly string $label) {}
 
     public function getId(): string
     {

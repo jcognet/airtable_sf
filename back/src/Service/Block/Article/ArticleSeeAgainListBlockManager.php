@@ -12,9 +12,7 @@ class ArticleSeeAgainListBlockManager implements BlockManagerInterface
 {
     private const NB_ARTICLE = 2;
 
-    public function __construct(private readonly SeeAgainClient $seeAgainClient)
-    {
-    }
+    public function __construct(private readonly SeeAgainClient $seeAgainClient) {}
 
     public function getContent(): ?BlockInterface
     {

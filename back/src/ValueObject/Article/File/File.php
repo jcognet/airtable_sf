@@ -17,8 +17,7 @@ class File
         private readonly string $title,
         private readonly string $url,
         private readonly string $airTableUrl
-    ) {
-    }
+    ) {}
 
     public function getId(): string
     {
