@@ -1,6 +1,6 @@
 {% extends './page/base.html.twig' %}
 {% block body %}
-    {% include './dashboard/include/current_newspaper.html.twig' with {newspaper, passport_url, newspaper_date, kpi} only %}
+    {% include './dashboard/include/current_newspaper.html.twig' with {newspaper, newspaper_date, kpi} only %}
     {% include './dashboard/include/meteo.html.twig' with {newspaper} only %}
     {% include './dashboard/include/quiz.html.twig' with {newspaper} only %}
     {% include './dashboard/include/previous_newspapers.html.twig' with {previous_newspapers} only %}

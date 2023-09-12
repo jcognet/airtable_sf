@@ -1,7 +1,6 @@
 blocks:
   - image
   - list_meteo
-  - passport
   - list_todo
   - image_google_in_progess
   - image_url

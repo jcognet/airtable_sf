@@ -9,7 +9,6 @@ parameters:
   inr491BaseUrl: 'https://gr491.isit-europe.org/'
   ecoresponsaglegouvBaseUrl: 'https://ecoresponsable.numerique.gouv.fr/'
   lpoBaseUrl: 'https://www.oiseauxdesjardins.fr/index.php'
-  passportBaseUrl: 'https://rendezvouspasseport.ants.gouv.fr/'
   thumbnail_list:
     default:
       height: 200
@@ -63,7 +62,6 @@ services:
       $absoluteUrlFront: '%env(URL_ABSOLUTE_FRONT)%'
       $inr491BaseUrl: '%inr491BaseUrl%'
       $cachedImagePath: '%kernel.project_dir%/src/Data/cached_image/'
-      $passportBaseUrl: '%passportBaseUrl%'
 
   # makes classes in src/ available to be used as services
   # this creates a service per class whose id is the fully-qualified class name
