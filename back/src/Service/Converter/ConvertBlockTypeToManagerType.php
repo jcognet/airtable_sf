@@ -22,7 +22,6 @@ use App\Service\Block\Lpo\BirdManager;
 use App\Service\Block\Lpo\ImageStatementManager;
 use App\Service\Block\Lpo\ListBirdManager;
 use App\Service\Block\Meteo\MeteoBlockManager;
-use App\Service\Block\Official\PassportManager;
 use App\Service\Block\Picture\PictureManager;
 use App\Service\Block\Question\QuestionManager;
 use App\Service\Block\Random\GoodPracticeOrganizationManager;
@@ -64,7 +63,6 @@ class ConvertBlockTypeToManagerType
         NextRunBlockManager::class => BlockType::NEXT_RUNS,
         ImageStatementManager::class => BlockType::BIRD_STATEMENT,
         Inr491Manager::class => BlockType::INR_491,
-        PassportManager::class => BlockType::PASSPORT,
         QuestionManager::class => BlockType::QUIZ,
     ];
 

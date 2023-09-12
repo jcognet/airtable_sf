@@ -9,7 +9,6 @@ use App\Service\Export\Fetcher;
 use App\Service\Holiday\IsHolidayDeterminator;
 use App\Service\Import\Airtable\IsListable;
 use App\Service\Picture\DirectoryLister;
-use App\Service\Repository\Official\PassportRepository;
 use Carbon\Carbon;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -22,7 +21,6 @@ class DashboardController extends AbstractController
     public function show(
         Request $request,
         NewsletterWriterFetcher $newsletterWriterFetcher,
-        PassportRepository $passportRepository,
         PreviousNewsletterFetcher $previousNewsletterFetcher,
         Fetcher $exporterFetcher,
         DirectoryLister $directoryLister,
@@ -45,7 +43,6 @@ class DashboardController extends AbstractController
             'dashboard/show.html.twig',
             [
                 'newspaper_date' => $newsletter->getNewspaper()->getDate(),
-                'passport_url' => $passportRepository->getUrl(),
                 'newspaper' => $newsletter->getNewspaper(),
                 'previous_newspapers' => $previousNewsletterFetcher->fetchNewspapers($date),
                 'kpi' => $exporterFetcher->fetch($date),
