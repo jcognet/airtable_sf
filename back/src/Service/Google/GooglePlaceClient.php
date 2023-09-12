@@ -22,8 +22,7 @@ class GooglePlaceClient
         private readonly HttpClientInterface $googlePlaceApiClient,
         private readonly PlaceBuilder $placeBuilder,
         private readonly LoggerInterface $logger
-    ) {
-    }
+    ) {}
 
     /**
      * @return Place[]

@@ -9,9 +9,7 @@ use Symfony\Contracts\HttpClient\HttpClientInterface;
 
 class StarRepository implements RandomImageRepositoryInterface
 {
-    public function __construct(private readonly HttpClientInterface $httpClient, private readonly StarBuilder $starBuilder)
-    {
-    }
+    public function __construct(private readonly HttpClientInterface $httpClient, private readonly StarBuilder $starBuilder) {}
 
     public function fetchRandomData(array $param = []): BlockInterface
     {

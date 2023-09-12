@@ -13,8 +13,7 @@ class PdfToJpegConverter
         private readonly PdfConverter $converter,
         private readonly string $birdPath,
         private readonly FileNameGenerator $fileNameGenerator
-    ) {
-    }
+    ) {}
 
     public function convert(ImportedBird $bird): void
     {

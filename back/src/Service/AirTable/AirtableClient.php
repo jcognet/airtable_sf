@@ -7,9 +7,7 @@ use Symfony\Contracts\HttpClient\HttpClientInterface;
 
 final class AirtableClient
 {
-    public function __construct(private readonly HttpClientInterface $airtableClient)
-    {
-    }
+    public function __construct(private readonly HttpClientInterface $airtableClient) {}
 
     public function request(string $verb, string $url, ?array $parameters = []): string
     {

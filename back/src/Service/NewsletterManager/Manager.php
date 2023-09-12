@@ -13,8 +13,7 @@ class Manager
         private readonly NewsletterWriterFetcher $newsletterWriterFetcher,
         private readonly NewspaperCreator $creator,
         private readonly NewspaperRenderer $newspaperRenderer
-    ) {
-    }
+    ) {}
 
     public function get(
         Carbon $date,

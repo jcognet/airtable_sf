@@ -16,8 +16,7 @@ class CachedImageBuilder
         private readonly SluggerInterface $slugger,
         private readonly CachedImageDirectoryGetter $directoryGetter,
         private readonly FileDownloader $fileDownloader
-    ) {
-    }
+    ) {}
 
     public function build(
         string $class,

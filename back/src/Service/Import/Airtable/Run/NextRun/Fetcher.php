@@ -10,8 +10,7 @@ class Fetcher
 {
     public function __construct(
         private readonly Lister $lister
-    ) {
-    }
+    ) {}
 
     public function fetchInFuture(): ?array
     {

@@ -10,8 +10,7 @@ class ExportNurseryWriter
     public function __construct(
         private readonly string $spreadSheetNurseryId,
         private readonly GoogleClient $googleClient
-    ) {
-    }
+    ) {}
 
     /**
      * @param Place[] $data

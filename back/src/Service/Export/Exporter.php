@@ -32,8 +32,7 @@ class Exporter
         private readonly ExportWriterFetcher $exportWriterFetcher,
         private readonly InterestingTopicClient $interestingTopicClient,
         private readonly Lister $questionLister
-    ) {
-    }
+    ) {}
 
     public function getData(): array
     {

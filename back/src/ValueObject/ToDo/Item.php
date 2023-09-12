@@ -17,8 +17,7 @@ class Item
         private readonly ?string $category,
         private readonly ?string $sprint,
         private readonly bool $isImportant
-    ) {
-    }
+    ) {}
 
     public function getId(): string
     {

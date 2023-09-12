@@ -10,8 +10,7 @@ class Passport extends AbstractBlock
 {
     public function __construct(
         private readonly string $url
-    ) {
-    }
+    ) {}
 
     public function getTitle(): string
     {

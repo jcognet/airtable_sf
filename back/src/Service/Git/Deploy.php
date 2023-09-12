@@ -30,8 +30,7 @@ class Deploy implements LoggerAwareInterface
         private readonly TagHandler $tagHandler,
         private readonly string $environment,
         private readonly Environment $twig
-    ) {
-    }
+    ) {}
 
     public function checkAccess(Request $request): bool
     {

@@ -9,9 +9,7 @@ use App\ValueObject\BlockInterface;
 
 class ConceptManager implements BlockManagerInterface
 {
-    public function __construct(private readonly ConceptClient $conceptClient)
-    {
-    }
+    public function __construct(private readonly ConceptClient $conceptClient) {}
 
     public function getContent(): ?BlockInterface
     {

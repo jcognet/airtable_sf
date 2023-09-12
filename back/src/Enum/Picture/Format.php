@@ -28,7 +28,7 @@ enum Format: string
         throw new UnknownFormatException(
             $type,
             array_map(
-                fn ($format) => $format->value,
+                static fn ($format) => $format->value,
                 self::cases()
             )
         );

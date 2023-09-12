@@ -17,8 +17,7 @@ class Book extends AbstractBlock
         private readonly ?int $currentPage,
         private readonly ?int $maxPage,
         private readonly string $airTableUrl
-    ) {
-    }
+    ) {}
 
     public function getTitle(): string
     {

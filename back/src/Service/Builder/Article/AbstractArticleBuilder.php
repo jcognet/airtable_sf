@@ -21,8 +21,7 @@ abstract class AbstractArticleBuilder implements BuilderInterface
         private readonly SujetRepository $sujetRepository,
         private readonly string $airtableAppArticleId,
         private readonly UrlBuilder $urlBuilder
-    ) {
-    }
+    ) {}
 
     public function build(array $data): Article
     {

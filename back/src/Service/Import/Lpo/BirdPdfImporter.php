@@ -22,8 +22,7 @@ class BirdPdfImporter
         private readonly SerializerInterface $serializer,
         private readonly LoggerInterface $logger,
         private readonly PdfToJpegConverter $pdfToJpegConverter
-    ) {
-    }
+    ) {}
 
     /**
      * @return ImportedBird[]

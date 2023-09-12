@@ -8,9 +8,7 @@ class InrTool
     /**
      * @param string[] $tags
      */
-    public function __construct(private readonly string $title, private readonly string $url, private readonly array $tags, private readonly string $text)
-    {
-    }
+    public function __construct(private readonly string $title, private readonly string $url, private readonly array $tags, private readonly string $text) {}
 
     public function getTitle(): string
     {

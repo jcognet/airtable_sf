@@ -10,9 +10,7 @@ use App\ValueObject\Run\ListBlockNextRun;
 
 class NextRunBlockManager implements BlockManagerInterface
 {
-    public function __construct(private readonly Fetcher $fetcher)
-    {
-    }
+    public function __construct(private readonly Fetcher $fetcher) {}
 
     public function getContent(): ?BlockInterface
     {

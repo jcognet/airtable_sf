@@ -9,9 +9,7 @@ use App\ValueObject\BlockInterface;
 
 class ImageManager implements BlockManagerInterface
 {
-    public function __construct(private readonly ImageClient $imageClient)
-    {
-    }
+    public function __construct(private readonly ImageClient $imageClient) {}
 
     public function getContent(): ?BlockInterface
     {

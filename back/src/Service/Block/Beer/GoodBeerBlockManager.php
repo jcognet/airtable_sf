@@ -10,9 +10,7 @@ use App\ValueObject\BlockInterface;
 
 class GoodBeerBlockManager implements BlockManagerInterface
 {
-    public function __construct(private readonly BeerClient $beerClient)
-    {
-    }
+    public function __construct(private readonly BeerClient $beerClient) {}
 
     public function getContent(): ?BlockInterface
     {

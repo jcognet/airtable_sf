@@ -18,8 +18,7 @@ class Video extends AbstractBlock
         private readonly Carbon $addedAt,
         private readonly array $sujets,
         private readonly ?string $url
-    ) {
-    }
+    ) {}
 
     public function getTitle(): string
     {

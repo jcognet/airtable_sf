@@ -10,9 +10,7 @@ use App\ValueObject\Article\Video;
 
 class VideoBlockManager implements BlockManagerInterface
 {
-    public function __construct(private readonly LuClient $luClient, private readonly ConvertArticleToVideo $convertArticleToVideo)
-    {
-    }
+    public function __construct(private readonly LuClient $luClient, private readonly ConvertArticleToVideo $convertArticleToVideo) {}
 
     public function getContent(): ?Video
     {

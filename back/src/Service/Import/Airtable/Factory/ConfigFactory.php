@@ -12,8 +12,7 @@ class ConfigFactory
     public function __construct(
         private readonly iterable $configs,
         private readonly IsImported $isImported
-    ) {
-    }
+    ) {}
 
     public function make(string $type): AirtableConfigInterface
     {
@@ -23,6 +22,6 @@ class ConfigFactory
             }
         }
 
-        throw new UnknownDataImportedTypeException($type, array_map(fn (AirtableConfigInterface $config) => $config->getPublicKey(), $this->isImported->fetchAll()));
+        throw new UnknownDataImportedTypeException($type, array_map(static fn (AirtableConfigInterface $config) => $config->getPublicKey(), $this->isImported->fetchAll()));
     }
 }

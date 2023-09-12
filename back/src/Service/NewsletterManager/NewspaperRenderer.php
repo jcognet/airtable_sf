@@ -12,8 +12,7 @@ class NewspaperRenderer
 
     public function __construct(
         private readonly Environment $twig
-    ) {
-    }
+    ) {}
 
     public function renderHtml(
         Newspaper $newspaper,

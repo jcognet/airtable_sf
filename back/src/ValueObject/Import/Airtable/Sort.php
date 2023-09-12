@@ -10,8 +10,7 @@ class Sort
     public function __construct(
         private readonly ?string $property,
         private readonly ?Order $order,
-    ) {
-    }
+    ) {}
 
     public function getProperty(): ?string
     {

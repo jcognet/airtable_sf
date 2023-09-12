@@ -9,8 +9,7 @@ class Field
         private readonly string $property,
         private readonly ?string $label = null,
         private readonly bool $isSortable = false,
-    ) {
-    }
+    ) {}
 
     public function getLabel(): string
     {

@@ -15,8 +15,7 @@ class NewsletterSender
         private readonly MailerInterface $mailer,
         private readonly string $mailerFrom,
         private readonly string $mailerTo
-    ) {
-    }
+    ) {}
 
     public function send(string $content): void
     {

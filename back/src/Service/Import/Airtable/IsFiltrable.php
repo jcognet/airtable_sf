@@ -12,8 +12,7 @@ class IsFiltrable
         private readonly IsImported $isImported,
         private readonly ConfigFactory $configFactory,
         private readonly YamlListReader $yamlListReader,
-    ) {
-    }
+    ) {}
 
     public function isFiltrable(string $type): bool
     {

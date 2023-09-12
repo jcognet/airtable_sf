@@ -11,8 +11,7 @@ class ExportWriterFetcher
     public function __construct(
         private readonly SerializerInterface $serializer,
         private readonly ExportReadWriteHandler $exportReadWriteHandler
-    ) {
-    }
+    ) {}
 
     public function write(
         array $data,

@@ -9,9 +9,7 @@ use App\ValueObject\Random\ImageUrl;
 
 class DoneContentManager implements BlockManagerInterface
 {
-    public function __construct(private readonly string $doneContentUrl)
-    {
-    }
+    public function __construct(private readonly string $doneContentUrl) {}
 
     public function getContent(): ?BlockInterface
     {

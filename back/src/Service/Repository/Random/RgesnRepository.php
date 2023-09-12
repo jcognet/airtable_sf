@@ -16,8 +16,7 @@ class RgesnRepository
     public function __construct(
         private readonly HttpClientInterface $ecoresponsablegouvClient,
         private readonly CriteriaBuilder $criteriaBuilder
-    ) {
-    }
+    ) {}
 
     public function fetchRandomData(): ?Criteria
     {

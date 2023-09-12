@@ -23,8 +23,7 @@ class Beer extends AbstractBlock
         private readonly ?BeerType $beerType,
         private readonly ?float $alcolholDegree,
         private readonly string $url
-    ) {
-    }
+    ) {}
 
     public function getTitle(): string
     {

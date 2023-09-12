@@ -16,8 +16,7 @@ class Concept extends AbstractBlock
         private readonly string $text,
         private readonly array $linkedContents,
         private readonly string $airTableUrl
-    ) {
-    }
+    ) {}
 
     public function getName(): string
     {

@@ -14,8 +14,7 @@ class QuestionBuilder implements BuilderInterface
     public function __construct(
         private readonly UrlBuilder $urlBuilder,
         private readonly string $airtableAppQcmId
-    ) {
-    }
+    ) {}
 
     public function build(array $data): Question
     {

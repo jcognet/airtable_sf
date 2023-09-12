@@ -13,14 +13,13 @@ class MeteoList extends AbstractBlock
      */
     public function __construct(
         private readonly array $meteoItemLists
-    ) {
-    }
+    ) {}
 
     public function getTitle(): string
     {
         $places = array_unique(
             array_map(
-                fn ($meteoItem) => $meteoItem->getPlace()->getLabel(),
+                static fn ($meteoItem) => $meteoItem->getPlace()->getLabel(),
                 $this->meteoItemLists
             )
         );

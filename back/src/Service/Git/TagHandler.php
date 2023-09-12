@@ -8,9 +8,7 @@ use Symfony\Component\Filesystem\Filesystem;
 
 class TagHandler
 {
-    public function __construct(private readonly string $deployJsonPath)
-    {
-    }
+    public function __construct(private readonly string $deployJsonPath) {}
 
     public function write(string $tag): void
     {

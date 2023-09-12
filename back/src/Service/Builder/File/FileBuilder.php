@@ -14,8 +14,7 @@ class FileBuilder implements BuilderInterface
     public function __construct(
         private readonly UrlBuilder $urlBuilder,
         private readonly string $airtableAppClientId
-    ) {
-    }
+    ) {}
 
     public function build(array $data): File
     {

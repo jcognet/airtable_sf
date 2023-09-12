@@ -10,9 +10,7 @@ use Symfony\Component\Serializer\Normalizer\DenormalizerInterface;
 
 class ConceptDenormalizer implements DenormalizerInterface
 {
-    public function __construct(private readonly LastUsedManager $lastUsedManager)
-    {
-    }
+    public function __construct(private readonly LastUsedManager $lastUsedManager) {}
 
     public function denormalize(mixed $data, string $type, string $format = null, array $context = []): Concept
     {

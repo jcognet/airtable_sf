@@ -11,8 +11,7 @@ class ThumbnailerGetter
     public function __construct(
         private readonly ThumbnailerNameGetter $thumbnailerNameGetter,
         private readonly ThumbnailerGenerator $thumbnailerGenerator
-    ) {
-    }
+    ) {}
 
     public function get(
         string $sourceImage,

@@ -11,9 +11,7 @@ class GithubRepository implements LoggerAwareInterface
 {
     use LoggerAwareTrait;
 
-    public function __construct(private readonly HttpClientInterface $githubrepositoryClient)
-    {
-    }
+    public function __construct(private readonly HttpClientInterface $githubrepositoryClient) {}
 
     public function getNbIssues(): int
     {

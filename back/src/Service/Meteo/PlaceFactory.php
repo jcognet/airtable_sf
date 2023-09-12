@@ -14,8 +14,7 @@ class PlaceFactory
 
     public function __construct(
         private readonly Fetcher $holidayFetcher
-    ) {
-    }
+    ) {}
 
     public function make(?Carbon $date = null): Place
     {

@@ -19,8 +19,7 @@ class ImportedDataListFactory implements ServiceSubscriberInterface
 {
     public function __construct(
         private readonly ContainerInterface $locator
-    ) {
-    }
+    ) {}
 
     public function make(AirtableConfigInterface $config): AbstractLister
     {

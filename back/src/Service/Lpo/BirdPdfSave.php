@@ -14,8 +14,7 @@ class BirdPdfSave
         private readonly HttpClientInterface $lpoClient,
         private readonly string $birdPath,
         private readonly FileNameGenerator $fileNameGenerator
-    ) {
-    }
+    ) {}
 
     public function save(ImportedBird $bird): void
     {

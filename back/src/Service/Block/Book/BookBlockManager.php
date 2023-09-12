@@ -9,9 +9,7 @@ use App\ValueObject\BlockInterface;
 
 class BookBlockManager implements BlockManagerInterface
 {
-    public function __construct(private readonly BookClient $bookClient)
-    {
-    }
+    public function __construct(private readonly BookClient $bookClient) {}
 
     public function getContent(): ?BlockInterface
     {

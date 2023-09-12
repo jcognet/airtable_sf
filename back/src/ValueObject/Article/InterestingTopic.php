@@ -10,9 +10,7 @@ use Symfony\Component\Serializer\Annotation\Ignore;
 
 class InterestingTopic extends AbstractBlock
 {
-    public function __construct(private readonly string $title)
-    {
-    }
+    public function __construct(private readonly string $title) {}
 
     public function getTitle(): string
     {

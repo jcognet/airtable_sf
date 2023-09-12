@@ -7,9 +7,7 @@ use App\ValueObject\Picture\Picture;
 
 class RandomPictorySelector
 {
-    public function __construct(private readonly ImageInPathLister $imageInPathLister)
-    {
-    }
+    public function __construct(private readonly ImageInPathLister $imageInPathLister) {}
 
     public function select(string $directory): ?Picture
     {

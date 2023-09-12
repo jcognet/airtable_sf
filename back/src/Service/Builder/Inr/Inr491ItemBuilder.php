@@ -10,8 +10,7 @@ class Inr491ItemBuilder
 {
     public function __construct(
         private readonly string $inr491BaseUrl
-    ) {
-    }
+    ) {}
 
     public function build(string $data): ?Inr491Item
     {

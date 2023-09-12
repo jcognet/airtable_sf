@@ -9,9 +9,7 @@ use Symfony\Contracts\HttpClient\HttpClientInterface;
 
 class CurrencyRepository
 {
-    public function __construct(private readonly HttpClientInterface $currencyClient, private readonly CurrencyBuilder $currencyBuilder)
-    {
-    }
+    public function __construct(private readonly HttpClientInterface $currencyClient, private readonly CurrencyBuilder $currencyBuilder) {}
 
     /**
      * @return Currency[]

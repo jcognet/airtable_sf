@@ -13,8 +13,7 @@ class Famille
         private readonly ?string $recommandations,
         private readonly ?string $criteres,
         private readonly string $url
-    ) {
-    }
+    ) {}
 
     public function getTitle(): ?string
     {

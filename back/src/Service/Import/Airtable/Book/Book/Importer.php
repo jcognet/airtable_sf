@@ -5,6 +5,4 @@ namespace App\Service\Import\Airtable\Book\Book;
 
 use App\Service\Import\Airtable\AbstractImporter;
 
-class Importer extends AbstractImporter
-{
-}
+class Importer extends AbstractImporter {}

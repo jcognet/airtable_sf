@@ -23,8 +23,7 @@ class Article extends AbstractBlock
         private readonly string $airTableUrl,
         private readonly bool $hasConcept = false,
         private readonly bool $seeAgain = false,
-    ) {
-    }
+    ) {}
 
     public function getTitle(): string
     {

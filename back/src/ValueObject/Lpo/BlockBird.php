@@ -12,8 +12,7 @@ class BlockBird extends AbstractBlock
     public function __construct(
         private readonly ImportedBird $bird,
         private readonly Picture $image
-    ) {
-    }
+    ) {}
 
     public function getType(): BlockType
     {

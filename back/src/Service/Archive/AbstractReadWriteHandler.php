@@ -10,8 +10,7 @@ abstract class AbstractReadWriteHandler
 {
     public function __construct(
         protected readonly string $deployArchiveJsonPath
-    ) {
-    }
+    ) {}
 
     public function write(string $data, Carbon $date): void
     {

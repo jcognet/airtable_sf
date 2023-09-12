@@ -13,8 +13,7 @@ class Criteria
         private readonly string $objectif,
         private readonly string $miseEnOeuvre,
         private readonly string $controle
-    ) {
-    }
+    ) {}
 
     public function getId(): string
     {

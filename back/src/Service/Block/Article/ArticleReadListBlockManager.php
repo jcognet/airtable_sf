@@ -12,9 +12,7 @@ class ArticleReadListBlockManager implements BlockManagerInterface
 {
     private const NB_ARTICLE = 3;
 
-    public function __construct(private readonly LuClient $luClient)
-    {
-    }
+    public function __construct(private readonly LuClient $luClient) {}
 
     public function getContent(): ?BlockInterface
     {

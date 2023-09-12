@@ -32,8 +32,7 @@ class Inr491Repository
         private readonly HttpClientInterface $inr491Client,
         private readonly Inr491FamilleBuilder $familleBuilder,
         private readonly Inr491RecommandationBuilder $recommandationBuilder,
-    ) {
-    }
+    ) {}
 
     public function fetchRandomData(): ?Famille
     {

@@ -43,8 +43,7 @@ class NavigationExtension extends AbstractExtension
         private readonly MeteoListFetcher $meteoListFetcher,
         private readonly QuestionFetcher $questionFetcher,
         private readonly RandomPicFetcher $randomPicFetcher
-    ) {
-    }
+    ) {}
 
     public function getFunctions(): array
     {

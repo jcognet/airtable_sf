@@ -7,8 +7,7 @@ class RandomDirectorySelector
 {
     public function __construct(
         private readonly DirectoryLister $directoryLister
-    ) {
-    }
+    ) {}
 
     public function getRandomDirectory(): ?string
     {

@@ -13,8 +13,7 @@ class ListBlockNextRun extends AbstractBlock
      */
     public function __construct(
         private readonly array $runs,
-    ) {
-    }
+    ) {}
 
     public function getType(): BlockType
     {

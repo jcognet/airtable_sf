@@ -10,9 +10,7 @@ class BeerTypeRepository
 {
     private ?array $types = null;
 
-    public function __construct(private readonly BeerTypeClient $beerTypeClient)
-    {
-    }
+    public function __construct(private readonly BeerTypeClient $beerTypeClient) {}
 
     public function getById(string $id): BeerType
     {

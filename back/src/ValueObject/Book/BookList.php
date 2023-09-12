@@ -14,8 +14,7 @@ class BookList extends AbstractBlock
     public function __construct(
         private readonly ?string $title,
         private readonly array $books
-    ) {
-    }
+    ) {}
 
     public function getTitle(): string
     {

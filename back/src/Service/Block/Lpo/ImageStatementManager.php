@@ -10,9 +10,7 @@ use App\ValueObject\Random\ListImageUrl;
 
 class ImageStatementManager implements BlockManagerInterface
 {
-    public function __construct(private readonly string $absoluteUrlFront)
-    {
-    }
+    public function __construct(private readonly string $absoluteUrlFront) {}
 
     public function getContent(): ?BlockInterface
     {

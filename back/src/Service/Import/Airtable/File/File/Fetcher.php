@@ -5,9 +5,7 @@ namespace App\Service\Import\Airtable\File\File;
 
 class Fetcher
 {
-    public function __construct(private readonly Lister $lister)
-    {
-    }
+    public function __construct(private readonly Lister $lister) {}
 
     public function fetch(): ?array
     {

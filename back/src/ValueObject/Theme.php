@@ -5,9 +5,7 @@ namespace App\ValueObject;
 
 class Theme
 {
-    public function __construct(private readonly string $mainColor, private readonly string $secondaryColor)
-    {
-    }
+    public function __construct(private readonly string $mainColor, private readonly string $secondaryColor) {}
 
     public function getMainColor(): string
     {

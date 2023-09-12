@@ -14,8 +14,7 @@ class GoodPracticesList extends AbstractBlock
     public function __construct(
         private readonly string $title,
         private readonly array $goodPractices
-    ) {
-    }
+    ) {}
 
     public function getTitle(): string
     {

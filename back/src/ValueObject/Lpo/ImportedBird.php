@@ -13,8 +13,7 @@ class ImportedBird
         private ?string $pdfUrl = null,
         private ?string $savedPdfPath = null,
         private ?string $savedImgPath = null,
-    ) {
-    }
+    ) {}
 
     public function getLpoId(): int
     {
