@@ -20,7 +20,7 @@ final class ContentControllerTest extends WebTestCase
         $client->followRedirects(true);
         $this->loginUser($client);
 
-        $client->request('GET', '/newspaper/content/one/passport?date=2021-01-03');
+        $client->request('GET', '/newspaper/content/one/article?date=2021-01-03');
 
         $this->assertResponseIsSuccessful();
     }
