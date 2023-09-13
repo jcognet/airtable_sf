@@ -98,6 +98,11 @@ abstract class AbstractClient
 
             foreach ($response['records'] as $rawData) {
                 $object = $this->builder->build($rawData);
+
+                if (!$object) {
+                    continue;
+                }
+
                 $this->lastUsedManager->onPostBuild($object, $rawData);
                 $this->recordsByParam[$keyResearch][$rawData['id']] = $object;
             }
@@ -117,6 +122,11 @@ abstract class AbstractClient
 
                 foreach ($response['records'] as $rawData) {
                     $object = $this->builder->build($rawData);
+
+                    if (!$object) {
+                        continue;
+                    }
+
                     $this->lastUsedManager->onPostBuild($object, $rawData);
                     $this->recordsByParam[$keyResearch][$rawData['id']] = $object;
                 }
@@ -152,6 +162,11 @@ abstract class AbstractClient
         }
 
         $object = $this->builder->build($response);
+
+        if (!$object) {
+            return null;
+        }
+
         $this->lastUsedManager->onPostBuild($object, $response);
 
         return $object;

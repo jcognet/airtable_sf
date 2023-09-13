@@ -9,8 +9,12 @@ use Carbon\Carbon;
 
 class CoffeeBuilder implements BuilderInterface
 {
-    public function build(array $data): Coffee
+    public function build(array $data): ?Coffee
     {
+        if (!isset($data['fields']['Jour']) && $data['fields']['Quantité']) {
+            return null;
+        }
+
         return new Coffee(
             date: Carbon::parse($data['fields']['Jour']),
             quantity: $data['fields']['Quantité']

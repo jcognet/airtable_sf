@@ -11,6 +11,10 @@ RUN apt-get update && apt-get install -y zlib1g-dev g++ git libicu-dev zip libzi
     && docker-php-ext-install zip \
     && cp /usr/local/etc/php/php.ini-development /usr/local/etc/php/php.ini
 
+RUN docker-php-ext-enable xdebug \
+    && echo "xdebug.mode=debug" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini \
+    && echo "xdebug.client_host=host.docker.internal" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
+
 COPY ./docker/php/etc/php.ini /usr/local/etc/php/conf.d/symfony.ini
 
 COPY --from=composer:latest /usr/bin/composer /usr/local/bin/composer
