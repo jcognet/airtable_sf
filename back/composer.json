@@ -45,7 +45,7 @@
     "require-dev": {
         "phpstan/phpstan": "^1.9",
         "phpunit/phpunit": "^10.0",
-        "rector/rector": "^0.17",
+        "rector/rector": "^0.18",
         "symfony/browser-kit": "6.3.*",
         "symfony/css-selector": "6.3.*",
         "symfony/phpunit-bridge": "^6.0",
