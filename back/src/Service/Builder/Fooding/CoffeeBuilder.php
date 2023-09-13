@@ -17,7 +17,8 @@ class CoffeeBuilder implements BuilderInterface
 
         return new Coffee(
             date: Carbon::parse($data['fields']['Jour']),
-            quantity: $data['fields']['Quantité']
+            quantity: $data['fields']['Quantité'],
+            comment: $data['fields']['Commentaire'] ?? null,
         );
     }
 }
