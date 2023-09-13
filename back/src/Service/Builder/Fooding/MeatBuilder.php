@@ -9,8 +9,12 @@ use Carbon\Carbon;
 
 class MeatBuilder implements BuilderInterface
 {
-    public function build(array $data): Meat
+    public function build(array $data): ?Meat
     {
+        if (!isset($data['fields']['Jour'])) {
+            return null;
+        }
+
         return new Meat(
             date: Carbon::parse($data['fields']['Jour']),
             lunch: $data['fields']['Midi ?'] ?? false,

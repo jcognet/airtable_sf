@@ -19,7 +19,7 @@ final class DashboardControllerTest extends WebTestCase
         $client->followRedirects(true);
         $this->loginUser($client);
 
-        $client->request('GET', '/dashboard?date=2022-01-04');
+        $client->request('GET', '/dashboard?date=2021-01-04');
 
         $this->assertResponseIsSuccessful();
     }

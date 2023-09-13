@@ -20,10 +20,10 @@ use Symfony\Component\Filesystem\Filesystem;
 class CreateAllJsonCommand extends Command
 {
     private const LIST_CALL = [
-        '2022-01-01' => 'createContent',
-        '2022-01-02' => 'createContent',
-        '2022-01-03' => 'createContent',
-        '2022-01-04' => 'createAllContent',
+        '2021-01-01' => 'createContent',
+        '2021-01-02' => 'createContent',
+        '2021-01-03' => 'createContent',
+        '2021-01-04' => 'createAllContent',
         '2023-06-17' => 'createContent',
         '2023-06-24' => 'createContent',
     ];

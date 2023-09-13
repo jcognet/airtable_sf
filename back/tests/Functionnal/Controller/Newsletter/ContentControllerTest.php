@@ -19,7 +19,7 @@ final class ContentControllerTest extends WebTestCase
         $client->followRedirects(true);
         $this->loginUser($client);
 
-        $client->request('GET', '/newsletter/content/show/?date=2022-01-03');
+        $client->request('GET', '/newsletter/content/show/?date=2021-01-03');
 
         $this->assertSelectorTextContains('h1.test-img-random', 'Images de');
         $this->assertResponseIsSuccessful();
@@ -31,7 +31,7 @@ final class ContentControllerTest extends WebTestCase
         $client->followRedirects(true);
         $this->loginUser($client);
 
-        $client->request('GET', '/newsletter/content/show/?date=2022-01-02');
+        $client->request('GET', '/newsletter/content/show/?date=2021-01-01');
 
         $this->assertResponseIsSuccessful();
         $this->assertSelectorTextContains('h1.test-img-random', 'Images de');
@@ -43,7 +43,7 @@ final class ContentControllerTest extends WebTestCase
         $client->followRedirects(true);
         $this->loginUser($client);
 
-        $client->request('GET', '/newsletter/content/show/?date=2022-01-01');
+        $client->request('GET', '/newsletter/content/show/?date=2021-01-02');
 
         $this->assertResponseIsSuccessful();
         $this->assertSelectorExists('h2#test-see-again');
@@ -67,7 +67,7 @@ final class ContentControllerTest extends WebTestCase
         $client->followRedirects(true);
         $this->loginUser($client);
 
-        $client->request('GET', '/newsletter/content/show/?date=2022-01-04&force_twig=true');
+        $client->request('GET', '/newsletter/content/show/?date=2021-01-04&force_twig=true');
         $this->assertResponseIsSuccessful();
         $this->assertSelectorExists('h2#test-see-again');
     }
