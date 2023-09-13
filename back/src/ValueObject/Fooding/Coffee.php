@@ -9,7 +9,8 @@ class Coffee
 {
     public function __construct(
         private readonly Carbon $date,
-        private readonly int $quantity
+        private readonly int $quantity,
+        private readonly ?string $comment
     ) {}
 
     public function getDate(): Carbon
@@ -20,5 +21,10 @@ class Coffee
     public function getQuantity(): int
     {
         return $this->quantity;
+    }
+
+    public function getComment(): ?string
+    {
+        return $this->comment;
     }
 }

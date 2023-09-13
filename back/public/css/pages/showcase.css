@@ -339,8 +339,7 @@ body.preloader-site {
     width: 120px;
 }
 
-.white
-{color:ghostwhite}
+.white {color:ghostwhite}
 
 .loader {
     border: 16px solid #f3f3f3;
@@ -373,5 +372,9 @@ body.preloader-site {
 
 .loader_content_hide {
     background-color: #999;
-    opacity: 0.7;
+   opacity: 0.7;
+}
+
+.overlay{
+    opacity: 0.2;
 }
