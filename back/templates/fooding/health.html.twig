@@ -13,8 +13,20 @@
                 data-aos="fade-in"
                 data-aos-easing="linear"
             >
-                <h1 class="title has-text-centered section-title test-fooding-health">Bilan de santé du mois
-                    de {{ date }}</h1>
+                <h1 class="title has-text-centered section-title test-fooding-health">
+                    <a href="{{ path('fooding_health', {month: prev_item}) }}"
+                       title="Voir la consommation du mois précédent">
+                        <i title="Voir la consommation du mois précédent" class="fas fa-arrow-left"></i>
+                    </a>
+
+                    Bilan de santé du mois de {{ date }}
+                    {% if next_item is not null %}
+                        <a href="{{ path('fooding_health', {month: next_item}) }}"
+                           title="Voir la consommation du mois suivant">
+                            <i title="Voir la consommation du mois suivant" class="fas fa-arrow-right"></i>
+                        </a>
+                    {% endif %}
+                </h1>
             </div>
         </div>
     </div>
