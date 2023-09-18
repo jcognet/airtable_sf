@@ -33,11 +33,16 @@ class HealthController extends AbstractController
             $date->year
         );
 
+        $nextMonth = $date->copy()->addMonth();
+        $nextMonthFormat = ($date->format('Ym') >= Carbon::now()->format('Ym')) ? null : $nextMonth->format('Y-m');
+
         return $this->render(
             'fooding/health.html.twig',
             [
                 'date' => $readableMonth,
                 'now' => Carbon::now(),
+                'next_item' => $nextMonthFormat,
+                'prev_item' => $date->copy()->subMonth()->format('Y-m'),
                 'head_title' => sprintf('Consommation de café du mois %s', $readableMonth),
                 'consumptions' => $consumptionGetter->get($date),
             ]
