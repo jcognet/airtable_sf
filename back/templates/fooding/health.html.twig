@@ -1,79 +1,8 @@
 {% extends './page/base.html.twig' %}
 {% block body %}
-    <div class="section-light">
-        <div class="container">
-            <nav class="breadcrumb" aria-label="breadcrumbs">
-                <ul>
-                    <li><a href="{{ url_front }}">Dashboard</a></li>
-                    <li>Bilan de santé</li>
-                </ul>
-            </nav>
-            <div
-                class="column is-12 about-me"
-                data-aos="fade-in"
-                data-aos-easing="linear"
-            >
-                <h1 class="title has-text-centered section-title test-fooding-health">
-                    <a href="{{ path('fooding_health', {month: prev_item}) }}"
-                       title="Voir la consommation du mois précédent">
-                        <i title="Voir la consommation du mois précédent" class="fas fa-arrow-left"></i>
-                    </a>
-
-                    Bilan de santé du mois de {{ date }}
-                    {% if next_item is not null %}
-                        <a href="{{ path('fooding_health', {month: next_item}) }}"
-                           title="Voir la consommation du mois suivant">
-                            <i title="Voir la consommation du mois suivant" class="fas fa-arrow-right"></i>
-                        </a>
-                    {% endif %}
-                </h1>
-            </div>
-        </div>
-    </div>
-    <div class="section-dark resume">
-        <div class="container">
-            <div class="columns">
-                {% for day in consumptions.daysFromMonth %}
-                <div class="column {{ _self.set_css_day(now, day) }}">
-                    <div class="card-header">{{ day.dayName | capitalize }} {{ day|date('d') }}</div>
-                    <div>
-                        {% if day <= now %}
-                            <div>
-                                <span class="icon {{ _self.set_css_icon(now, day, consumptions.nbCoffeeByDay(day)) }}">
-                                <i title="{{ consumptions.NbCoffeeByDay(day) }} café{% if consumptions.nbCoffeeByDay(day) >1 %}s{% endif %}"
-                                   class="fad fa-mug-hot"></i>
-                                </span>
-                            </div>
-                        {% endif %}
-                        {% if day <= now %}
-                            <div>
-                                <span class="icon {{ _self.set_css_icon(now, day, consumptions.nbMeatByDay(day)) }}">
-                                <i title="{{ consumptions.nbMeatByDay(day) }} repas avec viande"
-                                   class="fad fa-drumstick-bite"></i>
-                                </span>
-                            </div>
-                        {% endif %}
-
-                    </div>
-                </div>
-                {% if loop.index  is divisible by(7) %}
-            </div>
-            <div class="columns">
-                {% endif %}
-                {% endfor %}
-            </div>
-        </div>
-    </div>
+    {% include './fooding/include/data.html.twig' with {prev_item, next_item, consumptions, now, date, first_day_month} only %}
 {% endblock %}
 
-{% macro set_css_day(now, day) %}
-    {% if now|date('dmY') == day|date('dmY') %} has-background-primary
-    {% elseif now|date('m') == day|date('m') %} has-background-white
-    {% endif %}
-{% endmacro %}
-
-{% macro set_css_icon(now, day, nb) %}
-    {% if nb == 0 %} overlay
-    {% elseif nb == 1 %} has-text-warning-dark
-    {% elseif nb > 1 %} has-text-danger{% endif %}
-{% endmacro %}
+    {% block javascript %}
+    <script src="{{ url_front }}js/FoodingHealth.js" type="module"></script>
+    {% endblock %}

@@ -28,7 +28,7 @@
                                title="Voir le email du  {{ newspaper_date|date('d/m/Y') }}"
                                target="_blank"
                             >
-                                &#128240;
+                                <i class="far fa-newspaper fa-3x"></i>
                             </a>
                         </p>
                     </div>
@@ -102,6 +102,17 @@
                             </p>
                         </div>
                     {% endif %}
+                    <div class="column">
+                        <p class="heading">
+                            <strong>La santé !</strong>
+                        </p>
+                        <p class="subheading">
+                            <a href="{{ path('fooding_health') }}"
+                               title="Voir la page santé">
+                                <i class="fas fa-notes-medical fa-3x"></i>
+                            </a>
+                        </p>
+                    </div>
                 </div>
             </div>
             <div class="column is-6 right-image" data-aos="fade-left">

@@ -35,10 +35,14 @@ class HealthController extends AbstractController
 
         $nextMonth = $date->copy()->addMonth();
         $nextMonthFormat = ($date->format('Ym') >= Carbon::now()->format('Ym')) ? null : $nextMonth->format('Y-m');
+        $template = filter_var($request->query->get('fetch', null), FILTER_VALIDATE_BOOLEAN)
+            ? 'fooding/include/data.html.twig' :
+            'fooding/health.html.twig';
 
         return $this->render(
-            'fooding/health.html.twig',
+            $template,
             [
+                'first_day_month' => $date->copy()->firstOfMonth(),
                 'date' => $readableMonth,
                 'now' => Carbon::now(),
                 'next_item' => $nextMonthFormat,
