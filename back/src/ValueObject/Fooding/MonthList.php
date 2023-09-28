@@ -95,6 +95,17 @@ class MonthList
         return 0;
     }
 
+    public function getNbCoffeeMonth(): int
+    {
+        $nb = 0;
+
+        foreach ($this->coffeeList as $coffee) {
+            $nb += $coffee->getQuantity();
+        }
+
+        return $nb;
+    }
+
     public function getNbMeatByDay(Carbon $date): int
     {
         if ($this->meatList === null) {
@@ -110,5 +121,17 @@ class MonthList
         }
 
         return 0;
+    }
+
+    public function getNbMeatMonth(): int
+    {
+        $nb = 0;
+
+        foreach ($this->meatList as $meat) {
+            $nb += $meat->isDinner() ? 1 : 0;
+            $nb += $meat->isLunch() ? 1 : 0;
+        }
+
+        return $nb;
     }
 }
