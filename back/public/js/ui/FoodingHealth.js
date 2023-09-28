@@ -14,8 +14,8 @@ export async function addMonthNavigation() {
 
 async function onLinkClicked(e, link) {
     e.preventDefault();
-    showLoader('container_data');
+    showLoader('content');
     document.getElementById('content').innerHTML = await fetchData(link.href);
     addMonthNavigation(); // Links are in the content created by the server
-    hideLoader('container_data');
+    hideLoader('content');
 }
