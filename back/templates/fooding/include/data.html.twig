@@ -25,7 +25,6 @@
                            class="fad fa-mug-hot"></i>
 
                     </span>
-                    </span>
                     <span class="tag is-info">
                         {{ consumptions.nbMeatMonth }}
                         <i title="Nombre de repas carnés du mois"
@@ -51,17 +50,20 @@
                     <div>
                         {% if day <= now %}
                             <div>
-                                <span class="icon {{ _self.set_css_icon(now, day, consumptions.nbCoffeeByDay(day)) }}">
-                                <i title="{{ consumptions.NbCoffeeByDay(day) }} café{% if consumptions.nbCoffeeByDay(day) >1 %}s{% endif %}"
-                                   class="fad fa-mug-hot"></i>
+                                <span
+                                    class="icon {{ _self.set_css_icon(now, day, consumptions.nbCoffeeByDay(day)) }}"
+                                    title="{{ consumptions.NbCoffeeByDay(day) }} café{% if consumptions.nbCoffeeByDay(day) >1 %}s{% endif %}">
+                                <i class="fad fa-mug-hot"></i>
                                 </span>
                             </div>
                         {% endif %}
                         {% if day <= now %}
                             <div>
-                                <span class="icon {{ _self.set_css_icon(now, day, consumptions.nbMeatByDay(day)) }}">
-                                <i title="{{ consumptions.nbMeatByDay(day) }} repas avec viande"
-                                   class="fad fa-drumstick-bite"></i>
+                                <span
+                                    class="icon {{ _self.set_css_icon(now, day, consumptions.nbMeatByDay(day)) }}"
+                                    title="{{ consumptions.nbMeatByDay(day) }} repas avec viande"
+                                >
+                                <i class="fad fa-drumstick-bite"></i>
                                 </span>
                             </div>
                         {% endif %}
