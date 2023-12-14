@@ -17,6 +17,11 @@ class MonthList
         private readonly ?array $meatList
     ) {}
 
+    public function getDate(): Carbon
+    {
+        return $this->date;
+    }
+
     public function getDaysFromMonth(): array
     {
         $list = [];

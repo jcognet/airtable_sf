@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace App\Controller\Page\Fooding;
 
 use App\Service\Fooding\ConsumptionGetter;
+use App\Service\Fooding\ConsumptionLister;
 use Carbon\Carbon;
 use Carbon\Exceptions\InvalidFormatException;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -47,8 +48,21 @@ class HealthController extends AbstractController
                 'now' => Carbon::now(),
                 'next_item' => $nextMonthFormat,
                 'prev_item' => $date->copy()->subMonth()->format('Y-m'),
-                'head_title' => sprintf('Consommation de café du mois %s', $readableMonth),
+                'head_title' => sprintf('Consommation de café et de viande du mois %s', $readableMonth),
                 'consumptions' => $consumptionGetter->get($date),
+            ]
+        );
+    }
+
+    #[Route(path: '/fooding/health/list', name: 'fooding_health_list', methods: ['GET'])]
+    public function list(
+        ConsumptionLister $lister
+    ): Response {
+        return $this->render(
+            'fooding/list.html.twig',
+            [
+                'data' => $lister->list(),
+                'head_title' => 'Consommation regroupée par viante & café',
             ]
         );
     }
