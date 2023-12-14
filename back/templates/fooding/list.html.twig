@@ -1,0 +1,38 @@
+{% extends './page/base.html.twig' %}
+{% block body %}
+<div id="content">
+    <div class="section-light">
+        <div class="container">
+            <nav class="breadcrumb" aria-label="breadcrumbs">
+                <ul>
+                    <li><a href="{{ url_front }}">Dashboard</a></li>
+                    <li>Bilan de santé depuis le début</li>
+                </ul>
+            </nav>
+            <div
+                class="column is-12 about-me"
+                data-aos="fade-in"
+                data-aos-easing="linear"
+            >
+                <h1 class="title has-text-centered section-title test-fooding-health">
+                    Bilan de santé depuis le début
+                </h1>
+            </div>
+        </div>
+    </div>
+    <div class="section-dark resume">
+        <div class="container">
+            {% for month_list in data %}
+                <div>
+                    <a href="{{ path('fooding_health', {month: month_list.date|date('Y-m')}) }}"
+                       title="Voir le détail du mois month_list.date|date('m/Y')">
+                        {{ month_list.date|date('m/Y') }}
+                    </a>
+                    :
+                    <i class="fad fa-mug-hot"></i> {{ month_list.nbCoffeeMonth }}
+                    <i class="fad fa-drumstick-bite"></i> {{ month_list.nbMeatMonth }}
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+    {% endblock %}
