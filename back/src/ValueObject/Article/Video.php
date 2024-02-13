@@ -52,14 +52,14 @@ class Video extends AbstractBlock
 
     public function getVideoId(): ?string
     {
-        if (null === $this->getUrl() || null === strpos($this->url, 'youtube')) {
+        if (null === $this->getUrl() || null === strpos((string) $this->url, 'youtube')) {
             return null;
         }
 
-        $posId = strpos($this->url, 'v=') + 2;
-        $posAnd = strpos($this->url, '&');
-        $length = $posAnd > 0 ? $posAnd - $posId : strlen($this->url);
+        $posId = strpos((string) $this->url, 'v=') + 2;
+        $posAnd = strpos((string) $this->url, '&');
+        $length = $posAnd > 0 ? $posAnd - $posId : strlen((string) $this->url);
 
-        return substr($this->url, $posId, $length);
+        return substr((string) $this->url, $posId, $length);
     }
 }

@@ -48,7 +48,7 @@ class BirdPdfImporter
 
     private function createJpeg(ImportedBird $bird): void
     {
-        $bird->setSavedImgPath(str_replace('pdf', 'jpg', $bird->getSavedPdfPath()));
+        $bird->setSavedImgPath(str_replace('pdf', 'jpg', (string) $bird->getSavedPdfPath()));
         $this->logger->info(
             sprintf(
                 'PDF path: %s, JPG path: %s',

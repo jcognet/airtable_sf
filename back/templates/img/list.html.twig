@@ -67,7 +67,7 @@
                             {% include './include/image.html.twig' with {
                                 'picture': main_image,
                                 'legend': sub_directory.relativePath,
-                                'picture_url': path('img_list', {directory: sub_directory.relativePath}),
+                                'picture_url': path('img_list', {directory: encrypt_url(sub_directory.relativePath)}),
                                 'picture_title': 'Voir les images du répertoire '~sub_directory.relativePath
                             } only %}
                         {% endfor %}
