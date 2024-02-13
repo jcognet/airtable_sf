@@ -23,17 +23,20 @@ class ImageController extends AbstractController
     public function list(
         Request $request,
         ImageInPathLister $imageInPathLister,
-        DownloadableInformationFactory $downloadableInformationFactory
+        DownloadableInformationFactory $downloadableInformationFactory,
+        EncoderDecoder $encoderDecoder
     ): Response {
         if (!$request->query->has('directory')) {
             throw $this->createNotFoundException();
         }
 
-        $directoryPath = $request->query->get('directory');
+        $directoryPath = $encoderDecoder->decode(
+            $request->query->get('directory')
+        );
 
         try {
             $directory = $imageInPathLister->getPicturesFromDirectory($directoryPath);
-        } catch (DirectoryNotFoundException $e) {
+        } catch (\App\Exception\Picture\DirectoryNotFoundException|DirectoryNotFoundException$e) {
             throw $this->createNotFoundException($e->getMessage());
         }
 

@@ -61,7 +61,7 @@ class Importer extends AbstractImporter
                     strtolower($file->getTitle())
                 ),
                 $file->getId(),
-                pathinfo($file->getAirtableTmpFileName())['extension']
+                pathinfo((string) $file->getAirtableTmpFileName())['extension']
             );
             $localPath = sprintf(
                 '%s%s',

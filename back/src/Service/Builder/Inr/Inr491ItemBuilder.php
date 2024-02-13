@@ -29,7 +29,7 @@ class Inr491ItemBuilder
         }
 
         return new Inr491Item(
-            strip_tags($title),
+            strip_tags((string) $title),
             $crawler->filter('.card3')->link()->getUri()
         );
     }

@@ -3,9 +3,11 @@
 declare(strict_types=1);
 
 use Rector\Config\RectorConfig;
+use Rector\Php80\Rector\ClassConstFetch\ClassOnThisVariableObjectRector;
 use Rector\Set\ValueObject\LevelSetList;
 use Rector\Set\ValueObject\SetList;
 use Rector\Symfony\Set\SymfonySetList;
+use Rector\Symfony\Symfony62\Rector\Class_\MessageHandlerInterfaceToAttributeRector;
 
 return static function (RectorConfig $rectorConfig): void {
     $rectorConfig->paths([
@@ -30,10 +32,10 @@ return static function (RectorConfig $rectorConfig): void {
     ]);
 
     $rectorConfig->skip([
-        \Rector\Php80\Rector\ClassConstFetch\ClassOnThisVariableObjectRector::class => [
+        ClassOnThisVariableObjectRector::class => [
             __DIR__ . '/src/ValueObject/AbstractBlock.php',
         ],
-        \Rector\Symfony\Symfony62\Rector\Class_\MessageHandlerInterfaceToAttributeRector::class => [
+        MessageHandlerInterfaceToAttributeRector::class => [
             __DIR__ . '/src/ValueObject/AbstractBlock.php',
         ],
     ]);

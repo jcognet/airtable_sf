@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace App\Service\Picture;
 
+use App\Exception\Picture\DirectoryNotFoundException;
 use App\ValueObject\Picture\Directory;
 use Symfony\Component\Finder\Finder;
 
@@ -19,6 +20,10 @@ class ImageInPathLister
     public function getPicturesFromDirectory(string $subDirectoryPath, bool $withSubDirectory = true): Directory
     {
         $absolutePath = realpath(sprintf('%s%s', $this->picturePath, $subDirectoryPath));
+
+        if (!$absolutePath) {
+            throw new DirectoryNotFoundException($subDirectoryPath);
+        }
 
         $finder = new Finder();
         $images = $finder->files()

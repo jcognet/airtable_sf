@@ -36,7 +36,7 @@ class Deploy implements LoggerAwareInterface
     {
         $this->twig->setCache(false);
 
-        [$hash, $headerSecret] = explode('=', $request->headers->get('X-Hub-Signature-256'));
+        [$hash, $headerSecret] = explode('=', (string) $request->headers->get('X-Hub-Signature-256'));
         $this->logger->info('header', [$hash, $headerSecret]);
         $requestSecret = hash_hmac($hash, $request->getContent(), $this->githubSecret);
         $this->logger->info('content', [$requestSecret]);

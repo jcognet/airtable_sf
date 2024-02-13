@@ -10,6 +10,7 @@ use App\Service\Page\MainImageFetcher;
 use App\Service\Page\MeteoListFetcher;
 use App\Service\Page\QuestionFetcher;
 use App\Service\Page\RandomPicFetcher;
+use App\Service\Picture\EncoderDecoder;
 use App\Service\Picture\RandomPictorySelector;
 use App\Service\Security\LoginLinkHandler;
 use App\ValueObject\Article\ArticleSeeAgainList;
@@ -42,7 +43,8 @@ class NavigationExtension extends AbstractExtension
         private readonly ArticleSeeAgainListFetcher $articleSeeAgainListFetcher,
         private readonly MeteoListFetcher $meteoListFetcher,
         private readonly QuestionFetcher $questionFetcher,
-        private readonly RandomPicFetcher $randomPicFetcher
+        private readonly RandomPicFetcher $randomPicFetcher,
+        private readonly EncoderDecoder $encoderDecoder
     ) {}
 
     public function getFunctions(): array
@@ -59,6 +61,7 @@ class NavigationExtension extends AbstractExtension
             new TwigFunction('meteo_list', $this->meteoList(...)),
             new TwigFunction('question', $this->question(...)),
             new TwigFunction('random_image', $this->randomImage(...)),
+            new TwigFunction('encrypt_url', $this->encryptUrl(...)),
         ];
     }
 
@@ -124,5 +127,10 @@ class NavigationExtension extends AbstractExtension
     public function isUrl(?string $url): bool
     {
         return !filter_var($url, FILTER_VALIDATE_URL) === false;
+    }
+
+    public function encryptUrl(string $url): string
+    {
+        return $this->encoderDecoder->encode($url);
     }
 }

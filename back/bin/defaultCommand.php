@@ -5,7 +5,7 @@ function execSymfonyCommand($command): void
 {
     $phpPath = '/usr/local/php8.1/bin/php';
     $cmd = sprintf('%s %s/console %s', $phpPath, __DIR__, $command);
-    $now = new \DateTime();
+    $now = new DateTime();
     echo $cmd . "\n";
     $output = [];
     echo $now->format('d/m/Y - H:i:s') . "\n";
