@@ -5,6 +5,7 @@ namespace App\Tests\Functionnal\Controller;
 
 use App\Tests\Functionnal\SetUserTrait;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
+use Symfony\Component\HttpFoundation\Response;
 
 /**
  * @internal
@@ -19,10 +20,21 @@ final class ImageControllerTest extends WebTestCase
         $client->followRedirects(true);
         $this->loginUser($client);
 
-        $client->request('GET', '/img/list/?directory=2021/dir2');
+        $client->request('GET', '/img/list/?directory=MjAyMS9kaXIy');
 
         $this->assertResponseIsSuccessful();
         $this->assertSelectorTextContains('h1.test-img-random', 'Images de');
+    }
+
+    public function test_unknown_directory(): void
+    {
+        $client = self::createClient();
+        $client->followRedirects(true);
+        $this->loginUser($client);
+
+        $client->request('GET', '/img/list/?directory=MjAyMS9kaXI');
+
+        self::assertResponseStatusCodeSame(Response::HTTP_NOT_FOUND);
     }
 
     public function test_random(): void
