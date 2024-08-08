@@ -16,25 +16,25 @@
                     <a href="{{ path('fooding_health', {month: prev_item}) }}"
                        class="lnk_month_navigation"
                        title="Voir la consommation du mois précédent">
-                        <i title="Voir la consommation du mois précédent" class="fas fa-arrow-left"></i>
+                        <i title="Voir la consommation du mois précédent" class="fa-solid fa-arrow-left"></i>
                     </a>
                     Bilan de santé du mois de {{ date }}
                     <span class="tag is-info">
                         {{ consumptions.nbCoffeeMonth }}
                         <i title="Nombre de cafés du mois"
-                           class="fad fa-mug-hot"></i>
+                           class="fa-solid fa-mug-hot"></i>
 
                     </span>
                     <span class="tag is-info">
                         {{ consumptions.nbMeatMonth }}
                         <i title="Nombre de repas carnés du mois"
-                           class="fad fa-drumstick-bite"></i>
+                           class="fa-solid fa-drumstick-bite"></i>
                     </span>
                     {% if next_item is not null %}
                         <a href="{{ path('fooding_health', {month: next_item}) }}"
                            class="lnk_month_navigation"
                            title="Voir la consommation du mois suivant">
-                            <i title="Voir la consommation du mois suivant" class="fas fa-arrow-right"></i>
+                            <i title="Voir la consommation du mois suivant" class="fa-solid fa-arrow-right"></i>
                         </a>
                     {% endif %}
                 </h1>
@@ -53,7 +53,7 @@
                                 <span
                                     class="icon {{ _self.set_css_icon(now, day, consumptions.nbCoffeeByDay(day)) }}"
                                     title="{{ consumptions.NbCoffeeByDay(day) }} café{% if consumptions.nbCoffeeByDay(day) >1 %}s{% endif %}">
-                                <i class="fad fa-mug-hot"></i>
+                                <i class="fa-solid fa-mug-hot"></i>
                                 </span>
                             </div>
                         {% endif %}
@@ -63,7 +63,7 @@
                                     class="icon {{ _self.set_css_icon(now, day, consumptions.nbMeatByDay(day)) }}"
                                     title="{{ consumptions.nbMeatByDay(day) }} repas avec viande"
                                 >
-                                <i class="fad fa-drumstick-bite"></i>
+                                <i class="fa-solid fa-drumstick-bite"></i>
                                 </span>
                             </div>
                         {% endif %}
