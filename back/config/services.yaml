@@ -203,6 +203,21 @@ services:
       $config: '@App\Service\Import\Airtable\Fooding\Meat\Config'
       $client: '@App\Service\AirTable\Fooding\MeatClient'
 
+  App\Service\Import\Airtable\Fooding\Cut\Importer:
+    arguments:
+      $config: '@App\Service\Import\Airtable\Fooding\Cut\Config'
+      $client: '@App\Service\AirTable\Fooding\CutClient'
+
+  App\Service\Import\Airtable\Fooding\Coloring\Importer:
+    arguments:
+      $config: '@App\Service\Import\Airtable\Fooding\Coloring\Config'
+      $client: '@App\Service\AirTable\Fooding\ColoringClient'
+
+  App\Service\Import\Airtable\Fooding\Qi\Importer:
+    arguments:
+      $config: '@App\Service\Import\Airtable\Fooding\Qi\Config'
+      $client: '@App\Service\AirTable\Fooding\QiClient'
+
 when@test:
   parameters:
     deployArchiveJsonPath: '%kernel.project_dir%/tests/data/'
