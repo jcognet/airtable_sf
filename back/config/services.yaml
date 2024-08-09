@@ -78,6 +78,9 @@ services:
     App\Service\Block\BlockManagerInterface:
       tags: [ 'app.block_manager' ]
 
+    App\Service\Alert\AlerterInterface:
+      tags: [ 'app.alerter' ]
+
     App\Service\Repository\Random\RandomImageRepositoryInterface:
       tags: [ 'app.random_image_repository' ]
 
@@ -93,6 +96,10 @@ services:
   App\Service\NewsletterManager\ManagerContentFactory:
     arguments:
       - !tagged_iterator app.block_manager
+
+  App\Service\Alert\Alerter:
+    arguments:
+      - !tagged_iterator app.alerter
 
   App\Service\Block\Random\RandomPicBlockManager:
     arguments:
@@ -157,6 +164,18 @@ services:
   App\Service\Import\Airtable\Fooding\Meat\Lister:
     arguments:
       $config: '@App\Service\Import\Airtable\Fooding\Meat\Config'
+
+  App\Service\Import\Airtable\Fooding\Cut\Lister:
+    arguments:
+      $config: '@App\Service\Import\Airtable\Fooding\Cut\Config'
+
+  App\Service\Import\Airtable\Fooding\Coloring\Lister:
+    arguments:
+      $config: '@App\Service\Import\Airtable\Fooding\Coloring\Config'
+
+  App\Service\Import\Airtable\Fooding\Qi\Lister:
+    arguments:
+      $config: '@App\Service\Import\Airtable\Fooding\Qi\Config'
 
   App\Service\Import\Airtable\Holiday\Holiday\Importer:
     arguments:

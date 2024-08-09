@@ -15,22 +15,24 @@ class Fetcher
         return $this->lister->list();
     }
 
-    public function getByMonth(Carbon $date): ?array
+    public function getPreviousOccurence(Carbon $date): ?Coloring
     {
-        $list = $this->fetch();
-        $listByMonth = [];
+        $previousOccurence = null;
 
-        if (!$list) {
-            return null;
-        }
+        foreach ($this->fetch() as $item) {
+            /** @var Coloring $item */
+            // Same day, we stop
+            if ($item->getDate()->format('dmY') === $date->format('dmY')) {
+                return $item;
+            }
 
-        foreach ($list as $coloring) {
-            /** @var Coloring $coloring */
-            if ($coloring->getDate()->format('mY') === $date->format('mY')) {
-                $listByMonth[] = $coloring;
+            if ($item->getDate() <= $date
+                && (!$previousOccurence || $previousOccurence->getDate() < $item->getDate())
+            ) {
+                $previousOccurence = $item;
             }
         }
 
-        return $listByMonth;
+        return $previousOccurence;
     }
 }

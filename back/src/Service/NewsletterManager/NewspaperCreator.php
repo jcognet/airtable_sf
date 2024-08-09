@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace App\Service\NewsletterManager;
 
+use App\Service\Alert\AlertManager;
 use App\Service\Converter\ConvertBlockTypeToManagerType;
 use App\ValueObject\NewsletterBlockManager\BlockType;
 use App\ValueObject\NewsletterBlockManager\ManagerType;
@@ -54,6 +55,9 @@ class NewspaperCreator implements LoggerAwareInterface
     private function createNewsPaper(array $listManager, Carbon $date): Newspaper
     {
         $newspaper = new Newspaper($date);
+        $newspaper->addBlock(
+            $this->managerContentFactory->getContent(AlertManager::class)
+        );
 
         foreach ($listManager as $manager) {
             try {
