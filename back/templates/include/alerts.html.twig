@@ -1,0 +1,13 @@
+{# @var block \App\ValueObject\Alert\ListAlert #}
+{% if list_alerts is defined and list_alerts is not null and list_alerts.hasAlerts %}
+    {% for alert in list_alerts.alerts %}
+        {% set css = 'danger' %}
+        {% if alert.level is constant('App\\ValueObject\\Alert\\LevelEnum::MEDIUM') %}{% set css = 'warning' %}
+        {% elseif alert.level is constant('App\\ValueObject\\Alert\\LevelEnum::LOW') %}{% set css = 'success' %}
+        {% endif %}
+        {# @var alert \App\ValueObject\Alert\Alert #}
+        <div class="notification is-{{ css }}">
+            {{ alert.message }}
+        </div>
+    {% endfor %}
+{% endif %}

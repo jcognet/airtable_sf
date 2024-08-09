@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace App\Service\Import\Airtable\Fooding\Qi;
 
+use App\ValueObject\Fooding\Qi;
 use Carbon\Carbon;
 
 class Fetcher
@@ -14,22 +15,24 @@ class Fetcher
         return $this->lister->list();
     }
 
-    public function getByMonth(Carbon $date): ?array
+    public function getPreviousOccurence(Carbon $date): ?Qi
     {
-        $list = $this->fetch();
-        $listByMonth = [];
+        $previousOccurence = null;
 
-        if (!$list) {
-            return null;
-        }
-
-        foreach ($list as $item) {
+        foreach ($this->fetch() as $item) {
             /** @var Qi $item */
-            if ($item->getDate()->format('mY') === $date->format('mY')) {
-                $listByMonth[] = $item;
+            // Same day, we stop
+            if ($item->getDate()->format('dmY') === $date->format('dmY')) {
+                return $item;
+            }
+
+            if ($item->getDate() <= $date
+                && (!$previousOccurence || $previousOccurence->getDate() < $item->getDate())
+            ) {
+                $previousOccurence = $item;
             }
         }
 
-        return $listByMonth;
+        return $previousOccurence;
     }
 }

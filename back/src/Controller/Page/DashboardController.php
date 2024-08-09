@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace App\Controller\Page;
 
+use App\Service\Alert\Alerter;
 use App\Service\Archive\NewsletterWriterFetcher;
 use App\Service\Archive\PreviousNewsletterFetcher;
 use App\Service\Export\Fetcher;
@@ -26,6 +27,7 @@ class DashboardController extends AbstractController
         DirectoryLister $directoryLister,
         IsHolidayDeterminator $isHolidayDeterminator,
         IsListable $isListable,
+        Alerter $alerter
     ): Response {
         $date = Carbon::parse($request->query->get('date', null));
 
@@ -48,6 +50,7 @@ class DashboardController extends AbstractController
                 'kpi' => $exporterFetcher->fetch($date),
                 'directory_image_list' => $directoryLister->list(),
                 'type_listable' => $isListable->fetchAll(),
+                'list_alerts' => $alerter->getListAlert($date),
             ]
         );
     }
@@ -69,6 +72,7 @@ class DashboardController extends AbstractController
         NewsletterWriterFetcher $newsletterWriterFetcher,
         DirectoryLister $directoryLister,
         IsListable $isListable,
+        Alerter $alerter
     ): Response {
         $date = Carbon::parse($request->query->get('date', null));
         $newsletter = $newsletterWriterFetcher->get($date);
@@ -85,6 +89,7 @@ class DashboardController extends AbstractController
                 'newspaper' => $newsletter->getNewspaper(),
                 'head_title' => 'Vacances !!',
                 'type_listable' => $isListable->fetchAll(),
+                'list_alerts' => $alerter->getListAlert($date),
             ]
         );
     }

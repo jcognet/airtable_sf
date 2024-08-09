@@ -11,6 +11,7 @@
             </div>
         </div>
     </div>
+    {% include './include/alerts.html.twig' with {list_alerts} only %}
     {% include './dashboard/include/meteo.html.twig' with {newspaper} only %}
     {% include './dashboard/include/random_image.html.twig' with {newspaper} only %}
     {% include './dashboard/include/directory_img.html.twig' with {directory_image_list} only %}

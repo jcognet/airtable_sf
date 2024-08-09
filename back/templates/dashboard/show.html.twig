@@ -1,5 +1,6 @@
 {% extends './page/base.html.twig' %}
 {% block body %}
+    {% include './include/alerts.html.twig' with {list_alerts} only %}
     {% include './dashboard/include/current_newspaper.html.twig' with {newspaper, newspaper_date, kpi} only %}
     {% include './dashboard/include/meteo.html.twig' with {newspaper} only %}
     {% include './dashboard/include/quiz.html.twig' with {newspaper} only %}

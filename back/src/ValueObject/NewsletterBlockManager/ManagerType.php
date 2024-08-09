@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace App\ValueObject\NewsletterBlockManager;
 
 use App\Exception\NewsletterBlockManager\UnknownManagerTypeException;
+use App\Service\Alert\AlertManager;
 use App\Service\Block\Article\ArticleListALireBlockManager;
 use App\Service\Block\Article\ArticleReadListBlockManager;
 use App\Service\Block\Article\ArticleSeeAgainListBlockManager;
@@ -62,6 +63,7 @@ class ManagerType
         ImageStatementManager::class,
         Inr491Manager::class,
         QuestionManager::class,
+        AlertManager::class,
     ];
 
     private readonly string $type;
