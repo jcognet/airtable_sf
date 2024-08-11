@@ -19,7 +19,13 @@ class Fetcher
     {
         $previousOccurence = null;
 
-        foreach ($this->fetch() as $item) {
+        $items = $this->fetch();
+
+        if (!$items) {
+            return null;
+        }
+
+        foreach ($items as $item) {
             /** @var Qi $item */
             // Same day, we stop
             if ($item->getDate()->format('dmY') === $date->format('dmY')) {

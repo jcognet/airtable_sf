@@ -169,6 +169,10 @@ services:
     arguments:
       $config: '@App\Service\Import\Airtable\Fooding\Cut\Config'
 
+  App\Service\Import\Airtable\Fooding\Abs\Lister:
+    arguments:
+      $config: '@App\Service\Import\Airtable\Fooding\Abs\Config'
+
   App\Service\Import\Airtable\Fooding\Coloring\Lister:
     arguments:
       $config: '@App\Service\Import\Airtable\Fooding\Coloring\Config'
@@ -226,6 +230,12 @@ services:
     arguments:
       $config: '@App\Service\Import\Airtable\Fooding\Cut\Config'
       $client: '@App\Service\AirTable\Fooding\CutClient'
+
+  App\Service\Import\Airtable\Fooding\Abs\Importer:
+    arguments:
+      $config: '@App\Service\Import\Airtable\Fooding\Abs\Config'
+      $client: '@App\Service\AirTable\Fooding\AbsClient'
+
 
   App\Service\Import\Airtable\Fooding\Coloring\Importer:
     arguments:

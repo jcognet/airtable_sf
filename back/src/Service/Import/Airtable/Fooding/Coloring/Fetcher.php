@@ -18,8 +18,13 @@ class Fetcher
     public function getPreviousOccurence(Carbon $date): ?Coloring
     {
         $previousOccurence = null;
+        $items = $this->fetch();
 
-        foreach ($this->fetch() as $item) {
+        if (!$items) {
+            return null;
+        }
+
+        foreach ($items as $item) {
             /** @var Coloring $item */
             // Same day, we stop
             if ($item->getDate()->format('dmY') === $date->format('dmY')) {
