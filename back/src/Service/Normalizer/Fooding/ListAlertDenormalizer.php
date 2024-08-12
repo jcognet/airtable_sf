@@ -11,7 +11,7 @@ class ListAlertDenormalizer implements DenormalizerInterface
 {
     public function denormalize(mixed $data, string $type, string $format = null, array $context = []): ListAlertBlock
     {
-        $data['listAlert'] = new ListAlert($data['content']);
+        $data['listAlert'] = new ListAlert($data['content']['alerts']);
         unset($data['title'], $data['content'], $data['class']);
 
         return new ListAlertBlock(...$data);

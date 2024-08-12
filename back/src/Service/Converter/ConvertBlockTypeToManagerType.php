@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace App\Service\Converter;
 
 use App\Exception\NewsletterBlockManager\UnknownConvertBlockTypeToManagerTypeException;
+use App\Service\Alert\AlertManager;
 use App\Service\Block\Article\ArticleListALireBlockManager;
 use App\Service\Block\Article\ArticleReadListBlockManager;
 use App\Service\Block\Article\ArticleSeeAgainListBlockManager;
@@ -64,6 +65,7 @@ class ConvertBlockTypeToManagerType
         ImageStatementManager::class => BlockType::BIRD_STATEMENT,
         Inr491Manager::class => BlockType::INR_491,
         QuestionManager::class => BlockType::QUIZ,
+        AlertManager::class => BlockType::LIST_ALERT,
     ];
 
     public function convert(BlockType $blockType): ManagerType

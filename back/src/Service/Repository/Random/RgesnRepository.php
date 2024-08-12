@@ -14,7 +14,7 @@ class RgesnRepository
     private array $randomKey = [];
 
     public function __construct(
-        private readonly HttpClientInterface $ecoresponsablegouvClient,
+        private readonly HttpClientInterface $rgesnClient,
         private readonly CriteriaBuilder $criteriaBuilder
     ) {}
 
@@ -22,7 +22,7 @@ class RgesnRepository
     {
         if (count($this->records) === 0) {
             $this->records = json_decode(
-                $this->ecoresponsablegouvClient->request(
+                $this->rgesnClient->request(
                     'GET',
                     'criteria.json',
                 )->getContent(),
