@@ -7,7 +7,7 @@ parameters:
   deployArchiveJsonPath: '%kernel.project_dir%/src/Data/'
   deployJsonPath: '%kernel.project_dir%/src/Data/deploy.json'
   inr491BaseUrl: 'https://gr491.isit-europe.org/'
-  ecoresponsaglegouvBaseUrl: 'https://ecoresponsable.numerique.gouv.fr/'
+  ecoresponsaglegouvBaseUrl: 'https://www.arcep.fr/mes-demarches-et-services/entreprises/fiches-pratiques/referentiel-general-ecoconception-services-numeriques.html'
   lpoBaseUrl: 'https://www.oiseauxdesjardins.fr/index.php'
   thumbnail_list:
     default:

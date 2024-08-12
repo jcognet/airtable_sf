@@ -24,7 +24,7 @@ class RgesnRepository
             $this->records = json_decode(
                 $this->ecoresponsablegouvClient->request(
                     'GET',
-                    'publications/referentiel-general-ecoconception/export/referentiel-general-ecoconception-version-v1.json',
+                    'criteria.json',
                 )->getContent(),
                 true,
                 512,

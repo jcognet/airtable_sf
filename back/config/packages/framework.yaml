@@ -31,7 +31,7 @@ framework:
         headers:
           Accept: 'application/json'
       ecoresponsablegouv.client:
-        base_uri: '%ecoresponsaglegouvBaseUrl%'
+        base_uri: https://lowdit.github.io/rgesn/2.0/
       inr.client:
         base_uri: https://sustainableit-tools.isit-europe.org/
       inr.491_client:
