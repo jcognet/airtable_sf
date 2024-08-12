@@ -34,6 +34,13 @@ class AbsMissingCounter
             }
         }
 
+        // We don't count the last day if there is no abs. We'll probably do them later ;)
+        $lastDay = end($absBeforeDate);
+        if ($lastDay->getDate()->format('ymd') === $date->format('ymd')) {
+            // ... Same day, we remove the one we should have done (we only count the ones > 1) because we already got it the previous foreach
+            ++$nbDays;
+        }
+
         return $nbDays - $nbAbs;
     }
 }
