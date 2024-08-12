@@ -17,17 +17,13 @@ class IsHolidayDeterminator
         private readonly Fetcher $fetcher
     ) {}
 
-    public function isHoliday(?Carbon $date): bool
+    public function isHoliday(Carbon $date): bool
     {
         if (
             $this->requestStack->getMainRequest() !== null
             && $this->requestStack->getMainRequest()->query->has(self::HOLIDAY_GET_KEYWORD)
         ) {
             return $this->requestStack->getMainRequest()->query->get(self::HOLIDAY_GET_KEYWORD) !== self::HOLIDAY_GET_KEYWORD_FORCE_FALSE;
-        }
-
-        if ($date === null) {
-            $date = Carbon::now();
         }
 
         $holidays = $this->fetcher->fetchFromDate($date);

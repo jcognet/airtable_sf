@@ -22,12 +22,8 @@ class Alerter
     /**
      * @return Alert[]|null
      */
-    public function getListAlert(?Carbon $date = null): ?ListAlert
+    public function getListAlert(Carbon $date): ?ListAlert
     {
-        if (!$date) {
-            $date = Carbon::now();
-        }
-
         $key = $date->format('dmY');
         if (isset($this->alerts[$key])) {
             return $this->alerts[$key];

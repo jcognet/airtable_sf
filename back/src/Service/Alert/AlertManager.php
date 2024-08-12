@@ -5,6 +5,7 @@ namespace App\Service\Alert;
 
 use App\Service\Block\BlockManagerInterface as BlockManagerInterfaceAlias;
 use App\ValueObject\BlockInterface;
+use Carbon\Carbon;
 
 class AlertManager implements BlockManagerInterfaceAlias
 {
@@ -12,7 +13,8 @@ class AlertManager implements BlockManagerInterfaceAlias
 
     public function getContent(): ?BlockInterface
     {
-        $listAlert = $this->alerter->getListAlert();
+        // Right now the managers don't handle a getContent with a date
+        $listAlert = $this->alerter->getListAlert(Carbon::now());
 
         if (!$listAlert) {
             return null;
