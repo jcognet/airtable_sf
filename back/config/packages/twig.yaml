@@ -4,6 +4,7 @@ twig:
   globals:
     url_front: '%env(URL_ABSOLUTE_FRONT)%'
     ecoresponsablegouv_base_url: '%ecoresponsaglegouvBaseUrl%'
+    arcep_rgesn: https://www.arcep.fr/mes-demarches-et-services/entreprises/fiches-pratiques/publications/bonnes-pratiques/guide-bonnes-pratiques-numerique-responsable-export-version-v1.json
     lpo_base_url: '%lpoBaseUrl%'
     inr_491_base_url: '%inr491BaseUrl%'
 

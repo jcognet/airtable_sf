@@ -30,8 +30,10 @@ framework:
           token: '%env(METEO_API_TOKEN)%'
         headers:
           Accept: 'application/json'
-      ecoresponsablegouv.client:
+      rgesn.client:
         base_uri: https://lowdit.github.io/rgesn/2.0/
+      ecoresponsablegouv.client:
+        base_uri: '%ecoresponsaglegouvBaseUrl%'
       inr.client:
         base_uri: https://sustainableit-tools.isit-europe.org/
       inr.491_client:
