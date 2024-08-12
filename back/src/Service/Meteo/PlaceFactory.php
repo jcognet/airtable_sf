@@ -16,12 +16,8 @@ class PlaceFactory
         private readonly Fetcher $holidayFetcher
     ) {}
 
-    public function make(?Carbon $date = null): Place
+    public function make($date): Place
     {
-        if ($date === null) {
-            $date = Carbon::now();
-        }
-
         $place = $this->getPlaceFromHoliday($date);
 
         if ($place !== null) {
