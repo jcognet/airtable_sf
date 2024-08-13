@@ -3,10 +3,11 @@ declare(strict_types=1);
 
 namespace App\Service\Import\Airtable\Fooding\Coloring;
 
+use App\Service\Contract\PreviousOccurenceFetcherInterface;
 use App\ValueObject\Fooding\Coloring;
 use Carbon\Carbon;
 
-class Fetcher
+class Fetcher implements PreviousOccurenceFetcherInterface
 {
     public function __construct(private readonly Lister $lister) {}
 
