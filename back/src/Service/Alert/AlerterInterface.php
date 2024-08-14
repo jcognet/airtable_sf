@@ -8,5 +8,5 @@ use Carbon\Carbon;
 
 interface AlerterInterface
 {
-    public function getAlert(Carbon $date): ?Alert;
+    public function getAlert(Carbon $date, bool $forceReturnAlert = false): ?Alert;
 }

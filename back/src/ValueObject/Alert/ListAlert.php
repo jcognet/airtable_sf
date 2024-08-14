@@ -5,12 +5,18 @@ namespace App\ValueObject\Alert;
 
 class ListAlert
 {
+    private readonly array $alerts;
+
     /**
      * @param Alert[] $alerts
      */
     public function __construct(
-        private readonly array $alerts
-    ) {}
+        // alerts array has key (TypeEnum::value)
+        array $alerts
+    ) {
+        usort($alerts, static fn (Alert $a, Alert $b) => $a->getType()->getLabel() <=> $b->getType()->getLabel());
+        $this->alerts = $alerts;
+    }
 
     public function getAlerts(): array
     {

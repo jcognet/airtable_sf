@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace App\Service\Alert\Fooding;
 
+use App\Enum\Alert\TypeEnum;
 use App\Service\Alert\AlerterInterface;
 use App\Service\Import\Airtable\Fooding\Qi\Fetcher;
 use App\ValueObject\Alert\Alert;
@@ -19,14 +20,16 @@ class QiAlerter implements AlerterInterface
         private readonly AlertMaker $alertMaker
     ) {}
 
-    public function getAlert(Carbon $date): ?Alert
+    public function getAlert(Carbon $date, bool $forceReturnAlert = false): ?Alert
     {
         return $this->alertMaker->make(
             $date,
             $this->fetcher,
             self::NO_DATA_FOUND,
             self::TEXT_PLACEHOLDER_ALERT,
-            self::ALERT_THRESHOLD
+            self::ALERT_THRESHOLD,
+            TypeEnum::QI,
+            $forceReturnAlert
         );
     }
 }

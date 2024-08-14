@@ -1,0 +1,48 @@
+{% extends './page/base.html.twig' %}
+{% block body %}
+    <div id="content">
+        <div class="section-light">
+            <div class="container">
+                <nav class="breadcrumb" aria-label="breadcrumbs">
+                    <ul>
+                        <li><a href="{{ url_front }}">Dashboard</a></li>
+                        <li>Alertes</li>
+                    </ul>
+                </nav>
+                <div
+                    class="column is-12 about-me"
+                    data-aos="fade-in"
+                    data-aos-easing="linear"
+                >
+                    <h1 class="title has-text-centered section-title test-alert">
+                        Mes alertes
+                    </h1>
+                </div>
+            </div>
+            <div class="container">
+                {# @var list_alerts \App\ValueObject\Alert\ListAlert #}
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <td>Type</td>
+                            <td>Dernière valeur</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    {% for alert in list_alerts.alerts %}
+                        <tr>
+                            <td>
+                                {{ alert.type.label|capitalize }} :
+                            </td>
+                            <td>
+                                {{ alert.lastDate|date('d/m/Y') }}
+                                ({{ alert.nbDays }} jour{% if alert.nbDays>1 %}s{% endif %})
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -22,17 +22,17 @@ class Alerter
     /**
      * @return Alert[]|null
      */
-    public function getListAlert(Carbon $date): ?ListAlert
+    public function getListAlert(Carbon $date, bool $forceReturnAlert = false): ?ListAlert
     {
         $key = $date->format('dmY');
-        if (isset($this->alerts[$key])) {
+        if (isset($this->alerts[$key]) && !$forceReturnAlert) {
             return $this->alerts[$key];
         }
 
         $this->alerts[$key] = null;
         $listAlerts = [];
         foreach ($this->alerters as $alerter) {
-            $alert = $alerter->getAlert($date);
+            $alert = $alerter->getAlert($date, $forceReturnAlert);
 
             if ($alert) {
                 $listAlerts[] = $alert;
