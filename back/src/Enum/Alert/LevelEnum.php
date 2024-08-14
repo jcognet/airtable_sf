@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace App\ValueObject\Alert;
+namespace App\Enum\Alert;
 
 enum LevelEnum: int
 {

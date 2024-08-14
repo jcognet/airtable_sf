@@ -3,6 +3,8 @@ declare(strict_types=1);
 
 namespace App\ValueObject\Alert;
 
+use App\Enum\Alert\LevelEnum;
+use App\Enum\Alert\TypeEnum;
 use Carbon\Carbon;
 
 class Alert
@@ -12,6 +14,7 @@ class Alert
         private readonly Carbon $lastDate,
         private readonly int $nbDays,
         private readonly LevelEnum $level,
+        private readonly TypeEnum $type
     ) {}
 
     public function getMessage(): string
@@ -32,5 +35,10 @@ class Alert
     public function getLevel(): LevelEnum
     {
         return $this->level;
+    }
+
+    public function getType(): TypeEnum
+    {
+        return $this->type;
     }
 }
