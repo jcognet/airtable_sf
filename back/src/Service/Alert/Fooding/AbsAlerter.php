@@ -7,18 +7,21 @@ use App\Enum\Alert\LevelEnum;
 use App\Enum\Alert\TypeEnum;
 use App\Service\Alert\AlerterInterface;
 use App\Service\Fooding\AbsMissingCounter;
+use App\Service\Import\Airtable\Fooding\Abs\Fetcher;
 use App\ValueObject\Alert\Alert;
 use Carbon\Carbon;
 
 class AbsAlerter implements AlerterInterface
 {
     public function __construct(
-        private readonly AbsMissingCounter $absMissingCounter
+        private readonly AbsMissingCounter $absMissingCounter,
+        private readonly Fetcher $fetcher
     ) {}
 
     public function getAlert(Carbon $date, bool $forceReturnAlert = false): ?Alert
     {
         $nbMissingAbs = $this->absMissingCounter->countMissingAbs($date);
+        $previousOccurence = $this->fetcher->getPreviousOccurence($date);
 
         if ($nbMissingAbs === null) {
             return new Alert(
@@ -47,7 +50,7 @@ class AbsAlerter implements AlerterInterface
 
         return new Alert(
             message: $message,
-            lastDate: $date,
+            lastDate: $previousOccurence->getDate(),
             nbDays: $nbMissingAbs,
             level: LevelEnum::HIGH,
             type: TypeEnum::ABS,
