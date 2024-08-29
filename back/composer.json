@@ -11,6 +11,7 @@
         "ext-gd": "*",
         "ext-iconv": "*",
         "ext-json": "*",
+        "ext-sodium": "*",
         "ext-zip": "*",
         "doctrine/annotations": "^2.0",
         "google/apiclient": "^2.12",

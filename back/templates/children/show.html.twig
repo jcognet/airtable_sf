@@ -1,0 +1,55 @@
+{% extends './page/base.html.twig' %}
+{% block body %}
+    <div id="content">
+        <div class="section-light">
+            <div class="container">
+                <nav class="breadcrumb" aria-label="breadcrumbs">
+                    <ul>
+                        <li><a href="{{ url_front }}">Dashboard</a></li>
+                        <li>Enfants</li>
+                    </ul>
+                </nav>
+                <div
+                    class="column is-12 about-me"
+                    data-aos="fade-in"
+                    data-aos-easing="linear"
+                >
+                    <h1 class="title has-text-centered section-title test-children">
+                        Enfants <3
+                    </h1>
+                </div>
+            </div>
+            <div class="container">
+                {# @var list_child \App\ValueObject\Children\ListChild #}
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <td>Prénom</td>
+                            <td>Date de naissance</td>
+                            <td>Jour depuis la naissance</td>
+                            <td>Semaine depuis la naissance</td>
+                            <td>Mois depuis la naissance</td>
+                            <td>Année depuis la naissance</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    {% for child in list_child %}
+                        <tr>
+                            <td>
+                                {{ child.firstName|capitalize }}
+                            </td>
+                            <td>
+                                {{ child.birthDay|date('d/m/Y') }}
+                            </td>
+                            <td>{{ child.daysSinceBirthDay }} jours</td>
+                            <td>{{ child.weeksSinceBirthDay }} semaines</td>
+                            <td>{{ child.monthsSinceBirthDay }} mois</td>
+                            <td>{{ child.yearsSinceBirthDay }} ans</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+{% endblock %}
