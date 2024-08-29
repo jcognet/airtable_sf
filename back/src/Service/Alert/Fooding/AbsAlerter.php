@@ -54,6 +54,12 @@ class AbsAlerter implements AlerterInterface
             nbDays: $nbMissingAbs,
             level: LevelEnum::HIGH,
             type: TypeEnum::ABS,
+            extraData: $this->getExtraData()
         );
+    }
+
+    private function getExtraData(): ?array
+    {
+        return null;
     }
 }

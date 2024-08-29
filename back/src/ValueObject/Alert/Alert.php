@@ -14,7 +14,8 @@ class Alert
         private readonly Carbon $lastDate,
         private readonly int $nbDays,
         private readonly LevelEnum $level,
-        private readonly TypeEnum $type
+        private readonly TypeEnum $type,
+        private readonly ?array $extraData = null
     ) {}
 
     public function getMessage(): string
@@ -40,5 +41,10 @@ class Alert
     public function getType(): TypeEnum
     {
         return $this->type;
+    }
+
+    public function getExtraData(): ?array
+    {
+        return $this->extraData;
     }
 }
