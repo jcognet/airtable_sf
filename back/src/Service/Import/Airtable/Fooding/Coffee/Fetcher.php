@@ -33,4 +33,30 @@ class Fetcher
 
         return $listByMonth;
     }
+
+    /**
+     * @return Coffee[]|null
+     */
+    public function fetchBefore(Carbon $date): ?array
+    {
+        /** @var Coffee[]|null $items */
+        $items = $this->lister->list();
+
+        if (!$items) {
+            return null;
+        }
+
+        $itemsBefore = [];
+
+        foreach ($items as $item) {
+            // We know it is sorted by date
+            if ($item->getDate() > $date) {
+                break;
+            }
+
+            $itemsBefore[] = $item;
+        }
+
+        return $itemsBefore;
+    }
 }
