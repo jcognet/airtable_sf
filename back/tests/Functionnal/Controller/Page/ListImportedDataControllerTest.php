@@ -104,4 +104,15 @@ final class ListImportedDataControllerTest extends WebTestCase
 
         self::assertResponseStatusCodeSame(Response::HTTP_INTERNAL_SERVER_ERROR);
     }
+
+    public function test_filter(): void
+    {
+        $client = self::createClient();
+        $client->followRedirects(true);
+        $this->loginUser($client);
+
+        $client->request('GET', '/list_imported_data/see_again?fetch=true&filter=neur');
+
+        $this->assertResponseIsSuccessful();
+    }
 }

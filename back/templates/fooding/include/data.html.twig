@@ -4,6 +4,7 @@
             <nav class="breadcrumb" aria-label="breadcrumbs">
                 <ul>
                     <li><a href="{{ url_front }}">Dashboard</a></li>
+                    <li><a href="{{ path('fooding_health_list') }}">Santé par mois</a></li>
                     <li>Bilan de santé</li>
                 </ul>
             </nav>
@@ -19,20 +20,20 @@
                         <i title="Voir la consommation du mois précédent" class="fa-solid fa-arrow-left"></i>
                     </a>
                     Bilan de santé du mois de {{ date }}
-                    <span class="tag is-info">
+                    <span class="tag is-info test-coffee">
                         {{ consumptions.nbCoffeeMonth }}
                         <i title="Nombre de cafés du mois"
                            class="fa-solid fa-mug-hot"></i>
 
                     </span>
-                    <span class="tag is-info">
+                    <span class="tag is-info test-meat">
                         {{ consumptions.nbMeatMonth }}
                         <i title="Nombre de repas carnés du mois"
                            class="fa-solid fa-drumstick-bite"></i>
                     </span>
                     {% if next_item is not null %}
                         <a href="{{ path('fooding_health', {month: next_item}) }}"
-                           class="lnk_month_navigation"
+                           class="lnk_month_navigation text-next-month"
                            title="Voir la consommation du mois suivant">
                             <i title="Voir la consommation du mois suivant" class="fa-solid fa-arrow-right"></i>
                         </a>
