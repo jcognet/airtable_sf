@@ -23,10 +23,10 @@
                 {# @var list_alerts \App\ValueObject\Alert\ListAlert #}
                 <table class="table">
                     <thead>
-                        <tr>
-                            <td>Type</td>
-                            <td>Dernière valeur</td>
-                        </tr>
+                    <tr>
+                        <td>Type</td>
+                        <td>Dernière valeur</td>
+                    </tr>
                     </thead>
                     <tbody>
                     {% for alert in list_alerts.alerts %}
@@ -35,8 +35,16 @@
                                 {{ alert.type.label|capitalize }} :
                             </td>
                             <td>
-                                {{ alert.lastDate|date('d/m/Y') }}
-                                ({{ alert.nbDays }} jour{% if alert.nbDays>1 %}s{% endif %})
+                                {% if alert.type in [constant('App\\Enum\\Alert\\TypeEnum::ABS_MAX_SERIES'),
+                                    constant('App\\Enum\\Alert\\TypeEnum::ABS_CURRENT_SERIES'),
+                                    constant('App\\Enum\\Alert\\TypeEnum::MEAT_CURRENT_WITHOUT_SERIES'),
+                                    constant('App\\Enum\\Alert\\TypeEnum::COFFEE_CURRENT_WITHOUT_SERIES'),
+                                ] %}
+                                    {{ alert.message }}
+                                {% else %}
+                                    {{ alert.lastDate|date('d/m/Y') }}
+                                    ({{ alert.nbDays }} jour{% if alert.nbDays>1 %}s{% endif %})
+                                {% endif %}
                             </td>
                         </tr>
                     {% endfor %}

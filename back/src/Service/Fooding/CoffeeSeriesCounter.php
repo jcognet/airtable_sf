@@ -1,0 +1,17 @@
+<?php
+declare(strict_types=1);
+
+namespace App\Service\Fooding;
+
+use App\Service\Import\Airtable\Fooding\Coffee\Fetcher;
+use Carbon\Carbon;
+
+class CoffeeSeriesCounter extends AbstractSeriesCounter
+{
+    public function __construct(private readonly Fetcher $fetcher) {}
+
+    protected function fetchBefore(Carbon $date): ?array
+    {
+        return $this->fetcher->fetchBefore($date);
+    }
+}

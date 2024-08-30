@@ -3,6 +3,7 @@
     {% for alert in list_alerts.alerts %}
         {% set css = 'danger' %}
         {% if alert.level is constant('App\\Enum\\Alert\\LevelEnum::MEDIUM') %}{% set css = 'warning' %}
+        {% elseif alert.level is constant('App\\Enum\\Alert\\LevelEnum::GOOD_NEWS') %}{% set css = 'link' %}
         {% elseif alert.level is constant('App\\Enum\\Alert\\LevelEnum::LOW') %}{% set css = 'success' %}
         {% endif %}
         {# @var alert \App\ValueObject\Alert\Alert #}
