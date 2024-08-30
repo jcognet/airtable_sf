@@ -25,6 +25,33 @@ final class HealthControllerTest extends WebTestCase
         $this->assertResponseIsSuccessful();
     }
 
+    public function test_list_default(): void
+    {
+        $client = self::createClient();
+        $client->followRedirects(true);
+        $this->loginUser($client);
+
+        $client->request('GET', '/fooding/health/list');
+
+        $this->assertSelectorTextContains('h1.test-fooding-health', 'Bilan de santé depuis le début');
+        $this->assertResponseIsSuccessful();
+    }
+
+    public function test_date(): void
+    {
+        $client = self::createClient();
+        $client->followRedirects(true);
+        $this->loginUser($client);
+
+        $client->request('GET', '/fooding/health?month=2023-09');
+
+        $this->assertSelectorTextContains('h1.test-fooding-health', 'Bilan de');
+        $this->assertSelectorTextContains('span.test-coffee', '25');
+        $this->assertSelectorTextContains('span.test-meat', '17');
+        $this->assertSelectorExists('a.text-next-month');
+        $this->assertResponseIsSuccessful();
+    }
+
     public function test_wrong_date(): void
     {
         $client = self::createClient();
