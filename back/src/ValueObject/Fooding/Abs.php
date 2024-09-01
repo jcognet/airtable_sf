@@ -3,9 +3,10 @@ declare(strict_types=1);
 
 namespace App\ValueObject\Fooding;
 
+use App\Service\Contract\OccurrenceInterface;
 use Carbon\Carbon;
 
-class Abs
+class Abs implements OccurrenceInterface
 {
     public function __construct(
         private readonly Carbon $date,

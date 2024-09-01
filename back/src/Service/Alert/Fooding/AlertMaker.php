@@ -5,7 +5,7 @@ namespace App\Service\Alert\Fooding;
 
 use App\Enum\Alert\LevelEnum;
 use App\Enum\Alert\TypeEnum;
-use App\Service\Contract\PreviousOccurenceFetcherInterface;
+use App\Service\Contract\PreviousOccurrenceFetcherInterface;
 use App\ValueObject\Alert\Alert;
 use Carbon\Carbon;
 
@@ -13,14 +13,14 @@ class AlertMaker
 {
     public function make(
         Carbon $date,
-        PreviousOccurenceFetcherInterface $fetcher,
+        PreviousOccurrenceFetcherInterface $fetcher,
         string $noDataFound,
         string $textPlaceholderAlert,
         int $threshold,
         TypeEnum $type,
         bool $forceReturnAlert = false,
     ): ?Alert {
-        $previousOccurence = $fetcher->getPreviousOccurence($date);
+        $previousOccurence = $fetcher->getPreviousOccurrence($date);
 
         if (!$previousOccurence) {
             return new Alert(

@@ -21,7 +21,7 @@ class AbsAlerter implements AlerterInterface
     public function getAlert(Carbon $date, bool $forceReturnAlert = false): ?Alert
     {
         $nbMissingAbs = $this->absMissingCounter->countMissingAbs($date);
-        $previousOccurence = $this->fetcher->getPreviousOccurence($date);
+        $previousOccurrence = $this->fetcher->getPreviousOccurrence($date);
 
         if ($nbMissingAbs === null) {
             return new Alert(
@@ -50,7 +50,7 @@ class AbsAlerter implements AlerterInterface
 
         return new Alert(
             message: $message,
-            lastDate: $previousOccurence->getDate(),
+            lastDate: $previousOccurrence->getDate(),
             nbDays: $nbMissingAbs,
             level: LevelEnum::HIGH,
             type: TypeEnum::ABS,
