@@ -3,11 +3,12 @@ declare(strict_types=1);
 
 namespace App\Service\Import\Airtable\Fooding\Coloring;
 
-use App\Service\Contract\PreviousOccurenceFetcherInterface;
+use App\Service\Contract\PreviousOccurrenceFetcherInterface;
+use App\Service\Import\Airtable\Fooding\AbstractOccurrenceFetcher;
 use App\ValueObject\Fooding\Coloring;
 use Carbon\Carbon;
 
-class Fetcher implements PreviousOccurenceFetcherInterface
+class Fetcher extends AbstractOccurrenceFetcher implements PreviousOccurrenceFetcherInterface
 {
     public function __construct(private readonly Lister $lister) {}
 
@@ -16,29 +17,16 @@ class Fetcher implements PreviousOccurenceFetcherInterface
         return $this->lister->list();
     }
 
-    public function getPreviousOccurence(Carbon $date): ?Coloring
+    /**
+     * @return Coloring[]|null
+     */
+    public function fetchBefore(Carbon $date): ?array
     {
-        $previousOccurence = null;
-        $items = $this->fetch();
+        return parent::fetchBefore($date);
+    }
 
-        if (!$items) {
-            return null;
-        }
-
-        foreach ($items as $item) {
-            /** @var Coloring $item */
-            // Same day, we stop
-            if ($item->getDate()->format('dmY') === $date->format('dmY')) {
-                return $item;
-            }
-
-            if ($item->getDate() <= $date
-                && (!$previousOccurence || $previousOccurence->getDate() < $item->getDate())
-            ) {
-                $previousOccurence = $item;
-            }
-        }
-
-        return $previousOccurence;
+    public function getPreviousOccurrence(Carbon $date): ?Coloring
+    {
+        return parent::getPreviousOccurrence($date);
     }
 }

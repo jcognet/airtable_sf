@@ -5,7 +5,7 @@ namespace App\Service\Contract;
 
 use Carbon\Carbon;
 
-interface OccurenceInterface
+interface OccurrenceInterface
 {
     public function getDate(): Carbon;
 }
