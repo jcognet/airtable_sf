@@ -88,7 +88,7 @@ abstract class AbstractSeriesCounter
             $previousDay = $event->getDate()->copy();
         }
 
-        return $nbMax;
+        return max($nbMax, $nbCurrent);
     }
 
     abstract protected function fetchBefore(Carbon $date): ?array;
