@@ -29,4 +29,12 @@ class Fetcher extends AbstractOccurrenceFetcher implements PreviousOccurrenceFet
     {
         return parent::fetchBefore($date);
     }
+
+    /**
+     * @return Cut[]|null
+     */
+    public function getByMonth(Carbon $date): ?array
+    {
+        return parent::getByMonth($date);
+    }
 }

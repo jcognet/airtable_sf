@@ -58,4 +58,23 @@ abstract class AbstractOccurrenceFetcher
 
         return $itemsBefore;
     }
+
+    public function getByMonth(Carbon $date): ?array
+    {
+        $list = $this->fetch();
+        $listByMonth = [];
+
+        if (!$list) {
+            return null;
+        }
+
+        foreach ($list as $item) {
+            /** @var OccurrenceInterface $item */
+            if ($item->getDate()->format('mY') === $date->format('mY')) {
+                $listByMonth[] = $item;
+            }
+        }
+
+        return $listByMonth;
+    }
 }
