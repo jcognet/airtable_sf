@@ -16,30 +16,24 @@ class Fetcher extends AbstractOccurrenceFetcher
         return $this->lister->list();
     }
 
-    public function getByMonth(Carbon $date): ?array
-    {
-        $list = $this->fetch();
-        $listByMonth = [];
-
-        if (!$list) {
-            return null;
-        }
-
-        foreach ($list as $coffee) {
-            /** @var Coffee $coffee */
-            if ($coffee->getDate()->format('mY') === $date->format('mY')) {
-                $listByMonth[] = $coffee;
-            }
-        }
-
-        return $listByMonth;
-    }
-
     /**
      * @return Coffee[]|null
      */
     public function fetchBefore(Carbon $date): ?array
     {
         return parent::fetchBefore($date);
+    }
+
+    public function getPreviousOccurrence(Carbon $date): ?Coffee
+    {
+        return parent::getPreviousOccurrence($date);
+    }
+
+    /**
+     * @return Coffee[]|null
+     */
+    public function getByMonth(Carbon $date): ?array
+    {
+        return parent::getByMonth($date);
     }
 }
