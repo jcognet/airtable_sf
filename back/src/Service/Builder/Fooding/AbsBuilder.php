@@ -18,7 +18,7 @@ class AbsBuilder implements BuilderInterface
         return new Abs(
             date: Carbon::parse($data['fields']['Jour']),
             comment: $data['fields']['Commentaire'] ?? null,
-            quantity: $data['fields']['Quantité'],
+            quantity: $data['fields']['Quantité'] ?? 0,
             isExempt: $data['fields']['Exempté'] ?? false,
         );
     }

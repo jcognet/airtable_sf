@@ -27,7 +27,11 @@ class DaysWithoutMeatSeriesAlerter implements AlerterInterface
         }
 
         return new Alert(
-            message: sprintf('Bravo, tu enchaînes %d jours sans viande.', $countCurrentSeriesWithout),
+            message: sprintf(
+                'Bravo, tu enchaînes %d jour%s sans viande.',
+                $countCurrentSeriesWithout,
+                $countCurrentSeriesWithout > 1 ? 's' : ''
+            ),
             lastDate: Carbon::now(),
             nbDays: $countCurrentSeriesWithout,
             level: LevelEnum::GOOD_NEWS,
