@@ -27,7 +27,11 @@ class DaysWithoutCoffeeSeriesAlerter implements AlerterInterface
         }
 
         return new Alert(
-            message: sprintf('Bravo, tu enchaînes %d jours sans café.', $countCurrentSeriesWithout),
+            message: sprintf(
+                'Bravo, tu enchaînes %d jour%s sans café.',
+                $countCurrentSeriesWithout,
+                $countCurrentSeriesWithout > 1 ? 's' : ''
+            ),
             lastDate: Carbon::now(),
             nbDays: $countCurrentSeriesWithout,
             level: LevelEnum::GOOD_NEWS,

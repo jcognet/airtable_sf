@@ -27,7 +27,11 @@ class CurrentAbsSeriesAlerter implements AlerterInterface
         }
 
         return new Alert(
-            message: sprintf('Bravo, tu enchaînes %d jours avec abdo.', $countCurrentSerie),
+            message: sprintf(
+                'Bravo, tu enchaînes %d jour%s avec abdo.',
+                $countCurrentSerie,
+                $countCurrentSerie > 1 ? 's' : ''
+            ),
             lastDate: Carbon::now(),
             nbDays: $countCurrentSerie,
             level: LevelEnum::GOOD_NEWS,

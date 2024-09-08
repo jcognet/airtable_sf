@@ -37,19 +37,12 @@ class AbsAlerter implements AlerterInterface
             return null;
         }
 
-        $message = sprintf(
-            'Attention, il manque %d gainage',
-            $nbMissingAbs
-        );
-
-        if ($nbMissingAbs > 1) {
-            $message .= 's';
-        }
-
-        $message .= '.';
-
         return new Alert(
-            message: $message,
+            message: sprintf(
+                'Attention, il manque %d gainage%s.',
+                $nbMissingAbs,
+                $nbMissingAbs > 1 ? 's' : ''
+            ),
             lastDate: $previousOccurrence->getDate(),
             nbDays: $nbMissingAbs,
             level: LevelEnum::HIGH,
