@@ -183,6 +183,10 @@ services:
     arguments:
       $config: '@App\Service\Import\Airtable\Fooding\Qi\Config'
 
+  App\Service\Import\Airtable\ToDo\Item\Lister:
+    arguments:
+      $config: '@App\Service\Import\Airtable\ToDo\Item\Config'
+
   App\Service\Import\Airtable\Holiday\Holiday\Importer:
     arguments:
       $config: '@App\Service\Import\Airtable\Holiday\Holiday\Config'
@@ -248,6 +252,11 @@ services:
     arguments:
       $config: '@App\Service\Import\Airtable\Fooding\Qi\Config'
       $client: '@App\Service\AirTable\Fooding\QiClient'
+
+  App\Service\Import\Airtable\ToDo\Item\Importer:
+    arguments:
+      $config: '@App\Service\Import\Airtable\ToDo\Item\Config'
+      $client: '@App\Service\AirTable\ToDo\ItemClient'
 
 when@test:
   parameters:

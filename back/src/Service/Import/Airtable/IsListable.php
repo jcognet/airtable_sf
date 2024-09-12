@@ -47,7 +47,7 @@ class IsListable
             }
         }
 
-        usort($typeListable, static fn (AirtableConfigInterface $a, AirtableConfigInterface $b) => $a->getPublicLabel() <=> $b->getPublicLabel());
+        usort($typeListable, static fn (AirtableConfigInterface $a, AirtableConfigInterface $b) => strtolower($a->getPublicLabel()) <=> strtolower($b->getPublicLabel()));
 
         return $typeListable;
     }

@@ -11,6 +11,7 @@ use App\Service\Import\Airtable\Article\SeeAgain\Lister as SeeAgainLister;
 use App\Service\Import\Airtable\Book\Book\Lister as BookLister;
 use App\Service\Import\Airtable\File\File\Lister as FileLister;
 use App\Service\Import\Airtable\Qcm\Question\Lister as QuestionLister;
+use App\Service\Import\Airtable\ToDo\Item\Lister as ItemLister;
 use Psr\Container\ContainerInterface;
 use Symfony\Component\DependencyInjection\Exception\ServiceNotFoundException;
 use Symfony\Contracts\Service\ServiceSubscriberInterface;
@@ -42,6 +43,7 @@ class ImportedDataListFactory implements ServiceSubscriberInterface
             FileLister::class,
             QuestionLister::class,
             BookLister::class,
+            ItemLister::class,
         ];
     }
 }
