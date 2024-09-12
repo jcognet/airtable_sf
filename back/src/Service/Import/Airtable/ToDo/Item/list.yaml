@@ -1,0 +1,15 @@
+fields:
+  -
+    label: Nom
+    property: label
+  -
+    label: A faire pour
+    property: dueAt
+
+  -
+    label: Etat
+    property: etat
+  -
+    label: Notes Airtable
+    property: airTableUrl
+    is_sortable: false

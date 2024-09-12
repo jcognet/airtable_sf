@@ -13,7 +13,7 @@ use Symfony\Component\Serializer\SerializerInterface;
 abstract class AbstractImporter implements AirtableImporterInterface
 {
     public function __construct(
-        private readonly AbstractClient $client,
+        protected readonly AbstractClient $client,
         private readonly SerializerInterface $serializer,
         private readonly AirtableConfigInterface $config
     ) {}
@@ -42,7 +42,7 @@ abstract class AbstractImporter implements AirtableImporterInterface
         return $data;
     }
 
-    private function save(array $data): void
+    protected function save(array $data): void
     {
         $fs = new Filesystem();
 
