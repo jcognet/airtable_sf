@@ -51,7 +51,7 @@ class ManagerType
         DoneContentManager::class,
         InrManager::class,
         ArticleReadListBlockManager::class,
-        GoodPracticeOrganizationManager::class,
+        //      GoodPracticeOrganizationManager::class,
         InterestingTopicListBlockManager::class,
         ConceptManager::class,
         CurrenciesManager::class,

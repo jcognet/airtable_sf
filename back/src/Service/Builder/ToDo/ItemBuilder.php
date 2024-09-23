@@ -28,14 +28,14 @@ class ItemBuilder implements BuilderInterface
             $data['fields']['Etat'] ?? null,
             isset($data['fields']['Echéance']) ? Carbon::parse($data['fields']['Echéance']) : null,
             $data['fields']['Catégorie'] ?? null,
-            $data['fields']['Sprint'] ?? null,
             isset($data['fields']['Prioritaire']),
             airTableUrl: $this->urlBuilder->build(
                 $this->airtableAppToDoId,
                 self::TABLE_URL,
                 self::TABLE_VIEW_ID,
                 $data['id']
-            )
+            ),
+            complexity: $data['fields']['Complexité'] ?? null,
         );
     }
 }
