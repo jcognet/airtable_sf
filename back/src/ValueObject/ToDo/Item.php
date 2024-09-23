@@ -15,9 +15,9 @@ class Item
         private readonly ?string $etat,
         private readonly ?Carbon $dueAt,
         private readonly ?string $category,
-        private readonly ?string $sprint,
         private readonly bool $isImportant,
-        private readonly string $airTableUrl
+        private readonly string $airTableUrl,
+        private readonly ?int $complexity,
     ) {}
 
     public function getId(): string
@@ -55,11 +55,6 @@ class Item
         return $this->category;
     }
 
-    public function getSprint(): ?string
-    {
-        return $this->sprint;
-    }
-
     public function isImportant(): bool
     {
         return $this->isImportant;
@@ -68,5 +63,10 @@ class Item
     public function getAirTableUrl(): string
     {
         return $this->airTableUrl;
+    }
+
+    public function getComplexity(): int
+    {
+        return $this->complexity;
     }
 }

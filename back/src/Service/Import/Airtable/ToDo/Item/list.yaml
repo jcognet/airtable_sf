@@ -10,6 +10,9 @@ fields:
     label: Etat
     property: etat
   -
+    label: Complexité
+    property: Complexity
+  -
     label: Notes Airtable
     property: airTableUrl
     is_sortable: false

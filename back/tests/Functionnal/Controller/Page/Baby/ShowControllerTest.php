@@ -22,6 +22,6 @@ final class ShowControllerTest extends WebTestCase
         $client->request('GET', '/life_event/');
 
         $this->assertResponseIsSuccessful();
-        $this->assertSelectorTextContains('h1.test-children', 'Enfants');
+        $this->assertSelectorTextContains('h1.test-events', 'Evénements importants');
     }
 }
