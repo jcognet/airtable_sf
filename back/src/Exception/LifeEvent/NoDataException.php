@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace App\Exception\Children;
+namespace App\Exception\LifeEvent;
 
 class NoDataException extends \RuntimeException
 {

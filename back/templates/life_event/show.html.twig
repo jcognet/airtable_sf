@@ -6,7 +6,7 @@
                 <nav class="breadcrumb" aria-label="breadcrumbs">
                     <ul>
                         <li><a href="{{ url_front }}">Dashboard</a></li>
-                        <li>Enfants</li>
+                        <li>Evénements importants</li>
                     </ul>
                 </nav>
                 <div
@@ -15,36 +15,36 @@
                     data-aos-easing="linear"
                 >
                     <h1 class="title has-text-centered section-title test-children">
-                        Enfants <3
+                        Evénements importants <3
                     </h1>
                 </div>
             </div>
             <div class="container">
-                {# @var list_child \App\ValueObject\Children\ListChild #}
+                {# @var list_event \App\ValueObject\LifeEvent\ListEvent #}
                 <table class="table">
                     <thead>
                         <tr>
-                            <td>Prénom</td>
-                            <td>Date de naissance</td>
-                            <td>Jour depuis la naissance</td>
-                            <td>Semaine depuis la naissance</td>
-                            <td>Mois depuis la naissance</td>
-                            <td>Année depuis la naissance</td>
+                            <td>Evénements</td>
+                            <td>Date</td>
+                            <td>Jour depuis l'évenements</td>
+                            <td>Semaines depuis l'évenements</td>
+                            <td>Mois depuis l'évenements</td>
+                            <td>Années depuis l'évenements</td>
                         </tr>
                     </thead>
                     <tbody>
-                    {% for child in list_child %}
+                    {% for event in list_event %}
                         <tr>
                             <td>
-                                {{ child.firstName|capitalize }}
+                                {{ event.label }}
                             </td>
                             <td>
-                                {{ child.birthDay|date('d/m/Y') }}
+                                {{ event.date|date('d/m/Y') }}
                             </td>
-                            <td>{{ child.daysSinceBirthDay }} jours</td>
-                            <td>{{ child.weeksSinceBirthDay }} semaines</td>
-                            <td>{{ child.monthsSinceBirthDay }} mois</td>
-                            <td>{{ child.yearsSinceBirthDay }} ans</td>
+                            <td>{{ event.daysSinceDate }} jours</td>
+                            <td>{{ event.weeksSinceDate }} semaines</td>
+                            <td>{{ event.monthsSinceDate }} mois</td>
+                            <td>{{ event.yearsSinceDate }} ans</td>
                         </tr>
                     {% endfor %}
                     </tbody>
