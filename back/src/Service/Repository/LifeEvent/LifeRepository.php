@@ -1,34 +1,35 @@
 <?php
 declare(strict_types=1);
 
-namespace App\Service\Repository\Children;
+namespace App\Service\Repository\LifeEvent;
 
-use App\Exception\Children\NoDataException;
+use App\Exception\LifeEvent\NoDataException;
+use App\Exception\LifeEvent\WrongFormatException;
 use App\Service\Security\FileEncoder;
-use App\ValueObject\Children\Child;
+use App\ValueObject\LifeEvent\Event;
 use Carbon\Carbon;
 use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\Serializer\Normalizer\DenormalizerInterface;
 use Symfony\Component\Serializer\SerializerInterface;
 
-class ChildrenRepository
+class LifeRepository
 {
-    private const FILE_NAME = 'children.bin';
+    private const FILE_NAME = 'life.bin';
     private const NONCE = '4701f5e94e7508b9213bbd4fd61d460675c2e3f01924305e';
 
     public function __construct(
         private readonly FileEncoder $fileEncoder,
-        private readonly string $childrenPath,
+        private readonly string $eventsPath,
         private readonly DenormalizerInterface $denormalizer,
         private readonly SerializerInterface $serializer,
     ) {}
 
     /**
-     * @return Child[]
+     * @return Event[]
      */
     public function get(): array
     {
-        $childrenJson = json_decode(
+        $content = json_decode(
             $this->fileEncoder->decode(
                 file_get_contents($this->getPath()),
                 hex2bin(self::NONCE)
@@ -36,26 +37,32 @@ class ChildrenRepository
             true
         );
 
-        if (!isset($childrenJson['data']['children'])) {
+        if (!isset($content['data']['events'])) {
             throw new NoDataException();
         }
 
-        $children = [];
-        foreach ($childrenJson['data']['children'] as $child) {
-            $children[] = $this->denormalizer->denormalize($child, Child::class);
+        $events = [];
+        foreach ($content['data']['events'] as $event) {
+            $events[] = $this->denormalizer->denormalize($event, Event::class);
         }
 
-        return $children;
+        return $events;
     }
 
-    public function save(string $children): void
+    public function save(string $events): void
     {
         $fs = new Filesystem();
+        $jsonDecoded = json_decode($events, true);
+
+        if (!$jsonDecoded) {
+            throw new WrongFormatException($events);
+        }
+
         $data = $this->fileEncoder->encode(
             $this->serializer->serialize(
                 [
                     'data' => [
-                        'children' => [json_decode($children, true)],
+                        'events' => $jsonDecoded,
                     ],
                     'metadata' => [
                         'created' => Carbon::now(),
@@ -74,6 +81,6 @@ class ChildrenRepository
 
     private function getPath(): string
     {
-        return sprintf('%s%s', $this->childrenPath, self::FILE_NAME);
+        return sprintf('%s%s', $this->eventsPath, self::FILE_NAME);
     }
 }

@@ -52,7 +52,7 @@ services:
       $birdPath: '%kernel.project_dir%/src/Data/bird/'
       $picturePath: '%kernel.project_dir%/src/Data/photo/'
       $filePath: '%kernel.project_dir%/src/Data/file/'
-      $childrenPath: '%kernel.project_dir%/src/Data/children/'
+      $eventsPath: '%kernel.project_dir%/src/Data/events/'
       $googleCredentialFile: '%kernel.project_dir%/config/google_credential.json'
       $spreadSheetAirtableId: '%env(GOOGLE_SPREADSHEET_EXPORT_ID)%'
       $spreadSheetNurseryId: '%env(GOOGLE_NURSERY_EXPORT_ID)%'

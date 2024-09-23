@@ -1,27 +1,30 @@
 <?php
 declare(strict_types=1);
 
-namespace App\Command\Children;
+namespace App\Command\LifeEvent;
 
-use App\Service\Repository\Children\ChildrenRepository;
+use App\Service\Repository\LifeEvent\LifeRepository;
 use Carbon\Carbon;
 use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
+use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
-#[AsCommand(name: 'app:children:get')]
-class GetChildrenCommand extends Command
+#[AsCommand(name: 'app:events:write')]
+class WriteEventsCommand extends Command
 {
     public function __construct(
-        private readonly ChildrenRepository $childrenRepository
+        private readonly LifeRepository $lifeRepository
     ) {
         parent::__construct();
     }
 
     protected function configure(): void
     {
-        $this->setDescription('Read children.');
+        $this->setDescription('Update events.')
+            ->addArgument('data', InputArgument::REQUIRED, 'Update contents.')
+        ;
     }
 
     protected function execute(InputInterface $input, OutputInterface $output): int
@@ -29,15 +32,9 @@ class GetChildrenCommand extends Command
         $start = Carbon::now();
         $output->writeln(sprintf('Start of command %s at %s', $this->getName(), $start->format('d/m/Y H:i')));
 
-        foreach ($this->childrenRepository->get() as $child) {
-            $output->writeln(
-                sprintf(
-                    'First name: %s, Birth: %s',
-                    $child->getFirstName(),
-                    $child->getBirthDay()->format('d/m/Y')
-                )
-            );
-        }
+        $this->lifeRepository->save(
+            $input->getArgument('data')
+        );
 
         $end = Carbon::now();
         $interval = $end->diffAsCarbonInterval($start);

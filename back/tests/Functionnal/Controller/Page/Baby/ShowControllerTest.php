@@ -19,7 +19,7 @@ final class ShowControllerTest extends WebTestCase
         $client->followRedirects(true);
         $this->loginUser($client);
 
-        $client->request('GET', '/children/');
+        $client->request('GET', '/life_event/');
 
         $this->assertResponseIsSuccessful();
         $this->assertSelectorTextContains('h1.test-children', 'Enfants');
