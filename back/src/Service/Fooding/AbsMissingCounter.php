@@ -25,8 +25,6 @@ class AbsMissingCounter
         foreach ($absBeforeDate as $absDate) {
             if ($absDate->getQuantity() > 0) {
                 $nbAbs += $absDate->getQuantity();
-
-                continue;
             }
 
             if ($absDate->isExempt()) {
