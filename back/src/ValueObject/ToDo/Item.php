@@ -17,7 +17,7 @@ class Item
         private readonly ?string $category,
         private readonly bool $isImportant,
         private readonly string $airTableUrl,
-        private readonly ?int $complexity,
+        private readonly ?int $complexity = null,
     ) {}
 
     public function getId(): string
