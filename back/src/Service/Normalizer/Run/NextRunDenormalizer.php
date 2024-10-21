@@ -9,7 +9,7 @@ use Symfony\Component\Serializer\Normalizer\DenormalizerInterface;
 
 class NextRunDenormalizer implements DenormalizerInterface
 {
-    public function denormalize(mixed $data, string $type, string $format = null, array $context = []): NextRun
+    public function denormalize(mixed $data, string $type, ?string $format = null, array $context = []): NextRun
     {
         if (isset($data['date'])) {
             $data['date'] = Carbon::parse($data['date']);
@@ -18,7 +18,7 @@ class NextRunDenormalizer implements DenormalizerInterface
         return new NextRun(...$data);
     }
 
-    public function supportsDenormalization(mixed $data, string $type, string $format = null, array $context = []): bool
+    public function supportsDenormalization(mixed $data, string $type, ?string $format = null, array $context = []): bool
     {
         return $type === NextRun::class;
     }

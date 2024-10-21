@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace App\Tests\Functionnal\Controller;
 
+use Symfony\Component\HttpFoundation\Request;
 use App\Tests\Functionnal\SetUserTrait;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
@@ -19,7 +20,7 @@ final class ImportControllerTest extends WebTestCase
         $client->followRedirects(true);
         $this->loginUser($client);
 
-        $client->request('GET', '/import/all');
+        $client->request(Request::METHOD_GET, '/import/all');
 
         $this->assertResponseIsSuccessful();
         $content = $client->getResponse()->getContent();

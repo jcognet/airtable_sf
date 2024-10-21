@@ -10,7 +10,7 @@ use Symfony\Component\Serializer\Normalizer\DenormalizerInterface;
 
 class VideoDenormalizer implements DenormalizerInterface
 {
-    public function denormalize(mixed $data, string $type, string $format = null, array $context = []): Video
+    public function denormalize(mixed $data, string $type, ?string $format = null, array $context = []): Video
     {
         $sujets = [];
 
@@ -28,7 +28,7 @@ class VideoDenormalizer implements DenormalizerInterface
         return new Video(...$data);
     }
 
-    public function supportsDenormalization(mixed $data, string $type, string $format = null, array $context = []): bool
+    public function supportsDenormalization(mixed $data, string $type, ?string $format = null, array $context = []): bool
     {
         return $type === Video::class;
     }

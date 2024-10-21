@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace App\Tests\Functionnal\Controller\Page\Baby;
 
+use Symfony\Component\HttpFoundation\Request;
 use App\Tests\Functionnal\SetUserTrait;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
@@ -19,7 +20,7 @@ final class ShowControllerTest extends WebTestCase
         $client->followRedirects(true);
         $this->loginUser($client);
 
-        $client->request('GET', '/life_event/');
+        $client->request(Request::METHOD_GET, '/life_event/');
 
         $this->assertResponseIsSuccessful();
         $this->assertSelectorTextContains('h1.test-events', 'Evénements importants');

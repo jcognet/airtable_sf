@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace App\Tests\Functionnal\Controller\Fooding;
 
+use Symfony\Component\HttpFoundation\Request;
 use App\Tests\Functionnal\SetUserTrait;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
@@ -19,7 +20,7 @@ final class HealthControllerTest extends WebTestCase
         $client->followRedirects(true);
         $this->loginUser($client);
 
-        $client->request('GET', '/fooding/health');
+        $client->request(Request::METHOD_GET, '/fooding/health');
 
         $this->assertSelectorTextContains('h1.test-fooding-health', 'Bilan de');
         $this->assertResponseIsSuccessful();
@@ -31,7 +32,7 @@ final class HealthControllerTest extends WebTestCase
         $client->followRedirects(true);
         $this->loginUser($client);
 
-        $client->request('GET', '/fooding/health/list');
+        $client->request(Request::METHOD_GET, '/fooding/health/list');
 
         $this->assertSelectorTextContains('h1.test-fooding-health', 'Bilan de santé depuis le début');
         $this->assertResponseIsSuccessful();
@@ -43,7 +44,7 @@ final class HealthControllerTest extends WebTestCase
         $client->followRedirects(true);
         $this->loginUser($client);
 
-        $client->request('GET', '/fooding/health?month=2023-09');
+        $client->request(Request::METHOD_GET, '/fooding/health?month=2023-09');
 
         $this->assertSelectorTextContains('h1.test-fooding-health', 'Bilan de');
         $this->assertSelectorTextContains('span.test-coffee', '25');
@@ -58,7 +59,7 @@ final class HealthControllerTest extends WebTestCase
         $client->followRedirects(true);
         $this->loginUser($client);
 
-        $client->request('GET', '/fooding/health?date=223-213(123123');
+        $client->request(Request::METHOD_GET, '/fooding/health?date=223-213(123123');
 
         $this->assertSelectorTextContains('h1.test-fooding-health', 'Bilan de');
         $this->assertResponseIsSuccessful();

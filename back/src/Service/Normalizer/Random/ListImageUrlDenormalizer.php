@@ -10,7 +10,7 @@ use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
 
 class ListImageUrlDenormalizer implements DenormalizerInterface
 {
-    public function denormalize(mixed $data, string $type, string $format = null, array $context = []): ListImageUrl
+    public function denormalize(mixed $data, string $type, ?string $format = null, array $context = []): ListImageUrl
     {
         $imageUrlDernormalizer = new ImageUrlDenormalizer();
         $listImageUrl = [];
@@ -25,7 +25,7 @@ class ListImageUrlDenormalizer implements DenormalizerInterface
         return (new ObjectNormalizer())->denormalize($data, ListImageUrl::class, $format, $context);
     }
 
-    public function supportsDenormalization(mixed $data, string $type, string $format = null, array $context = []): bool
+    public function supportsDenormalization(mixed $data, string $type, ?string $format = null, array $context = []): bool
     {
         return $type === ListImageUrl::class;
     }

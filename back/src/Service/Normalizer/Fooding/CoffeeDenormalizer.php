@@ -9,14 +9,14 @@ use Symfony\Component\Serializer\Normalizer\DenormalizerInterface;
 
 class CoffeeDenormalizer implements DenormalizerInterface
 {
-    public function denormalize(mixed $data, string $type, string $format = null, array $context = []): Coffee
+    public function denormalize(mixed $data, string $type, ?string $format = null, array $context = []): Coffee
     {
         $data['date'] = Carbon::parse($data['date']);
 
         return new Coffee(...$data);
     }
 
-    public function supportsDenormalization(mixed $data, string $type, string $format = null, array $context = []): bool
+    public function supportsDenormalization(mixed $data, string $type, ?string $format = null, array $context = []): bool
     {
         return $type === Coffee::class;
     }

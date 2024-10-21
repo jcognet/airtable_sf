@@ -16,7 +16,7 @@ use Symfony\Component\Serializer\SerializerInterface;
 
 class ContentController extends AbstractController
 {
-    #[Route(path: '/newspaper/content/one/{type}', name: 'newspapper_content_one', methods: ['GET'])]
+    #[\Symfony\Component\Routing\Attribute\Route(path: '/newspaper/content/one/{type}', name: 'newspapper_content_one', methods: ['GET'])]
     public function one(
         Request $request,
         BlockFinder $blockFinder,

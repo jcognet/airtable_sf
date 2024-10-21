@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace App\Tests\Functionnal\Controller\Page;
 
+use Symfony\Component\HttpFoundation\Request;
 use App\Tests\Functionnal\SetUserTrait;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
@@ -19,7 +20,7 @@ final class DashboardControllerTest extends WebTestCase
         $client->followRedirects(true);
         $this->loginUser($client);
 
-        $client->request('GET', '/dashboard?date=2021-01-04');
+        $client->request(Request::METHOD_GET, '/dashboard?date=2021-01-04');
 
         $this->assertResponseIsSuccessful();
     }
@@ -30,7 +31,7 @@ final class DashboardControllerTest extends WebTestCase
         $client->followRedirects(true);
         $this->loginUser($client);
 
-        $client->request('GET', '/example');
+        $client->request(Request::METHOD_GET, '/example');
 
         $this->assertResponseIsSuccessful();
     }
@@ -41,7 +42,7 @@ final class DashboardControllerTest extends WebTestCase
         $client->followRedirects(true);
         $this->loginUser($client);
 
-        $client->request('GET', '/dashboard?holiday=true&date=2023-06-17');
+        $client->request(Request::METHOD_GET, '/dashboard?holiday=true&date=2023-06-17');
 
         $this->assertResponseIsSuccessful();
         $this->assertSelectorExists('h1.test-holiday');
@@ -53,7 +54,7 @@ final class DashboardControllerTest extends WebTestCase
         $client->followRedirects(true);
         $this->loginUser($client);
 
-        $client->request('GET', '/dashboard?holiday=true&date=2023-06-24');
+        $client->request(Request::METHOD_GET, '/dashboard?holiday=true&date=2023-06-24');
 
         $this->assertResponseIsSuccessful();
         $this->assertSelectorExists('h1.test-holiday');
@@ -65,7 +66,7 @@ final class DashboardControllerTest extends WebTestCase
         $client->followRedirects(true);
         $this->loginUser($client);
 
-        $client->request('GET', '/dashboard?date=2023-06-17');
+        $client->request(Request::METHOD_GET, '/dashboard?date=2023-06-17');
 
         $this->assertResponseIsSuccessful();
         $this->assertSelectorExists('h1.test-holiday');

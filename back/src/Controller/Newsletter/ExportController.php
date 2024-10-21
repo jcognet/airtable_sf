@@ -10,7 +10,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class ExportController extends AbstractController
 {
-    #[Route(path: '/newsletter/export/show', name: 'newsletter_export_show', methods: ['GET'])]
+    #[\Symfony\Component\Routing\Attribute\Route(path: '/newsletter/export/show', name: 'newsletter_export_show', methods: ['GET'])]
     public function show(
         Exporter $exporter
     ): Response {

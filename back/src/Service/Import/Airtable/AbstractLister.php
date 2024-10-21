@@ -18,7 +18,7 @@ abstract class AbstractLister
         private readonly Filtrer $filter
     ) {}
 
-    public function list(Sort $sort = null, ?string $filter = null): ?array
+    public function list(?Sort $sort = null, ?string $filter = null): ?array
     {
         $filesystem = new Filesystem();
 

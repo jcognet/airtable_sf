@@ -8,12 +8,12 @@ use Symfony\Component\Serializer\Normalizer\DenormalizerInterface;
 
 class PictureDenormalizer implements DenormalizerInterface
 {
-    public function denormalize(mixed $data, string $type, string $format = null, array $context = []): Picture
+    public function denormalize(mixed $data, string $type, ?string $format = null, array $context = []): Picture
     {
         return new Picture(...$data);
     }
 
-    public function supportsDenormalization(mixed $data, string $type, string $format = null, array $context = []): bool
+    public function supportsDenormalization(mixed $data, string $type, ?string $format = null, array $context = []): bool
     {
         return $type === Picture::class;
     }

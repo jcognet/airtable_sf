@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace App\Tests\Functionnal\Controller\Page\Alert;
 
+use Symfony\Component\HttpFoundation\Request;
 use App\Tests\Functionnal\SetUserTrait;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
@@ -19,7 +20,7 @@ final class ShowControllerTest extends WebTestCase
         $client->followRedirects(true);
         $this->loginUser($client);
 
-        $client->request('GET', '/alert/');
+        $client->request(Request::METHOD_GET, '/alert/');
 
         $this->assertResponseIsSuccessful();
         $this->assertSelectorTextContains('h1.test-alert', 'alertes');

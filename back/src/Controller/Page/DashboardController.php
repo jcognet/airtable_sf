@@ -18,7 +18,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class DashboardController extends AbstractController
 {
-    #[Route(path: '/dashboard/', name: 'dashboard_show', methods: ['GET'])]
+    #[\Symfony\Component\Routing\Attribute\Route(path: '/dashboard/', name: 'dashboard_show', methods: ['GET'])]
     public function show(
         Request $request,
         NewsletterWriterFetcher $newsletterWriterFetcher,
@@ -55,7 +55,7 @@ class DashboardController extends AbstractController
         );
     }
 
-    #[Route(path: '/example/', name: 'dashboard_example', methods: ['GET'])]
+    #[\Symfony\Component\Routing\Attribute\Route(path: '/example/', name: 'dashboard_example', methods: ['GET'])]
     public function example(): Response
     {
         return $this->render(
@@ -66,7 +66,7 @@ class DashboardController extends AbstractController
         );
     }
 
-    #[Route(path: '/holiday', name: 'dashboard_holiday', methods: ['GET'])]
+    #[\Symfony\Component\Routing\Attribute\Route(path: '/holiday', name: 'dashboard_holiday', methods: ['GET'])]
     public function holiday(
         Request $request,
         NewsletterWriterFetcher $newsletterWriterFetcher,

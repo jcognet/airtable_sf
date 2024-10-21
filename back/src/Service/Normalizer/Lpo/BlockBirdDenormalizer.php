@@ -11,7 +11,7 @@ use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
 
 class BlockBirdDenormalizer implements DenormalizerInterface
 {
-    public function denormalize(mixed $data, string $type, string $format = null, array $context = []): BlockBird
+    public function denormalize(mixed $data, string $type, ?string $format = null, array $context = []): BlockBird
     {
         $data['bird'] = (new ImportedBirdDenormalizer())->denormalize($data['content'], ImportedBird::class, $format, $context);
         $data['image'] = (new ObjectNormalizer())->denormalize($data['image'], Picture::class, $format, $context);
@@ -20,7 +20,7 @@ class BlockBirdDenormalizer implements DenormalizerInterface
         return new BlockBird(...$data);
     }
 
-    public function supportsDenormalization(mixed $data, string $type, string $format = null, array $context = []): bool
+    public function supportsDenormalization(mixed $data, string $type, ?string $format = null, array $context = []): bool
     {
         return $type === BlockBird::class;
     }

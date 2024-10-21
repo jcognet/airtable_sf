@@ -9,7 +9,7 @@ use Symfony\Component\Serializer\Normalizer\DenormalizerInterface;
 
 class AbsDenormalizer implements DenormalizerInterface
 {
-    public function denormalize(mixed $data, string $type, string $format = null, array $context = []): Abs
+    public function denormalize(mixed $data, string $type, ?string $format = null, array $context = []): Abs
     {
         $data['date'] = Carbon::parse($data['date']);
         $data['isExempt'] = $data['exempt'];
@@ -18,7 +18,7 @@ class AbsDenormalizer implements DenormalizerInterface
         return new Abs(...$data);
     }
 
-    public function supportsDenormalization(mixed $data, string $type, string $format = null, array $context = []): bool
+    public function supportsDenormalization(mixed $data, string $type, ?string $format = null, array $context = []): bool
     {
         return $type === Abs::class;
     }

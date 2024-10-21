@@ -9,14 +9,14 @@ use Symfony\Component\Serializer\Normalizer\DenormalizerInterface;
 
 class CachedImageDenormalizer implements DenormalizerInterface
 {
-    public function denormalize(mixed $data, string $type, string $format = null, array $context = []): CachedImage
+    public function denormalize(mixed $data, string $type, ?string $format = null, array $context = []): CachedImage
     {
         $data['picture'] = new Picture(...$data['picture']);
 
         return new CachedImage(...$data);
     }
 
-    public function supportsDenormalization(mixed $data, string $type, string $format = null, array $context = []): bool
+    public function supportsDenormalization(mixed $data, string $type, ?string $format = null, array $context = []): bool
     {
         return $type === CachedImage::class;
     }

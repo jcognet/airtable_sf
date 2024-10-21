@@ -13,7 +13,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class DownloadController extends AbstractController
 {
-    #[Route(path: '/file/download/${pathFile}', name: 'file_download', methods: ['GET'])]
+    #[\Symfony\Component\Routing\Attribute\Route(path: '/file/download/${pathFile}', name: 'file_download', methods: ['GET'])]
     public function list(
         EncoderDecoder $encoderDecoder,
         string $pathFile

@@ -17,7 +17,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class ListImportedDataController extends AbstractController
 {
-    #[Route(path: '/list_imported_data/{importedDataType}', name: 'list_imported_data_show', methods: ['GET'])]
+    #[\Symfony\Component\Routing\Attribute\Route(path: '/list_imported_data/{importedDataType}', name: 'list_imported_data_show', methods: ['GET'])]
     public function show(
         IsListable $isListable,
         IsFiltrable $isFiltrable,
@@ -56,7 +56,7 @@ class ListImportedDataController extends AbstractController
         );
     }
 
-    #[Route(path: '/list_imported_data/{importedDataType}', name: 'list_imported_data_handle_form', methods: ['POST'])]
+    #[\Symfony\Component\Routing\Attribute\Route(path: '/list_imported_data/{importedDataType}', name: 'list_imported_data_handle_form', methods: ['POST'])]
     public function handleForm(
         Request $request,
         string $importedDataType,

@@ -28,6 +28,7 @@ return static function (RectorConfig $rectorConfig): void {
         SetList::DEAD_CODE,
         SymfonySetList::SYMFONY_CODE_QUALITY,
         SymfonySetList::SYMFONY_63,
+        SymfonySetList::SYMFONY_64,
         SymfonySetList::SYMFONY_CONSTRUCTOR_INJECTION,
     ]);
 

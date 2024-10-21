@@ -13,7 +13,7 @@ use Symfony\Component\Serializer\Normalizer\DenormalizerInterface;
 
 class BeerDenormalizer implements DenormalizerInterface
 {
-    public function denormalize(mixed $data, string $type, string $format = null, array $context = []): Beer
+    public function denormalize(mixed $data, string $type, ?string $format = null, array $context = []): Beer
     {
         if (isset($data['beerType'])) {
             $data['beerType'] = (new BeerTypeDenormalizer())->denormalize($data['beerType'], BeerType::class, $format, $context);
@@ -36,7 +36,7 @@ class BeerDenormalizer implements DenormalizerInterface
         return new Beer(...$data);
     }
 
-    public function supportsDenormalization(mixed $data, string $type, string $format = null, array $context = []): bool
+    public function supportsDenormalization(mixed $data, string $type, ?string $format = null, array $context = []): bool
     {
         return $type === Beer::class;
     }

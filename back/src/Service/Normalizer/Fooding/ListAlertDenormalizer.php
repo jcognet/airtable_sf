@@ -10,7 +10,7 @@ use Symfony\Component\Serializer\Normalizer\DenormalizerInterface;
 
 class ListAlertDenormalizer implements DenormalizerInterface
 {
-    public function denormalize(mixed $data, string $type, string $format = null, array $context = []): ListAlertBlock
+    public function denormalize(mixed $data, string $type, ?string $format = null, array $context = []): ListAlertBlock
     {
         unset($data['title'], $data['content'], $data['class']);
         $alertDenormalize = new AlertDenormalizer();
@@ -27,7 +27,7 @@ class ListAlertDenormalizer implements DenormalizerInterface
         return new ListAlertBlock(...$data);
     }
 
-    public function supportsDenormalization(mixed $data, string $type, string $format = null, array $context = []): bool
+    public function supportsDenormalization(mixed $data, string $type, ?string $format = null, array $context = []): bool
     {
         return $type === ListAlertBlock::class;
     }

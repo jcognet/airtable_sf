@@ -9,7 +9,7 @@ use Symfony\Component\Serializer\Normalizer\DenormalizerInterface;
 
 class DirectoryDenormalizer implements DenormalizerInterface
 {
-    public function denormalize(mixed $data, string $type, string $format = null, array $context = []): Directory
+    public function denormalize(mixed $data, string $type, ?string $format = null, array $context = []): Directory
     {
         if ($data['subDirectories']) {
             $subDirectories = [];
@@ -37,7 +37,7 @@ class DirectoryDenormalizer implements DenormalizerInterface
         return new Directory(...$data);
     }
 
-    public function supportsDenormalization(mixed $data, string $type, string $format = null, array $context = []): bool
+    public function supportsDenormalization(mixed $data, string $type, ?string $format = null, array $context = []): bool
     {
         return $type === Directory::class;
     }
