@@ -11,7 +11,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class ImportController extends AbstractController
 {
-    #[Route(path: '/import/all', name: 'import_all', methods: ['GET'])]
+    #[\Symfony\Component\Routing\Attribute\Route(path: '/import/all', name: 'import_all', methods: ['GET'])]
     public function index(
         AllImporter $importer,
     ): Response {

@@ -9,7 +9,7 @@ use Symfony\Component\Serializer\Normalizer\DenormalizerInterface;
 
 class Inr491RecommandationDenormalizer implements DenormalizerInterface
 {
-    public function denormalize(mixed $data, string $type, string $format = null, array $context = []): Inr491Recommandation
+    public function denormalize(mixed $data, string $type, ?string $format = null, array $context = []): Inr491Recommandation
     {
         $itemDenormalizer = new Inr491ItemDenormalizer();
         $items = [];
@@ -29,7 +29,7 @@ class Inr491RecommandationDenormalizer implements DenormalizerInterface
         return $recommandation;
     }
 
-    public function supportsDenormalization(mixed $data, string $type, string $format = null, array $context = []): bool
+    public function supportsDenormalization(mixed $data, string $type, ?string $format = null, array $context = []): bool
     {
         return $type === Inr491Recommandation::class;
     }

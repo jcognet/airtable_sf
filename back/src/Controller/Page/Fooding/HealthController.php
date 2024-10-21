@@ -14,7 +14,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class HealthController extends AbstractController
 {
-    #[Route(path: '/fooding/health', name: 'fooding_health', methods: ['GET'])]
+    #[\Symfony\Component\Routing\Attribute\Route(path: '/fooding/health', name: 'fooding_health', methods: ['GET'])]
     public function health(
         Request $request,
         ConsumptionGetter $consumptionGetter
@@ -54,7 +54,7 @@ class HealthController extends AbstractController
         );
     }
 
-    #[Route(path: '/fooding/health/list', name: 'fooding_health_list', methods: ['GET'])]
+    #[\Symfony\Component\Routing\Attribute\Route(path: '/fooding/health/list', name: 'fooding_health_list', methods: ['GET'])]
     public function list(
         ConsumptionLister $lister
     ): Response {

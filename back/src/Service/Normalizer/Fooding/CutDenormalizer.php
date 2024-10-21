@@ -9,14 +9,14 @@ use Symfony\Component\Serializer\Normalizer\DenormalizerInterface;
 
 class CutDenormalizer implements DenormalizerInterface
 {
-    public function denormalize(mixed $data, string $type, string $format = null, array $context = []): Cut
+    public function denormalize(mixed $data, string $type, ?string $format = null, array $context = []): Cut
     {
         $data['date'] = Carbon::parse($data['date']);
 
         return new Cut(...$data);
     }
 
-    public function supportsDenormalization(mixed $data, string $type, string $format = null, array $context = []): bool
+    public function supportsDenormalization(mixed $data, string $type, ?string $format = null, array $context = []): bool
     {
         return $type === Cut::class;
     }

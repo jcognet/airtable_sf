@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace App\Tests\Functionnal\Controller;
 
+use Symfony\Component\HttpFoundation\Request;
 use App\Tests\Functionnal\SetUserTrait;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Symfony\Component\HttpFoundation\Response;
@@ -20,7 +21,7 @@ final class ImageControllerTest extends WebTestCase
         $client->followRedirects(true);
         $this->loginUser($client);
 
-        $client->request('GET', '/img/list/?directory=MjAyMS9kaXIy');
+        $client->request(Request::METHOD_GET, '/img/list/?directory=MjAyMS9kaXIy');
 
         $this->assertResponseIsSuccessful();
         $this->assertSelectorTextContains('h1.test-img-random', 'Images de');
@@ -32,7 +33,7 @@ final class ImageControllerTest extends WebTestCase
         $client->followRedirects(true);
         $this->loginUser($client);
 
-        $client->request('GET', '/img/list/?directory=MjAyMS9kaXI');
+        $client->request(Request::METHOD_GET, '/img/list/?directory=MjAyMS9kaXI');
 
         self::assertResponseStatusCodeSame(Response::HTTP_NOT_FOUND);
     }
@@ -43,7 +44,7 @@ final class ImageControllerTest extends WebTestCase
         $client->followRedirects(true);
         $this->loginUser($client);
 
-        $client->request('GET', '/img/random/');
+        $client->request(Request::METHOD_GET, '/img/random/');
 
         $this->assertResponseIsSuccessful();
         $this->assertSelectorTextContains('h1.test-img-random', 'Images de');

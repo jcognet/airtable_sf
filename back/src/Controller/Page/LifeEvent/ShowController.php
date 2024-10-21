@@ -10,7 +10,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class ShowController extends AbstractController
 {
-    #[Route(path: '/life_event/', name: 'life_event_show', methods: ['GET'])]
+    #[\Symfony\Component\Routing\Attribute\Route(path: '/life_event/', name: 'life_event_show', methods: ['GET'])]
     public function show(LifeRepository $repository): Response
     {
         return $this->render(

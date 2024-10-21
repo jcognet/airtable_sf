@@ -9,7 +9,7 @@ use Symfony\Component\Serializer\Normalizer\DenormalizerInterface;
 
 class HolidayDenormalizer implements DenormalizerInterface
 {
-    public function denormalize(mixed $data, string $type, string $format = null, array $context = []): Holiday
+    public function denormalize(mixed $data, string $type, ?string $format = null, array $context = []): Holiday
     {
         $data['startDate'] = Carbon::parse($data['startDate']);
         $data['endDate'] = Carbon::parse($data['endDate']);
@@ -19,7 +19,7 @@ class HolidayDenormalizer implements DenormalizerInterface
         return new Holiday(...$data);
     }
 
-    public function supportsDenormalization(mixed $data, string $type, string $format = null, array $context = []): bool
+    public function supportsDenormalization(mixed $data, string $type, ?string $format = null, array $context = []): bool
     {
         return $type === Holiday::class;
     }

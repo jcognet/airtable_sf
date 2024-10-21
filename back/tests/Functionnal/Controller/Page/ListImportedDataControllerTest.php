@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace App\Tests\Functionnal\Controller\Page;
 
+use Symfony\Component\HttpFoundation\Request;
 use App\Tests\Functionnal\SetUserTrait;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Symfony\Component\HttpFoundation\Response;
@@ -20,7 +21,7 @@ final class ListImportedDataControllerTest extends WebTestCase
         $client->followRedirects(true);
         $this->loginUser($client);
 
-        $client->request('GET', '/list_imported_data/to_read');
+        $client->request(Request::METHOD_GET, '/list_imported_data/to_read');
 
         $this->assertResponseIsSuccessful();
         $this->assertSelectorExists('h1.test-list');
@@ -32,7 +33,7 @@ final class ListImportedDataControllerTest extends WebTestCase
         $client->followRedirects(true);
         $this->loginUser($client);
 
-        $client->request('GET', '/list_imported_data/to_read?sort_field=title&sort_order=desc');
+        $client->request(Request::METHOD_GET, '/list_imported_data/to_read?sort_field=title&sort_order=desc');
 
         $this->assertResponseIsSuccessful();
         $this->assertSelectorExists('h1.test-list');
@@ -44,7 +45,7 @@ final class ListImportedDataControllerTest extends WebTestCase
         $client->followRedirects(true);
         $this->loginUser($client);
 
-        $client->request('GET', '/list_imported_data/to_read?sort_field=title&sort_order=asc');
+        $client->request(Request::METHOD_GET, '/list_imported_data/to_read?sort_field=title&sort_order=asc');
 
         $this->assertResponseIsSuccessful();
         $this->assertSelectorExists('h1.test-list');
@@ -56,7 +57,7 @@ final class ListImportedDataControllerTest extends WebTestCase
         $client->followRedirects(true);
         $this->loginUser($client);
 
-        $client->request('GET', '/list_imported_data');
+        $client->request(Request::METHOD_GET, '/list_imported_data');
 
         self::assertResponseStatusCodeSame(Response::HTTP_NOT_FOUND);
     }
@@ -67,7 +68,7 @@ final class ListImportedDataControllerTest extends WebTestCase
         $client->followRedirects(true);
         $this->loginUser($client);
 
-        $client->request('GET', '/list_imported_data/toto');
+        $client->request(Request::METHOD_GET, '/list_imported_data/toto');
 
         self::assertResponseStatusCodeSame(Response::HTTP_NOT_FOUND);
     }
@@ -78,7 +79,7 @@ final class ListImportedDataControllerTest extends WebTestCase
         $client->followRedirects(true);
         $this->loginUser($client);
 
-        $client->request('GET', '/list_imported_data/holiday');
+        $client->request(Request::METHOD_GET, '/list_imported_data/holiday');
 
         self::assertResponseStatusCodeSame(Response::HTTP_NOT_FOUND);
     }
@@ -89,7 +90,7 @@ final class ListImportedDataControllerTest extends WebTestCase
         $client->followRedirects(true);
         $this->loginUser($client);
 
-        $client->request('GET', '/list_imported_data/to_read?sort_field=toto&sort_order=asc');
+        $client->request(Request::METHOD_GET, '/list_imported_data/to_read?sort_field=toto&sort_order=asc');
 
         self::assertResponseStatusCodeSame(Response::HTTP_INTERNAL_SERVER_ERROR);
     }
@@ -100,7 +101,7 @@ final class ListImportedDataControllerTest extends WebTestCase
         $client->followRedirects(true);
         $this->loginUser($client);
 
-        $client->request('GET', '/list_imported_data/to_read?sort_field=title&sort_order=toto');
+        $client->request(Request::METHOD_GET, '/list_imported_data/to_read?sort_field=title&sort_order=toto');
 
         self::assertResponseStatusCodeSame(Response::HTTP_INTERNAL_SERVER_ERROR);
     }
@@ -111,7 +112,7 @@ final class ListImportedDataControllerTest extends WebTestCase
         $client->followRedirects(true);
         $this->loginUser($client);
 
-        $client->request('GET', '/list_imported_data/see_again?fetch=true&filter=neur');
+        $client->request(Request::METHOD_GET, '/list_imported_data/see_again?fetch=true&filter=neur');
 
         $this->assertResponseIsSuccessful();
     }

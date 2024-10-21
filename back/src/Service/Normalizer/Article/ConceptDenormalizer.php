@@ -12,7 +12,7 @@ class ConceptDenormalizer implements DenormalizerInterface
 {
     public function __construct(private readonly LastUsedManager $lastUsedManager) {}
 
-    public function denormalize(mixed $data, string $type, string $format = null, array $context = []): Concept
+    public function denormalize(mixed $data, string $type, ?string $format = null, array $context = []): Concept
     {
         $linkedContents = [];
         foreach ($data['linkedContents'] as $linkedContent) {
@@ -33,7 +33,7 @@ class ConceptDenormalizer implements DenormalizerInterface
         return $this->lastUsedManager->onPostDenormalize(Concept::class, $data);
     }
 
-    public function supportsDenormalization(mixed $data, string $type, string $format = null, array $context = []): bool
+    public function supportsDenormalization(mixed $data, string $type, ?string $format = null, array $context = []): bool
     {
         return $type === Concept::class;
     }

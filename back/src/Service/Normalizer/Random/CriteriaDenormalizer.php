@@ -8,12 +8,12 @@ use Symfony\Component\Serializer\Normalizer\DenormalizerInterface;
 
 class CriteriaDenormalizer implements DenormalizerInterface
 {
-    public function denormalize(mixed $data, string $type, string $format = null, array $context = []): Criteria
+    public function denormalize(mixed $data, string $type, ?string $format = null, array $context = []): Criteria
     {
         return new Criteria(...$data);
     }
 
-    public function supportsDenormalization(mixed $data, string $type, string $format = null, array $context = []): bool
+    public function supportsDenormalization(mixed $data, string $type, ?string $format = null, array $context = []): bool
     {
         return $type === Criteria::class;
     }

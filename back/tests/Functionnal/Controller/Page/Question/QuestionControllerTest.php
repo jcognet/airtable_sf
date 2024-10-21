@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace App\Tests\Functionnal\Controller\Page\Question;
 
+use Symfony\Component\HttpFoundation\Request;
 use App\Tests\Functionnal\SetUserTrait;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
@@ -19,7 +20,7 @@ final class QuestionControllerTest extends WebTestCase
         $client->followRedirects(true);
         $this->loginUser($client);
 
-        $client->request('GET', '/question/answer/recL16HTslPNn3UDq');
+        $client->request(Request::METHOD_GET, '/question/answer/recL16HTslPNn3UDq');
 
         $this->assertResponseIsSuccessful();
         $this->assertSelectorTextContains('h1.test-question-h1', 'Qu\'est-ce que l\'homéostasie ?');
@@ -31,7 +32,7 @@ final class QuestionControllerTest extends WebTestCase
         $client->followRedirects(true);
         $this->loginUser($client);
 
-        $client->request('GET', '/question/answer/recL16HTslPNn3UDq?answer=Q2FwYWNpdMOpIGQndW5lIGJvdWNsZSBkZSByw6l0cm9hY3Rpb24gcG91ciBjaGFuZ2VyIGQnRXRhdCBxdWkgY29uc29tbWUgbW9pbnMgZCfDqW5lcmdpZS4=');
+        $client->request(Request::METHOD_GET, '/question/answer/recL16HTslPNn3UDq?answer=Q2FwYWNpdMOpIGQndW5lIGJvdWNsZSBkZSByw6l0cm9hY3Rpb24gcG91ciBjaGFuZ2VyIGQnRXRhdCBxdWkgY29uc29tbWUgbW9pbnMgZCfDqW5lcmdpZS4=');
 
         $this->assertResponseIsSuccessful();
         $this->assertSelectorTextContains('h1.test-question-h1', 'Qu\'est-ce que l\'homéostasie ?');
@@ -46,7 +47,7 @@ final class QuestionControllerTest extends WebTestCase
         $client->followRedirects(true);
         $this->loginUser($client);
 
-        $client->request('GET', '/question');
+        $client->request(Request::METHOD_GET, '/question');
 
         $this->assertResponseIsSuccessful();
         $this->assertSelectorExists('h1.test-question-h1');

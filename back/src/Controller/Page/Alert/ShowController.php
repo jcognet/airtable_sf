@@ -12,7 +12,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class ShowController extends AbstractController
 {
-    #[Route(path: '/alert/', name: 'alert_show', methods: ['GET'])]
+    #[\Symfony\Component\Routing\Attribute\Route(path: '/alert/', name: 'alert_show', methods: ['GET'])]
     public function show(
         Request $request,
         Alerter $alerter

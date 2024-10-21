@@ -12,7 +12,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class QuestionController extends AbstractController
 {
-    #[Route(path: '/question/answer/{id}', name: 'question_answer', methods: ['GET'])]
+    #[\Symfony\Component\Routing\Attribute\Route(path: '/question/answer/{id}', name: 'question_answer', methods: ['GET'])]
     public function answer(
         Request $request,
         string $id,
@@ -38,7 +38,7 @@ class QuestionController extends AbstractController
         );
     }
 
-    #[Route(path: '/question/', name: 'question_random', methods: ['GET'])]
+    #[\Symfony\Component\Routing\Attribute\Route(path: '/question/', name: 'question_random', methods: ['GET'])]
     public function random(
         QuestionManager $questionManager
     ): Response {

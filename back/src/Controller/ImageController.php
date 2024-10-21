@@ -19,7 +19,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class ImageController extends AbstractController
 {
-    #[Route(path: '/img/list/', name: 'img_list', methods: ['GET'])]
+    #[\Symfony\Component\Routing\Attribute\Route(path: '/img/list/', name: 'img_list', methods: ['GET'])]
     public function list(
         Request $request,
         ImageInPathLister $imageInPathLister,
@@ -50,7 +50,7 @@ class ImageController extends AbstractController
         );
     }
 
-    #[Route(path: '/img/random/', name: 'img_random', methods: ['GET'])]
+    #[\Symfony\Component\Routing\Attribute\Route(path: '/img/random/', name: 'img_random', methods: ['GET'])]
     public function random(
         ImageInPathLister $imageInPathLister,
         RandomDirectorySelector $randomDirectorySelector,
@@ -80,7 +80,7 @@ class ImageController extends AbstractController
         );
     }
 
-    #[Route(path: '/img/thumbnail/{pathImage}.jpg', name: 'img_thumbnail', methods: ['GET'])]
+    #[\Symfony\Component\Routing\Attribute\Route(path: '/img/thumbnail/{pathImage}.jpg', name: 'img_thumbnail', methods: ['GET'])]
     public function thumbnail(
         string $pathImage,
         EncoderDecoder $encoderDecoder,
@@ -98,7 +98,7 @@ class ImageController extends AbstractController
         );
     }
 
-    #[Route(path: '/img/normal/{pathImage}.jpg', name: 'img_normal', methods: ['GET'])]
+    #[\Symfony\Component\Routing\Attribute\Route(path: '/img/normal/{pathImage}.jpg', name: 'img_normal', methods: ['GET'])]
     public function normal(
         string $pathImage,
         EncoderDecoder $encoderDecoder,

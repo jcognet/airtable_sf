@@ -10,7 +10,7 @@ use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
 
 class ListBlockBirdDenormalizer implements DenormalizerInterface
 {
-    public function denormalize(mixed $data, string $type, string $format = null, array $context = []): ListBlockBird
+    public function denormalize(mixed $data, string $type, ?string $format = null, array $context = []): ListBlockBird
     {
         $birdDenormalizer = new BlockBirdDenormalizer();
         $birds = [];
@@ -25,7 +25,7 @@ class ListBlockBirdDenormalizer implements DenormalizerInterface
         return (new ObjectNormalizer())->denormalize($data, ListBlockBird::class, $format, $context);
     }
 
-    public function supportsDenormalization(mixed $data, string $type, string $format = null, array $context = []): bool
+    public function supportsDenormalization(mixed $data, string $type, ?string $format = null, array $context = []): bool
     {
         return $type === ListBlockBird::class;
     }

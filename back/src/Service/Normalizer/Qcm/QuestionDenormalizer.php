@@ -12,7 +12,7 @@ class QuestionDenormalizer implements DenormalizerInterface
 {
     public function __construct(private readonly LastUsedManager $lastUsedManager) {}
 
-    public function denormalize(mixed $data, string $type, string $format = null, array $context = []): Question
+    public function denormalize(mixed $data, string $type, ?string $format = null, array $context = []): Question
     {
         if (isset($data['usedDate'])) {
             $data['usedDate'] = Carbon::parse($data['usedDate']);
@@ -23,7 +23,7 @@ class QuestionDenormalizer implements DenormalizerInterface
         return $this->lastUsedManager->onPostDenormalize(Question::class, $data);
     }
 
-    public function supportsDenormalization(mixed $data, string $type, string $format = null, array $context = []): bool
+    public function supportsDenormalization(mixed $data, string $type, ?string $format = null, array $context = []): bool
     {
         return $type === Question::class;
     }

@@ -9,14 +9,14 @@ use Symfony\Component\Serializer\Normalizer\DenormalizerInterface;
 
 class ColoringDenormalizer implements DenormalizerInterface
 {
-    public function denormalize(mixed $data, string $type, string $format = null, array $context = []): Coloring
+    public function denormalize(mixed $data, string $type, ?string $format = null, array $context = []): Coloring
     {
         $data['date'] = Carbon::parse($data['date']);
 
         return new Coloring(...$data);
     }
 
-    public function supportsDenormalization(mixed $data, string $type, string $format = null, array $context = []): bool
+    public function supportsDenormalization(mixed $data, string $type, ?string $format = null, array $context = []): bool
     {
         return $type === Coloring::class;
     }

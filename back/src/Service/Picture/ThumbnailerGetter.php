@@ -15,7 +15,7 @@ class ThumbnailerGetter
 
     public function get(
         string $sourceImage,
-        Format $format = null
+        ?Format $format = null
     ): string {
         $thumbnailName = $this->thumbnailerNameGetter->get($sourceImage, $format);
 

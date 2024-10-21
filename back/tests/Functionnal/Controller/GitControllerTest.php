@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace App\Tests\Functionnal\Controller;
 
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Symfony\Component\Filesystem\Filesystem;
 
@@ -34,7 +35,7 @@ final class GitControllerTest extends WebTestCase
         $client->followRedirects(true);
 
         $client->request(
-            'POST',
+            Request::METHOD_POST,
             '/git/deploy',
             [],
             [],
@@ -50,7 +51,7 @@ final class GitControllerTest extends WebTestCase
         $client = self::createClient();
         $client->followRedirects(true);
 
-        $client->request('GET', '/git/show');
+        $client->request(Request::METHOD_GET, '/git/show');
         $content = $client->getResponse()->getContent();
         $this->assertResponseIsSuccessful();
         self::assertJson($content);

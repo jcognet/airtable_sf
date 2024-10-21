@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace App\Tests\Functionnal\Controller\Newspaper;
 
+use Symfony\Component\HttpFoundation\Request;
 use App\Tests\Functionnal\SetUserTrait;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Symfony\Component\HttpFoundation\Response;
@@ -20,7 +21,7 @@ final class ContentControllerTest extends WebTestCase
         $client->followRedirects(true);
         $this->loginUser($client);
 
-        $client->request('GET', '/newspaper/content/one/article?date=2021-01-03');
+        $client->request(Request::METHOD_GET, '/newspaper/content/one/article?date=2021-01-03');
 
         $this->assertResponseIsSuccessful();
     }
@@ -31,7 +32,7 @@ final class ContentControllerTest extends WebTestCase
         $client->followRedirects(true);
         $this->loginUser($client);
 
-        $client->request('GET', '/newspaper/content/one/toto?date=2021-01-03');
+        $client->request(Request::METHOD_GET, '/newspaper/content/one/toto?date=2021-01-03');
 
         $this->assertResponseStatusCodeSame(Response::HTTP_NOT_FOUND);
     }

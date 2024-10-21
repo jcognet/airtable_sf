@@ -9,7 +9,7 @@ use Symfony\Component\Serializer\Normalizer\DenormalizerInterface;
 
 class BookListDenormalizer implements DenormalizerInterface
 {
-    public function denormalize(mixed $data, string $type, string $format = null, array $context = []): BookList
+    public function denormalize(mixed $data, string $type, ?string $format = null, array $context = []): BookList
     {
         $bookDenormalizer = new BookDenormalizer();
         $books = [];
@@ -24,7 +24,7 @@ class BookListDenormalizer implements DenormalizerInterface
         return new BookList(...$data);
     }
 
-    public function supportsDenormalization(mixed $data, string $type, string $format = null, array $context = []): bool
+    public function supportsDenormalization(mixed $data, string $type, ?string $format = null, array $context = []): bool
     {
         return $type === BookList::class;
     }

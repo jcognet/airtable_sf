@@ -14,7 +14,7 @@ class AbstractArticleListDenormalizer implements DenormalizerInterface
 {
     private const LIST_CLASS = [ArticleSeeAgainList::class, ArticleList::class, ArticleReadList::class];
 
-    public function denormalize(mixed $data, string $type, string $format = null, array $context = []): mixed
+    public function denormalize(mixed $data, string $type, ?string $format = null, array $context = []): mixed
     {
         $articleDenormalizer = new ArticleDenormalizer();
         $articles = [];
@@ -30,7 +30,7 @@ class AbstractArticleListDenormalizer implements DenormalizerInterface
         return (new ObjectNormalizer())->denormalize($data, $data['class'], $format, $context);
     }
 
-    public function supportsDenormalization(mixed $data, string $type, string $format = null, array $context = []): bool
+    public function supportsDenormalization(mixed $data, string $type, ?string $format = null, array $context = []): bool
     {
         return in_array($type, self::LIST_CLASS, true);
     }

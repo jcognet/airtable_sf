@@ -18,7 +18,7 @@ class GitController extends AbstractController implements LoggerAwareInterface
 {
     use LoggerAwareTrait;
 
-    #[Route(path: '/git/deploy', name: 'git_deploy', methods: ['POST'])]
+    #[\Symfony\Component\Routing\Attribute\Route(path: '/git/deploy', name: 'git_deploy', methods: ['POST'])]
     public function deploy(
         Request $request,
         Deploy $deploy
@@ -43,7 +43,7 @@ class GitController extends AbstractController implements LoggerAwareInterface
         return new JsonResponse('Success', Response::HTTP_OK);
     }
 
-    #[Route(path: '/git/show', name: 'git_show', methods: ['GET'])]
+    #[\Symfony\Component\Routing\Attribute\Route(path: '/git/show', name: 'git_show', methods: ['GET'])]
     public function show(
         TagHandler $tagHandler
     ): Response {
