@@ -65,7 +65,7 @@ class Item
         return $this->airTableUrl;
     }
 
-    public function getComplexity(): int
+    public function getComplexity(): ?int
     {
         return $this->complexity;
     }

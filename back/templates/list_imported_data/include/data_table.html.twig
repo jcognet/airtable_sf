@@ -37,10 +37,12 @@
                         {% set value = attribute(data, field.property) %}
                         {% if is_url(value) %}
                             <a href="{{ value }}" target="_blank">
-                                            <span class="icon">
-                                                <i class="fa-solid fa-arrow-right"></i>
-                                            </span>
+                                <span class="icon">
+                                    <i class="fa-solid fa-arrow-right"></i>
+                                </span>
                             </a>
+                        {% elseif value.timestamp is defined %}
+                            {{ value|date('d/m/Y') }}
                         {% else %}
                             {{ value }}
                         {% endif %}
