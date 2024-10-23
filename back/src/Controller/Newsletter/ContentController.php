@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace App\Controller\Newsletter;
 
+use Symfony\Component\Routing\Attribute\Route;
 use App\Service\NewsletterManager\Manager;
 use App\Service\NewsletterManager\NewspaperCreator;
 use App\Service\NewsletterManager\NewspaperRenderer;
@@ -10,11 +11,10 @@ use Carbon\Carbon;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Routing\Annotation\Route;
 
 class ContentController extends AbstractController
 {
-    #[\Symfony\Component\Routing\Attribute\Route(path: '/newsletter/content/show', name: 'newsletter_content_show', methods: ['GET'])]
+    #[Route(path: '/newsletter/content/show', name: 'newsletter_content_show', methods: ['GET'])]
     public function show(
         Request $request,
         Manager $manager
@@ -32,7 +32,7 @@ class ContentController extends AbstractController
         );
     }
 
-    #[\Symfony\Component\Routing\Attribute\Route(path: '/newsletter/content/all', name: 'newsletter_content_all', methods: ['GET'])]
+    #[Route(path: '/newsletter/content/all', name: 'newsletter_content_all', methods: ['GET'])]
     public function all(
         NewspaperCreator $creator,
         NewspaperRenderer $renderer
@@ -45,7 +45,7 @@ class ContentController extends AbstractController
         );
     }
 
-    #[\Symfony\Component\Routing\Attribute\Route(path: '/newsletter/content/one/{blockType}', name: 'newsletter_content_one', methods: ['GET'])]
+    #[Route(path: '/newsletter/content/one/{blockType}', name: 'newsletter_content_one', methods: ['GET'])]
     public function one(
         NewspaperCreator $creator,
         NewspaperRenderer $renderer,

@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace App\Controller\Page;
 
+use Symfony\Component\Routing\Attribute\Route;
 use App\Enum\Import\Airtable\Order;
 use App\Exception\Import\Airtable\UnknownDataImportedTypeException;
 use App\Exception\Import\Airtable\UnknownListServiceException;
@@ -13,11 +14,10 @@ use App\ValueObject\Import\Airtable\Sort;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Routing\Annotation\Route;
 
 class ListImportedDataController extends AbstractController
 {
-    #[\Symfony\Component\Routing\Attribute\Route(path: '/list_imported_data/{importedDataType}', name: 'list_imported_data_show', methods: ['GET'])]
+    #[Route(path: '/list_imported_data/{importedDataType}', name: 'list_imported_data_show', methods: ['GET'])]
     public function show(
         IsListable $isListable,
         IsFiltrable $isFiltrable,
@@ -56,7 +56,7 @@ class ListImportedDataController extends AbstractController
         );
     }
 
-    #[\Symfony\Component\Routing\Attribute\Route(path: '/list_imported_data/{importedDataType}', name: 'list_imported_data_handle_form', methods: ['POST'])]
+    #[Route(path: '/list_imported_data/{importedDataType}', name: 'list_imported_data_handle_form', methods: ['POST'])]
     public function handleForm(
         Request $request,
         string $importedDataType,

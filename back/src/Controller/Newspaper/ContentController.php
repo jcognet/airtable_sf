@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace App\Controller\Newspaper;
 
+use Symfony\Component\Routing\Attribute\Route;
 use App\Exception\NewsletterBlockManager\UnknownBlockTypeException;
 use App\Service\Block\BlockFinder;
 use App\ValueObject\NewsletterBlockManager\BlockType;
@@ -11,12 +12,11 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Serializer\SerializerInterface;
 
 class ContentController extends AbstractController
 {
-    #[\Symfony\Component\Routing\Attribute\Route(path: '/newspaper/content/one/{type}', name: 'newspapper_content_one', methods: ['GET'])]
+    #[Route(path: '/newspaper/content/one/{type}', name: 'newspapper_content_one', methods: ['GET'])]
     public function one(
         Request $request,
         BlockFinder $blockFinder,
