@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
+use Symfony\Component\Routing\Attribute\Route;
 use App\Enum\Picture\Format;
 use App\Service\Picture\DownloadableInformationFactory;
 use App\Service\Picture\EncoderDecoder;
@@ -15,11 +16,10 @@ use Symfony\Component\Finder\Exception\DirectoryNotFoundException;
 use Symfony\Component\HttpFoundation\BinaryFileResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Routing\Annotation\Route;
 
 class ImageController extends AbstractController
 {
-    #[\Symfony\Component\Routing\Attribute\Route(path: '/img/list/', name: 'img_list', methods: ['GET'])]
+    #[Route(path: '/img/list/', name: 'img_list', methods: ['GET'])]
     public function list(
         Request $request,
         ImageInPathLister $imageInPathLister,
@@ -50,7 +50,7 @@ class ImageController extends AbstractController
         );
     }
 
-    #[\Symfony\Component\Routing\Attribute\Route(path: '/img/random/', name: 'img_random', methods: ['GET'])]
+    #[Route(path: '/img/random/', name: 'img_random', methods: ['GET'])]
     public function random(
         ImageInPathLister $imageInPathLister,
         RandomDirectorySelector $randomDirectorySelector,
@@ -80,7 +80,7 @@ class ImageController extends AbstractController
         );
     }
 
-    #[\Symfony\Component\Routing\Attribute\Route(path: '/img/thumbnail/{pathImage}.jpg', name: 'img_thumbnail', methods: ['GET'])]
+    #[Route(path: '/img/thumbnail/{pathImage}.jpg', name: 'img_thumbnail', methods: ['GET'])]
     public function thumbnail(
         string $pathImage,
         EncoderDecoder $encoderDecoder,
@@ -98,7 +98,7 @@ class ImageController extends AbstractController
         );
     }
 
-    #[\Symfony\Component\Routing\Attribute\Route(path: '/img/normal/{pathImage}.jpg', name: 'img_normal', methods: ['GET'])]
+    #[Route(path: '/img/normal/{pathImage}.jpg', name: 'img_normal', methods: ['GET'])]
     public function normal(
         string $pathImage,
         EncoderDecoder $encoderDecoder,

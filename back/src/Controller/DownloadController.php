@@ -3,17 +3,17 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
+use Symfony\Component\Routing\Attribute\Route;
 use App\Service\Picture\EncoderDecoder;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\BinaryFileResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\ResponseHeaderBag;
 use Symfony\Component\Mime\MimeTypes;
-use Symfony\Component\Routing\Annotation\Route;
 
 class DownloadController extends AbstractController
 {
-    #[\Symfony\Component\Routing\Attribute\Route(path: '/file/download/${pathFile}', name: 'file_download', methods: ['GET'])]
+    #[Route(path: '/file/download/${pathFile}', name: 'file_download', methods: ['GET'])]
     public function list(
         EncoderDecoder $encoderDecoder,
         string $pathFile

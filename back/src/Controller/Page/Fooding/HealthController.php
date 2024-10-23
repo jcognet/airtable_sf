@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace App\Controller\Page\Fooding;
 
+use Symfony\Component\Routing\Attribute\Route;
 use App\Service\Fooding\ConsumptionGetter;
 use App\Service\Fooding\ConsumptionLister;
 use Carbon\Carbon;
@@ -10,11 +11,10 @@ use Carbon\Exceptions\InvalidFormatException;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Routing\Annotation\Route;
 
 class HealthController extends AbstractController
 {
-    #[\Symfony\Component\Routing\Attribute\Route(path: '/fooding/health', name: 'fooding_health', methods: ['GET'])]
+    #[Route(path: '/fooding/health', name: 'fooding_health', methods: ['GET'])]
     public function health(
         Request $request,
         ConsumptionGetter $consumptionGetter
@@ -54,7 +54,7 @@ class HealthController extends AbstractController
         );
     }
 
-    #[\Symfony\Component\Routing\Attribute\Route(path: '/fooding/health/list', name: 'fooding_health_list', methods: ['GET'])]
+    #[Route(path: '/fooding/health/list', name: 'fooding_health_list', methods: ['GET'])]
     public function list(
         ConsumptionLister $lister
     ): Response {

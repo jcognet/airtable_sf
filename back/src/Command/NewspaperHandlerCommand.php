@@ -7,11 +7,13 @@ use App\Service\Archive\NewsletterWriterFetcher;
 use App\Service\Mailer\ErrorSender;
 use App\Service\Mailer\NewsletterSender;
 use App\Service\NewsletterManager\Manager;
+use App\ValueObject\Archive\NewsLetter;
 use Carbon\Carbon;
 use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
+use Symfony\Component\Mailer\Exception\TransportException;
 
 #[AsCommand(name: 'app:newspaper:handler')]
 class NewspaperHandlerCommand extends Command
@@ -41,11 +43,14 @@ class NewspaperHandlerCommand extends Command
 
             if (!$newsLetter->wasSent()) {
                 $this->sender->send($newsLetter->getNewsletterHtml());
-                $newsLetter->setWasSent(true);
-                $this->newsletterWriterFetcher->write(
-                    $newsLetter
-                );
+                $this->setWasSent($newsLetter);
             }
+        } catch (TransportException $e) {
+            if ($e->getMessage() !== 'Unable to write bytes on the wire.') {
+                throw $e;
+            }
+
+            $this->setWasSent($newsLetter);
         } catch (\Throwable $e) {
             $output->write(sprintf('<error>Error: %s</error>', $e->getMessage()));
             $this->errorSender->send($e);
@@ -60,5 +65,13 @@ class NewspaperHandlerCommand extends Command
         $output->writeln(sprintf('Duration: %s', $interval->forHumans()));
 
         return Command::SUCCESS;
+    }
+
+    private function setWasSent(NewsLetter $newsLetter): void
+    {
+        $newsLetter->setWasSent(true);
+        $this->newsletterWriterFetcher->write(
+            $newsLetter
+        );
     }
 }
