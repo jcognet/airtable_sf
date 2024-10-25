@@ -48,7 +48,7 @@ class NewspaperHandlerCommand extends Command
                 $this->setWasSent($newsLetter);
             }
         } catch (TransportException $e) {
-            if (!in_array($e->getMessage(), self::IGNORE_EXCEPTIONS, true)) {
+            if (!in_array(trim($e->getMessage()), self::IGNORE_EXCEPTIONS, true)) {
                 throw $e;
             }
 
