@@ -3,10 +3,10 @@ declare(strict_types=1);
 
 namespace App\Controller\Newsletter;
 
-use Symfony\Component\Routing\Attribute\Route;
 use App\Service\Export\Exporter;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Routing\Attribute\Route;
 
 class ExportController extends AbstractController
 {

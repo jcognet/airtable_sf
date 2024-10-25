@@ -3,7 +3,6 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
-use Symfony\Component\Routing\Attribute\Route;
 use App\Enum\Picture\Format;
 use App\Service\Picture\DownloadableInformationFactory;
 use App\Service\Picture\EncoderDecoder;
@@ -16,6 +15,7 @@ use Symfony\Component\Finder\Exception\DirectoryNotFoundException;
 use Symfony\Component\HttpFoundation\BinaryFileResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Routing\Attribute\Route;
 
 class ImageController extends AbstractController
 {

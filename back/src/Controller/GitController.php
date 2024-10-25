@@ -3,7 +3,6 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
-use Symfony\Component\Routing\Attribute\Route;
 use App\Service\Git\Deploy;
 use App\Service\Git\TagHandler;
 use Psr\Log\LoggerAwareInterface;
@@ -13,6 +12,7 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Kernel;
+use Symfony\Component\Routing\Attribute\Route;
 
 class GitController extends AbstractController implements LoggerAwareInterface
 {

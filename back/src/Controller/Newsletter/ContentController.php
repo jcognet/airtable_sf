@@ -3,7 +3,6 @@ declare(strict_types=1);
 
 namespace App\Controller\Newsletter;
 
-use Symfony\Component\Routing\Attribute\Route;
 use App\Service\NewsletterManager\Manager;
 use App\Service\NewsletterManager\NewspaperCreator;
 use App\Service\NewsletterManager\NewspaperRenderer;
@@ -11,6 +10,7 @@ use Carbon\Carbon;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Routing\Attribute\Route;
 
 class ContentController extends AbstractController
 {

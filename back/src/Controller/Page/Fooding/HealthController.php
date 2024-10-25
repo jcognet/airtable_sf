@@ -3,7 +3,6 @@ declare(strict_types=1);
 
 namespace App\Controller\Page\Fooding;
 
-use Symfony\Component\Routing\Attribute\Route;
 use App\Service\Fooding\ConsumptionGetter;
 use App\Service\Fooding\ConsumptionLister;
 use Carbon\Carbon;
@@ -11,6 +10,7 @@ use Carbon\Exceptions\InvalidFormatException;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Routing\Attribute\Route;
 
 class HealthController extends AbstractController
 {

@@ -18,6 +18,8 @@ use Symfony\Component\Mailer\Exception\TransportException;
 #[AsCommand(name: 'app:newspaper:handler')]
 class NewspaperHandlerCommand extends Command
 {
+    private const IGNORE_EXCEPTIONS = ['Process failed with exit code -1:', 'Unable to write bytes on the wire.'];
+
     public function __construct(
         private readonly string $environment,
         private readonly ErrorSender $errorSender,
@@ -46,10 +48,11 @@ class NewspaperHandlerCommand extends Command
                 $this->setWasSent($newsLetter);
             }
         } catch (TransportException $e) {
-            if ($e->getMessage() !== 'Unable to write bytes on the wire.') {
+            if (!in_array($e->getMessage(), self::IGNORE_EXCEPTIONS, true)) {
                 throw $e;
             }
 
+            $output->write(sprintf('<error>Error: %s</error>', $e->getMessage()));
             $this->setWasSent($newsLetter);
         } catch (\Throwable $e) {
             $output->write(sprintf('<error>Error: %s</error>', $e->getMessage()));

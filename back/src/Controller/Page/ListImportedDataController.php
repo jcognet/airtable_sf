@@ -3,7 +3,6 @@ declare(strict_types=1);
 
 namespace App\Controller\Page;
 
-use Symfony\Component\Routing\Attribute\Route;
 use App\Enum\Import\Airtable\Order;
 use App\Exception\Import\Airtable\UnknownDataImportedTypeException;
 use App\Exception\Import\Airtable\UnknownListServiceException;
@@ -14,6 +13,7 @@ use App\ValueObject\Import\Airtable\Sort;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Routing\Attribute\Route;
 
 class ListImportedDataController extends AbstractController
 {

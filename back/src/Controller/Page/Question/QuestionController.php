@@ -3,12 +3,12 @@ declare(strict_types=1);
 
 namespace App\Controller\Page\Question;
 
-use Symfony\Component\Routing\Attribute\Route;
 use App\Service\Block\Question\QuestionManager;
 use App\Service\Import\Airtable\Qcm\Question\Fetcher;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Routing\Attribute\Route;
 
 class QuestionController extends AbstractController
 {

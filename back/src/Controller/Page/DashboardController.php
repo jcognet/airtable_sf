@@ -3,7 +3,6 @@ declare(strict_types=1);
 
 namespace App\Controller\Page;
 
-use Symfony\Component\Routing\Attribute\Route;
 use App\Service\Alert\Alerter;
 use App\Service\Archive\NewsletterWriterFetcher;
 use App\Service\Archive\PreviousNewsletterFetcher;
@@ -15,6 +14,7 @@ use Carbon\Carbon;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Routing\Attribute\Route;
 
 class DashboardController extends AbstractController
 {
