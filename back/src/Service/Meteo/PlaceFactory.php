@@ -39,7 +39,7 @@ class PlaceFactory
     {
         $holidays = $this->holidayFetcher->fetchFromDate($date);
 
-        if ($holidays === null || count($holidays) === 0) {
+        if ($holidays === null || count($holidays) === 0 || $holidays[0]->getPlaceMeteo() === null) {
             return null;
         }
 
