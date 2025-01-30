@@ -26,7 +26,6 @@ enum BlockType: string
     case LIST_ARTICLE_READ_BLOCK = 'list_article_read';
     case LIST_ARTICLE_INTERESTING_TOPIC_BLOCK = 'list_interesting_topic';
     case CONCEPT_BLOCK = 'concept';
-    case IMAGE_GOOGLE_EXPORT_CURRENCIES_BLOCK = 'image_google_currencies';
     case IMAGE_LIST_PICTURES = 'image_list_pictures';
     case BIRD = 'bird';
     case LIST_BIRD = 'list_bird';

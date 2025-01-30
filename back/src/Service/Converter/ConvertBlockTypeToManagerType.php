@@ -16,7 +16,6 @@ use App\Service\Block\Article\VideoBlockManager;
 use App\Service\Block\Beer\GoodBeerBlockManager;
 use App\Service\Block\Book\BookBlockManager;
 use App\Service\Block\Book\BookListBlockManager;
-use App\Service\Block\Google\CurrenciesManager;
 use App\Service\Block\Google\DoneContentManager;
 use App\Service\Block\Google\InProgressContentManager;
 use App\Service\Block\Lpo\BirdManager;
@@ -56,7 +55,6 @@ class ConvertBlockTypeToManagerType
         ArticleReadListBlockManager::class => BlockType::LIST_ARTICLE_READ_BLOCK,
         InterestingTopicListBlockManager::class => BlockType::LIST_ARTICLE_INTERESTING_TOPIC_BLOCK,
         ConceptManager::class => BlockType::CONCEPT_BLOCK,
-        CurrenciesManager::class => BlockType::IMAGE_GOOGLE_EXPORT_CURRENCIES_BLOCK,
         PictureManager::class => BlockType::IMAGE_LIST_PICTURES,
         BirdManager::class => BlockType::BIRD,
         ListBirdManager::class => BlockType::LIST_BIRD,
