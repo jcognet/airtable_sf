@@ -43,10 +43,6 @@ framework:
         headers:
           Accept: 'application/vnd.github.v3+json'
           Authorization: 'token %env(GITHUB_API_TOKEN)%'
-      currency.client:
-        base_uri: http://api.exchangeratesapi.io/v1/
-        query:
-          access_key: '%env(EXCHANGE_RATES_API_IO_KEY)%'
       lpo.client:
         base_uri: '%lpoBaseUrl%'
       google.place.api.client:

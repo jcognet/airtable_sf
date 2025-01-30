@@ -13,7 +13,6 @@ use App\Service\AirTable\ToDo\ItemClient;
 use App\Service\Archive\ExportWriterFetcher;
 use App\Service\Google\ExportAirtableWriter;
 use App\Service\Import\Airtable\Qcm\Question\Lister;
-use App\Service\Repository\Random\CurrencyRepository;
 use App\Service\Repository\Random\GithubRepository;
 use Carbon\Carbon;
 
@@ -27,7 +26,6 @@ class Exporter
         private readonly BookClient $bookClient,
         private readonly ImageClient $imageClient,
         private readonly GithubRepository $githubRepository,
-        private readonly CurrencyRepository $currencyRepository,
         private readonly ConceptClient $conceptClient,
         private readonly ExportWriterFetcher $exportWriterFetcher,
         private readonly InterestingTopicClient $interestingTopicClient,
@@ -36,7 +34,6 @@ class Exporter
 
     public function getData(): array
     {
-        $currencies = $this->currencyRepository->getCurrencies();
         $nbArticleNotRead = count($this->ALireClient->findAll());
         $nbArticleNotConcept = count($this->luClient->findAll(['filterByFormula' => '{Conceptualisé} = 0']));
         $nbImageNotConcept = count($this->imageClient->findAll(['filterByFormula' => '{Conceptualisé} = 0']));
@@ -53,11 +50,11 @@ class Exporter
             'image_count' => count($this->imageClient->findAll()),
             'to_do_items_done_count' => count($this->itemClient->findAll(['filterByFormula' => '{Etat} = "Done"'])),
             'github_issues_count' => $this->githubRepository->getNbIssues(),
-            $currencies[0]->getSymbol() => $currencies[0]->getValue(),
-            $currencies[1]->getSymbol() => $currencies[1]->getValue(),
-            $currencies[2]->getSymbol() => $currencies[2]->getValue(),
-            $currencies[3]->getSymbol() => $currencies[3]->getValue(),
-            $currencies[4]->getSymbol() => $currencies[4]->getValue(),
+            '',
+            '',
+            '',
+            '',
+            '',
             'concept_count' => count($this->conceptClient->findAll()),
             'article_with_no_concept_count' => $nbArticleNotConcept,
             'waiting_for_action_count' => $nbWaitingForAction,
