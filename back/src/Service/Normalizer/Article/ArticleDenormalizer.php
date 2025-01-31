@@ -4,7 +4,7 @@ declare(strict_types=1);
 namespace App\Service\Normalizer\Article;
 
 use App\ValueObject\Article\Article;
-use App\ValueObject\Article\ArticleType;
+use App\ValueObject\Article\ArticleTypeEnum;
 use App\ValueObject\Article\Status;
 use App\ValueObject\Article\Sujet;
 use Carbon\Carbon;
@@ -28,7 +28,7 @@ class ArticleDenormalizer implements DenormalizerInterface
         }
 
         if (isset($data['articleType'])) {
-            $data['articleType'] = new ArticleType($data['articleType']['value']);
+            $data['articleType'] = ArticleTypeEnum::from($data['articleType']);
         }
 
         $data['body'] = $data['content'];
