@@ -19,7 +19,7 @@ class Article extends AbstractBlock
         private readonly array $sujets,
         private readonly ?Status $status,
         private readonly ?string $url,
-        private readonly ?ArticleType $articleType,
+        private readonly ?ArticleTypeEnum $articleType,
         private readonly string $airTableUrl,
         private readonly bool $hasConcept = false,
         private readonly bool $seeAgain = false,
@@ -60,7 +60,7 @@ class Article extends AbstractBlock
         return $this->url;
     }
 
-    public function getArticleType(): ?ArticleType
+    public function getArticleType(): ?ArticleTypeEnum
     {
         return $this->articleType;
     }

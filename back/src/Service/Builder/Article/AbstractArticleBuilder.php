@@ -8,7 +8,7 @@ use App\Service\AirTable\UrlBuilder;
 use App\Service\Builder\BuilderInterface;
 use App\Service\Repository\Article\SujetRepository;
 use App\ValueObject\Article\Article;
-use App\ValueObject\Article\ArticleType;
+use App\ValueObject\Article\ArticleTypeEnum;
 use App\ValueObject\Article\Status;
 use Carbon\Carbon;
 
@@ -45,7 +45,7 @@ abstract class AbstractArticleBuilder implements BuilderInterface
             $sujets,
             $status,
             $data['fields']['URL'] ?? '',
-            isset($data['fields']['Type']) ? new ArticleType($data['fields']['Type']) : null,
+            isset($data['fields']['Type']) ? ArticleTypeEnum::from($data['fields']['Type']) : null,
             $this->urlBuilder->build($this->airtableAppArticleId, $this->getTableURL(), $this->getViewUrl(), $data['id']),
             $data['fields']['Conceptualisé'] ?? false,
             $data['fields']['A revoir'] ?? false
