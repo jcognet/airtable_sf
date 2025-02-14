@@ -42,7 +42,7 @@ class NextRun
             return 0;
         }
 
-        return $this->date->diffInDays(Carbon::now());
+        return (int) $this->date->diffInDays(Carbon::now());
     }
 
     public function getDuration(): ?int

@@ -24,21 +24,21 @@ class Event
 
     public function getDaysSinceDate(): int
     {
-        return Carbon::now()->diffInDays($this->date);
+        return (int) Carbon::now()->diffInDays($this->date);
     }
 
     public function getWeeksSinceDate(): int
     {
-        return Carbon::now()->diffInWeeks($this->date);
+        return (int) Carbon::now()->diffInWeeks($this->date);
     }
 
     public function getMonthsSinceDate(): int
     {
-        return Carbon::now()->diffInMonths($this->date);
+        return (int) Carbon::now()->diffInMonths($this->date);
     }
 
     public function getYearsSinceDate(): int
     {
-        return Carbon::now()->diffInYears($this->date);
+        return (int) Carbon::now()->diffInYears($this->date);
     }
 }
