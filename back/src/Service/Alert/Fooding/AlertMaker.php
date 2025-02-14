@@ -32,7 +32,7 @@ class AlertMaker
             );
         }
 
-        $nbDays = $previousOccurence->getDate()->diff($date)->days;
+        $nbDays = (int) $previousOccurence->getDate()->diffInDays($date);
 
         if ($nbDays < $threshold && !$forceReturnAlert) {
             return null;

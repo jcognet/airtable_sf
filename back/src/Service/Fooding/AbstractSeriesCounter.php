@@ -48,7 +48,7 @@ abstract class AbstractSeriesCounter
 
         $lastEvent = end($events);
 
-        $nb = $lastEvent->getDate()->diffInDays($date);
+        $nb = (int) $lastEvent->getDate()->diffInDays($date);
 
         // If $date === $today, we might have taken entered current data so we remove today in the account
         if ($nb > 0 && $date->format('dmY') === Carbon::now()->format('dmY')) {
