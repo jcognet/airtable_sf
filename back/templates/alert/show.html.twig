@@ -42,9 +42,10 @@
                                     constant('App\\Enum\\Alert\\TypeEnum::COFFEE_CURRENT_WITHOUT_SERIES'),
                                 ] %}
                                     {{ alert.message }}
+                                    <span class="is-hidden" id="test-alert-{{ alert.type.value }}">{{ alert.nbDays }}</span>
                                 {% else %}
                                     {{ alert.lastDate|date('d/m/Y') }}
-                                    ({{ alert.nbDays }} jour{% if alert.nbDays>1 %}s{% endif %})
+                                    (<span id="test-alert-{{ alert.type.value }}">{{ alert.nbDays }}</span> jour{% if alert.nbDays>1 %}s{% endif %})
                                 {% endif %}
                             </td>
                         </tr>

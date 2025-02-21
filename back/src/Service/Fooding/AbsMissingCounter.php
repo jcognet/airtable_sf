@@ -19,7 +19,7 @@ class AbsMissingCounter
         }
 
         $firstDay = reset($absBeforeDate);
-        $nbDays = $date->diff($firstDay->getDate())->days;
+        $nbDays = (int) $firstDay->getDate()->diffInDays($date);
 
         $nbAbs = 0;
         foreach ($absBeforeDate as $absDate) {
