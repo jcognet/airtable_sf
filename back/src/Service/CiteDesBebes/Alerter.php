@@ -21,6 +21,7 @@ class Alerter
                 return false;
             }
         } catch (NoDataFoundForDateException) {
+            return false;
         }
 
         $this->sender->send();
