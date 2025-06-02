@@ -50,6 +50,8 @@ framework:
         query:
           key: '%env(GOOGLE_API_KEY)%'
           language: 'fr'
+      cite_des_bebes.client:
+        base_uri: https://billetterie.cite-sciences.fr/api/offers/396/
 
 when@test:
   framework:
