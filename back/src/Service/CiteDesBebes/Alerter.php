@@ -17,7 +17,7 @@ class Alerter
     public function alert(): bool
     {
         try {
-            if (!$this->salesIsOpen->isInStock(Carbon::now()->addDays(7))) {
+            if (!$this->salesIsOpen->isInStock(Carbon::now()->addDays(8))) {
                 return false;
             }
         } catch (NoDataFoundForDateException) {
