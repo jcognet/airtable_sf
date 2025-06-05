@@ -10,7 +10,7 @@ use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
-#[AsCommand(name: 'app:cite_des_bebes:is-_open')]
+#[AsCommand(name: 'app:cite_des_bebes:is-open')]
 class IsSalesOpen extends Command
 {
     public function __construct(
