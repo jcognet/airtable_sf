@@ -17,12 +17,12 @@
                     <h1 class="title has-text-centered section-title test-events">
                         Cité des bébés
                         <span class="tag">
-                    {{ updated_at|date('d/m/Y h:i:s') }}
+                    {{ updated_at|date('d/m/Y G:i:s') }}
                     </span>
                     </h1>
                 </div>
             </div>
-            {% if sales %}
+            {% if sales is not null %}
                 <div class="container">
                     <table class="table">
                         <thead>
@@ -37,8 +37,8 @@
                         {% for sale in sales %}
                             <tr>
                                 <td>{{ sale.day|date('l d m Y') }}</td>
-                                <td>{% if sale.start %}{{ sale.start|date('d/m/Y h:i:s') }}{% else %} - {% endif %}</td>
-                                <td>{% if sale.end %}{{ sale.end|date('d/m/Y h:i:s') }}{% else %} - {% endif %}</td>
+                                <td>{% if sale.start %}{{ sale.start|date('d/m/Y G:i:s') }}{% else %} - {% endif %}</td>
+                                <td>{% if sale.end %}{{ sale.end|date('d/m/Y G:i:s') }}{% else %} - {% endif %}</td>
                                 <td>{% if sale.isSalesOpen %} En cours {% else %} Fini{% endif %}</td>
                             </tr>
                         {% endfor %}
