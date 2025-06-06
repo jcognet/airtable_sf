@@ -68,9 +68,9 @@ class Fetcher
     }
 
     /**
-     * @return AvailibilitySales[]
+     * @return AvailibilitySales[]|null
      */
-    public function list(): array
+    public function list(): ?array
     {
         return $this->readWriteHandler->read(Carbon::now());
     }
