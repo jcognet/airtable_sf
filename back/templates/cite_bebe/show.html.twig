@@ -1,0 +1,51 @@
+{% extends './page/base.html.twig' %}
+{% block body %}
+    <div id="content">
+        <div class="section-light">
+            <div class="container">
+                <nav class="breadcrumb" aria-label="breadcrumbs">
+                    <ul>
+                        <li><a href="{{ url_front }}">Dashboard</a></li>
+                        <li>Cité des bébés</li>
+                    </ul>
+                </nav>
+                <div
+                    class="column is-12 about-me"
+                    data-aos="fade-in"
+                    data-aos-easing="linear"
+                >
+                    <h1 class="title has-text-centered section-title test-events">
+                        Cité des bébés
+                        <span class="tag">
+                    {{ updated_at|date('d/m/Y h:i:s') }}
+                    </span>
+                    </h1>
+                </div>
+            </div>
+            {% if sales %}
+                <div class="container">
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <td>Jour des tickets</td>
+                            <td>Ouverture</td>
+                            <td>Fermeture</td>
+                            <td>En cours ?</td>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for sale in sales %}
+                            <tr>
+                                <td>{{ sale.day|date('l d m Y') }}</td>
+                                <td>{% if sale.start %}{{ sale.start|date('d/m/Y h:i:s') }}{% else %} - {% endif %}</td>
+                                <td>{% if sale.end %}{{ sale.end|date('d/m/Y h:i:s') }}{% else %} - {% endif %}</td>
+                                <td>{% if sale.isSalesOpen %} En cours {% else %} Fini{% endif %}</td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}
