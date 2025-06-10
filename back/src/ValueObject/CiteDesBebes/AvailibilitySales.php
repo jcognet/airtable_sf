@@ -10,7 +10,7 @@ class AvailibilitySales
 {
     public function __construct(
         public readonly Carbon $day,
-        public readonly ?Carbon $start = null,
+        public readonly Carbon $start,
         private ?Carbon $end = null,
         private bool $isSalesOpen = false,
         private bool $stateHasChanged = false
