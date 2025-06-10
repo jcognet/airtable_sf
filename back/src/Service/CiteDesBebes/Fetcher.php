@@ -27,11 +27,12 @@ class Fetcher
             $listSales = [];
         }
 
+        $listSales[$sales->day->format('Y-m-d')] = $sales;
         $this->readWriteHandler->write(
             $this->serializer->serialize(
                 [
                     'data' => [
-                        'sales' => [...$listSales, $sales],
+                        'sales' => $listSales,
                     ],
                     'metadata' => [
                         'updated' => Carbon::now(),
@@ -83,6 +84,11 @@ class Fetcher
             return null;
         }
 
-        return $data['data']['sales'];
+        $listSalesWithKey = [];
+        foreach ($data['data']['sales'] as $sales) {
+            $listSalesWithKey[$sales->day->format('Y-m-d')] = $sales;
+        }
+
+        return $listSalesWithKey;
     }
 }
