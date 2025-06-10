@@ -37,8 +37,8 @@ class ListImportedDataController extends AbstractController
         }
 
         $template = filter_var($request->query->get('fetch', null), FILTER_VALIDATE_BOOLEAN)
-            ? 'list_imported_data/include/data_table.html.twig' :
-            'list_imported_data/show.html.twig';
+            ? 'list_imported_data/include/data_table.html.twig'
+            : 'list_imported_data/show.html.twig';
 
         return $this->render(
             $template,

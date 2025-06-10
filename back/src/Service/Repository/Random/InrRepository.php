@@ -23,8 +23,8 @@ class InrRepository
     public function fetchRandomData(): ?InrTool
     {
         if (count($this->records) === 0) {
-            $html =
-                $this->inrClient->request(
+            $html
+                = $this->inrClient->request(
                     'GET',
                     'search.php?search=&go_random=J%27ai+de+la+chance',
                 )->getContent();
