@@ -86,7 +86,7 @@ class Fetcher
 
         $listSalesWithKey = [];
         foreach ($data['data']['sales'] as $sales) {
-            $listSalesWithKey[$sales->day->format('Y-m-d')] = $sales;
+            $listSalesWithKey[Carbon::parse($sales['day'])->format('Y-m-d')] = $sales;
         }
 
         return $listSalesWithKey;
