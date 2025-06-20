@@ -4,9 +4,12 @@ declare(strict_types=1);
 namespace App\Service\AirTable;
 
 use App\Service\Builder\BuilderInterface;
+use App\Service\Import\Airtable\AbstractImporter;
+use App\Service\Import\Airtable\AbstractLister;
 use App\ValueObject\BlockInterface;
 use Psr\Log\LoggerInterface;
 use Symfony\Component\HttpClient\Exception\ClientException;
+use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Contracts\Service\Attribute\Required;
 
 abstract class AbstractClient
@@ -19,6 +22,7 @@ abstract class AbstractClient
 
     private LastUsedManager $lastUsedManager;
     private LoggerInterface $logger;
+    private ?AbstractLister $lister = null;
 
     public function __construct(
         protected readonly string $airtableAppId,
@@ -41,6 +45,11 @@ abstract class AbstractClient
     public function setLoggerInterface(LoggerInterface $logger): void
     {
         $this->logger = $logger;
+    }
+
+    public function setImporter(?AbstractImporter $importer): void
+    {
+        $this->importer = $importer;
     }
 
     public function fetchRandomData(array $param = []): ?BlockInterface
@@ -209,5 +218,14 @@ abstract class AbstractClient
     private function createKey(array $param = []): string
     {
         return md5(serialize($param));
+    }
+
+    private function findAllFromLister(): ?array
+    {
+        if(!$this->lister) {
+            return null;
+        }
+
+        return $this->lister->list();
     }
 }
